@@ -23,14 +23,14 @@ class CreateTaxonAttributesTable extends Migration
             $table->bigIncrements('id');
             $table->timestampTz('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestampTz('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->smallInteger('version');
+            $table->smallInteger('version')->default(0);
             //$table->uuid('guid');
             $table->bigInteger('created_by_id');
             $table->bigInteger('modified_by_id')->nullable();
             $table->bigInteger('taxon_concept_id');
             $table->bigInteger('attribute_id');
             $table->bigInteger('attribute_value_id');
-            $table->text('remarks');
+            $table->text('remarks')->nullable();
             $table->index('taxon_concept_id');
             $table->index('attribute_id');
             $table->index('attribute_value_id');

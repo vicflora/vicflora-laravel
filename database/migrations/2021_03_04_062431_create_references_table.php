@@ -38,7 +38,7 @@ class CreateReferencesTable extends Migration
             $table->string('pages', 255)->nullable();
             $table->integer('number_of_pages')->nullable();
             $table->string('publisher', 64)->nullable();
-            $table->string('place_of_publication', 64)->nullable();
+            $table->string('place_of_publication', 128)->nullable();
             $table->text('short_description')->nullable();
             $table->text('abstract')->nullable();
             $table->string('isbn', 32)->nullable();
@@ -48,12 +48,14 @@ class CreateReferencesTable extends Migration
             $table->string('url', 128)->nullable();
             $table->integer('number')->nullable();
             $table->text('citation_html')->nullable();
-            $table->smallInteger('version');
+            $table->smallInteger('version')->default(0);
+            $table->uuid('guid')->nullable();
             $table->timestampTz('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestampTz('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->index('title');
             $table->index('created');
             $table->index('publication_year');
+            $table->index('guid');
             $table->foreign('parent_id', 'references_parent_id_foreign')->on('refs')->references('id');
             $table->foreign('reference_type_id', 'references_reference_type_id_foreign')->on('reference_types')->references('id');
             $table->foreign('author_id', 'references_author_id_foreign')->on('agents')->references('id');

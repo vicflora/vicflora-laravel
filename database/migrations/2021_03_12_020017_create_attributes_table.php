@@ -23,7 +23,7 @@ class CreateAttributesTable extends Migration
             $table->bigIncrements('id');
             $table->timestampTz('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestampTz('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->smallInteger('version');
+            $table->smallInteger('version')->default(0);
             $table->uuid('guid');
             $table->bigInteger('created_by_id');
             $table->bigInteger('modified_by_id')->nullable();

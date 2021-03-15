@@ -25,7 +25,7 @@ class CreateProfilesTable extends Migration
             $table->timestampTz('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->bigInteger('created_by_id');
             $table->bigInteger('modified_by_id')->nullable();
-            $table->smallInteger('version');
+            $table->smallInteger('version')->default(0);
             $table->uuid('guid')->nullable();
             $table->bigInteger('taxon_concept_id');
             $table->bigInteger('accepted_id');

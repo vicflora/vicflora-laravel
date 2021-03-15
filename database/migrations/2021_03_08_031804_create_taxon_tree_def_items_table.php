@@ -25,7 +25,7 @@ class CreateTaxonTreeDefItemsTable extends Migration
             $table->timestampTz('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->bigInteger('created_by_id');
             $table->bigInteger('modified_by_id')->nullable();
-            $table->smallInteger('version');
+            $table->smallInteger('version')->default(0);
             $table->uuid('guid')->nullable();
             $table->string('name', 64);
             $table->string('text_before', 16)->nullable();
@@ -33,7 +33,7 @@ class CreateTaxonTreeDefItemsTable extends Migration
             $table->string('full_name_separator', 4)->nullable();
             $table->boolean('is_enforced')->nullable();
             $table->boolean('is_in_full_name')->nullable();
-            $table->smallInteger('rank_id');
+            $table->smallInteger('rank_id')->nullable();
             $table->bigInteger('parent_item_id')->nullable();
             $table->index('guid');
             $table->index('name');

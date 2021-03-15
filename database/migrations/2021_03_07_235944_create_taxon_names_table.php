@@ -33,10 +33,10 @@ class CreateTaxonNamesTable extends Migration
             $table->string('name_part', 64);
             $table->string('full_name');
             $table->string('authorship')->nullable();
-            $table->string('full_name_with_authorship');
+            $table->string('full_name_with_authorship')->nullable();
             $table->string('nomenclatural_note')->nullable();
             $table->text('remarks')->nullable();
-            $table->smallInteger('version');
+            $table->smallInteger('version')->default(0);
             $table->uuid('guid')->nullable();
             $table->index('guid');
             $table->index('name_part');

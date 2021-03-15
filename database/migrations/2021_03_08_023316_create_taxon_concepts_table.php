@@ -30,13 +30,13 @@ class CreateTaxonConceptsTable extends Migration
             $table->bigInteger('taxon_tree_def_item_id')->nullable();
             $table->bigInteger('accepted_id')->nullable();
             $table->bigInteger('parent_id')->nullable();
-            $table->bigInteger('taxonomic_status_id');
+            $table->bigInteger('taxonomic_status_id')->nullable();
             $table->bigInteger('occurrence_status_id')->nullable();
             $table->bigInteger('establishment_means_id')->nullable();
             $table->bigInteger('degree_of_establishment_id')->nullable();
             $table->text('remarks')->nullable();
             $table->text('editor_notes')->nullable();
-            $table->smallInteger('version');
+            $table->smallInteger('version')->default(0);
             $table->uuid('guid')->nullable();
             $table->index('taxon_name_id');
             $table->index('according_to_id');

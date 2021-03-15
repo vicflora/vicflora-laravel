@@ -23,8 +23,9 @@ class CreateAgentsTable extends Migration
             $table->bigIncrements('id');
             $table->timestampTz('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestampTz('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->bigInteger('agent_type_id');
-            $table->string('name', 128);
+            $table->bigInteger('agent_type_id')->nullable();
+            $table->integer('user_id')->nullable();
+            $table->string('name');
             $table->string('first_name', 64)->nullable();
             $table->string('last_name', 64)->nullable();
             $table->string('initials', 32)->nullable();
@@ -33,7 +34,7 @@ class CreateAgentsTable extends Migration
             $table->uuid('guid');
             $table->bigInteger('created_by_id');
             $table->bigInteger('modified_by_id')->nullable();
-            $table->smallInteger('version');
+            $table->smallInteger('version')->default(0);
             $table->index('name');
             $table->index(['last_name', 'first_name']);
             $table->index('email');
@@ -41,6 +42,7 @@ class CreateAgentsTable extends Migration
             //$table->foreign('agent_type_id')->on('agent_types')->references('id');
             $table->foreign('created_by_id')->on('agents')->references('id');
             $table->foreign('modified_by_id')->on('agents')->references('id');
+            $table->foreign('user_id')->on('users')->references('id');
         });
 
         $this->setGlobalSequence();

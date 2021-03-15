@@ -15,13 +15,13 @@ class BaseModel extends Model
         if (array_key_exists($key, $this->relations)) {
             return parent::getAttribute($key);
         } else {
-            return parent::getAttribute(Str::studly($key));
+            return parent::getAttribute(Str::snake($key));
         }
     }
 
     public function setAttribute($key, $value)
     {
-        return parent::setAttribute(Str::studly($key), $value);
+        return parent::setAttribute(Str::snake($key), $value);
     }
     
     public function getDateFormat()

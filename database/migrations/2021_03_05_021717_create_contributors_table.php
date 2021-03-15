@@ -30,7 +30,7 @@ class CreateContributorsTable extends Migration
             $table->bigInteger('modified_by_id')->nullable();
             $table->smallInteger('sequence');
             $table->uuid('guid')->nullable();
-            $table->smallInteger('version');
+            $table->smallInteger('version')->default(0);
             $table->index('reference_id');            
             $table->index('agent_id');            
             $table->index('created_by_id');            

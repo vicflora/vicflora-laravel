@@ -26,8 +26,9 @@ class CreateReferenceTypesTable extends Migration
             $table->string('name', 64);
             $table->string('uri', 64)->nullable();
             $table->string('label');
-            $table->text('description');
-            $table->uuid('guid');
+            $table->text('description')->nullable();
+            $table->smallInteger('version')->default(0);
+            $table->uuid('guid')->nullable();
             $table->bigInteger('created_by_id');
             $table->bigInteger('modified_by_id')->nullable();
             $table->index('name');

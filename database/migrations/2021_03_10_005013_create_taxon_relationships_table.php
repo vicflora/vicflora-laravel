@@ -32,7 +32,7 @@ class CreateTaxonRelationshipsTable extends Migration
             $table->bigInteger('relationship_according_to_id');
             $table->text('remarks')->nullable();
             $table->uuid('guid')->nullable();
-            $table->smallInteger('version');
+            $table->smallInteger('version')->default(0);
             $table->index('subject_taxon_concept_id');
             $table->index('object_taxon_concept_id');
             $table->index('taxon_relationship_type_id');

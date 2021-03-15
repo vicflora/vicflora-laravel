@@ -34,6 +34,7 @@ use App\Models\BaseModel;
  * @property int $number
  * @property string $citationHtml
  * @property integer $version
+ * @property string $guid
  * @property string $createdAt
  * @property string $updatedAt
  * @property Agent $createdBy
@@ -65,7 +66,7 @@ class Reference extends BaseModel
     /**
      * @var array
      */
-    protected $fillable = ['reference_type_id', 'parent_id', 'author_id', 'created_by_id', 'modified_by_id', 'created', 'publication_year', 'title', 'short_title', 'edition', 'volume', 'issue', 'page_start', 'page_end', 'pages', 'number_of_pages', 'publisher', 'place_of_publication', 'short_description', 'abstract', 'isbn', 'issn', 'doi', 'citation', 'url', 'number', 'citation_html', 'version', 'created_at', 'updated_at'];
+    protected $fillable = ['reference_type_id', 'parent_id', 'author_id', 'created_by_id', 'modified_by_id', 'created', 'publication_year', 'title', 'short_title', 'edition', 'volume', 'issue', 'page_start', 'page_end', 'pages', 'number_of_pages', 'publisher', 'place_of_publication', 'short_description', 'abstract', 'isbn', 'issn', 'doi', 'citation', 'url', 'number', 'citation_html', 'version', 'guid', 'created_at', 'updated_at'];
 
     /**
      * Indicates if the model should be timestamped.

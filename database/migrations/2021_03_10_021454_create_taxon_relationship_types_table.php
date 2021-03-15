@@ -27,6 +27,7 @@ class CreateTaxonRelationshipTypesTable extends Migration
             $table->string('uri', 64)->nullable();
             $table->string('label');
             $table->text('description');
+            $table->smallInteger('version')->default(0);
             $table->uuid('guid');
             $table->bigInteger('created_by_id');
             $table->bigInteger('modified_by_id')->nullable();

@@ -3,14 +3,14 @@
 use App\Database\Migrations\MigrationTrait;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTaxonTreeItemsTable extends Migration
+class CreateGroupPeopleTable extends Migration
 {
     use MigrationTrait;
 
-    protected $tableName = 'taxon_tree_items';
+    protected $tableName = 'group_people';
+
     /**
      * Run the migrations.
      *
@@ -22,23 +22,23 @@ class CreateTaxonTreeItemsTable extends Migration
             $table->bigIncrements('id');
             $table->timestampTz('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestampTz('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->smallInteger('version')->default(0);
+            //$table->uuid('guid');
             $table->bigInteger('created_by_id');
             $table->bigInteger('modified_by_id')->nullable();
-            $table->smallInteger('version')->default(0);
-            $table->bigInteger('taxon_concept_id');
-            $table->bigInteger('parent_id')->nullable();
-            $table->integer('node_number');
-            $table->integer('highest_descendant_node_number');
-            $table->smallInteger('depth')->nullable();
-            $table->index('taxon_concept_id');
-            $table->index('node_number');
-            $table->index('highest_descendant_node_number');
-            $table->foreign('taxon_concept_id')->on('taxon_concepts')->references('id');
+            $table->bigInteger('group_id');
+            $table->bigInteger('member_id');
+            $table->tinyInteger('sequence');
+            $table->index('group_id');
+            $table->index('member_id');
+            $table->index('sequence');
+            $table->foreign('group_id')->references('id')->on('agents');
+            $table->foreign('member_id')->references('id')->on('agents');
             $table->foreign('created_by_id')->on('agents')->references('id');
             $table->foreign('modified_by_id')->on('agents')->references('id');
         });
 
-        //$this->setGlobalSequence();
+        $this->setGlobalSequence();
         $this->setTriggers();
     }
 
