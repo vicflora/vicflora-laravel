@@ -1,0 +1,14 @@
+type TaxonAttribute {
+    id: ID!
+    remarks: String
+
+    taxonConcept: TaxonConcept!
+    attribute: Attribute
+    attributeValue: AttributeValue!
+
+    createdBy: Agent
+    modifiedBy: Agent
+    createdAt: DateTimeTz
+    updatedAt: DateTimeTz
+    version: Int
+}

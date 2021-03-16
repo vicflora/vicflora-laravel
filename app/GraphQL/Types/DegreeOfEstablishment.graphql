@@ -1,0 +1,13 @@
+type DegreeOfEstablishment {
+    id: ID!
+    guid: UUID
+    name: String!
+    uri: String
+    label: String
+    description: String
+
+    createdBy: Agent
+    modifiedBy: Agent
+    createdAt: DateTimeTz
+    updatedAt: DateTimeTz
+}

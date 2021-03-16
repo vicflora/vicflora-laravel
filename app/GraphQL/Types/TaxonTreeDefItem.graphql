@@ -1,0 +1,13 @@
+type TaxonTreeDefItem {
+    id: ID!
+    guid: UUID
+    name: String!
+    textBefore: String
+    textAfter: String
+    fullNameSeparator: String
+    isEnforced: Boolean
+    isInFullName: Boolean
+    rankId: Int
+    parentItem: TaxonTreeDefItem
+    taxonConcepts: [TaxonConcept]
+}

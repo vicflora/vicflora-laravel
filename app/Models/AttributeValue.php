@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Models\BaseModel;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @property integer $id
@@ -45,16 +47,16 @@ class AttributeValue extends BaseModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function attribute()
+    public function attribute(): BelongsTo
     {
-        return $this->belongsTo('App\Models\Attribute');
+        return $this->belongsTo(Attribute::class);
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function taxonAttributes()
+    public function taxonAttributes(): HasMany
     {
-        return $this->hasMany('App\Models\TaxonAttribute');
+        return $this->hasMany(TaxonAttribute::class);
     }
 }

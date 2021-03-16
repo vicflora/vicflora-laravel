@@ -3,19 +3,20 @@
 namespace App\Models;
 
 use App\Models\BaseModel;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property integer $id
- * @property integer $createdById
- * @property integer $modifiedById
- * @property integer $taxonConceptId
- * @property string $createdAt
- * @property string $updatedAt
+ * @property integer $created_by_id
+ * @property integer $modified_by_id
+ * @property integer $taxon_concept_id
+ * @property string $created_at
+ * @property string $updated_at
  * @property integer $version
  * @property string $guid
  * @property string $name
- * @property boolean $isPreferred
- * @property string $nameUsage
+ * @property boolean $is_preferred
+ * @property string $name_usage
  * @property string $remarks
  * @property TaxonConcept $taxonConcept
  * @property Agent $createdBy
@@ -33,7 +34,9 @@ class VernacularName extends BaseModel
     /**
      * @var array
      */
-    protected $fillable = ['created_by_id', 'modified_by_id', 'taxon_concept_id', 'created_at', 'updated_at', 'version', 'guid', 'name', 'is_preferred', 'name_usage', 'remarks'];
+    protected $fillable = ['created_by_id', 'modified_by_id', 'taxon_concept_id', 
+            'created_at', 'updated_at', 'version', 'guid', 'name', 
+            'is_preferred', 'name_usage', 'remarks'];
 
     /**
      * Indicates if the model should be timestamped.
@@ -45,9 +48,9 @@ class VernacularName extends BaseModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function taxonConcept()
+    public function taxonConcept(): BelongsTo
     {
-        return $this->belongsTo('App\Models\TaxonConcept');
+        return $this->belongsTo(TaxonConcept::class);
     }
 
 }

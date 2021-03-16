@@ -1,0 +1,16 @@
+"Agent type"
+type Agent {
+    id: ID!
+    guid: UUID
+
+    "Name of the agent"
+    name: String
+    lastName: String @rename(attribute: "last_name")
+    firstName: String @rename(attribute: "first_name")
+    initials: String
+    email: String
+    legalName: String @rename(attribute: "legal_name")
+
+    "Type of agent"
+    agentType: AgentType
+}

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\BaseModel;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property integer $id
@@ -35,13 +36,15 @@ class Agent extends BaseModel
     /**
      * @var array
      */
-    protected $fillable = ['agent_type_id', 'created_by_id', 'modified_by_id', 'created_at', 'updated_at', 'name', 'first_name', 'last_name', 'initials', 'email', 'legal_name', 'guid', 'version'];
+    protected $fillable = ['agent_type_id', 'created_by_id', 'modified_by_id', 
+            'created_at', 'updated_at', 'name', 'first_name', 'last_name', 
+            'initials', 'email', 'legal_name', 'guid', 'version'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function agentType()
+    public function agentType(): BelongsTo
     {
-        return $this->belongsTo('App\Models\AgentType');
+        return $this->belongsTo(AgentType::class);
     }
 }

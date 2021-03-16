@@ -3,44 +3,45 @@
 namespace App\Models;
 
 use App\Models\BaseModel;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property integer $id
- * @property integer $taxonId
- * @property integer $acceptedId
- * @property string $timestampCreated
- * @property string $timestampModified
+ * @property integer $taxon_id
+ * @property integer $accepted_id
+ * @property string $timestamp_created
+ * @property string $timestamp_modified
  * @property int $version
- * @property string $assetCreationDate
+ * @property string $asset_creation_date
  * @property string $caption
- * @property string $catalogNumber
- * @property string $copyrightOwner
+ * @property string $catalog_number
+ * @property string $copyright_Owner
  * @property string $country
- * @property string $countryCode
- * @property string $creationDate
+ * @property string $country_code
+ * @property string $creation_date
  * @property string $creator
- * @property string $cumulusCatalog
- * @property integer $cumulusRecordId
- * @property string $cumulusRecordName
- * @property float $decimalLatitude
- * @property float $decimalLongitude
- * @property boolean $heroImage
+ * @property string $cumulus_catalog
+ * @property integer $cumulus_record_id
+ * @property string $cumulus_record_name
+ * @property float $decimal_latitude
+ * @property float $decimal_longitude
+ * @property boolean $hero_image
  * @property string $license
  * @property string $locality
  * @property string $modified
- * @property string $originatingProgram
- * @property int $pixelXDimension
- * @property int $pixelYDimension
+ * @property string $originating_program
+ * @property integer $pixel_x_dimension
+ * @property integer $pixel_y_dimension
  * @property integer $rating
- * @property string $recordedBy
- * @property string $recordNumber
+ * @property string $recorded_by
+ * @property string $record_number
  * @property string $rights
- * @property string $scientificName
+ * @property string $scientific_name
  * @property string $source
- * @property string $stateProvince
- * @property string $subjectCategory
- * @property string $subjectOrientation
- * @property string $subjectPart
+ * @property string $state_province
+ * @property string $subject_category
+ * @property string $subject_orientation
+ * @property string $subject_part
  * @property string $subtype
  * @property string $title
  * @property string $type
@@ -60,7 +61,16 @@ class Image extends BaseModel
     /**
      * @var array
      */
-    protected $fillable = ['taxon_id', 'accepted_id', 'timestamp_created', 'timestamp_modified', 'version', 'asset_creation_date', 'caption', 'catalog_number', 'copyright_owner', 'country', 'country_code', 'creation_date', 'creator', 'cumulus_catalog', 'cumulus_record_id', 'cumulus_record_name', 'decimal_latitude', 'decimal_longitude', 'hero_image', 'license', 'locality', 'modified', 'originating_program', 'pixel_x_dimension', 'pixel_y_dimension', 'rating', 'recorded_by', 'record_number', 'rights', 'scientific_name', 'source', 'state_province', 'subject_category', 'subject_orientation', 'subject_part', 'subtype', 'title', 'type', 'uid'];
+    protected $fillable = ['taxon_id', 'accepted_id', 'timestamp_created', 
+            'timestamp_modified', 'version', 'asset_creation_date', 'caption', 
+            'catalog_number', 'copyright_owner', 'country', 'country_code', 
+            'creation_date', 'creator', 'cumulus_catalog', 'cumulus_record_id', 
+            'cumulus_record_name', 'decimal_latitude', 'decimal_longitude', 
+            'hero_image', 'license', 'locality', 'modified', 'originating_program', 
+            'pixel_x_dimension', 'pixel_y_dimension', 'rating', 'recorded_by', 
+            'record_number', 'rights', 'scientific_name', 'source', 
+            'state_province', 'subject_category', 'subject_orientation', 
+            'subject_part', 'subtype', 'title', 'type', 'uid'];
 
     /**
      * Indicates if the model should be timestamped.
@@ -72,16 +82,16 @@ class Image extends BaseModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function acceptedConcept()
+    public function acceptedConcept(): BelongsTo
     {
-        return $this->belongsTo('App\Models\TaxonConcept', 'accepted_id');
+        return $this->belongsTo(TaxonConcept::class, 'accepted_id');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function taxonConcept()
+    public function taxonConcept(): BelongsTo
     {
-        return $this->belongsTo('App\Models\TaxonConcept', 'taxon_id');
+        return $this->belongsTo(TaxonConcept::class, 'taxon_id');
     }
 }

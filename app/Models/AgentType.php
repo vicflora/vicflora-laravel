@@ -31,13 +31,14 @@ class AgentType extends BaseModel
     /**
      * @var array
      */
-    protected $fillable = ['created_by_id', 'modified_by_id', 'created_at', 'updated_at', 'name', 'uri', 'label', 'description', 'guid'];
+    protected $fillable = ['created_by_id', 'modified_by_id', 'created_at', 
+            'updated_at', 'name', 'uri', 'label', 'description', 'guid'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function agents()
     {
-        return $this->hasMany('App\Models\Agent');
+        return $this->hasMany(Agent::class);
     }
 }

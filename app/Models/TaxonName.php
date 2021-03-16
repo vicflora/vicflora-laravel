@@ -3,23 +3,25 @@
 namespace App\Models;
 
 use App\Models\BaseModel;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @property integer $id
- * @property integer $protologueId
- * @property integer $nomenclaturalStatusId
- * @property integer $nameTypeId
- * @property integer $basionymId
- * @property integer $replacedSynonymId
- * @property integer $createdById
- * @property integer $modifiedById
- * @property string $createdAt
- * @property string $updatedAt
- * @property string $namePart
- * @property string $fullName
+ * @property integer $protologue_id
+ * @property integer $nomenclatural_status_id
+ * @property integer $name_type_id
+ * @property integer $basionym_id
+ * @property integer $replaced_synonym_id
+ * @property integer $created_by_id
+ * @property integer $modified_by_id
+ * @property string $created_at
+ * @property string $updated_at
+ * @property string $name_part
+ * @property string $full_ame
  * @property string $authorship
- * @property string $fullNameWithAuthorship
- * @property string $nomenclaturalNote
+ * @property string $full_name_with_authorship
+ * @property string $nomenclatural_note
  * @property string $remarks
  * @property integer $version
  * @property string $guid
@@ -44,7 +46,11 @@ class TaxonName extends BaseModel
     /**
      * @var array
      */
-    protected $fillable = ['protologue_id', 'nomenclatural_status_id', 'name_type_id', 'basionym_id', 'replaced_synonym_id', 'created_by_id', 'modified_by_id', 'created_at', 'updated_at', 'name_part', 'full_name', 'authorship', 'full_name_with_authorship', 'nomenclatural_note', 'remarks', 'version', 'guid'];
+    protected $fillable = ['protologue_id', 'nomenclatural_status_id', 
+            'name_type_id', 'basionym_id', 'replaced_synonym_id', 'created_by_id', 
+            'modified_by_id', 'created_at', 'updated_at', 'name_part', 'full_name', 
+            'authorship', 'full_name_with_authorship', 'nomenclatural_note', 
+            'remarks', 'version', 'guid'];
 
     /**
      * Indicates if the model should be timestamped.
@@ -56,48 +62,48 @@ class TaxonName extends BaseModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function nameType()
+    public function nameType(): BelongsTo
     {
-        return $this->belongsTo('App\Models\NameType');
+        return $this->belongsTo(NameType::class);
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function nomenclaturalStatus()
+    public function nomenclaturalStatus(): BelongsTo
     {
-        return $this->belongsTo('App\Models\NomenclaturalStatus');
+        return $this->belongsTo(NomenclaturalStatus::class);
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function replacedSynonym()
+    public function replacedSynonym(): BelongsTo
     {
-        return $this->belongsTo('App\Models\TaxonName', 'replaced_synonym_id');
+        return $this->belongsTo(TaxonName::class, 'replaced_synonym_id');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function basionym()
+    public function basionym(): BelongsTo
     {
-        return $this->belongsTo('App\Models\TaxonName', 'basionym_id');
+        return $this->belongsTo(TaxonName::class, 'basionym_id');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function protologue()
+    public function protologue(): BelongsTo
     {
-        return $this->belongsTo('App\Models\Reference', 'protologue_id');
+        return $this->belongsTo(Reference::class, 'protologue_id');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function taxonConcepts()
+    public function taxonConcepts(): HasMany
     {
-        return $this->hasMany('App\Models\TaxonConcept');
+        return $this->hasMany(TaxonConcept::class);
     }
 }

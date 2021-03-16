@@ -1,0 +1,8 @@
+type ReferenceType {
+    id: ID!
+    guid: UUID
+    name: String!
+    uri: String
+    label: String
+    description: String
+}

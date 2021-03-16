@@ -3,13 +3,14 @@
 namespace App\Models;
 
 use App\Models\BaseModel;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @property integer $id
- * @property integer $createdById
- * @property integer $modifiedById
- * @property string $createdAt
- * @property string $updatedAt
+ * @property integer $created_by_id
+ * @property integer $modified_by_id
+ * @property string $created_at
+ * @property string $updated_at
  * @property integer $version
  * @property string $guid
  * @property string $name
@@ -33,7 +34,9 @@ class Attribute extends BaseModel
     /**
      * @var array
      */
-    protected $fillable = ['created_by_id', 'modified_by_id', 'created_at', 'updated_at', 'version', 'guid', 'name', 'uri', 'description', 'remarks'];
+    protected $fillable = ['created_by_id', 'modified_by_id', 'created_at', 
+            'updated_at', 'version', 'guid', 'name', 'uri', 'description', 
+            'remarks'];
 
     /**
      * Indicates if the model should be timestamped.
@@ -45,16 +48,16 @@ class Attribute extends BaseModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function attributeValues()
+    public function attributeValues(): HasMany
     {
-        return $this->hasMany('App\Models\AttributeValue');
+        return $this->hasMany(AttributeValue::class);
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function taxonAttributes()
+    public function taxonAttributes(): HasMany
     {
-        return $this->hasMany('App\Models\TaxonAttribute');
+        return $this->hasMany(TaxonAttribute::class);
     }
 }

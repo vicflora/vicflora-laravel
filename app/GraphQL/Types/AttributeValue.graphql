@@ -1,0 +1,14 @@
+type AttributeValue {
+    id: ID!
+    guid: UUID
+    value: String!
+    uri: String
+    description: String
+    attribute: Attribute!
+
+    createdBy: Agent
+    modifiedBy: Agent
+    createdAt: DateTimeTz
+    updatedAt: DateTimeTz
+    version: Int
+}

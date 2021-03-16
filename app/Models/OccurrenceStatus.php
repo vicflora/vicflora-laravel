@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\BaseModel;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @property integer $id
@@ -31,7 +32,8 @@ class OccurrenceStatus extends BaseModel
     /**
      * @var array
      */
-    protected $fillable = ['created_by_id', 'modified_by_id', 'created_at', 'updated_at', 'name', 'uri', 'label', 'description', 'guid'];
+    protected $fillable = ['created_by_id', 'modified_by_id', 'created_at', 
+            'updated_at', 'name', 'uri', 'label', 'description', 'guid'];
 
     /**
      * Indicates if the model should be timestamped.
@@ -43,8 +45,8 @@ class OccurrenceStatus extends BaseModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function taxonConcepts()
+    public function taxonConcepts(): HasMany
     {
-        return $this->hasMany('App\Models\TaxonConcept');
+        return $this->hasMany(TaxonConcept::class);
     }
 }

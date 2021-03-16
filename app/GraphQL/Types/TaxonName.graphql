@@ -1,0 +1,25 @@
+type TaxonName {
+    id: ID!
+    guid: UUID
+    namePart: String @rename(attribute: "name_part")
+    fullName: String! @rename(attribute: "full_name")
+    authorship: String
+    fullNameWithAuthorship: String
+        @rename(attribute: "full_name_with_authorship")
+    nomenclaturalNote: String @rename(attribute: "nomenclatural_note")
+    remarks: String
+
+    nameType: NameType
+    nomenclaturalStatus: NomenclaturalStatus
+    basionym: TaxonName
+    replacedSynonym: TaxonName
+    protologue: Reference
+
+    taxonConcepts: [TaxonConcept]
+
+    createdBy: Agent
+    modifiedBy: Agent
+    createdAt: DateTimeTz @rename(attribute: "created_at")
+    updatedAt: DateTimeTz @rename(attribute: "updated_at")
+    version: Int
+}

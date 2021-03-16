@@ -6,17 +6,17 @@ use App\Models\BaseModel;
 
 /**
  * @property integer $id
- * @property integer $createdById
- * @property integer $modifiedById
- * @property string $createdAt
- * @property string $updatedAt
+ * @property integer $created_by_id
+ * @property integer $modified_by_id
+ * @property string $created_at
+ * @property string $updated_at
  * @property string $name
  * @property string $uri
  * @property string $label
  * @property string $description
  * @property string $guid
- * @property Agent $agent
- * @property Agent $agent
+ * @property Agent $createdBy
+ * @property Agent $modifiedBy
  * @property TaxonConcept[] $taxonConcepts
  */
 class TaxonomicStatus extends BaseModel
@@ -31,7 +31,8 @@ class TaxonomicStatus extends BaseModel
     /**
      * @var array
      */
-    protected $fillable = ['created_by_id', 'modified_by_id', 'created_at', 'updated_at', 'name', 'uri', 'label', 'description', 'guid'];
+    protected $fillable = ['created_by_id', 'modified_by_id', 'created_at', 
+            'updated_at', 'name', 'uri', 'label', 'description', 'guid'];
 
     /**
      * Indicates if the model should be timestamped.

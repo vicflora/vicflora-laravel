@@ -3,15 +3,16 @@
 namespace App\Models;
 
 use App\Models\BaseModel;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property integer $id
- * @property integer $createdById
- * @property integer $modifiedById
- * @property integer $groupId
- * @property integer $memberId
- * @property string $createdAt
- * @property string $updatedAt
+ * @property integer $created_by_id
+ * @property integer $modified_by_id
+ * @property integer $group_id
+ * @property integer $member_id
+ * @property string $created_at
+ * @property string $updated_at
  * @property integer $version
  * @property integer $sequence
  * @property Agent $group
@@ -31,7 +32,8 @@ class GroupPerson extends BaseModel
     /**
      * @var array
      */
-    protected $fillable = ['created_by_id', 'modified_by_id', 'group_id', 'member_id', 'created_at', 'updated_at', 'version', 'sequence'];
+    protected $fillable = ['created_by_id', 'modified_by_id', 'group_id', 
+            'member_id', 'created_at', 'updated_at', 'version', 'sequence'];
 
     /**
      * Indicates if the model should be timestamped.
@@ -43,16 +45,16 @@ class GroupPerson extends BaseModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function member()
+    public function member(): BelongsTo
     {
-        return $this->belongsTo('App\Models\Agent', 'member_id');
+        return $this->belongsTo(Agent::class, 'member_id');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function group()
+    public function group(): BelongsTo
     {
-        return $this->belongsTo('App\Models\Agent', 'group_id');
+        return $this->belongsTo(Agent::class, 'group_id');
     }
 }

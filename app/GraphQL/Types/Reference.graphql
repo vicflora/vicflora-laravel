@@ -1,0 +1,29 @@
+type Reference {
+    id: ID!
+    guid: UUID
+    created: String
+    publicationYear: String
+    title: String!
+    shortTitle: String
+    edition: String
+    volume: String
+    issue: String
+    pageStart: Int
+    pageEnd: Int
+    pages: String
+    numberOfPages: String
+    publisher: String
+    placeOfPublication: String
+    shortDescription: String
+    abstract: String
+    isbn: String
+    issn: String
+    doi: String
+    citation: String
+    citationHtml: String
+
+    author: Agent
+    referenceType: ReferenceType
+
+    taxonNames: [TaxonName]
+}

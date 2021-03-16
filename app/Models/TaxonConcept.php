@@ -3,25 +3,27 @@
 namespace App\Models;
 
 use App\Models\BaseModel;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @property integer $id
- * @property integer $createdById
- * @property integer $modifiedById
- * @property integer $taxonNameId
- * @property integer $accordingToId
- * @property integer $taxonTreeDefItemId
- * @property integer $acceptedId
- * @property integer $parentId
- * @property integer $taxonomicStatusId
- * @property integer $occurrenceStatusId
- * @property integer $establishmentMeansId
- * @property integer $degreeOfEstablishmentId
- * @property string $createdAt
- * @property string $updatedAt
- * @property integer $rankId
+ * @property integer $created_by_id
+ * @property integer $modified_by_id
+ * @property integer $taxon_name_id
+ * @property integer $according_to_id
+ * @property integer $taxon_tree_def_item_id
+ * @property integer $accepted_id
+ * @property integer $parent_id
+ * @property integer $taxonomic_status_id
+ * @property integer $occurrence_status_id
+ * @property integer $establishment_means_id
+ * @property integer $degree_of_establishment_id
+ * @property string $created_at
+ * @property string $updated_at
+ * @property integer $rank_id
  * @property string $remarks
- * @property string $editorNotes
+ * @property string $editor_notes
  * @property integer $version
  * @property string $guid
  * @property DegreeOfEstablishment $degreeOfEstablishment
@@ -29,15 +31,15 @@ use App\Models\BaseModel;
  * @property OccurrenceStatus $occurrenceStatus
  * @property TaxonomicStatus $taxonomicStatus
  * @property TaxonTreeDefItem $taxonTreeDefItem
- * @property TaxonConcept $taxonConcept
- * @property TaxonConcept $taxonConcept
- * @property Reference $reference
+ * @property TaxonConcept $acceptedConcept
+ * @property TaxonConcept $parent
+ * @property Reference $accordingTo
  * @property TaxonName $taxonName
- * @property Agent $agent
- * @property Agent $agent
+ * @property Agent $createdBy
+ * @property Agent $modifiedBy
  * @property TaxonTreeItem[] $taxonTreeItems
- * @property TaxonRelationship[] $taxonRelationships
- * @property TaxonRelationship[] $taxonRelationships
+ * @property TaxonRelationship[] $subjectOfTaxonRelationships
+ * @property TaxonRelationship[] $objectOfTaxonRelationships
  * @property Profile[] $profiles
  * @property Profile[] $profilesAccepted
  * @property Image[] $images
@@ -55,7 +57,11 @@ class TaxonConcept extends BaseModel
     /**
      * @var array
      */
-    protected $fillable = ['created_by_id', 'modified_by_id', 'taxon_name_id', 'according_to_id', 'taxon_tree_def_item_id', 'accepted_id', 'parent_id', 'taxonomic_status_id', 'occurrence_status_id', 'establishment_means_id', 'degree_of_establishment_id', 'created_at', 'updated_at', 'rank_id', 'remarks', 'editor_notes', 'version', 'guid'];
+    protected $fillable = ['created_by_id', 'modified_by_id', 'taxon_name_id', 
+            'according_to_id', 'taxon_tree_def_item_id', 'accepted_id', 'parent_id', 
+            'taxonomic_status_id', 'occurrence_status_id', 'establishment_means_id', 
+            'degree_of_establishment_id', 'created_at', 'updated_at', 'rank_id', 
+            'remarks', 'editor_notes', 'version', 'guid'];
 
     /**
      * Indicates if the model should be timestamped.
@@ -67,128 +73,137 @@ class TaxonConcept extends BaseModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function degreeOfEstablishment()
+    public function degreeOfEstablishment(): BelongsTo
     {
-        return $this->belongsTo('App\Models\DegreeOfEstablishment');
+        return $this->belongsTo(DegreeOfEstablishment::class);
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function establishmentMean()
+    public function establishmentMeans(): BelongsTo
     {
-        return $this->belongsTo('App\Models\EstablishmentMean', 'establishment_means_id');
+        return $this->belongsTo(EstablishmentMeans::class, 'establishment_means_id');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function occurrenceStatus()
+    public function occurrenceStatus(): BelongsTo
     {
-        return $this->belongsTo('App\Models\OccurrenceStatus');
+        return $this->belongsTo(OccurrenceStatus::class);
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function taxonomicStatus()
+    public function taxonomicStatus(): BelongsTo
     {
-        return $this->belongsTo('App\Models\TaxonomicStatus');
+        return $this->belongsTo(TaxonomicStatus::class);
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function taxonTreeDefItem()
+    public function taxonTreeDefItem(): BelongsTo
     {
-        return $this->belongsTo('App\Models\TaxonTreeDefItem');
+        return $this->belongsTo(TaxonTreeDefItem::class);
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function parent()
+    public function parent(): BelongsTo
     {
-        return $this->belongsTo('App\Models\TaxonConcept', 'parent_id');
+        return $this->belongsTo(TaxonConcept::class, 'parent_id');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function acceptedConcept()
+    public function acceptedConcept(): BelongsTo
     {
-        return $this->belongsTo('App\Models\TaxonConcept', 'accepted_id');
+        return $this->belongsTo(TaxonConcept::class, 'accepted_id');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function reference()
+    public function accordingTo(): BelongsTo
     {
-        return $this->belongsTo('App\Models\Reference', 'according_to_id');
+        return $this->belongsTo(Reference::class, 'according_to_id');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function taxonName()
+    public function taxonName(): BelongsTo
     {
-        return $this->belongsTo('App\Models\TaxonName');
+        return $this->belongsTo(TaxonName::class);
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function taxonTreeItems()
+    public function taxonTreeItems(): HasMany
     {
-        return $this->hasMany('App\Models\TaxonTreeItem');
+        return $this->hasMany(TaxonTreeItem::class);
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function subjectOfTaxonRelationships()
+    public function subjectOfTaxonRelationships(): HasMany
     {
-        return $this->hasMany('App\Models\TaxonRelationship', 'object_taxon_concept_id');
+        return $this->hasMany(TaxonRelationship::class, 'object_taxon_concept_id');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function objectOfTaxonRelationships()
+    public function objectOfTaxonRelationships(): HasMany
     {
-        return $this->hasMany('App\Models\TaxonRelationship', 'subject_taxon_concept_id');
+        return $this->hasMany(TaxonRelationship::class, 'subject_taxon_concept_id');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function profilesAccepted()
+    public function profilesAccepted(): HasMany
     {
-        return $this->hasMany('App\Models\Profile', 'accepted_id');
+        return $this->hasMany(Profile::class, 'accepted_id');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function profiles()
+    public function profiles(): HasMany
     {
-        return $this->hasMany('App\Models\Profile');
+        return $this->hasMany(Profile::class);
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function imagesAccepted()
+    public function imagesAccepted(): HasMany
     {
-        return $this->hasMany('App\Models\Image', 'accepted_id');
+        return $this->hasMany(Image::class, 'accepted_id');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function images()
+    public function images(): HasMany
     {
-        return $this->hasMany('App\Models\Image', 'taxon_id');
+        return $this->hasMany(Image::class, 'taxon_id');
+    }
+
+    /**
+     * @return \App\Models\Profile|null
+     */
+    public function getCurrentProfileAttribute()
+    {
+        return Profile::where('taxon_concept_id', $this->id)
+                ->where('is_current', true)->first();
     }
 }

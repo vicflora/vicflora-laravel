@@ -3,28 +3,30 @@
 namespace App\Models;
 
 use App\Models\BaseModel;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @property integer $id
- * @property integer $referenceTypeId
- * @property int $parentId
- * @property integer $authorId
- * @property int $createdById
- * @property int $modifiedById
+ * @property integer $reference_type_id
+ * @property int $parent_id
+ * @property integer $author_id
+ * @property int $created_by_id
+ * @property int $modified_by_id
  * @property string $created
- * @property string $publicationYear
+ * @property string $publication_year
  * @property string $title
- * @property string $shortTitle
+ * @property string $short_title
  * @property string $edition
  * @property string $volume
  * @property string $issue
  * @property int $page_start
  * @property int $page_end
  * @property string $pages
- * @property int $numberOfPages
+ * @property int $number_of_pages
  * @property string $publisher
- * @property string $placeOfPublication
- * @property string $shortDescription
+ * @property string $place_of_publication
+ * @property string $short_description
  * @property string $abstract
  * @property string $isbn
  * @property string $issn
@@ -32,11 +34,11 @@ use App\Models\BaseModel;
  * @property string $citation
  * @property string $url
  * @property int $number
- * @property string $citationHtml
+ * @property string $citation_html
  * @property integer $version
  * @property string $guid
- * @property string $createdAt
- * @property string $updatedAt
+ * @property string $created_at
+ * @property string $updated_at
  * @property Agent $createdBy
  * @property Agent $modifiedBy
  * @property Agent $author
@@ -66,7 +68,13 @@ class Reference extends BaseModel
     /**
      * @var array
      */
-    protected $fillable = ['reference_type_id', 'parent_id', 'author_id', 'created_by_id', 'modified_by_id', 'created', 'publication_year', 'title', 'short_title', 'edition', 'volume', 'issue', 'page_start', 'page_end', 'pages', 'number_of_pages', 'publisher', 'place_of_publication', 'short_description', 'abstract', 'isbn', 'issn', 'doi', 'citation', 'url', 'number', 'citation_html', 'version', 'guid', 'created_at', 'updated_at'];
+    protected $fillable = ['reference_type_id', 'parent_id', 'author_id', 
+            'created_by_id', 'modified_by_id', 'created', 'publication_year', 
+            'title', 'short_title', 'edition', 'volume', 'issue', 'page_start', 
+            'page_end', 'pages', 'number_of_pages', 'publisher', 
+            'place_of_publication', 'short_description', 'abstract', 'isbn', 
+            'issn', 'doi', 'citation', 'url', 'number', 'citation_html', 
+            'version', 'guid', 'created_at', 'updated_at'];
 
     /**
      * Indicates if the model should be timestamped.
@@ -78,56 +86,56 @@ class Reference extends BaseModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function author()
+    public function author(): BelongsTo
     {
-        return $this->belongsTo('App\Models\Agent', 'author_id');
+        return $this->belongsTo(Agent::class, 'author_id');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function referenceType()
+    public function referenceType(): BelongsTo
     {
-        return $this->belongsTo('App\Models\ReferenceType');
+        return $this->belongsTo(ReferenceType::class);
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function parent()
+    public function parent(): BelongsTo
     {
-        return $this->belongsTo('App\Models\Reference', 'parent_id');
+        return $this->belongsTo(Reference::class, 'parent_id');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function contributors()
+    public function contributors(): HasMany
     {
-        return $this->hasMany('App\Models\Contributor', 'reference_id');
+        return $this->hasMany(Contributor::class, 'reference_id');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function taxonNames()
+    public function taxonNames(): HasMany
     {
-        return $this->hasMany('App\Models\TaxonName', 'protologue_id');
+        return $this->hasMany(TaxonName::class, 'protologue_id');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function taxonConcepts()
+    public function taxonConcepts(): HasMany
     {
-        return $this->hasMany('App\Models\TaxonConcept', 'according_to_id');
+        return $this->hasMany(TaxonConcept::class, 'according_to_id');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function profiles()
+    public function profiles(): HasMany
     {
-        return $this->hasMany('App\Models\Profile', 'source_id');
+        return $this->hasMany(Profile::class, 'source_id');
     }
 }

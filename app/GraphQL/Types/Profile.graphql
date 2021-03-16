@@ -1,0 +1,18 @@
+type Profile {
+    id: ID!
+    guid: UUID
+    profile: String!
+    isCurrent: Boolean @rename(attribute: "is_current")
+    isUpdated: Boolean @rename(attribute: "is_updated")
+
+    taxonConcept: TaxonConcept
+    acceptedConcept: TaxonConcept
+    source: Reference
+    taxonomicStatus: TaxonomicStatus
+
+    createdBy: Agent
+    modifiedBy: Agent
+    createdAt: DateTimeTz
+    updatedAt: DateTimeTz
+    version: Int
+}

@@ -1,0 +1,43 @@
+type Image {
+    id: ID!
+    uid: String!
+    assetCreationDate: DateTime
+    caption: String
+    catalogNumber: String
+    copyrightOwner: String
+    country: String
+    countryCode: String
+    creationDate: DateTime
+    creator: String
+    cumulusCatalog: String!
+    cumulusRecordId: Int!
+    cumulusRecordName: String
+    decimalLatitude: Float
+    decimalLongitude: Float
+    heroImage: Boolean
+    license: String
+    locality: String
+    modified: String
+    originatingProgram: String
+    pixelXDimension: Int
+    pixelYDimension: Int
+    rating: Int
+    recordedBy: String
+    recordNumber: String
+    rights: String
+    scientificName: String
+    source: String
+    stateProvince: String
+    subjectCategory: String
+    subjectOrientation: String
+    subjectPart: String
+    subtype: String
+    title: String
+    type: String
+    taxonConcept: TaxonConcept!
+    acceptedConcept: TaxonConcept!
+
+    createdAt: DateTimeTz @rename(attribute: "timestamp_created")
+    updatedAt: DateTimeTz @rename(attribute: "timestamp_modified")
+    version: Int
+}

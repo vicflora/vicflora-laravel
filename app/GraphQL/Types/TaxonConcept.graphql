@@ -1,0 +1,30 @@
+type TaxonConcept {
+    id: ID!
+    guid: UUID
+    remarks: String
+    editorNotes: String @rename(attribute: "editor_notes")
+
+    taxonName: TaxonName!
+    accordingTo: Reference
+    acceptedConcept: TaxonConcept
+    parent: TaxonConcept
+    taxonTreeDefItem: TaxonTreeDefItem
+    taxonomicStatus: TaxonomicStatus
+    occurrenceStatus: OccurrenceStatus
+    establishmentMeans: EstablishmentMeans
+    degreeOfEstablishment: DegreeOfEstablishment
+
+    taxonAttributes: [TaxonAttribute]
+    vernacularNames: [VernacularName]
+    profiles: [Profile]
+    profilesAccepted: [Profile]
+    currentProfile: Profile
+    images: [Image]
+    imagesAccepted: [Image]
+
+    createdBy: Agent
+    modifiedBy: Agent
+    createdAt: DateTimeTz @rename(attribute: "created_at")
+    updatedAt: DateTimeTz @rename(attribute: "updated_at")
+    version: Int
+}

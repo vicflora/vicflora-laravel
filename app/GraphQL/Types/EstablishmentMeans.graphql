@@ -1,0 +1,13 @@
+type EstablishmentMeans {
+    id: ID!
+    guid: UUID
+    name: String!
+    uri: String
+    label: String
+    description: String
+
+    createdBy: Agent
+    modifiedBy: Agent
+    createdAt: DateTimeTz @rename(attribute: "created_at")
+    updatedAt: DateTimeTz @rename(attribute: "updated_at")
+}

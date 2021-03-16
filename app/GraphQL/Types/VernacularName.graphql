@@ -1,0 +1,15 @@
+type VernacularName {
+    id: ID!
+    guid: UUID
+    name: String!
+    isPreferred: Boolean
+    nameUsage: String
+    remarks: String
+    taxonConcept: TaxonConcept!
+
+    createdBy: Agent
+    modifiedBy: Agent
+    createdAt: DateTimeTz
+    updatedAt: DateTimeTz
+    version: Int
+}

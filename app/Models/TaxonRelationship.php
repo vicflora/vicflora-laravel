@@ -3,27 +3,28 @@
 namespace App\Models;
 
 use App\Models\BaseModel;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property integer $id
- * @property integer $createdById
- * @property integer $modifiedById
- * @property integer $subjectTaxonConceptId
- * @property integer $objectTaxonConceptId
- * @property integer $taxonRelationshipTypeId
- * @property integer $taxonRelationshipComponentId
- * @property integer $taxonRelationshipQualifierId
- * @property string $createdAt
- * @property string $updatedAt
- * @property integer $relationshipAccordingToId
+ * @property integer $created_by_id
+ * @property integer $modified_by_id
+ * @property integer $subject_taxon_concept_id
+ * @property integer $object_taxon_concept_id
+ * @property integer $taxon_relationship_type_id
+ * @property integer $taxon_relationship_component_id
+ * @property integer $taxon_relationship_qualifier_id
+ * @property integer $relationship_according_to_id
+ * @property string $created_at
+ * @property string $updated_at
  * @property string $remarks
  * @property string $guid
  * @property integer $version
  * @property TaxonRelationshipQualifier $taxonRelationshipQualifier
  * @property TaxonRelationshipComponent $taxonRelationshipComponent
  * @property TaxonRelationshipType $taxonRelationshipType
- * @property Agent $agent
- * @property Agent $agent
+ * @property Agent $createdBy
+ * @property Agent $modifiedBy
  * @property TaxonConcept $subjectTaxonConcept
  * @property TaxonConcept $objectTaxonConcept
  */
@@ -39,7 +40,11 @@ class TaxonRelationship extends BaseModel
     /**
      * @var array
      */
-    protected $fillable = ['created_by_id', 'modified_by_id', 'subject_taxon_concept_id', 'object_taxon_concept_id', 'taxon_relationship_type_id', 'taxon_relationship_component_id', 'taxon_relationship_qualifier_id', 'created_at', 'updated_at', 'relationship_according_to_id', 'remarks', 'guid', 'version'];
+    protected $fillable = ['created_by_id', 'modified_by_id', 
+        'subject_taxon_concept_id', 'object_taxon_concept_id', 
+        'taxon_relationship_type_id', 'taxon_relationship_component_id', 
+        'taxon_relationship_qualifier_id', 'created_at', 'updated_at', 
+        'relationship_according_to_id', 'remarks', 'guid', 'version'];
 
     /**
      * Indicates if the model should be timestamped.
@@ -51,40 +56,40 @@ class TaxonRelationship extends BaseModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function taxonRelationshipQualifier()
+    public function taxonRelationshipQualifier(): BelongsTo
     {
-        return $this->belongsTo('App\Models\TaxonRelationshipQualifier');
+        return $this->belongsTo(TaxonRelationshipQualifier::class);
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function taxonRelationshipComponent()
+    public function taxonRelationshipComponent(): BelongsTo
     {
-        return $this->belongsTo('App\Models\TaxonRelationshipComponent');
+        return $this->belongsTo(TaxonRelationshipComponent::class);
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function taxonRelationshipType()
+    public function taxonRelationshipType(): BelongsTo
     {
-        return $this->belongsTo('App\Models\TaxonRelationshipType');
+        return $this->belongsTo(TaxonRelationshipType::class);
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function objectTaxonConcept()
+    public function objectTaxonConcept(): BelongsTo
     {
-        return $this->belongsTo('App\Models\TaxonConcept', 'object_taxon_concept_id');
+        return $this->belongsTo(TaxonConcept::class, 'object_taxon_concept_id');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function subjectTaxonConcept()
+    public function subjectTaxonConcept(): BelongsTo
     {
-        return $this->belongsTo('App\Models\TaxonConcept', 'subject_taxon_concept_id');
+        return $this->belongsTo(TaxonConcept::class, 'subject_taxon_concept_id');
     }
 }

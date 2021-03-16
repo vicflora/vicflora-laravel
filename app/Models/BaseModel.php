@@ -10,25 +10,6 @@ class BaseModel extends Model
 {
     use HasFactory;
 
-    public function getAttribute($key)
-    {
-        if (array_key_exists($key, $this->relations)) {
-            return parent::getAttribute($key);
-        } else {
-            return parent::getAttribute(Str::snake($key));
-        }
-    }
-
-    public function setAttribute($key, $value)
-    {
-        return parent::setAttribute(Str::snake($key), $value);
-    }
-    
-    public function getDateFormat()
-    {
-         return 'Y-m-d H:i:s.u';
-    }
-
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

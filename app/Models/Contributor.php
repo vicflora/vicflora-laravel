@@ -3,16 +3,17 @@
 namespace App\Models;
 
 use App\Models\BaseModel;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property integer $id
- * @property integer $referenceId
- * @property integer $agentId
- * @property integer $contributorRoleId
- * @property integer $createdById
- * @property integer $modifiedById
- * @property string $createdAt
- * @property string $updatedAt
+ * @property integer $reference_id
+ * @property integer $agent_id
+ * @property integer $contributor_role_idd
+ * @property integer $created_by_id
+ * @property integer $modified_by_id
+ * @property string $created_at
+ * @property string $updated_at
  * @property integer $sequence
  * @property string $guid
  * @property integer $version
@@ -34,29 +35,31 @@ class Contributor extends BaseModel
     /**
      * @var array
      */
-    protected $fillable = ['reference_id', 'agent_id', 'contributor_role_id', 'created_by_id', 'modified_by_id', 'created_at', 'updated_at', 'sequence', 'guid', 'version'];
+    protected $fillable = ['reference_id', 'agent_id', 'contributor_role_id', 
+            'created_by_id', 'modified_by_id', 'created_at', 'updated_at', 
+            'sequence', 'guid', 'version'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function contributorRole()
+    public function contributorRole(): BelongsTo
     {
-        return $this->belongsTo('App\ContributorRole');
+        return $this->belongsTo(ContributorRole::class);
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function agent()
+    public function agent(): BelongsTo
     {
-        return $this->belongsTo('App\Models\Agent');
+        return $this->belongsTo(Agent::class);
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function reference()
+    public function reference(): BelongsTo
     {
-        return $this->belongsTo('App\Models\Reference');
+        return $this->belongsTo(Reference::class);
     }
 }
