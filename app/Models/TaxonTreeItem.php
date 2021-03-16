@@ -17,6 +17,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $node_number
  * @property int $highest_descendant_node_number
  * @property integer $depth
+ * @property string $path
+ * @property string $name_path
  * @property Agent $createdBy
  * @property Agent $modifiedBy
  * @property TaxonConcept $taxonConcept
@@ -35,7 +37,7 @@ class TaxonTreeItem extends BaseModel
      */
     protected $fillable = ['created_by_id', 'modified_by_id', 'taxon_concept_id', 
             'created_at', 'updated_at', 'version', 'parent_id', 'node_number', 
-            'highest_descendant_node_number', 'depth'];
+            'highest_descendant_node_number', 'depth', 'path', 'name_path'];
 
     /**
      * Indicates if the model should be timestamped.

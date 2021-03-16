@@ -66,6 +66,8 @@ class MigrateAll extends Command
         Artisan::call('data:migrate:profiles');
         $this->info('Load images...');
         Artisan::call('data:migrate:images');
+        $this->info('Create taxon tree...');
+        Artisan::call('data:create-taxon-tree');
 
         $this->info('');
         $this->info('Done for now.');

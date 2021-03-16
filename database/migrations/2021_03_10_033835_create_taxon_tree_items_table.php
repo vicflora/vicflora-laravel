@@ -30,9 +30,13 @@ class CreateTaxonTreeItemsTable extends Migration
             $table->integer('node_number');
             $table->integer('highest_descendant_node_number');
             $table->smallInteger('depth')->nullable();
+            $table->string('path', 512);
+            $table->string('name_path', 1024);
             $table->index('taxon_concept_id');
             $table->index('node_number');
             $table->index('highest_descendant_node_number');
+            $table->index('path');
+            $table->index('name_path');
             $table->foreign('taxon_concept_id')->on('taxon_concepts')->references('id');
             $table->foreign('created_by_id')->on('agents')->references('id');
             $table->foreign('modified_by_id')->on('agents')->references('id');
