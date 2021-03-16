@@ -22,11 +22,19 @@ type Query {
 
     taxonConcept(id: ID! @eq): TaxonConcept @find
     taxonConceptByGUID(guid: UUID! @eq): TaxonConcept @find
-    taxonConcepts: [TaxonConcept!]! @paginate(defaultCount: 10)
 
     taxonName(id: ID! @eq): TaxonName @find
+    reference(id: ID! @eq): Reference @find
+    agent(id: ID! @eq): Agent @find
 
-    agentType(id: ID @eq): AgentType @find
+    agentTypes: [AgentType!]! @all
+    referenceTypes: [ReferenceType!]! @all
+    nameTypes: [NameType!]! @all
+    nomenclaturalStatuses: [NomenclaturalStatus!]! @all
+    taxonomicStatuses: [TaxonomicStatus!]! @all
+    occurrenceStatuses: [OccurrenceStatus!]! @all
+    establishmentMeans: [EstablishmentMeans!]! @all
+    degreesOfEstablishment: [DegreeOfEstablishment!]! @all
 }
 
 type User {

@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Models\BaseModel;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -205,5 +207,48 @@ class TaxonConcept extends BaseModel
     {
         return Profile::where('taxon_concept_id', $this->id)
                 ->where('is_current', true)->first();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function getChildrenAttribute(): Collection
+    {
+        return TaxonConcept::where('parent_id', $this->id)
+                ->whereHas('taxonomicStatus', function (Builder $query) {
+                    $query->where('name', 'accepted');
+                })
+                ->get();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function getSiblingsAttribute(): Collection
+    {
+        return TaxonConcept::where('parent_id', $this->parent_id)
+                ->whereHas('taxonomicStatus', function (Builder $query) {
+                    $query->where('name', 'accepted');
+                })
+                ->get();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function getHigherClassificationAttribute(): Collection
+    {
+        $node = TaxonTreeItem::where('taxon_concept_id', $this->id)
+                ->first();
+        
+        return TaxonTreeItem::where('node_number', '<', $node->node_number)
+                ->where('highest_descendant_node_number', '>=', 
+                        $node->node_number)
+                ->get();
+    }
+
+    public function getTypeAttribute()
+    {
+        return 'TaxonConcept';
     }
 }

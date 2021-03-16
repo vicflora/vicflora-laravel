@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property integer $depth
  * @property string $path
  * @property string $name_path
+ * 
  * @property Agent $createdBy
  * @property Agent $modifiedBy
  * @property TaxonConcept $taxonConcept

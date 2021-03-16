@@ -8,6 +8,13 @@ type TaxonTreeDefItem {
     isEnforced: Boolean
     isInFullName: Boolean
     rankId: Int
+
     parentItem: TaxonTreeDefItem
     taxonConcepts: [TaxonConcept]
+
+    createdBy: Agent
+    modifiedBy: Agent
+    createdAt: DateTimeTz @rename(attribute: "created_at")
+    updatedAt: DateTimeTz @rename(attribute: "updated_at")
+    version: Int
 }

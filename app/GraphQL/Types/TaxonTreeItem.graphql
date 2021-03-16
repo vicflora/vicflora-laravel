@@ -1,0 +1,16 @@
+type TaxonTreeItem {
+    id: ID!
+    nodeNumber: Int @rename(attribute: "node_number")
+    highestDescendantNodeNumber: Int
+        @rename(attribute: "highest_descendant_node_number")
+    depth: Int
+    path: String
+    namePath: String @rename(attribute: "name_path")
+
+    taxonConcept: TaxonConcept!
+
+    createdBy: Agent
+    modifiedBy: Agent
+    createdAt: DateTimeTz @rename(attribute: "created_at")
+    updatedAt: DateTimeTz @rename(attribute: "updated_at")
+}

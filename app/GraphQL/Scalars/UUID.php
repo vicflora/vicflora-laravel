@@ -34,7 +34,7 @@ class UUID extends ScalarType
      */
     public function parseValue($value)
     {
-        if (preg_match('/^[a-f\d]{8}(-[a-f\d]{4}){4}[a-f\d]{8}$/i', $value) !== true) {
+        if (preg_match('/^[a-f\d]{8}(-[a-f\d]{4}){4}[a-f\d]{8}$/i', $value) !== 1) {
             throw new Error("Cannot represent following value as UUID: " . Utils::printSafeJson($value));
         }
 
