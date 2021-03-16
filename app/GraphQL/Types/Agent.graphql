@@ -8,7 +8,7 @@ type Agent {
     lastName: String @rename(attribute: "last_name")
     firstName: String @rename(attribute: "first_name")
     initials: String
-    email: String
+    email: Email
     legalName: String @rename(attribute: "legal_name")
 
     "Type of agent"
