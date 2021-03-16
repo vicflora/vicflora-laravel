@@ -54,6 +54,10 @@ class DataMigrateReferencesCleanup extends Command
                 set r.ReferenceType='MISSING'
                 where n.NameID is null and p.ProfileID is null and tr.TaxonReferenceID is null");
 
+        $conn->unprepared("update vicflora_reference r
+                join vicflora_name n on r.ReferenceID=n.ProtologueID
+                set r.ReferenceType='Protologue'");
+
         $conn->unprepared("update vicflora_reference 
                 set ReferenceType='Chapter'
                 where ReferenceType is null AND InPublicationID is not null");
