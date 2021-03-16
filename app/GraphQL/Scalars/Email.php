@@ -3,6 +3,7 @@
 namespace App\GraphQL\Scalars;
 
 use GraphQL\Error\Error;
+use GraphQL\Language\AST\StringValueNode;
 use GraphQL\Type\Definition\ScalarType;
 use GraphQL\Utils\Utils;
 
