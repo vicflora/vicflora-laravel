@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\DB;
 
 /**
  * @property integer $id
@@ -256,8 +257,38 @@ class TaxonConcept extends BaseModel
                 ->get();
     }
 
-    public function getTypeAttribute()
+    /**
+     * @return \App\Models\Image|null
+     */
+    public function getHeroImageAttribute()
     {
-        return 'TaxonConcept';
+        $node = TaxonTreeItem::where('taxon_concept_id', $this->id)->first();
+
+        if ($node) {
+            return Image::whereHas('taxonConcept', function (Builder $query) use ($node) {
+                $query->whereHas('taxonomicStatus', function(Builder $query) {
+                            $query->where('name', 'accepted');
+                        })
+                        ->whereHas('taxonTreeItems', function (Builder $query) use ($node) {
+                            $query->where('node_number', '>=', $node->node_number)
+                                    ->where('node_number', '<=', $node->highest_descendant_node_number);
+                        });
+                    })
+                    ->where('pixel_x_dimension', '>', 0)
+                    ->orderBy('hero_image', 'desc')
+                    ->orderBy('subtype', 'desc')
+                    ->orderBy('rating', 'desc')
+                    ->orderBy(DB::raw('random()'))
+                    ->first();
+        }
+    }
+
+    /**
+     * @return \App\Models\VernacularName|null
+     */
+    public function getPreferredVernacularNameAttribute()
+    {
+        return VernacularName::where('taxon_concept_id', $this->id)
+                ->where('is_preferred', true)->first();
     }
 }
