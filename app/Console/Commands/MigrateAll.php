@@ -69,6 +69,9 @@ class MigrateAll extends Command
         $this->info('Create taxon tree...');
         Artisan::call('data:create-taxon-tree');
 
+        $this->info('Create home page highlights');
+        Artisan::call('data:highlights');
+
         $this->info('');
         $this->info('Done for now.');
     }
