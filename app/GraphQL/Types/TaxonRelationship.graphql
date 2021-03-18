@@ -1,0 +1,17 @@
+type TaxonRelationship {
+    id: ID!
+    remarks: String
+
+    subjectTaxonConcept: TaxonConcept
+    objectTaxonConcept: TaxonConcept
+    taxonRelationshipType: TaxonRelationshipType!
+    relationshipAccordingTo: Reference
+    taxonRelationshipComponent: TaxonRelationshipComponent
+    taxonRelationshipQualifier: TaxonRelationshipQualifier
+
+    createdBy: Agent
+    modifiedBy: Agent
+    createdAt: DateTimeTz @rename(attribute: "created_at")
+    updatedAt: DateTimeTz @rename(attribute: "updated_at")
+    version: Int
+}

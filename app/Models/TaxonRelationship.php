@@ -27,6 +27,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property Agent $modifiedBy
  * @property TaxonConcept $subjectTaxonConcept
  * @property TaxonConcept $objectTaxonConcept
+ * @property Reference $relationshipAccordingTo
  */
 class TaxonRelationship extends BaseModel
 {
@@ -91,5 +92,13 @@ class TaxonRelationship extends BaseModel
     public function subjectTaxonConcept(): BelongsTo
     {
         return $this->belongsTo(TaxonConcept::class, 'subject_taxon_concept_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function relationshipAccordingTo(): BelongsTo
+    {
+        return $this->belongsTo(Reference::class, 'relationship_according_to_id');
     }
 }
