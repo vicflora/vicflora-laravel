@@ -40,8 +40,6 @@ class DataMigrateReferencesCleanup extends Command
     {
         $conn = DB::connection('mysql');
 
-        $conn->unprepared("delete from vicflora_reference 
-                where ReferenceType='Protologue' and coalesce(JournalOrBook, Title) is null");
         
         $conn->unprepared("update vicflora_profile 
                 set SourceID=null
@@ -58,6 +56,14 @@ class DataMigrateReferencesCleanup extends Command
                 join vicflora_name n on r.ReferenceID=n.ProtologueID
                 set r.ReferenceType='Protologue'");
 
+        $conn->unprepared("update vicflora_name n
+                join vicflora_reference r on n.ProtologueID=r.ReferenceID
+                set n.ProtologueID=null
+                where r.Title is null and r.JournalOrBook is null");
+
+        $conn->unprepared("delete from vicflora_reference 
+                where ReferenceType='Protologue' and coalesce(JournalOrBook, Title) is null");
+                
         $conn->unprepared("update vicflora_reference 
                 set ReferenceType='Chapter'
                 where ReferenceType is null AND InPublicationID is not null");
