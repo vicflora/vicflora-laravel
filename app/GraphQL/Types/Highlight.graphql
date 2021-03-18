@@ -1,4 +1,4 @@
-type Highlights {
+type Highlight {
     id: ID!
     imgSrc: String! @rename(attribute: "img_src")
     text: String!

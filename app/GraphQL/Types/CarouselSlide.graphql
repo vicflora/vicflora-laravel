@@ -1,4 +1,4 @@
-type CarouselHighlight {
+type CarouselSlide {
     id: ID!
     imgSrc: String! @rename(attribute: "img_src")
     caption: String!

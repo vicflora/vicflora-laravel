@@ -35,6 +35,9 @@ type Query {
     occurrenceStatuses: [OccurrenceStatus!]! @all
     establishmentMeans: [EstablishmentMeans!]! @all
     degreesOfEstablishment: [DegreeOfEstablishment!]! @all
+
+    highlights: [Highlight!]! @all
+    carouselSlides: [CarouselSlide!]! @all
 }
 
 type User {
