@@ -1,0 +1,8 @@
+type CarouselHighlight {
+    id: ID!
+    imgSrc: String! @rename(attribute: "img_src")
+    caption: String!
+
+    createdAt: DateTimeTz @rename(attribute: "created_at")
+    updatedAt: DateTimeTz @rename(attribute: "updated_at")
+}
