@@ -88,8 +88,8 @@ class DataMigrateImages extends Command
 
         foreach($images as $img) {
             Image::create([
-                'timestamp_created' => $img->timestamp_created,
-                'timestamp_modified' => $img->timestamp_modified,
+                // 'timestamp_created' => $img->timestamp_created,
+                // 'timestamp_modified' => $img->timestamp_modified,
                 'version' => $img->version,
                 'asset_creation_date' => $img->asset_creation_date,
                 'caption' => $img->caption,

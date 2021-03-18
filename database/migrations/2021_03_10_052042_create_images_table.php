@@ -18,8 +18,7 @@ class CreateImagesTable extends Migration
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestampTz('timestamp_created')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestampTz('timestamp_modified')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestampsTz();
             $table->smallInteger('version')->default(0);
             $table->dateTime('asset_creation_date')->nullable();
             $table->text('caption')->nullable();
