@@ -39,13 +39,6 @@ class VernacularName extends BaseModel
             'is_preferred', 'name_usage', 'remarks'];
 
     /**
-     * Indicates if the model should be timestamped.
-     * 
-     * @var bool
-     */
-    public $timestamps = false;
-
-    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function taxonConcept(): BelongsTo

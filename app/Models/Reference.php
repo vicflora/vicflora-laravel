@@ -77,13 +77,6 @@ class Reference extends BaseModel
             'version', 'guid', 'created_at', 'updated_at'];
 
     /**
-     * Indicates if the model should be timestamped.
-     * 
-     * @var bool
-     */
-    public $timestamps = false;
-
-    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function author(): BelongsTo

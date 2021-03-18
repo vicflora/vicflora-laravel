@@ -20,8 +20,7 @@ class CreateNameTypesTable extends Migration
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestampTz('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestampTz('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestampsTz($precision = 0);
             $table->string('name', 64);
             $table->string('uri', 64)->nullable();
             $table->string('label');
@@ -39,7 +38,6 @@ class CreateNameTypesTable extends Migration
         });
 
         $this->setGlobalSequence();
-        $this->setTriggers();
 
         Schema::table('taxon_names', function (Blueprint $table) {
             $table->foreign('name_type_id')->on('name_types')->references('id');

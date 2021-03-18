@@ -48,13 +48,6 @@ class TaxonRelationship extends BaseModel
         'relationship_according_to_id', 'remarks', 'guid', 'version'];
 
     /**
-     * Indicates if the model should be timestamped.
-     * 
-     * @var bool
-     */
-    public $timestamps = false;
-
-    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function taxonRelationshipQualifier(): BelongsTo

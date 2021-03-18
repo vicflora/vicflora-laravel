@@ -1,41 +1,44 @@
 type Image {
     id: ID!
     uid: String!
-    assetCreationDate: DateTime
+    assetCreationDate: DateTime @rename(attribute: "asset_creation_date")
     caption: String
-    catalogNumber: String
-    copyrightOwner: String
+    catalogNumber: String @rename(attribute: "catalog_number")
+    copyrightOwner: String @rename(attribute: "copyright_owner")
     country: String
-    countryCode: String
-    creationDate: DateTime
+    countryCode: String @rename(attribute: "country_code")
+    creationDate: DateTime @rename(attribute: "creation_date")
     creator: String
-    cumulusCatalog: String!
-    cumulusRecordId: Int!
-    cumulusRecordName: String
-    decimalLatitude: Float
-    decimalLongitude: Float
-    heroImage: Boolean
+    cumulusCatalog: String! @rename(attribute: "cumulus_catalog")
+    cumulusRecordId: Int! @rename(attribute: "cumulus_record_id")
+    cumulusRecordName: String @rename(attribute: "cumulus_record_name")
+    decimalLatitude: Float @rename(attribute: "decimal_latitude")
+    decimalLongitude: Float @rename(attribute: "decimal_longitude")
+    heroImage: Boolean @rename(attribute: "hero_image")
     license: String
     locality: String
     modified: String
-    originatingProgram: String
-    pixelXDimension: Int
-    pixelYDimension: Int
+    originatingProgram: String @rename(attribute: "originating_program")
+    pixelXDimension: Int @rename(attribute: "pixel_x_dimension")
+    pixelYDimension: Int @rename(attribute: "pixel_y_dimension")
     rating: Int
-    recordedBy: String
-    recordNumber: String
+    recordedBy: String @rename(attribute: "recorded_by")
+    recordNumber: String @rename(attribute: "record_number")
     rights: String
-    scientificName: String
+    scientificName: String @rename(attribute: "scientific_namew")
     source: String
-    stateProvince: String
-    subjectCategory: String
-    subjectOrientation: String
-    subjectPart: String
+    stateProvince: String @rename(attribute: "state_province")
+    subjectCategory: String @rename(attribute: "subject_category")
+    subjectOrientation: String @rename(attribute: "subject_orientation")
+    subjectPart: String @rename(attribute: "subject_part")
     subtype: String
     title: String
     type: String
     taxonConcept: TaxonConcept!
     acceptedConcept: TaxonConcept!
+
+    thumbnailUrl: String
+    previewUrl: String
 
     createdAt: DateTimeTz @rename(attribute: "timestamp_created")
     updatedAt: DateTimeTz @rename(attribute: "timestamp_modified")

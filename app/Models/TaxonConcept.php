@@ -66,13 +66,6 @@ class TaxonConcept extends BaseModel
             'remarks', 'editor_notes', 'version', 'guid'];
 
     /**
-     * Indicates if the model should be timestamped.
-     * 
-     * @var bool
-     */
-    public $timestamps = false;
-
-    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function degreeOfEstablishment(): BelongsTo
@@ -195,9 +188,9 @@ class TaxonConcept extends BaseModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function specimenImages(): HasMany
+    public function images(): HasMany
     {
-        return $this->hasMany(SpecimenImage::class, 'taxon_id');
+        return $this->hasMany(Image::class, 'taxon_id');
     }
 
     /**
@@ -211,9 +204,9 @@ class TaxonConcept extends BaseModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function images(): HasMany
+    public function specimenImages(): HasMany
     {
-        return $this->hasMany(Image::class, 'taxon_id');
+        return $this->hasMany(SpecimenImage::class, 'taxon_concept_id');
     }
 
     /**

@@ -21,8 +21,7 @@ class CreateContributorsTable extends Migration
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestampTz('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestampTz('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestampsTz($precision = 0);
             $table->bigInteger('reference_id');
             $table->bigInteger('agent_id');
             $table->bigInteger('contributor_role_id')->nullable();
@@ -45,7 +44,6 @@ class CreateContributorsTable extends Migration
         });
 
         $this->setGlobalSequence();
-        $this->setTriggers();
     }
 
     /**

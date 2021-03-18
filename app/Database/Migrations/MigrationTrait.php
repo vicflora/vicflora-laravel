@@ -35,14 +35,4 @@ trait MigrationTrait
         $dropLocalSequence = "DROP SEQUENCE IF EXISTS {$this->tableName}_id_seq";
         DB::unprepared($dropLocalSequence);
     }
-    
-    protected function setTriggers()
-    {
-        $trigger = <<<EOT
-CREATE TRIGGER update_{$this->tableName}_updated_at BEFORE UPDATE
-    ON {$this->tableName} FOR EACH ROW EXECUTE PROCEDURE 
-    update_updated_at();
-EOT;
-        DB::unprepared($trigger);
-    }
 }

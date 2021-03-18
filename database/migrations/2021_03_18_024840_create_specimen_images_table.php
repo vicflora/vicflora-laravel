@@ -1,14 +1,11 @@
 <?php
 
-use App\Database\Migrations\MigrationTrait;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 class CreateSpecimenImagesTable extends Migration
 {
-    use MigrationTrait;
-
     protected $tableName = 'specimen_images';
     /**
      * Run the migrations.
@@ -46,8 +43,6 @@ class CreateSpecimenImagesTable extends Migration
             $table->foreign('taxon_concept_id')->references('id')->on('taxon_concepts');
             $table->foreign('accepted_id')->references('id')->on('taxon_concepts');
         });
-
-        $this->setGlobalSequence();
     }
 
     /**

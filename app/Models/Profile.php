@@ -40,13 +40,6 @@ class Profile extends BaseModel
     protected $fillable = ['created_by_id', 'modified_by_id', 'taxon_concept_id', 'accepted_id', 'source_id', 'created_at', 'updated_at', 'version', 'guid', 'taxonomic_status_id', 'profile', 'is_current', 'is_updated'];
 
     /**
-     * Indicates if the model should be timestamped.
-     * 
-     * @var bool
-     */
-    public $timestamps = false;
-
-    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function source()

@@ -50,8 +50,7 @@ class CreateReferencesTable extends Migration
             $table->text('citation_html')->nullable();
             $table->smallInteger('version')->default(0);
             $table->uuid('guid')->nullable();
-            $table->timestampTz('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestampTz('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestampsTz($precision = 0);
             $table->index('title');
             $table->index('created');
             $table->index('publication_year');
@@ -64,7 +63,7 @@ class CreateReferencesTable extends Migration
         });
 
         $this->setGlobalSequence();
-        $this->setTriggers();
+        
         Schema::rename('refs', 'references');
     }
 

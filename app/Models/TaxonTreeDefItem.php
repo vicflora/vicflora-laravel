@@ -45,13 +45,6 @@ class TaxonTreeDefItem extends BaseModel
             'is_in_full_name', 'rank_id'];
 
     /**
-     * Indicates if the model should be timestamped.
-     * 
-     * @var bool
-     */
-    public $timestamps = false;
-
-    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function parentItem(): BelongsTo

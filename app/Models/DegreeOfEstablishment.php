@@ -43,13 +43,6 @@ class DegreeOfEstablishment extends BaseModel
             'updated_at', 'name', 'uri', 'label', 'description', 'guid'];
 
     /**
-     * Indicates if the model should be timestamped.
-     * 
-     * @var bool
-     */
-    public $timestamps = false;
-
-    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function taxonConcepts(): HasMany

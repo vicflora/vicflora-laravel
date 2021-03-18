@@ -21,8 +21,7 @@ class CreateTaxonTreeDefItemsTable extends Migration
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestampTz('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestampTz('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestampsTz($precision = 0);
             $table->bigInteger('created_by_id');
             $table->bigInteger('modified_by_id')->nullable();
             $table->smallInteger('version')->default(0);
@@ -44,7 +43,6 @@ class CreateTaxonTreeDefItemsTable extends Migration
         });
 
         $this->setGlobalSequence();
-        $this->setTriggers();
  
         Schema::table('taxon_concepts', function (Blueprint $table) {
             $table->foreign('taxon_tree_def_item_id')->on('taxon_tree_def_items')->references('id');

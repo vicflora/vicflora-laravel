@@ -53,13 +53,6 @@ class TaxonName extends BaseModel
             'remarks', 'version', 'guid'];
 
     /**
-     * Indicates if the model should be timestamped.
-     * 
-     * @var bool
-     */
-    public $timestamps = false;
-
-    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function nameType(): BelongsTo

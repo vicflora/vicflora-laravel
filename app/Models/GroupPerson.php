@@ -36,13 +36,6 @@ class GroupPerson extends BaseModel
             'member_id', 'created_at', 'updated_at', 'version', 'sequence'];
 
     /**
-     * Indicates if the model should be timestamped.
-     * 
-     * @var bool
-     */
-    public $timestamps = false;
-
-    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function member(): BelongsTo

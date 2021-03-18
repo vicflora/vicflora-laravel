@@ -20,8 +20,7 @@ class CreateAttributeValuesTable extends Migration
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestampTz('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestampTz('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestampsTz($precision = 0);
             $table->smallInteger('version')->default(0);
             $table->uuid('guid');
             $table->bigInteger('created_by_id');
@@ -40,7 +39,6 @@ class CreateAttributeValuesTable extends Migration
         });
 
         $this->setGlobalSequence();
-        $this->setTriggers();
     }
 
     /**

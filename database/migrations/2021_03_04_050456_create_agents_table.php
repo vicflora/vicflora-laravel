@@ -21,8 +21,7 @@ class CreateAgentsTable extends Migration
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestampTz('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestampTz('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestampsTz($precision = 0);
             $table->bigInteger('agent_type_id')->nullable();
             $table->integer('user_id')->nullable();
             $table->string('name');
@@ -46,7 +45,6 @@ class CreateAgentsTable extends Migration
         });
 
         $this->setGlobalSequence();
-        $this->setTriggers();
     }
 
     /**

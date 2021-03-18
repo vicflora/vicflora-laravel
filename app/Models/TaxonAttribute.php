@@ -39,13 +39,6 @@ class TaxonAttribute extends BaseModel
             'version', 'remarks'];
 
     /**
-     * Indicates if the model should be timestamped.
-     * 
-     * @var bool
-     */
-    public $timestamps = false;
-
-    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function taxonConcept(): BelongsTo

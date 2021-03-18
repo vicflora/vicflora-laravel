@@ -21,8 +21,7 @@ class CreateTaxonNamesTable extends Migration
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestampTz('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestampTz('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestampsTz($precision = 0);
             $table->bigInteger('protologue_id')->nullable();
             $table->bigInteger('nomenclatural_status_id')->nullable();
             $table->bigInteger('name_type_id')->nullable();
@@ -53,7 +52,6 @@ class CreateTaxonNamesTable extends Migration
         });
 
         $this->setGlobalSequence();
-        $this->setTriggers();
     }
 
     /**

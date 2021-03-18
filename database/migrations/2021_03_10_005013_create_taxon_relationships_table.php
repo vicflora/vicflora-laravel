@@ -20,8 +20,7 @@ class CreateTaxonRelationshipsTable extends Migration
     {
         Schema::create('taxon_relationships', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestampTz('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestampTz('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestampsTz($precision = 0);
             $table->bigInteger('created_by_id');
             $table->bigInteger('modified_by_id')->nullable();
             $table->bigInteger('subject_taxon_concept_id');
@@ -45,7 +44,6 @@ class CreateTaxonRelationshipsTable extends Migration
         });
 
         $this->setGlobalSequence();
-        $this->setTriggers();
     }
 
     /**

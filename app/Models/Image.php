@@ -73,13 +73,6 @@ class Image extends BaseModel
             'subject_part', 'subtype', 'title', 'type', 'uid'];
 
     /**
-     * Indicates if the model should be timestamped.
-     * 
-     * @var bool
-     */
-    public $timestamps = false;
-
-    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function acceptedConcept(): BelongsTo
@@ -93,5 +86,18 @@ class Image extends BaseModel
     public function taxonConcept(): BelongsTo
     {
         return $this->belongsTo(TaxonConcept::class, 'taxon_id');
+    }
+
+
+    public function getThumbnailUrlAttribute()
+    {
+        return env('IMAGE_SERVER_BASE_URL') . 'preview/thumbnail/public/' 
+                . $this->cumulus_record_id;
+    }
+
+    public function getPreviewUrlAttribute()
+    {
+        return env('IMAGE_SERVER_BASE_URL') . 'preview/image/public/' 
+                . $this->cumulus_record_id . '?maxsize=1024';
     }
 }

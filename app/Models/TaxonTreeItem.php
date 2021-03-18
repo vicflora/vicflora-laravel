@@ -41,13 +41,6 @@ class TaxonTreeItem extends BaseModel
             'highest_descendant_node_number', 'depth', 'path', 'name_path'];
 
     /**
-     * Indicates if the model should be timestamped.
-     * 
-     * @var bool
-     */
-    public $timestamps = false;
-
-    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function taxonConcept(): BelongsTo

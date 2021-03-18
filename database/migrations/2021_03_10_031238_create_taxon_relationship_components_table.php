@@ -21,8 +21,7 @@ class CreateTaxonRelationshipComponentsTable extends Migration
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestampTz('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestampTz('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestampsTz($precision = 0);
             $table->string('name', 64);
             $table->string('uri', 64)->nullable();
             $table->string('label');
@@ -40,7 +39,6 @@ class CreateTaxonRelationshipComponentsTable extends Migration
         });
 
         $this->setGlobalSequence();
-        $this->setTriggers();
 
         Schema::table('taxon_relationships', function (Blueprint $table) {
             $table->foreign('taxon_relationship_component_id')->on($this->tableName)->references('id');

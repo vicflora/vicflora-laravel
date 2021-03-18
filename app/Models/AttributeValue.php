@@ -38,13 +38,6 @@ class AttributeValue extends BaseModel
     protected $fillable = ['created_by_id', 'modified_by_id', 'attribute_id', 'created_at', 'updated_at', 'version', 'guid', 'value', 'uri', 'description'];
 
     /**
-     * Indicates if the model should be timestamped.
-     * 
-     * @var bool
-     */
-    public $timestamps = false;
-
-    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function attribute(): BelongsTo
