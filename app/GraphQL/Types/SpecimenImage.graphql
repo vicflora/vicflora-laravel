@@ -1,0 +1,17 @@
+type SpecimenImage {
+    id: ID
+    cumulusRecordId: Int! @rename(attribute: "cumulus_record_id")
+    recordName: String @rename(attribute: "record_name")
+    catalogNumber: String @rename(attribute: "catalog_number")
+    alaImageUuid: String @rename(attribute: "ala_image_guid")
+    title: String
+    caption: String
+    originatingProgram: String @rename(attribute: "originating_program")
+    subjectCategory: String @rename(attribute: "subject_category")
+    pixelXDimension: Int @rename(attribute: "pixel_x_dimension")
+    pixelYDimension: Int @rename(attribute: "pixel_y_dimension")
+    scientificName: String @rename(attribute: "scientific_name")
+
+    taxonConcept: TaxonConcept
+    acceptedConcept: TaxonConcept
+}

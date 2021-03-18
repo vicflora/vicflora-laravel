@@ -24,6 +24,8 @@ type TaxonConcept {
     currentProfile: Profile
     images: [Image]
     imagesAccepted: [Image]
+    specimenImages: [Image]
+    specimenImagesAccepted: [Image]
 
     createdBy: Agent
     modifiedBy: Agent

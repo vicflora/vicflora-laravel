@@ -195,6 +195,22 @@ class TaxonConcept extends BaseModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
+    public function specimenImages(): HasMany
+    {
+        return $this->hasMany(SpecimenImage::class, 'taxon_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function specimenImagesAccepted(): HasMany
+    {
+        return $this->hasMany(SpecimenImage::class, 'accepted_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function images(): HasMany
     {
         return $this->hasMany(Image::class, 'taxon_id');
