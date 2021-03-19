@@ -19,11 +19,13 @@ type TaxonConcept {
     higherClassification: [TaxonTreeItem]
     taxonAttributes: [TaxonAttribute]
     vernacularNames: [VernacularName]
+    preferredVernacularName: VernacularName
     profiles: [Profile]
     profilesAccepted: [Profile]
     currentProfile: Profile
     images: [Image]
     imagesAccepted: [Image]
+    heroImage: Image
     specimenImages: [SpecimenImage]
     specimenImagesAccepted: [SpecimenImage]
 
