@@ -16,6 +16,9 @@ scalar DateTimeTz
 "A UUID string, e.g. `0c8e21a6-fe09-4835-84e1-d9531ad24728`."
 scalar UUID @scalar(class: "UUID")
 
+"A [RFC 5321](https://tools.ietf.org/html/rfc5321) compliant email."
+scalar Email @scalar(class: "MLL\\GraphQLScalars\\Email")
+
 type Query {
     users: [User!]! @paginate(defaultCount: 10)
     user(id: ID @eq): User @find
@@ -38,12 +41,4 @@ type Query {
 
     highlights: [Highlight!]! @all
     carouselSlides: [CarouselSlide!]! @all
-}
-
-type User {
-    id: ID!
-    name: String!
-    email: String!
-    created_at: DateTime!
-    updated_at: DateTime!
 }
