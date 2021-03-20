@@ -42,5 +42,5 @@ type Query {
     highlights: [Highlight!]! @all
     carouselSlides: [CarouselSlide!]! @all
 
-    bioregion(id: ID! @eq(key: "bioregion_id")): Bioregion @find
+    bioregion(id: ID! @eq(key: "bioregion_id")): BioregionFeature @find
 }

@@ -1,4 +1,4 @@
-type Bioregion {
+type BioregionFeature @model(class: "\\App\\Models\\Bioregion") {
     type: String
     coordinates: [[[[Float]]]]
     geometry: BioregionGeometry
