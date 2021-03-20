@@ -29,6 +29,8 @@ type TaxonConcept {
     specimenImages: [SpecimenImage]
     specimenImagesAccepted: [SpecimenImage]
 
+    bioregions: [TaxonBioregion]
+
     createdBy: Agent
     modifiedBy: Agent
     createdAt: DateTimeTz @rename(attribute: "created_at")

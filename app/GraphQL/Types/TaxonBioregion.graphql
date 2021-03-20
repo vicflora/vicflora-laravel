@@ -1,0 +1,7 @@
+type TaxonBioregion {
+    id: ID
+    taxonConcept: TaxonConcept
+    bioregion: Bioregion
+    occurrenceStatus: OccurrenceStatus
+    establishmentMeans: EstablishmentMeans
+}

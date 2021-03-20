@@ -291,4 +291,12 @@ class TaxonConcept extends BaseModel
         return VernacularName::where('taxon_concept_id', $this->id)
                 ->where('is_preferred', true)->first();
     }
+    
+    /**
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function getBioregionsAttribute()
+    {
+        return TaxonBioregion::where('taxon_guid', $this->guid)->get();
+    }
 }
