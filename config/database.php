@@ -78,6 +78,21 @@ return [
             'sslmode' => 'prefer',
         ],
 
+        'mapper' => [
+            'driver' => 'pgsql',
+            'url' => env('DATABASE_URL'),
+            'host' => env('MAPPER_DB_HOST', '127.0.0.1'),
+            'port' => env('MAPPER_DB_PORT', '5432'),
+            'database' => env('MAPPER_DB_DATABASE', 'forge'),
+            'username' => env('MAPPER_DB_USERNAME', 'forge'),
+            'password' => env('MAPPER_DB_PASSWORD', ''),
+            'charset' => 'utf8',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'schema' => 'public',
+            'sslmode' => 'prefer',
+        ],
+
         'sqlsrv' => [
             'driver' => 'sqlsrv',
             'url' => env('DATABASE_URL'),

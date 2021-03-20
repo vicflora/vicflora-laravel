@@ -1,0 +1,19 @@
+type Bioregion {
+    type: String
+    coordinates: [[[[Float]]]]
+    geometry: BioregionGeometry
+    properties: BioregionProperties
+}
+
+type BioregionGeometry {
+    type: String!
+    coordinates: [[[[Float]]]]
+}
+
+type BioregionProperties {
+    id: Int
+    subregion: String
+    subregionCode: String
+    region: String
+    regionCode: String
+}
