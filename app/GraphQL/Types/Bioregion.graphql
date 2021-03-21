@@ -1,3 +1,7 @@
+"""
+Victorian bioregion. Will return GeoJSON-compliant Feature if at least type and
+geometry with both its properties are used.
+"""
 type BioregionFeature @model(class: "\\App\\Models\\Bioregion") {
     type: String
     coordinates: [[[[Float]]]]

@@ -3,11 +3,14 @@
 namespace App\Models;
 
 use App\Models\BaseModel;
+use GraphQL\Type\Definition\ResolveInfo;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Query\Builder as QueryBuilder;
 use Illuminate\Support\Facades\DB;
+use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 
 /**
  * @property integer $id
@@ -308,5 +311,12 @@ class TaxonConcept extends BaseModel
     {
         $key = $this->rank_id > 220 ? 'accepted_name_usage_id' : 'species_id';
         return Occurrence::where('accepted_name_usage_id', $this->guid)->get();
+    }
+
+
+    public function occurrences($root): Builder
+    {
+        $key = $root->rank_id > 220 ? 'accepted_name_usage_id' : 'species_id';
+        return Occurrence::where($key, $root->guid);
     }
 }

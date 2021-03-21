@@ -31,7 +31,11 @@ type TaxonConcept {
 
     bioregions: [TaxonBioregion]
     occurrences(source: String @eq(key: "data_source")): [OccurrenceFeature]
-    # @hasMany(type: PAGINATOR, defaultCount: 20)
+        @paginate(
+            type: PAGINATOR
+            defaultCount: 20
+            builder: "\\App\\Models\\TaxonConcept@occurrences"
+        )
 
     createdBy: Agent
     modifiedBy: Agent

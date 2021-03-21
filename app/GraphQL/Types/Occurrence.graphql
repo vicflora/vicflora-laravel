@@ -1,3 +1,8 @@
+"""
+Occurrence of a taxon at a certain place on a certain date.
+Will return GeoJSON-compliant Feature if at least type and geometry with both
+its properties are used.
+"""
 type OccurrenceFeature @model(class: "\\App\\Models\\Occurrence") {
     type: String
     geometry: OccurrenceGeometry
