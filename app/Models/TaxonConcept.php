@@ -299,4 +299,14 @@ class TaxonConcept extends BaseModel
     {
         return TaxonBioregion::where('taxon_guid', $this->guid)->get();
     }
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function getOccurrencesAttribute()
+    {
+        $key = $this->rank_id > 220 ? 'accepted_name_usage_id' : 'species_id';
+        return Occurrence::where('accepted_name_usage_id', $this->guid)->get();
+    }
 }

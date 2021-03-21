@@ -43,4 +43,5 @@ type Query {
     carouselSlides: [CarouselSlide!]! @all
 
     bioregion(id: ID! @eq(key: "bioregion_id")): BioregionFeature @find
+    occurrence(id: ID! @eq): OccurrenceFeature @find
 }

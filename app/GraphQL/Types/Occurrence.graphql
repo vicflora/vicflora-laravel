@@ -1,0 +1,30 @@
+type OccurrenceFeature @model(class: "\\App\\Models\\Occurrence") {
+    type: String
+    geometry: OccurrenceGeometry
+    properties: OccurrenceProperties
+}
+
+type OccurrenceGeometry {
+    type: String
+    coordinates: [Float]!
+}
+
+type OccurrenceProperties {
+    id: ID!
+    catalogNumber: String
+    dataSource: String
+    decimalLatitude: Float
+    decimalLongitude: Float
+    scientificName: String
+    acceptedNameUsage: String
+    subregion: String
+    subregionCode: String
+    region: String
+    regionCode: String
+    occurrenceStatus: String
+    occurrenceStatusSource: String
+    establishmentMeans: String
+    establishmentMeansSource: String
+    sensitive: Boolean
+    generalised: Boolean
+}

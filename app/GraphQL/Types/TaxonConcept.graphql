@@ -30,6 +30,8 @@ type TaxonConcept {
     specimenImagesAccepted: [SpecimenImage]
 
     bioregions: [TaxonBioregion]
+    occurrences(source: String @eq(key: "data_source")): [OccurrenceFeature]
+    # @hasMany(type: PAGINATOR, defaultCount: 20)
 
     createdBy: Agent
     modifiedBy: Agent
