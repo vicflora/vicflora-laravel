@@ -356,7 +356,7 @@ class TaxonConcept extends BaseModel
             'service' => 'WMS', 
             'version' => '1.1.0', 
             'request' => 'GetMap', 
-            'layers' => 'vicflora:cst_vic,vicflora:{$bioregionLayer},vicflora:vicflora_bioregion,vicflora:cst_vic,vicflora:occurrence_view', 
+            'layers' => "vicflora:cst_vic,vicflora:{$bioregionLayer},vicflora:vicflora_bioregion,vicflora:cst_vic,vicflora:occurrence_view", 
             'styles' => ',polygon_establishment_means,polygon_no-fill_grey-outline,polygon_no-fill_black-outline,', 
             'bbox' => '140.8,-39.3,150.2,-33.8', 
             'width' => '480', 
