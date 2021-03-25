@@ -403,4 +403,19 @@ class TaxonConcept extends BaseModel
                 ->where('taxon_tree_items.node_number', '<=', $node->highest_descendant_node_number);
     }
 
+    /**
+     * Gets specimen images for this taxon and its members
+     *
+     * @param TaxonConcept $taxonConcept
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function specimenImagesPaginator($taxonConcept): Builder
+    {
+        $node = TaxonTreeItem::where('taxon_concept_id', $taxonConcept->id)->first();
+        return SpecimenImage::join('taxon_concepts', 'specimen_images.accepted_id', '=', 'taxon_concepts.id')
+                ->join('taxon_tree_items', 'taxon_concepts.id', '=', 'taxon_tree_items.taxon_concept_id')
+                ->where('taxon_tree_items.node_number', '>=', $node->node_number)
+                ->where('taxon_tree_items.node_number', '<=', $node->highest_descendant_node_number);
+    }
+
 }

@@ -34,6 +34,11 @@ type TaxonConcept {
             builder: "\\App\\Models\\TaxonConcept@imagesPaginator"
             defaultCount: 20
         )
+    specimenImagesPaginated: [Image]
+        @paginate(
+            builder: "\\App\\Models\\TaxonConcept@specimenImagesPaginator"
+            defaultCount: 20
+        )
 
     bioregions: [TaxonBioregion]
     occurrences(source: String @eq(key: "data_source")): [OccurrenceFeature]
