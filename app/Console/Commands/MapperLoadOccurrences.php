@@ -49,7 +49,8 @@ select
     catalog_number, 
     data_source, 
     decimal_latitude, 
-    decimal_longitude, geojson, 
+    decimal_longitude, 
+    ST_AsGeoJSON(geom), 
     taxon_id::uuid, 
     accepted_name_usage_id::uuid, 
     species_id::uuid, 
@@ -64,7 +65,7 @@ select
     occurrence_status_source, 
     establishment_means, 
     establishment_means_source
-from vicflora.occurrence_view_dev
+from vicflora.occurrence_view
 where uuid<>'0'
 SQL;
         DB::connection('mapper')->unprepared(DB::raw($sql));
