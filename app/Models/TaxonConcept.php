@@ -44,7 +44,7 @@ use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
  * @property TaxonName $taxonName
  * @property Agent $createdBy
  * @property Agent $modifiedBy
- * @property TaxonTreeItem[] $taxonTreeItems
+ * @property TaxonTreeItem[] $taxonTreeItem
  * @property TaxonRelationship[] $subjectOfTaxonRelationships
  * @property TaxonRelationship[] $objectOfTaxonRelationships
  * @property Profile[] $profiles
@@ -273,7 +273,7 @@ class TaxonConcept extends BaseModel
                 $query->whereHas('taxonomicStatus', function(Builder $query) {
                             $query->where('name', 'accepted');
                         })
-                        ->whereHas('taxonTreeItems', function (Builder $query) use ($node) {
+                        ->whereHas('taxonTreeItem', function (Builder $query) use ($node) {
                             $query->where('node_number', '>=', $node->node_number)
                                     ->where('node_number', '<=', $node->highest_descendant_node_number);
                         });
