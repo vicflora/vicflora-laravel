@@ -372,6 +372,17 @@ class TaxonConcept extends BaseModel
         ];
 
         $maps['distributionMap'] = $url . '?' . http_build_query($queryVars);
+
+        $name = TaxonName::find($this->taxon_name_id);
+        $nameSlug = urlencode($name->full_name);
+        $source = <<<EOT
+            AVH (2014). <i>Australia's Virtual Herbarium</i>, Council of Heads of 
+            Australasian Herbaria, &lt;<a href="http://avh.chah.org.au">http://avh.chah.org.au</a>&gt;.
+            <a href="https://avh.ala.org.au/occurrences/search?taxa={$nameSlug}" target="_blank">Find Aciphylla glacialis in AVH <i class="fa fa-external-link"></i></a>;
+            <i>Victorian Biodiversity Atlas</i>, © The State of Victoria, Department of Environment and Primary Industries (published Dec. 2014)
+            <a href="https://biocache.ala.org.au/occurrences/search?taxa={$nameSlug}&fq=data_resource_uid:dr1097" target="_blank">Find Aciphylla glacialis in Victorian Biodiversity Atlas <i class="fa fa-external-link"></i></a>
+EOT;
+        $maps['mapSource'] = trim(preg_replace('/\s+/', ' ', $source));
         
         return $maps;
     }

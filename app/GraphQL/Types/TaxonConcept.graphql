@@ -60,6 +60,7 @@ type TaxonConcept {
 type MapLinks {
     profileMap: String
     distributionMap: String
+    mapSource: String
 }
 
 type IdentificationKey {
