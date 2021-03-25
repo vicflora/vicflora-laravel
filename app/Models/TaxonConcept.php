@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Query\Builder as QueryBuilder;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\DB;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 
@@ -143,11 +143,11 @@ class TaxonConcept extends BaseModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function taxonTreeItems(): HasMany
+    public function taxonTreeItem(): HasOne
     {
-        return $this->hasMany(TaxonTreeItem::class);
+        return $this->hasOne(TaxonTreeItem::class);
     }
 
     /**
@@ -387,4 +387,20 @@ class TaxonConcept extends BaseModel
         
         return collect(json_decode($res->getBody()) ?: []);
     }
+
+    /**
+     * Gets images for this taxon and its members
+     *
+     * @param TaxonConcept $taxonConcept
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function imagesPaginator($taxonConcept): Builder
+    {
+        $node = TaxonTreeItem::where('taxon_concept_id', $taxonConcept->id)->first();
+        return Image::join('taxon_concepts', 'images.accepted_id', '=', 'taxon_concepts.id')
+                ->join('taxon_tree_items', 'taxon_concepts.id', '=', 'taxon_tree_items.taxon_concept_id')
+                ->where('taxon_tree_items.node_number', '>=', $node->node_number)
+                ->where('taxon_tree_items.node_number', '<=', $node->highest_descendant_node_number);
+    }
+
 }

@@ -9,6 +9,7 @@ type TaxonConcept {
     acceptedConcept: TaxonConcept
     parent: TaxonConcept
     taxonTreeDefItem: TaxonTreeDefItem
+    taxonTreeItem: TaxonTreeItem
     taxonomicStatus: TaxonomicStatus
     occurrenceStatus: OccurrenceStatus
     establishmentMeans: EstablishmentMeans
@@ -28,6 +29,11 @@ type TaxonConcept {
     heroImage: Image
     specimenImages: [SpecimenImage]
     specimenImagesAccepted: [SpecimenImage]
+    imagesPaginated: [Image]
+        @paginate(
+            builder: "\\App\\Models\\TaxonConcept@imagesPaginator"
+            defaultCount: 20
+        )
 
     bioregions: [TaxonBioregion]
     occurrences(source: String @eq(key: "data_source")): [OccurrenceFeature]

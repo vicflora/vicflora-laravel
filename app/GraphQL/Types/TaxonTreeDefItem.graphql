@@ -2,12 +2,12 @@ type TaxonTreeDefItem {
     id: ID!
     guid: UUID
     name: String!
-    textBefore: String
-    textAfter: String
-    fullNameSeparator: String
-    isEnforced: Boolean
-    isInFullName: Boolean
-    rankId: Int
+    textBefore: String @rename(attribute: "text_before")
+    textAfter: String @rename(attribute: "text_after")
+    fullNameSeparator: String @rename(attribute: "full_name_separator")
+    isEnforced: Boolean @rename(attribute: "is_enforced")
+    isInFullName: Boolean @rename(attribute: "is_in_full_name")
+    rankId: Int @rename(attribute: "rank_id")
 
     parentItem: TaxonTreeDefItem
     taxonConcepts: [TaxonConcept]
