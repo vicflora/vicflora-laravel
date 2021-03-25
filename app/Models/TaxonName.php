@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $created_at
  * @property string $updated_at
  * @property string $name_part
- * @property string $full_ame
+ * @property string $full_name
  * @property string $authorship
  * @property string $full_name_with_authorship
  * @property string $nomenclatural_note

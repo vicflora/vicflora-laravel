@@ -36,10 +36,24 @@ type TaxonConcept {
             defaultCount: 20
             builder: "\\App\\Models\\TaxonConcept@occurrences"
         )
+    mapLinks: MapLinks
+    identificationKeys: [IdentificationKey!]!
 
     createdBy: Agent
     modifiedBy: Agent
     createdAt: DateTimeTz @rename(attribute: "created_at")
     updatedAt: DateTimeTz @rename(attribute: "updated_at")
     version: Int
+}
+
+type MapLinks {
+    profileMap: String
+    distributionMap: String
+}
+
+type IdentificationKey {
+    id: ID! @rename(attribute: "key_id")
+    title: String! @rename(attribute: "key_title")
+    taxonomicScope: String @rename(attribute: "taxonomic_scope")
+    geographicScope: String @rename(attribute: "geographic_scope")
 }

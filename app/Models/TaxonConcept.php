@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\BaseModel;
 use GraphQL\Type\Definition\ResolveInfo;
+use GuzzleHttp\Client;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -314,9 +315,76 @@ class TaxonConcept extends BaseModel
     }
 
 
-    public function occurrences($root): Builder
+    /**
+     * Custom builder for occurrences paginator
+     *
+     * @param TaxonConcept $taxonConcept
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function occurrences($taxonConcept): Builder
     {
-        $key = $root->rank_id > 220 ? 'accepted_name_usage_id' : 'species_id';
-        return Occurrence::where($key, $root->guid);
+        $key = $taxonConcept->rank_id > 220 ? 'accepted_name_usage_id' : 'species_id';
+        return Occurrence::where($key, $taxonConcept->guid);
+    }
+
+    public function getMapLinksAttribute()
+    {
+        $maps = [];
+        $key = $this->rank_id > 220 ? 'accepted_name_usage_id' : 'species_id';
+        $bioregionLayer = $this->rank_id > 220 ? 'distribution_bioregion_view' : 'distribution_bioregion_species_view';
+        $url = 'https://data.rbg.vic.gov.au/geoserver/vicflora/wms';
+        $queryVars = [ 
+            'service' => 'WMS', 
+            'version' => '1.1.0', 
+            'request' => 'GetMap', 
+            'layers' => 'vicflora:cst_vic,vicflora:occurrence_view', 
+            'styles' => 'polygon_no-fill_black-outline,', 
+            'bbox' => '140.8,-39.3,150.2,-33.8', 
+            'width' => '600', 
+            'height' => '363', 
+            'srs' => 'EPSG:4326', 
+            'format' => 'image/svg', 
+            'cql_filter' => "FEAT_CODE IN ('mainland','island');" . 
+                    "{$key}='{$this->guid}' " . 
+                    "AND establishment_means NOT IN ('cultivated') " .
+                    "AND occurrence_status NOT IN ('doubtful','absent', 'excluded')"            
+        ];
+
+        $maps['profileMap'] = $url . '?' . http_build_query($queryVars);
+
+        $queryVars = [
+            'service' => 'WMS', 
+            'version' => '1.1.0', 
+            'request' => 'GetMap', 
+            'layers' => 'vicflora:cst_vic,vicflora:{$bioregionLayer},vicflora:vicflora_bioregion,vicflora:cst_vic,vicflora:occurrence_view', 
+            'styles' => ',polygon_establishment_means,polygon_no-fill_grey-outline,polygon_no-fill_black-outline,', 
+            'bbox' => '140.8,-39.3,150.2,-33.8', 
+            'width' => '480', 
+            'height' => '291', 
+            'srs' => 'EPSG:4326', 
+            'format' => 'image/svg', 
+            'cql_filter' => "FEAT_CODE IN ('mainland','island');" . 
+                    "taxon_id='0c8e21a6-fe09-4835-84e1-d9531ad24728' " .
+                    "AND occurrence_status NOT IN ('doubtful', 'absent');" . 
+                    "INCLUDE;FEAT_CODE IN ('mainland','island');" . 
+                    "{$key}='{$this->guid}' " . 
+                    "AND occurrence_status NOT IN ('doubtful', 'absent', 'excluded')"
+        ];
+
+        $maps['distributionMap'] = $url . '?' . http_build_query($queryVars);
+        
+        return $maps;
+    }
+
+    public function getIdentificationKeysAttribute()
+    {
+        $client = new Client(['base_uri' => 'https://data.rbg.vic.gov.au']);
+        $res = $client->request('GET', '/keybase-ws/ws/search_items/'. $this->taxonName->full_name, [
+            'query' => [
+                'project' => 10,
+            ]
+        ]);
+        
+        return collect(json_decode($res->getBody()) ?: []);
     }
 }
