@@ -58,4 +58,13 @@ class SpecimenImage extends BaseModel
     {
         return $this->belongsTo(TaxonConcept::class, 'accepted_id');
     }
+
+    /**
+     * @return string
+     */
+    public function getThumbnailUrlAttribute()
+    {
+        return 'https://data.rbg.vic.gov.au/cip/preview/thumbnail/public/' . 
+                $this->cumulus_record_id;
+    }
 }
