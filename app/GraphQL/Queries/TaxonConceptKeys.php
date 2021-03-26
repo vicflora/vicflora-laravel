@@ -8,9 +8,8 @@ class TaxonConceptKeys
 {
     /**
      * @param  \App\Models\TaxonConcept  $taxonConcept
-     * @param  array<string, mixed>  $args
      */
-    public function __invoke($taxonConcept, array $args)
+    public function __invoke($taxonConcept)
     {
         $client = new Client(['base_uri' => 'https://data.rbg.vic.gov.au']);
         $res = $client->request('GET', '/keybase-ws/ws/search_items/'. $taxonConcept->taxonName->full_name, [

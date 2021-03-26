@@ -3,15 +3,12 @@
 namespace App\Models;
 
 use App\Models\BaseModel;
-use GraphQL\Type\Definition\ResolveInfo;
-use GuzzleHttp\Client;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\DB;
-use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 
 /**
  * @property integer $id
@@ -296,34 +293,4 @@ class TaxonConcept extends BaseModel
                 ->where('is_preferred', true)->first();
     }
     
-    /**
-     * @return \Illuminate\Database\Eloquent\Collection
-     */
-    public function getBioregionsAttribute()
-    {
-        return TaxonBioregion::where('taxon_guid', $this->guid)->get();
-    }
-
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Collection
-     */
-    public function getOccurrencesAttribute()
-    {
-        $key = $this->rank_id > 220 ? 'accepted_name_usage_id' : 'species_id';
-        return Occurrence::where('accepted_name_usage_id', $this->guid)->get();
-    }
-
-    /**
-     * Custom builder for occurrences paginator
-     *
-     * @param TaxonConcept $taxonConcept
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function occurrences($taxonConcept): Builder
-    {
-        $key = $taxonConcept->rank_id > 220 ? 'accepted_name_usage_id' : 'species_id';
-        return Occurrence::where($key, $taxonConcept->guid);
-    }
-
 }

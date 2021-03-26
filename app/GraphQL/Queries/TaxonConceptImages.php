@@ -11,7 +11,6 @@ class TaxonConceptImages
 {
     /**
      * @param  TaxonConcept  $taxonConcept
-     * @param  array<string, mixed>  $args
      */
     public function __invoke(TaxonConcept $taxonConcept)
     {

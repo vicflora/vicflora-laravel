@@ -9,9 +9,8 @@ class TaxonConceptMapLinks
 {
     /**
      * @param  \App\Models\TaxonConcept  $taxonConcept
-     * @param  array<string, mixed>  $args
      */
-    public function __invoke(TaxonConcept $taxonConcept, array $args)
+    public function __invoke(TaxonConcept $taxonConcept)
     {
         $maps = [];
         $key = $taxonConcept->rank_id > 220 ? 'accepted_name_usage_id' : 'species_id';
