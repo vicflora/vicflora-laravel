@@ -48,6 +48,7 @@ type TaxonConcept {
             builder: "\\App\\Models\\TaxonConcept@occurrences"
         )
     mapLinks: MapLinks
+        @field(resolver: "\\App\\GraphQL\\Queries\\TaxonConceptMapLinks")
     identificationKeys: [IdentificationKey!]!
         @field(resolver: "\\App\\GraphQL\\Queries\\TaxonConceptKeys")
 
