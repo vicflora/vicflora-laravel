@@ -408,12 +408,13 @@ EOT;
     public function imagesPaginator($taxonConcept): Builder
     {
         $node = TaxonTreeItem::where('taxon_concept_id', $taxonConcept->id)->first();
-        return Image::join('taxon_concepts', 'images.accepted_id', '=', 'taxon_concepts.id')
-                ->join('taxon_tree_items', 'taxon_concepts.id', '=', 'taxon_tree_items.taxon_concept_id')
-                ->where('taxon_tree_items.node_number', '>=', $node->node_number)
-                ->where('taxon_tree_items.node_number', '<=', $node->highest_descendant_node_number)
-                ->groupBy('images.id')
-                ->select('images.*');
+        return Image::whereHas('acceptedConcept', function(Builder $query) use ($node) {
+                $query->whereHas('taxonTreeItem', function(Builder $query) use ($node) {
+                        $query->where('node_number', '>=', $node->node_number)
+                                ->where('node_number', '<=', $node->highest_descendant_node_number);
+                });
+        });
+
     }
 
     /**
@@ -425,12 +426,12 @@ EOT;
     public function specimenImagesPaginator($taxonConcept): Builder
     {
         $node = TaxonTreeItem::where('taxon_concept_id', $taxonConcept->id)->first();
-        return SpecimenImage::join('taxon_concepts', 'specimen_images.accepted_id', '=', 'taxon_concepts.id')
-                ->join('taxon_tree_items', 'taxon_concepts.id', '=', 'taxon_tree_items.taxon_concept_id')
-                ->where('taxon_tree_items.node_number', '>=', $node->node_number)
-                ->where('taxon_tree_items.node_number', '<=', $node->highest_descendant_node_number)
-                ->groupBy('specimen_images.id')
-                ->select('specimen_images.*');
+        return SpecimenImage::whereHas('acceptedConcept', function(Builder $query) use ($node) {
+                $query->whereHas('taxonTreeItem', function(Builder $query) use ($node) {
+                        $query->where('node_number', '>=', $node->node_number)
+                                ->where('node_number', '<=', $node->highest_descendant_node_number);
+                });
+        });
     }
 
 }
