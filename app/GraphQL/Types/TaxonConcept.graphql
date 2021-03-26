@@ -49,6 +49,7 @@ type TaxonConcept {
         )
     mapLinks: MapLinks
     identificationKeys: [IdentificationKey!]!
+        @field(resolver: "\\App\\GraphQL\\Queries\\TaxonConceptKeys")
 
     createdBy: Agent
     modifiedBy: Agent
