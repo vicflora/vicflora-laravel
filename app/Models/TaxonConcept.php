@@ -398,40 +398,4 @@ EOT;
         
         return collect(json_decode($res->getBody()) ?: []);
     }
-
-    /**
-     * Gets images for this taxon and its members
-     *
-     * @param TaxonConcept $taxonConcept
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function imagesPaginator($taxonConcept): Builder
-    {
-        $node = TaxonTreeItem::where('taxon_concept_id', $taxonConcept->id)->first();
-        return Image::whereHas('acceptedConcept', function(Builder $query) use ($node) {
-                $query->whereHas('taxonTreeItem', function(Builder $query) use ($node) {
-                        $query->where('node_number', '>=', $node->node_number)
-                                ->where('node_number', '<=', $node->highest_descendant_node_number);
-                });
-        });
-
-    }
-
-    /**
-     * Gets specimen images for this taxon and its members
-     *
-     * @param TaxonConcept $taxonConcept
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function specimenImagesPaginator($taxonConcept): Builder
-    {
-        $node = TaxonTreeItem::where('taxon_concept_id', $taxonConcept->id)->first();
-        return SpecimenImage::whereHas('acceptedConcept', function(Builder $query) use ($node) {
-                $query->whereHas('taxonTreeItem', function(Builder $query) use ($node) {
-                        $query->where('node_number', '>=', $node->node_number)
-                                ->where('node_number', '<=', $node->highest_descendant_node_number);
-                });
-        });
-    }
-
 }

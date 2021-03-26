@@ -31,12 +31,12 @@ type TaxonConcept {
     specimenImagesAccepted: [SpecimenImage]
     imagesPaginated: [Image]
         @paginate(
-            builder: "\\App\\Models\\TaxonConcept@imagesPaginator"
+            builder: "\\App\\GraphQL\\Queries\\TaxonConceptImages"
             defaultCount: 20
         )
     specimenImagesPaginated: [Image]
         @paginate(
-            builder: "\\App\\Models\\TaxonConcept@specimenImagesPaginator"
+            builder: "\\App\\GraphQL\\Queries\\TaxonConceptSpecimenImages"
             defaultCount: 20
         )
 
