@@ -20,3 +20,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/ping', '\\App\\Http\\Controllers\\SolariumController@ping');
+Route::get('/search', '\\App\\Http\\Controllers\\SolariumController@search');

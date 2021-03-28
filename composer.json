@@ -21,7 +21,8 @@
         "laravel/ui": "^3.2",
         "mll-lab/graphql-php-scalars": "^4.0",
         "mll-lab/laravel-graphql-playground": "^2.5",
-        "nuwave/lighthouse": "^5.3"
+        "nuwave/lighthouse": "^5.3",
+        "solarium/solarium": "^6.1"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

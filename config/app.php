@@ -175,6 +175,11 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /*
+        * Solarium Service Provider
+        */
+        App\Providers\SolariumServiceProvider::class,
+
     ],
 
     /*
