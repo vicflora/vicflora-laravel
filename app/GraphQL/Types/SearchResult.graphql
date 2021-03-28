@@ -1,0 +1,100 @@
+type SearchResult {
+    meta: SearchMetadata
+    docs: [SearchResultDocument]
+    facetFields: [SearchResultFacetField]
+    selectionSet: JSON
+}
+
+type SearchResultDocument {
+    id: ID!
+    taxonRank: String
+    scientificNameID: String
+    scientificName: String
+    scientificNameAuthorship: String
+    nameType: String
+    namePublishedInID: String
+    namePublishedIn: String
+    namePublishedInYear: String
+    nameAccordingTo: String
+    kingdom: String
+    phylum: String
+    class: String
+    order: String
+    family: String
+    genus: String
+    specificEpithet: String
+    infraspecificEpithet: String
+    parentNameUsageID: String
+    parentNameUsage: String
+    acceptedNameUsageID: String
+    acceptedNameUsage: String
+    taxonomicStatus: String
+    occurrenceStatus: [String]
+    establishmentMeans: [String]
+    threatStatus: [String]
+    taxonRemarks: String
+    vernacularName: [String]
+    ibra7Subregion: [String]
+    nrmRegion: [String]
+    epbc: String
+    vrot: String
+    ffg: String
+}
+
+type SearchResultFacetField {
+    fieldName: String!
+    facets: [SearchResultFacet!]!
+}
+
+type SearchResultFacet {
+    value: String!
+    count: Int!
+    fq: String!
+}
+
+type SearchMetadata {
+    params: SearchParameters
+    query: String
+    pagination: PaginatorInfo
+}
+
+type SearchParameters {
+    q: String
+    fq: [String]
+    fl: [String]
+    rows: Int
+    facet: Boolean
+    facetField: [String]
+    facetSort: String
+    facetLimit: Int
+    facetOffset: Int
+}
+
+input SearchInput {
+    q: String = "*:*"
+    fq: [String]
+    rows: Int = 20
+    page: Int = 1
+    sort: [String] = ["scientific_name asc"]
+    facet: Boolean = true
+    facetField: [String] = [
+        "name_type"
+        "taxonomic_status"
+        "taxon_rank"
+        "occurrence_status"
+        "establishment_means"
+        "threat_status"
+        "class"
+        "subclass"
+        "superorder"
+        "order"
+        "family"
+        "ibra_7_subregion"
+        "nrm_region"
+        "media"
+    ]
+
+    facetSort: String
+    facetLimit: Int = 10
+    facetOffset: Int = 0
+}
