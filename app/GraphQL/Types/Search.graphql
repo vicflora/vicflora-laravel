@@ -63,6 +63,8 @@ type SearchParameters {
     fq: [String]
     fl: [String]
     rows: Int
+    page: Int
+    start: Int
     facet: Boolean
     facetField: [String]
     facetSort: String
