@@ -89,26 +89,7 @@ class Search
         $query = $this->setCursor($query, $params);
         $query = $this->setFilters($query, $params);
 
-        // $query = $this->setFacets($query, $params);
-        $facetFields = $this->getFacetFields($params);
-        $facetSet = $query->getFacetSet();
-        foreach ($facetFields as $field) {
-            $facetField = $facetSet->createFacetField($field)
-                    ->setField($field)
-                    ->setMissing(true)
-                    ->setMincount(1);
-            if (isset($params['facetSort'])) {
-                $facetField->setSort($params['facetSort']);
-            }
-            if (isset($params['facetLimit'])
-                    && is_numeric($params['facetLimit'])) {
-                $facetField->setLimit($params['facetLimit']);
-            }
-            if (isset($params['facetOffset'])
-                    && is_numeric($params['facetOffset'])) {
-                $facetField->setOffset($params['facetOffset']);
-            }
-        }
+        $this->setFacets($query, $params);
 
         return $this->getResult($query, $params);
     }
@@ -277,7 +258,7 @@ class Search
      */
     public function setFacets($query, $params)
     {
-        //if (!(isset($params['facet']) && $params['facet'] == "false")) {
+        if (!(isset($params['facet']) && $params['facet'] == "false")) {
             $facetFields = $this->getFacetFields($params);
             $facetSet = $query->getFacetSet();
             foreach ($facetFields as $field) {
@@ -297,8 +278,7 @@ class Search
                     $facetField->setOffset($params['facetOffset']);
                 }
             }
-        //}
-        return $query;
+        }
     }
 
     /**

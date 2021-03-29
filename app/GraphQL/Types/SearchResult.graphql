@@ -93,8 +93,25 @@ input SearchInput {
         "nrm_region"
         "media"
     ]
-
     facetSort: String
     facetLimit: Int = 10
     facetOffset: Int = 0
+}
+
+type IndexFields {
+    name: String!
+    type: String
+    indexed: Boolean
+    stored: Boolean
+    required: Boolean
+    multiValued: Boolean
+}
+
+input FieldFacetInput {
+    field: String!
+    q: String = "*:*"
+    fq: [String]
+    sort: String
+    limit: Int = 100
+    offset: Int = 0
 }

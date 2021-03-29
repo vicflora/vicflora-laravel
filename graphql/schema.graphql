@@ -51,4 +51,6 @@ type Query {
     nameTypeAhead(q: String): [String]
 
     search(input: SearchInput): SearchResult
+    facetField(input: FieldFacetInput): SearchResultFacetField
+    indexFields: [IndexFields]
 }
