@@ -24,17 +24,13 @@ type TaxonConcept {
     profiles: [Profile]
     profilesAccepted: [Profile]
     currentProfile: Profile
-    images: [Image]
-    imagesAccepted: [Image]
     heroImage: Image
-    specimenImages: [SpecimenImage]
-    specimenImagesAccepted: [SpecimenImage]
-    imagesPaginated: [Image]
+    images: [Image]
         @paginate(
             builder: "\\App\\GraphQL\\Queries\\TaxonConceptImages"
             defaultCount: 20
         )
-    specimenImagesPaginated: [SpecimenImage]
+    specimenImages: [SpecimenImage]
         @paginate(
             builder: "\\App\\GraphQL\\Queries\\TaxonConceptSpecimenImages"
             defaultCount: 20
