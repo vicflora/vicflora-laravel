@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Builder;
 
 class Occurrence extends Model
 {
@@ -46,7 +47,7 @@ class Occurrence extends Model
 
     public function getGeometryAttribute()
     {
-        return json_decode($this->geo_json);
+        return json_decode($this->geojson);
     }
 
     public function getPropertiesAttribute()
