@@ -1,6 +1,5 @@
 type DegreeOfEstablishment {
-    id: ID!
-    guid: UUID
+    id: ID @rename(attribute: "guid")
     name: String!
     uri: String
     label: String
@@ -10,4 +9,8 @@ type DegreeOfEstablishment {
     modifiedBy: Agent
     createdAt: DateTimeTz
     updatedAt: DateTimeTz
+}
+
+extend type Query {
+    degreesOfEstablishment: [DegreeOfEstablishment!]! @all
 }

@@ -1,6 +1,5 @@
 type TaxonName {
-    id: ID!
-    guid: UUID
+    id: ID! @rename(attribute: "guid")
     namePart: String @rename(attribute: "name_part")
     fullName: String! @rename(attribute: "full_name")
     authorship: String
@@ -22,4 +21,8 @@ type TaxonName {
     createdAt: DateTimeTz @rename(attribute: "created_at")
     updatedAt: DateTimeTz @rename(attribute: "updated_at")
     version: Int
+}
+
+extend type Query {
+    taxonName(id: ID! @eq(key: "guid")): TaxonName @find
 }

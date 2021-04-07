@@ -62,4 +62,14 @@ class Profile extends BaseModel
     {
         return $this->belongsTo('App\Models\TaxonConcept');
     }
+
+    /**
+     * Concatenates the version with the guid to get a unique ID
+     *
+     * @return void
+     */
+    public function getUniqIdAttribute()
+    {
+        return $this->guid . ":" . $this->version;
+    }
 }

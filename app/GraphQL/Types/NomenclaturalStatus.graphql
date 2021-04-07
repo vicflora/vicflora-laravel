@@ -1,5 +1,5 @@
 type NomenclaturalStatus {
-    id: ID!
+    id: ID! @rename(attribute: "guid")
     guid: UUID
     name: String!
     uri: String
@@ -13,4 +13,8 @@ type NomenclaturalStatus {
     createdAt: DateTimeTz @rename(attribute: "created_at")
     updatedAt: DateTimeTz @rename(attribute: "updated_at")
     version: Int
+}
+
+extend type Query {
+    nomenclaturalStatuses: [NomenclaturalStatus!]! @all
 }

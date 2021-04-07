@@ -1,6 +1,5 @@
 type Attribute {
-    id: ID!
-    guid: UUID
+    id: ID! @rename(attribute: "guid")
     name: String!
     uri: String
     description: String

@@ -1,0 +1,29 @@
+type LocalGovernmentAreaFeature
+    @model(class: "\\App\\Models\\LocalGovernmentArea") {
+    type: String
+    geometry: LocalGovernmentAreaGeometry
+    properties: LocalGovernmentAreaProperties
+}
+
+type LocalGovernmentAreaGeometry {
+    type: String
+    coordinates: [[[[Float]]]]
+}
+
+type LocalGovernmentAreaProperties {
+    id: ID
+    name: String!
+    nameAbbr: String
+    created: Date
+    gazetted: Date
+}
+
+extend type Query {
+    localGovernmentArea(
+        id: ID! @eq(key: "lga_pid")
+    ): LocalGovernmentAreaFeature @find
+    localGovernmentAreasByName(
+        name: String! @ilike(key: "lga_name", template: "{}%")
+    ): [LocalGovernmentAreaFeature]
+        @all(model: "App\\Models\\LocalGovernmentArea")
+}

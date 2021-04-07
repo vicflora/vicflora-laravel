@@ -4,7 +4,6 @@ geometry with both its properties are used.
 """
 type BioregionFeature @model(class: "\\App\\Models\\Bioregion") {
     type: String
-    coordinates: [[[[Float]]]]
     geometry: BioregionGeometry
     properties: BioregionProperties
 }
@@ -20,4 +19,8 @@ type BioregionProperties {
     subregionCode: String
     region: String
     regionCode: String
+}
+
+extend type Query {
+    bioregion(id: ID! @eq(key: "bioregion_id")): BioregionFeature @find
 }

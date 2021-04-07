@@ -1,6 +1,5 @@
 type TaxonTreeDefItem {
-    id: ID!
-    guid: UUID
+    id: ID @rename(attribute: "guid")
     name: String!
     textBefore: String @rename(attribute: "text_before")
     textAfter: String @rename(attribute: "text_after")

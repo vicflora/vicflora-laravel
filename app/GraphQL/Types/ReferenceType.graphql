@@ -1,8 +1,11 @@
 type ReferenceType {
-    id: ID!
-    guid: UUID
+    id: ID! @rename(attribute: "guid")
     name: String!
     uri: String
     label: String
     description: String
+}
+
+extend type Query {
+    referenceTypes: [ReferenceType!]! @all
 }

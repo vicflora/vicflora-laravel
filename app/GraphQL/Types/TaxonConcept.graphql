@@ -1,6 +1,5 @@
 type TaxonConcept {
-    id: ID!
-    guid: UUID
+    id: ID! @rename(attribute: "guid")
     remarks: String
     editorNotes: String @rename(attribute: "editor_notes")
 
@@ -67,4 +66,8 @@ type IdentificationKey {
     title: String! @rename(attribute: "key_title")
     taxonomicScope: String @rename(attribute: "taxonomic_scope")
     geographicScope: String @rename(attribute: "geographic_scope")
+}
+
+extend type Query {
+    taxonConcept(id: ID! @eq(key: "guid")): TaxonConcept @find
 }

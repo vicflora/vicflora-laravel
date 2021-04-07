@@ -1,5 +1,5 @@
 type TaxonAttribute {
-    id: ID!
+    # id: ID
     remarks: String
 
     taxonConcept: TaxonConcept!

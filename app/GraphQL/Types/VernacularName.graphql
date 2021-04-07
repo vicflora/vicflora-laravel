@@ -1,6 +1,5 @@
 type VernacularName {
-    id: ID!
-    guid: UUID
+    id: ID! @rename(attribute: "guid")
     name: String!
     isPreferred: Boolean
     nameUsage: String

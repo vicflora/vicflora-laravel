@@ -1,6 +1,5 @@
 type NameType {
-    id: ID!
-    guid: UUID
+    id: ID! @rename(attribute: "guid")
     name: String!
     uri: String
     label: String
@@ -13,4 +12,8 @@ type NameType {
     createdAt: DateTimeTz @rename(attribute: "created_at")
     updatedAt: DateTimeTz @rename(attribute: "updated_at")
     version: Int
+}
+
+extend type Query {
+    nameTypes: [NameType!]! @all
 }

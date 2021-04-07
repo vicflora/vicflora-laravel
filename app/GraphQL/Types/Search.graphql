@@ -33,7 +33,7 @@ type SearchResultDocument {
     establishmentMeans: [String]
     threatStatus: [String]
     taxonRemarks: String
-    vernacularName: [String]
+    vernacularName: String
     ibra7Subregion: [String]
     nrmRegion: [String]
     epbc: String
@@ -116,4 +116,10 @@ input FieldFacetInput {
     sort: String
     limit: Int = 100
     offset: Int = 0
+}
+
+extend type Query {
+    search(input: SearchInput): SearchResult
+    facetField(input: FieldFacetInput): SearchResultFacetField
+    indexFields: [IndexFields]
 }

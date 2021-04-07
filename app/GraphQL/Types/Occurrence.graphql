@@ -33,3 +33,7 @@ type OccurrenceProperties {
     sensitive: Boolean
     generalised: Boolean
 }
+
+extend type Query {
+    occurrence(id: ID! @eq): OccurrenceFeature @find
+}

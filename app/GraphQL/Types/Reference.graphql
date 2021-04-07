@@ -1,6 +1,5 @@
 type Reference {
-    id: ID!
-    guid: UUID
+    id: ID! @rename(attribute: "guid")
     created: String
     publicationYear: String
     title: String!
@@ -26,4 +25,8 @@ type Reference {
     referenceType: ReferenceType
 
     taxonNames: [TaxonName]
+}
+
+extend type Query {
+    reference(id: ID! @eq(key: "guid")): Reference @find
 }

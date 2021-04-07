@@ -1,6 +1,5 @@
 type EstablishmentMeans {
-    id: ID!
-    guid: UUID
+    id: ID! @rename(attribute: "guid")
     name: String!
     uri: String
     label: String
@@ -10,4 +9,8 @@ type EstablishmentMeans {
     modifiedBy: Agent
     createdAt: DateTimeTz @rename(attribute: "created_at")
     updatedAt: DateTimeTz @rename(attribute: "updated_at")
+}
+
+extend type Query {
+    establishmentMeans: [EstablishmentMeans!]! @all
 }

@@ -1,5 +1,5 @@
 type TaxonRelationship {
-    id: ID!
+    id: ID! @rename(attribute: "guid")
     remarks: String
 
     subjectTaxonConcept: TaxonConcept

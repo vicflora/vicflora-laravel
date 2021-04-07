@@ -1,5 +1,5 @@
 type Profile {
-    id: ID!
+    id: ID! @rename(attribute: "uniqId")
     guid: UUID
     profile: String!
     isCurrent: Boolean @rename(attribute: "is_current")

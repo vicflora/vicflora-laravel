@@ -2,55 +2,12 @@
 #import ../app/GraphQL/Inputs/*.graphql
 #import ../app/GraphQL/Enums/*.graphql
 
-"A date string with format `Y-m-d`, e.g. `2011-05-23`."
-scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
-
-"A datetime string with format `Y-m-d H:i:s`, e.g. `2018-05-23 13:43:32`."
-scalar DateTime
-    @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
-
-"A datetime and timezone string in ISO 8601 format `Y-m-dTH:i:sP`, e.g. `2020-04-20T13:53:12+02:00`."
-scalar DateTimeTz
-    @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTimeTz")
-
-"A UUID string, e.g. `0c8e21a6-fe09-4835-84e1-d9531ad24728`."
-scalar UUID @scalar(class: "UUID")
-
-"A [RFC 5321](https://tools.ietf.org/html/rfc5321) compliant email."
-scalar Email @scalar(class: "MLL\\GraphQLScalars\\Email")
-
-"Arbitrary data encoded in JavaScript Object Notation. See https://www.json.org/."
-scalar JSON @scalar(class: "MLL\\GraphQLScalars\\JSON")
-
 type Query {
     users: [User!]! @paginate(defaultCount: 10)
     user(id: ID @eq): User @find
 
-    taxonConcept(id: ID! @eq): TaxonConcept @find
-    taxonConceptByGUID(guid: UUID! @eq): TaxonConcept @find
-
-    taxonName(id: ID! @eq): TaxonName @find
-    reference(id: ID! @eq): Reference @find
-    agent(id: ID! @eq): Agent @find
-
-    agentTypes: [AgentType!]! @all
-    referenceTypes: [ReferenceType!]! @all
-    nameTypes: [NameType!]! @all
-    nomenclaturalStatuses: [NomenclaturalStatus!]! @all
-    taxonomicStatuses: [TaxonomicStatus!]! @all
-    occurrenceStatuses: [OccurrenceStatus!]! @all
-    establishmentMeans: [EstablishmentMeans!]! @all
-    degreesOfEstablishment: [DegreeOfEstablishment!]! @all
-
     highlights: [Highlight!]! @all
     carouselSlides: [CarouselSlide!]! @all
 
-    bioregion(id: ID! @eq(key: "bioregion_id")): BioregionFeature @find
-    occurrence(id: ID! @eq): OccurrenceFeature @find
-
     nameTypeAhead(q: String): [String]
-
-    search(input: SearchInput): SearchResult
-    facetField(input: FieldFacetInput): SearchResultFacetField
-    indexFields: [IndexFields]
 }

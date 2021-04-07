@@ -1,7 +1,6 @@
 "Agent type"
 type Agent {
-    id: ID!
-    guid: UUID
+    id: ID! @rename(attribute: "guid")
 
     "Name of the agent"
     name: String
@@ -13,4 +12,8 @@ type Agent {
 
     "Type of agent"
     agentType: AgentType
+}
+
+extend type Query {
+    agent(id: ID! @eq(key: "guid")): Agent @find
 }

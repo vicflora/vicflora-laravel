@@ -1,8 +1,11 @@
 type AgentType {
-    id: ID!
-    guid: UUID
+    id: ID! @rename(attribute: "guid")
     name: String!
     uri: String
     label: String
     description: String
+}
+
+extend type Query {
+    agentTypes: [AgentType!]! @all
 }
