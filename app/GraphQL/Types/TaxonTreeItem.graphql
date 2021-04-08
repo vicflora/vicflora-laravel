@@ -1,5 +1,5 @@
 type TaxonTreeItem {
-    # id: ID
+    id: ID
     nodeNumber: Int @rename(attribute: "node_number")
     highestDescendantNodeNumber: Int
         @rename(attribute: "highest_descendant_node_number")

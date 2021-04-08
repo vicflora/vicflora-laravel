@@ -1,5 +1,5 @@
 type TaxonBioregion {
-    # id: ID
+    id: ID
     taxonConcept: TaxonConcept
     bioregion: BioregionFeature
     occurrenceStatus: OccurrenceStatus
