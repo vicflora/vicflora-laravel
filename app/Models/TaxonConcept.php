@@ -4,10 +4,11 @@ namespace App\Models;
 
 use App\Models\BaseModel;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
 /**
@@ -221,41 +222,50 @@ class TaxonConcept extends BaseModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Collection
+     * @return \Illuminate\Support\Collection
      */
     public function getChildrenAttribute(): Collection
     {
-        return TaxonConcept::where('parent_id', $this->id)
-                ->whereHas('taxonomicStatus', function (Builder $query) {
-                    $query->where('name', 'accepted');
-                })
-                ->get();
+        if ($this->taxonomicStatus->name === 'accepted') {
+            return TaxonConcept::where('parent_id', $this->id)
+                    ->whereHas('taxonomicStatus', function (Builder $query) {
+                        $query->where('name', 'accepted');
+                    })
+                    ->get();
+        }
+        return collect([]);
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Collection
+     * @return \Illuminate\Support\Collection
      */
     public function getSiblingsAttribute(): Collection
     {
-        return TaxonConcept::where('parent_id', $this->parent_id)
-                ->whereHas('taxonomicStatus', function (Builder $query) {
-                    $query->where('name', 'accepted');
-                })
-                ->get();
+        if ($this->taxonomicStatus->name === 'accepted') {
+            return TaxonConcept::where('parent_id', $this->parent_id)
+                    ->whereHas('taxonomicStatus', function (Builder $query) {
+                        $query->where('name', 'accepted');
+                    })
+                    ->get();
+        }
+        return collect([]);
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Collection
+     * @return \Illuminate\Support\Collection
      */
     public function getHigherClassificationAttribute(): Collection
     {
-        $node = TaxonTreeItem::where('taxon_concept_id', $this->id)
-                ->first();
-        
-        return TaxonTreeItem::where('node_number', '<', $node->node_number)
-                ->where('highest_descendant_node_number', '>=', 
-                        $node->node_number)
-                ->get();
+        if ($this->taxonomicStatus->name === 'accepted') {
+            $node = TaxonTreeItem::where('taxon_concept_id', $this->id)
+                    ->first();
+            
+            return TaxonTreeItem::where('node_number', '<', $node->node_number)
+                    ->where('highest_descendant_node_number', '>=', 
+                            $node->node_number)
+                    ->get();
+        }
+        return collect([]);                    
     }
 
     /**
