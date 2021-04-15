@@ -8,11 +8,11 @@ type SearchResult {
 type SearchResultDocument {
     id: ID!
     taxonRank: String
-    scientificNameID: String
+    scientificNameId: String
     scientificName: String
     scientificNameAuthorship: String
     nameType: String
-    namePublishedInID: String
+    namePublishedInId: String
     namePublishedIn: String
     namePublishedInYear: String
     nameAccordingTo: String
@@ -24,10 +24,11 @@ type SearchResultDocument {
     genus: String
     specificEpithet: String
     infraspecificEpithet: String
-    parentNameUsageID: String
+    parentNameUsageId: String
     parentNameUsage: String
-    acceptedNameUsageID: String
+    acceptedNameUsageId: String
     acceptedNameUsage: String
+    acceptedNameUsageAuthorship: String
     taxonomicStatus: String
     occurrenceStatus: [String]
     establishmentMeans: [String]
