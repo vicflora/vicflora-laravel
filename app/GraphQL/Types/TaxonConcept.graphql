@@ -48,6 +48,9 @@ type TaxonConcept {
     identificationKeys: [IdentificationKey!]!
         @field(resolver: "\\App\\GraphQL\\Queries\\TaxonConceptKeys")
 
+    synonyms: [TaxonName]
+    misapplications: [TaxonConcept]
+
     createdBy: Agent
     modifiedBy: Agent
     createdAt: DateTimeTz @rename(attribute: "created_at")

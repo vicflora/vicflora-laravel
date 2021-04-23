@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
+use PhpParser\ErrorHandler\Collecting;
 
 /**
  * @property integer $id
@@ -301,6 +302,36 @@ class TaxonConcept extends BaseModel
     {
         return VernacularName::where('taxon_concept_id', $this->id)
                 ->where('is_preferred', true)->first();
+    }
+
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    public function getSynonymsAttribute(): Collection
+    {
+        $usages = TaxonConcept::where('accepted_id', $this->id)
+                ->whereHas('taxonomicStatus', function(Builder $query) {
+                    $query->whereIn('name', ['synonym', 'heterotypicSynonym', 'homotypicSynonym']);
+                })
+                ->get();
+
+        $synonyms = [];
+        foreach ($usages as $usage) {
+            $synonyms[] = $usage->taxonName;
+        }
+        return collect($synonyms);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function getMisapplicationsAttribute(): EloquentCollection
+    {
+        return TaxonConcept::where('accepted_id', $this->id)
+                ->whereHas('taxonomicStatus', function(Builder $query) {
+                    $query->whereIn('name', ['misapplication', 'misapplied']);
+                })
+                ->get();
     }
     
 }
