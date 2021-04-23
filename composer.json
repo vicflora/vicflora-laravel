@@ -7,6 +7,16 @@
         "laravel"
     ],
     "license": "MIT",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/nielsklazenga/database"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/nielsklazenga/laravel-postgis"
+        }
+    ],
     "require": {
         "php": "^7.3|^8.0",
         "doctrine/dbal": "^3.0",
@@ -22,7 +32,8 @@
         "mll-lab/graphql-php-scalars": "^4.0",
         "mll-lab/laravel-graphql-playground": "^2.5",
         "nuwave/lighthouse": "^5.3",
-        "solarium/solarium": "^6.1"
+        "solarium/solarium": "^6.1",
+        "mstaack/laravel-postgis": "dev-dependency-fix"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
