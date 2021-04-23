@@ -1,0 +1,33 @@
+type VbaTaxon {
+    id: ID! @rename(attribute: "vba_id")
+    scientificName: String! @rename(attribute: "scientific_name")
+    commonName: String @rename(attribute: "common_name")
+    authority: String
+    ffg: VBAConservationStatus @rename(attribute: "ffgObject")
+    epbc: VBAConservationStatus @rename(attribute: "epbcObject")
+    vicAdvice: VBAConservationStatus @rename(attribute: "vicAdvObject")
+    restriction: String
+    origin: String
+    taxonType: String @rename(attribute: "taxon_type")
+    lifeForm: String @rename(attribute: "vic_life_form")
+    nvisGrowthForm: String @rename(attribute: "nvis_growth_form")
+    fireResponse: String @rename(attribute: "fire_response")
+    treaty: String
+    discipline: String
+    taxonLevel: String @rename(attribute: "taxon_level")
+    fisSpeciesNumber: Int @rename(attribute: "fis_species_number")
+    recordModificationDate: Date @rename(attribute: "record_modification_date")
+    versionDate: Date @rename(attribute: "version_date")
+
+    taxonName: TaxonName
+}
+
+type VBAConservationStatus {
+    code: String
+    description: String
+}
+
+extend type Query {
+    vbaTaxa: [VbaTaxon!] @paginate(defaultCount: 20)
+    vbaTaxon(id: ID! @eq(key: "vba_id")): VbaTaxon @find
+}
