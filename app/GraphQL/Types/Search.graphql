@@ -5,6 +5,10 @@ type SearchResult {
     selectionSet: JSON
 }
 
+type Download {
+    data: String
+}
+
 type SearchResultDocument {
     id: ID!
     taxonRank: String
@@ -101,6 +105,31 @@ input SearchInput {
     facetOffset: Int = 0
 }
 
+input DownloadInput {
+    q: String = "*:*"
+    fq: [String]
+    sort: [String] = ["scientific_name asc"]
+    fl: [String] = [
+        "id"
+        "taxon_rank"
+        "scientific_name"
+        "scientific_name_authorship"
+        "taxonomic_status"
+        "family"
+        "occurrence_status"
+        "establishment_means"
+        "accepted_name_usage_id"
+        "accepted_name_usage"
+        "accepted_name_usage_authorship"
+        "accepted_name_usage_taxon_rank"
+        "name_according_to"
+        "sensu"
+        "threat_status"
+        "profile"
+        "vernacular_name"
+    ]
+}
+
 type IndexFields {
     name: String!
     type: String
@@ -121,6 +150,7 @@ input FieldFacetInput {
 
 extend type Query {
     search(input: SearchInput): SearchResult
+    download(input: DownloadInput): Download
     facetField(input: FieldFacetInput): SearchResultFacetField
     indexFields: [IndexFields]
 }
