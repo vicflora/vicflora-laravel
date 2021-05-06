@@ -4,22 +4,24 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
 /**
  * @property integer $id
- * @property string $lga_pid
- * @property string $lga_name
- * @property string $abb_name
- * @property integer $state_pid
+ * @property string $name
+ * @property string $short_name
+ * @property string $area_type
+ * @property string $area_src
+ * @property string $veac_rec
+ * @property string $veac_study
+ * @property string $iucn
+ * @property string $estab_date
+ * @property string $poly_src
+ * @property string $last_mod
+ * @property string $vers_date
+ * @property float $area_sqm
  * @property string $geom
- * 
- * @property string $type
- * @property string $featureType
- * @property array<mixed> $geometry
- * @property array<mixed> $properties
  */
-class LocalGovernmentArea extends Model
+class ParkReserve extends Model
 {
     /**
      * The database connection that should be used by the model.
@@ -33,7 +35,7 @@ class LocalGovernmentArea extends Model
      *
      * @var string
      */
-    protected $table = 'local_government_areas';
+    protected $table = 'park_reserves';
 
     /**
      * @return string
@@ -59,7 +61,7 @@ class LocalGovernmentArea extends Model
      */
     public function getGeometryAttribute()
     {
-        $geometry = DB::connection('mapper')->table('bioregions')
+        $geometry = DB::connection('mapper')->table('park_reserves')
                 ->where('id', $this->id)
                 ->value(DB::raw('ST_AsGeoJSON(geom)'));
 
@@ -74,11 +76,17 @@ class LocalGovernmentArea extends Model
     public function getPropertiesAttribute()
     {
         return [
-            'id' => $this->lga_pid,
-            'name' => Str::title($this->lga_name),
-            'nameAbbr' => Str::title($this->abb_name),
-            'created' => $this->dt_create,
-            'gazetted' => $this->dt_gazetd,
+            // 'id' => $this->id,
+            'name' => $this->name,
+            'nameShort' => $this->name_short,
+            'areaType' => $this->area_type,
+            'areaSrc' => $this->area_src,
+            'veacRec' => $this->veac_rec,
+            'veacStudy' => $this->veac_study,
+            'iucn' => $this->iucn,
+            'establishmentDate' => $this->estab_date,
+            'areaSqm' => $this->area_sqm
         ];
     }
+
 }

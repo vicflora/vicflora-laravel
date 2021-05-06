@@ -2,16 +2,16 @@
 
 namespace App\GraphQL\Queries;
 
-use App\Models\TaxonBioregion;
 use App\Models\TaxonConcept;
+use App\Models\TaxonLocalGovernmentArea;
 
-class TaxonConceptBioregions
+class TaxonConceptLocalGovernmentAreas
 {
     /**
      * @param \App\Models\TaxonConcept $taxonConcept
      */
     public function __invoke(TaxonConcept $taxonConcept)
     {
-        return TaxonBioregion::where('taxon_id', $taxonConcept->guid)->get();
+        return TaxonLocalGovernmentArea::where('taxon_id', $taxonConcept->guid)->get();
     }
 }

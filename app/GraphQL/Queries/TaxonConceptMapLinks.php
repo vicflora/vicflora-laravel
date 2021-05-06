@@ -12,6 +12,9 @@ class TaxonConceptMapLinks
      */
     public function __invoke(TaxonConcept $taxonConcept)
     {
+        if ($taxonConcept->taxonomicStatus->name != 'accepted') {
+            return null;
+        }
         $maps = [];
         $key = $taxonConcept->rank_id > 220 ? 'accepted_name_usage_id' : 'species_id';
         $bioregionLayer = $taxonConcept->rank_id > 220 ? 'distribution_bioregion_view' : 'distribution_bioregion_species_view';

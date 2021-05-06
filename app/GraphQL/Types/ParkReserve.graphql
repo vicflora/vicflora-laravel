@@ -1,0 +1,37 @@
+type ParkReserveFeature @model(class: "\\App\\Models\\ParkReserve") {
+    type: String
+    geometry: ParkReserveGeometry
+    properties: ParkReserveProperties
+}
+
+type ParkReserveGeometry {
+    type: String @rename(attribute: "featureType")
+    coordinates: [[[[Float]]]]
+}
+
+type ParkReserveProperties {
+    name: String!
+    nameShort: String
+    areaType: String
+    areaSrc: String
+    veacRec: String
+    veacStudy: String
+    iucn: String
+    establishmentDate: Date
+    areaSqm: Float
+}
+
+type TaxonParkReserve {
+    id: ID
+    taxonConcept: TaxonConcept
+    ParkReserve: ParkReserveFeature
+    occurrenceStatus: OccurrenceStatus
+    establishmentMeans: EstablishmentMeans
+}
+
+extend type Query {
+    ParkReserve(id: ID! @eq(key: "lga_pid")): ParkReserveFeature @find
+    ParkReservesByName(
+        name: String! @ilike(key: "lga_name", template: "{}%")
+    ): [ParkReserveFeature] @all(model: "App\\Models\\ParkReserve")
+}

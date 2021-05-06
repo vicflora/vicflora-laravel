@@ -14,13 +14,9 @@ type BioregionGeometry {
 }
 
 type BioregionProperties {
-    id: Int
-    subregion: String
-    subregionCode: String
-    region: String
+    # id: Int
+    number: String
+    name: String
+    code: String
     regionCode: String
-}
-
-extend type Query {
-    bioregion(id: ID! @eq(key: "bioregion_id")): BioregionFeature @find
 }

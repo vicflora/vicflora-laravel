@@ -6,17 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * @property Integer $id
- * @property String $taxon_guid
- * @property Integer $bioregion_id
- * @property String $str_occurrence_status
- * @property String $str_establishment_means
- * @property TaxonConcept $taxonConcept
- * @property Bioregion $bioregion
- * @property OccurrenceStatus $occurrenceStatus
- * @property EstablishmentMeans $establishmentMeans
+ * @property string $taxon_id
+ * @property string $scientific_name
+ * @property integer $local_government_area_id
+ * @property string $lga_pid
+ * @property string $lga_name
+ * @property string $abb_name
+ * @property string $str_occurrence_status
+ * @property string $str_establishment_means
+ * @property string $geom
+ * 
  */
-class TaxonBioregion extends Model
+class TaxonLocalGovernmentArea extends Model
 {
 
     /**
@@ -31,16 +32,15 @@ class TaxonBioregion extends Model
      *
      * @var string
      */
-    protected $table = 'distribution_bioregion_view';
+    protected $table = 'distribution_local_government_area_view';
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function bioregion(): BelongsTo
+    public function localGovernmentArea(): BelongsTo
     {
-        return $this->belongsTo(Bioregion::class, 'bioregion_id', 'id');
+        return $this->belongsTo(LocalGovernmentArea::class, 'local_government_area_id', 'id');
     }
-
 
     /**
      * @return \App\Models\TaxonConcept

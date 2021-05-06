@@ -109,13 +109,13 @@ class TaxonConcept extends BaseModel
         return $this->belongsTo(TaxonTreeDefItem::class);
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function parent(): BelongsTo
-    {
-        return $this->belongsTo(TaxonConcept::class, 'parent_id');
-    }
+    // /**
+    //  * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+    //  */
+    // public function parent(): BelongsTo
+    // {
+    //     return $this->belongsTo(TaxonConcept::class, 'parent_id');
+    // }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -218,8 +218,22 @@ class TaxonConcept extends BaseModel
      */
     public function getCurrentProfileAttribute()
     {
-        return Profile::where('taxon_concept_id', $this->id)
-                ->where('is_current', true)->first();
+        if ($this->taxonomicStatus->name == 'accepted') {
+            return Profile::where('taxon_concept_id', $this->id)
+                    ->where('is_current', true)->first();
+        }
+        return null;
+    }
+
+    /**
+     * @return void
+     */
+    public function getParentAttribute()
+    {
+        if ($this->taxonomicStatus->name == 'accepted') {
+            return TaxonConcept::where('id', $this->parent_id)->first();
+        }
+        return null;
     }
 
     /**

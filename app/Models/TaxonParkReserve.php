@@ -6,19 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * @property Integer $id
- * @property String $taxon_guid
- * @property Integer $bioregion_id
- * @property String $str_occurrence_status
- * @property String $str_establishment_means
- * @property TaxonConcept $taxonConcept
- * @property Bioregion $bioregion
- * @property OccurrenceStatus $occurrenceStatus
- * @property EstablishmentMeans $establishmentMeans
+ * @property string $taxon_id
+ * @property string $scientific_name
+ * @property integer $park_reserve_id
+ * @property string $park_name
+ * @property string $park_short_name
+ * @property string $str_occurrence_status
+ * @property string $str_establishment_means
+ * @property string $geom
  */
-class TaxonBioregion extends Model
+class TaxonParkReserve extends Model
 {
-
     /**
      * The database connection that should be used by the model.
      *
@@ -31,16 +29,15 @@ class TaxonBioregion extends Model
      *
      * @var string
      */
-    protected $table = 'distribution_bioregion_view';
+    protected $table = 'distribution_park_reserve_view';
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function bioregion(): BelongsTo
+    public function parkReserve(): BelongsTo
     {
-        return $this->belongsTo(Bioregion::class, 'bioregion_id', 'id');
+        return $this->belongsTo(ParkReserve::class, 'park_reserve_id', 'id');
     }
-
 
     /**
      * @return \App\Models\TaxonConcept

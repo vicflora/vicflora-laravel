@@ -6,7 +6,7 @@ type LocalGovernmentAreaFeature
 }
 
 type LocalGovernmentAreaGeometry {
-    type: String
+    type: String @rename(attribute: "featureType")
     coordinates: [[[[Float]]]]
 }
 
@@ -16,6 +16,14 @@ type LocalGovernmentAreaProperties {
     nameAbbr: String
     created: Date
     gazetted: Date
+}
+
+type TaxonLocalGovernmentArea {
+    id: ID
+    taxonConcept: TaxonConcept
+    localGovernmentArea: LocalGovernmentAreaFeature
+    occurrenceStatus: OccurrenceStatus
+    establishmentMeans: EstablishmentMeans
 }
 
 extend type Query {

@@ -33,7 +33,7 @@ class Bioregion extends Model
      *
      * @var string
      */
-    protected $table = 'vicflora.vicflora_bioregion';
+    protected $table = 'bioregions';
 
     /**
      * The primary key associated with the table.
@@ -56,8 +56,8 @@ class Bioregion extends Model
 
     public function getGeometryAttribute()
     {
-        $geometry = DB::connection('mapper')->table('vicflora.vicflora_bioregion')
-                ->where('bioregion_id', $this->bioregion_id)
+        $geometry = DB::connection('mapper')->table('bioregions')
+                ->where('id', $this->id)
                 ->value(DB::raw('ST_AsGeoJSON(geom)'));
 
         return json_decode($geometry);
@@ -71,11 +71,11 @@ class Bioregion extends Model
     public function getPropertiesAttribute()
     {
         return [
-            'id' => $this->bioregion_id,
-            'subregion' => $this->sub_name_7,
-            'subregionCode' => $this->sub_code_7,
-            'region' => $this->reg_name_7,
-            'regionCode' => $this->reg_code_7
+            'id' => $this->id,
+            'number' => $this->bioregno,
+            'name' => $this->bioregion,
+            'code' => $this->bioregcode,
+            'regionCode' => $this->reg
         ];
     }
 

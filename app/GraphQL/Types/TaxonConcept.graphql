@@ -37,6 +37,12 @@ type TaxonConcept {
 
     bioregions: [TaxonBioregion]
         @field(resolver: "\\App\\GraphQL\\Queries\\TaxonConceptBioregions")
+    localGovernmentAreas: [TaxonLocalGovernmentArea]
+        @field(
+            resolver: "\\App\\GraphQL\\Queries\\TaxonConceptLocalGovernmentAreas"
+        )
+    parkReserves: [TaxonParkReserve]
+        @field(resolver: "\\App\\GraphQL\\Queries\\TaxonConceptParkReserves")
     occurrences(source: String @eq(key: "data_source")): [OccurrenceFeature]
         @paginate(
             type: PAGINATOR
