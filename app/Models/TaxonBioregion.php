@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property Integer $id
- * @property String $taxon_guid
+ * @property String $taxon_id
  * @property Integer $bioregion_id
  * @property String $str_occurrence_status
  * @property String $str_establishment_means
@@ -32,6 +32,27 @@ class TaxonBioregion extends Model
      * @var string
      */
     protected $table = 'distribution_bioregion_view';
+
+    /**
+     * The primary key associated with the table.
+     *
+     * @var string
+     */
+    protected $primaryKey = 'id';
+
+    /**
+     * Indicates if the model's ID is auto-incrementing.
+     *
+     * @var bool
+     */
+    public $incrementing = false;
+
+    /**
+     * The data type of the auto-incrementing ID.
+     *
+     * @var string
+     */
+    protected $keyType = 'string';
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
