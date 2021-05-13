@@ -93,6 +93,21 @@ return [
             'sslmode' => 'prefer',
         ],
 
+        'glossary' => [
+            'driver' => 'pgsql',
+            'url' => env('DATABASE_URL'),
+            'host' => env('GLOSSARY_DB_HOST', '127.0.0.1'),
+            'port' => env('GLOSSARY_DB_PORT', '5432'),
+            'database' => env('GLOSSARY_DB_DATABASE', 'forge'),
+            'username' => env('GLOSSARY_DB_USERNAME', 'forge'),
+            'password' => env('GLOSSARY_DB_PASSWORD', ''),
+            'charset' => 'utf8',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'schema' => 'public',
+            'sslmode' => 'prefer',
+        ],
+
         'sqlsrv' => [
             'driver' => 'sqlsrv',
             'url' => env('DATABASE_URL'),

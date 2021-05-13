@@ -1,0 +1,47 @@
+type GlossaryTerm {
+    id: ID
+    name: String!
+    definition: String!
+    isDiscouraged: Boolean @rename(attribute: "is_discouraged")
+    language: String
+    nameAddendum: String @rename(attribute: "name_addendum")
+    relationships: [GlossaryRelationship]
+    inverseRelationships: [GlossaryRelationship]
+    images: [GlossaryTermImage]
+}
+
+type GlossaryRelationship {
+    id: ID
+    term: GlossaryTerm
+    relatedTerm: GlossaryTerm!
+    relationshipType: GlossaryRelationshipType!
+    isMisapplied: Boolean @rename(attribute: "is_misapplied")
+    isDiscouraged: Boolean @rename(attribute: "is_discouraged")
+}
+
+type GlossaryRelationshipType {
+    id: ID
+    name: String!
+    url: String
+    label: String
+    description: String
+    shorthand: String
+}
+
+type GlossaryTermImage {
+    id: ID
+    term: GlossaryTerm
+    imageUrl: String! @rename(attribute: "image_url")
+    creator: String
+    rights: String
+    caption: String
+    licenseLogoUrl: String @rename(attribute: "license_logo_url")
+}
+
+extend type Query {
+    glossaryTerm(id: ID! @eq): GlossaryTerm @find
+    glossaryTermsByName(name: String! @ilike(template: "{}%")): [GlossaryTerm]
+        @all
+    glossaryTermFirstLetters: [String!]!
+        @field(resolver: "\\App\\GraphQL\\Queries\\GlossaryTermFirstLetters")
+}
