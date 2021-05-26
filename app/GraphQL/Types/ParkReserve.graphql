@@ -30,8 +30,8 @@ type TaxonParkReserve {
 }
 
 extend type Query {
-    ParkReserve(id: ID! @eq(key: "lga_pid")): ParkReserveFeature @find
+    ParkReserve(id: ID! @eq): ParkReserveFeature @find
     ParkReservesByName(
-        name: String! @ilike(key: "lga_name", template: "{}%")
+        name: String! @ilike(key: "name", template: "{}%")
     ): [ParkReserveFeature] @all(model: "App\\Models\\ParkReserve")
 }
