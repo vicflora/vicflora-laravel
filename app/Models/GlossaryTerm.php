@@ -55,7 +55,8 @@ class GlossaryTerm extends Model
     protected static function booted()
     {
         static::addGlobalScope('vicflora', function (Builder $builder) {
-            $builder->where('terms.glossary_id', 4);
+            $builder->where('glossary_id', 4)
+                    ->whereNotNull('definition');
         });
     }
 
