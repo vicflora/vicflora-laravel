@@ -10,7 +10,7 @@ type ParkReserveGeometry {
 }
 
 type ParkReserveProperties {
-    id: Int
+    id: ID
     name: String!
     nameShort: String
     areaType: String

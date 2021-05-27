@@ -76,7 +76,7 @@ class ParkReserve extends Model
     public function getPropertiesAttribute()
     {
         return [
-            // 'id' => $this->id,
+            'id' => $this->id,
             'name' => $this->name,
             'nameShort' => $this->name_short,
             'areaType' => $this->area_type,
