@@ -34,4 +34,9 @@ extend type Query {
         name: String! @ilike(key: "lga_name", template: "{}%")
     ): [LocalGovernmentAreaFeature]
         @all(model: "App\\Models\\LocalGovernmentArea")
+
+    localGovernmentAreasByPoint(
+        latitude: Float!
+        longitude: Float!
+    ): [LocalGovernmentAreaFeature]
 }

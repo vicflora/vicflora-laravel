@@ -5,11 +5,12 @@ type ParkReserveFeature @model(class: "\\App\\Models\\ParkReserve") {
 }
 
 type ParkReserveGeometry {
-    type: String @rename(attribute: "featureType")
+    type: String!
     coordinates: [[[[Float]]]]
 }
 
 type ParkReserveProperties {
+    id: Int
     name: String!
     nameShort: String
     areaType: String
@@ -30,8 +31,14 @@ type TaxonParkReserve {
 }
 
 extend type Query {
-    ParkReserve(id: ID! @eq): ParkReserveFeature @find
-    ParkReservesByName(
+    parkReserve(id: ID! @eq): ParkReserveFeature @find
+
+    parkReservesByName(
         name: String! @ilike(key: "name", template: "{}%")
     ): [ParkReserveFeature] @all(model: "App\\Models\\ParkReserve")
+
+    parkReservesByPoint(
+        latitude: Float!
+        longitude: Float!
+    ): [ParkReserveFeature]
 }
