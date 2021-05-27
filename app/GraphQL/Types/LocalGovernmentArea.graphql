@@ -6,7 +6,7 @@ type LocalGovernmentAreaFeature
 }
 
 type LocalGovernmentAreaGeometry {
-    type: String @rename(attribute: "featureType")
+    type: String!
     coordinates: [[[[Float]]]]
 }
 
@@ -34,7 +34,6 @@ extend type Query {
         name: String! @ilike(key: "lga_name", template: "{}%")
     ): [LocalGovernmentAreaFeature]
         @all(model: "App\\Models\\LocalGovernmentArea")
-
     localGovernmentAreasByPoint(
         latitude: Float!
         longitude: Float!

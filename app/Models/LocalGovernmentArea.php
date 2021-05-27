@@ -59,7 +59,7 @@ class LocalGovernmentArea extends Model
      */
     public function getGeometryAttribute()
     {
-        $geometry = DB::connection('mapper')->table('bioregions')
+        $geometry = DB::connection('mapper')->table('local_government_areas')
                 ->where('id', $this->id)
                 ->value(DB::raw('ST_AsGeoJSON(geom)'));
 
