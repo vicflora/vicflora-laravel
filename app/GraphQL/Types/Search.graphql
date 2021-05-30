@@ -48,6 +48,7 @@ type SearchResultDocument {
 
 type SearchResultFacetField {
     fieldName: String!
+    fieldLabel: String
     facets: [SearchResultFacet!]!
 }
 

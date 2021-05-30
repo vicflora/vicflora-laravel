@@ -263,6 +263,7 @@ class SolariumQueryService {
             foreach ($fields as $field) {
                 $facetField = [
                     'fieldName' => Str::camel($field),
+                    'fieldLabel' => Str::ucfirst(Str::replaceFirst('_', ' ', $field)),
                     'facets' => [],
 
                 ];

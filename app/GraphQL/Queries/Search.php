@@ -3,7 +3,6 @@
 namespace App\GraphQL\Queries;
 
 use App\Services\SolariumQueryService;
-
 use GraphQL\Type\Definition\ResolveInfo;
 use Illuminate\Support\Str;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
