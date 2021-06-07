@@ -15,25 +15,22 @@ type OccurrenceGeometry {
 }
 
 type OccurrenceProperties {
-    id: ID!
+    uuid: ID!
     catalogNumber: String
     dataSource: String
+    scientificName: String
+    speciesName: String
+    acceptedNameUsage: String
     decimalLatitude: Float
     decimalLongitude: Float
-    scientificName: String
-    acceptedNameUsage: String
-    subregion: String
-    subregionCode: String
-    region: String
-    regionCode: String
     occurrenceStatus: String
     occurrenceStatusSource: String
     establishmentMeans: String
     establishmentMeansSource: String
-    sensitive: Boolean
-    generalised: Boolean
+    # sensitive: Boolean
+    # generalised: Boolean
 }
 
 extend type Query {
-    occurrence(id: ID! @eq): OccurrenceFeature @find
+    occurrence(id: ID! @eq(key: "uuid")): OccurrenceFeature @find
 }

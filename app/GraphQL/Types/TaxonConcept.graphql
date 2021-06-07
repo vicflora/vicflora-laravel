@@ -36,19 +36,28 @@ type TaxonConcept {
         )
 
     bioregions: [TaxonBioregion]
-        @field(resolver: "\\App\\GraphQL\\Queries\\TaxonConceptBioregions")
     localGovernmentAreas: [TaxonLocalGovernmentArea]
-        @field(
-            resolver: "\\App\\GraphQL\\Queries\\TaxonConceptLocalGovernmentAreas"
-        )
     parkReserves: [TaxonParkReserve]
-        @field(resolver: "\\App\\GraphQL\\Queries\\TaxonConceptParkReserves")
+
     occurrences(source: String @eq(key: "data_source")): [OccurrenceFeature]
         @paginate(
             type: PAGINATOR
             defaultCount: 20
             builder: "\\App\\GraphQL\\Queries\\TaxonConceptOccurrences"
         )
+    avhOccurrences: [OccurrenceFeature]
+        @paginate(
+            type: PAGINATOR
+            defaultCount: 20
+            builder: "\\App\\GraphQL\\Queries\\TaxonConceptAvhOccurrences"
+        )
+    vbaOccurrences: [OccurrenceFeature]
+        @paginate(
+            type: PAGINATOR
+            defaultCount: 20
+            builder: "\\App\\GraphQL\\Queries\\TaxonConceptVbaOccurrences"
+        )
+
     mapLinks: MapLinks
         @field(resolver: "\\App\\GraphQL\\Queries\\TaxonConceptMapLinks")
     identificationKeys: [IdentificationKey!]!

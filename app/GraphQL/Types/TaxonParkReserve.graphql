@@ -1,0 +1,7 @@
+type TaxonParkReserve {
+    id: ID
+    taxonConcept: TaxonConcept
+    parkReserve: ParkReserveFeature
+    occurrenceStatus: OccurrenceStatus
+    establishmentMeans: EstablishmentMeans
+}

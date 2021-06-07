@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
-use PhpParser\ErrorHandler\Collecting;
 
 /**
  * @property integer $id
@@ -50,6 +49,9 @@ use PhpParser\ErrorHandler\Collecting;
  * @property Profile[] $profilesAccepted
  * @property Image[] $images
  * @property Image[] $imagesAccepted
+ * @property TaxonBioregion[] $bioregions
+ * @property TaxonLocalGovernmentArea[] $localGovernmentAreas
+ * @property TaxonParkReserve[] $parkReserves
  */
 class TaxonConcept extends BaseModel
 {
@@ -347,5 +349,39 @@ class TaxonConcept extends BaseModel
                 })
                 ->get();
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function bioregions(): HasMany
+    {
+        return $this->hasMany(TaxonBioregion::class, 'taxon_concept_id', 'guid');
+    }
     
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function localGovernmentAreas(): HasMany
+    {
+        return $this->hasMany(TaxonLocalGovernmentArea::class, 
+                'taxon_concept_id', 'guid');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function parkReserves(): HasMany
+    {
+        return $this->hasMany(TaxonParkReserve::class, 'taxon_concept_id', 
+                'guid');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function occurrences(): HasMany
+    {
+        return $this->hasMany(TaxonOccurrence::class, 'taxon_concept_id', 
+                'guid');
+    }
 }

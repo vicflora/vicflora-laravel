@@ -99,6 +99,13 @@ return [
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),
         ],
+        
+        'mapper' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/mapper.log'),
+            'level' => 'info',
+        ],
+
     ],
 
 ];

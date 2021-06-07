@@ -12,10 +12,9 @@ use Illuminate\Support\Str;
  * @property string $lga_name
  * @property string $abb_name
  * @property integer $state_pid
- * @property string $geom
+ * @property string $geojson
  * 
  * @property string $type
- * @property string $featureType
  * @property array<mixed> $geometry
  * @property array<mixed> $properties
  */
@@ -43,13 +42,13 @@ class LocalGovernmentArea extends Model
         return 'Feature';
     }
     
-    /**
-     * @return string
-     */
-    public function getFeatureTypeAttribute()
-    {
-        return "MultiPolygon";
-    }
+    // /**
+    //  * @return string
+    //  */
+    // public function getFeatureTypeAttribute()
+    // {
+    //     return "MultiPolygon";
+    // }
 
 
     /**
@@ -59,11 +58,7 @@ class LocalGovernmentArea extends Model
      */
     public function getGeometryAttribute()
     {
-        $geometry = DB::connection('mapper')->table('local_government_areas')
-                ->where('id', $this->id)
-                ->value(DB::raw('ST_AsGeoJSON(geom)'));
-
-        return json_decode($geometry);
+        return json_decode($this->geojson);
     }
 
     /**

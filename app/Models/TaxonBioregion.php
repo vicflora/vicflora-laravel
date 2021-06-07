@@ -6,11 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * @property Integer $id
- * @property String $taxon_id
- * @property Integer $bioregion_id
- * @property String $str_occurrence_status
- * @property String $str_establishment_means
+ * @property integer $id
+ * @property string $created_at
+ * @property string $updated_at
+ * @property string $taxon_concept_id
+ * @property integer $bioregion_id
+ * @property string $bioregion_name
+ * @property string $bioregion_code
+ * @property string $occurrence_status
+ * @property string $establishment_means
+ * @property string $geom
  * @property TaxonConcept $taxonConcept
  * @property Bioregion $bioregion
  * @property OccurrenceStatus $occurrenceStatus
@@ -20,39 +25,11 @@ class TaxonBioregion extends Model
 {
 
     /**
-     * The database connection that should be used by the model.
-     *
-     * @var string
-     */
-    protected $connection = 'mapper';
-
-    /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'distribution_bioregion_view';
-
-    /**
-     * The primary key associated with the table.
-     *
-     * @var string
-     */
-    protected $primaryKey = 'id';
-
-    /**
-     * Indicates if the model's ID is auto-incrementing.
-     *
-     * @var bool
-     */
-    public $incrementing = false;
-
-    /**
-     * The data type of the auto-incrementing ID.
-     *
-     * @var string
-     */
-    protected $keyType = 'string';
+    protected $table = 'mapper.taxon_bioregions';
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -62,30 +39,39 @@ class TaxonBioregion extends Model
         return $this->belongsTo(Bioregion::class, 'bioregion_id', 'id');
     }
 
-
     /**
-     * @return \App\Models\TaxonConcept
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function getTaxonConceptAttribute()
+    public function taxonConcept(): BelongsTo
     {
-        return TaxonConcept::where('guid', $this->taxon_id)->first();
+        return $this->belongsTo(TaxonConcept::class, 'taxon_concept_id', 
+                'guid');
     }
 
     /**
-     * @return \App\Models\OccurrenceStatus
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function getOccurrenceStatusAttribute()
+    public function occurrenceStatus(): BelongsTo
     {
-        return OccurrenceStatus::where('name', $this->str_occurrence_status ?: 'present')
-                ->first();
+        return $this->belongsTo(OccurrenceStatus::class, 'occurrence_status', 
+                'name');
     }
 
     /**
-     * @return \App\Models\EstablishmentMeans
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function getEstablishmentMeansAttribute()
+    public function establishmentMeans(): BelongsTo
     {
-        return EstablishmentMeans::where('name', $this->str_establishment_means ?: 'native')
-                ->first();
+        return $this->belongsTo(EstablishmentMeans::class, 
+                'establishment_means', 'name');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function degreeOfEstablishment(): BelongsTo
+    {
+        return $this->belongsTo(DegreeOfEstablishment::class, 
+                'degree_of_establishment', 'name');
     }
 }

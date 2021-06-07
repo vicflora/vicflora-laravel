@@ -6,65 +6,77 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * @property string $taxon_id
+ * @property integer $id
+ * @property string $created_at
+ * @property string $updated_at
+ * @property string $taxon_concept_id
  * @property string $scientific_name
- * @property integer $local_government_area_id
  * @property string $lga_pid
  * @property string $lga_name
- * @property string $abb_name
- * @property string $str_occurrence_status
- * @property string $str_establishment_means
+ * @property string $abbreviated_name
+ * @property string $occurrence_status
+ * @property string $establishment_means
+ * @property string $degree_of_establishment
  * @property string $geom
  * 
+ * @property TaxonConcept $taxonConcept
+ * @property LocalGovernmentArea $localGovernmentArea
+ * @property OccurrenceStatus $occurrenceStatus
+ * @property EstablishmentMeans $establishmentMeans
+ * @property DegreeOfEstablishment $degreeOfEstablishment
  */
 class TaxonLocalGovernmentArea extends Model
 {
-
-    /**
-     * The database connection that should be used by the model.
-     *
-     * @var string
-     */
-    protected $connection = 'mapper';
 
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'distribution_local_government_area_view';
+    protected $table = 'mapper.taxon_local_government_areas';
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function taxonConcept(): BelongsTo
+    {
+        return $this->belongsTo(TaxonConcept::class, 'taxon_concept_id', 
+                'guid');
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function localGovernmentArea(): BelongsTo
     {
-        return $this->belongsTo(LocalGovernmentArea::class, 'local_government_area_id', 'id');
+        return $this->belongsTo(LocalGovernmentArea::class, 'lga_pid', 
+                'lga_pid');
     }
 
     /**
-     * @return \App\Models\TaxonConcept
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function getTaxonConceptAttribute()
+    public function occurrenceStatus(): BelongsTo
     {
-        return TaxonConcept::where('guid', $this->taxon_id)->first();
+        return $this->belongsTo(OccurrenceStatus::class, 'occurrence_status', 
+                'name');
     }
 
     /**
-     * @return \App\Models\OccurrenceStatus
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function getOccurrenceStatusAttribute()
+    public function establishmentMeans(): BelongsTo
     {
-        return OccurrenceStatus::where('name', $this->str_occurrence_status ?: 'present')
-                ->first();
+        return $this->belongsTo(EstablishmentMeans::class, 
+                'establishment_means', 'name');
     }
 
     /**
-     * @return \App\Models\EstablishmentMeans
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function getEstablishmentMeansAttribute()
+    public function degreeOfEstablishment(): BelongsTo
     {
-        return EstablishmentMeans::where('name', $this->str_establishment_means ?: 'native')
-                ->first();
+        return $this->belongsTo(DegreeOfEstablishment::class, 
+                'degree_of_establishment', 'name');
     }
 }

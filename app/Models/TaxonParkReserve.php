@@ -6,62 +6,75 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * @property string $taxon_id
+ * @property integer $id
+ * @property string $created_at
+ * @property string $updated_at
+ * @property string $taxon_concept_id
  * @property string $scientific_name
- * @property integer $park_reserve_id
+ * @property integer $park_id
  * @property string $park_name
  * @property string $park_short_name
- * @property string $str_occurrence_status
- * @property string $str_establishment_means
+ * @property string $occurrence_status
+ * @property string $establishment_means
+ * @property string $degreeOfEstablishment
  * @property string $geom
+ * 
+ * @property TaxonConcept $taxonConcept
+ * @property ParkReserve $parkReserve
+ * @property OccurrenceStatus $occurrenceStatus
+ * @property EstablishmentMeans $establishmentMeans
+ * @property DegreeOfEstablishment $degreeOfEstablishment
  */
 class TaxonParkReserve extends Model
 {
-    /**
-     * The database connection that should be used by the model.
-     *
-     * @var string
-     */
-    protected $connection = 'mapper';
-
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'distribution_park_reserve_view';
+    protected $table = 'mapper.taxon_park_reserves';
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function parkReserve(): BelongsTo
     {
-        return $this->belongsTo(ParkReserve::class, 'park_reserve_id', 'id');
+        return $this->belongsTo(ParkReserve::class, 'park_id', 'id');
     }
 
     /**
-     * @return \App\Models\TaxonConcept
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function getTaxonConceptAttribute()
+    public function taxonConcept(): BelongsTo
     {
-        return TaxonConcept::where('guid', $this->taxon_id)->first();
+        return $this->belongsTo(TaxonConcept::class, 'taxon_concept_id', 
+                'guid');
     }
 
     /**
-     * @return \App\Models\OccurrenceStatus
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function getOccurrenceStatusAttribute()
+    public function occurrenceStatus(): BelongsTo
     {
-        return OccurrenceStatus::where('name', $this->str_occurrence_status ?: 'present')
-                ->first();
+        return $this->belongsTo(OccurrenceStatus::class, 'occurrence_status', 
+                'name');
     }
 
     /**
-     * @return \App\Models\EstablishmentMeans
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function getEstablishmentMeansAttribute()
+    public function establishmentMeans(): BelongsTo
     {
-        return EstablishmentMeans::where('name', $this->str_establishment_means ?: 'native')
-                ->first();
+        return $this->belongsTo(EstablishmentMeans::class, 
+                'establishment_means', 'name');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function degreeOfEstablishment(): BelongsTo
+    {
+        return $this->belongsTo(DegreeOfEstablishment::class, 
+                'degree_of_establishment', 'name');
     }
 }

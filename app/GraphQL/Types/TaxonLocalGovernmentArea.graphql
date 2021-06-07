@@ -1,0 +1,7 @@
+type TaxonLocalGovernmentArea {
+    id: ID
+    taxonConcept: TaxonConcept
+    localGovernmentArea: LocalGovernmentAreaFeature
+    occurrenceStatus: OccurrenceStatus
+    establishmentMeans: EstablishmentMeans
+}

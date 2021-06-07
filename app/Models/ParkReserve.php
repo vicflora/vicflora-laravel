@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
 
 /**
  * @property integer $id
@@ -19,7 +18,11 @@ use Illuminate\Support\Facades\DB;
  * @property string $last_mod
  * @property string $vers_date
  * @property float $area_sqm
- * @property string $geom
+ * @property string $geojson
+ * 
+ * @property string $type
+ * @property array<mixed> $geometry
+ * @property array<mixed> $properties
  */
 class ParkReserve extends Model
 {
@@ -45,13 +48,13 @@ class ParkReserve extends Model
         return 'Feature';
     }
     
-    /**
-     * @return string
-     */
-    public function getFeatureTypeAttribute()
-    {
-        return "MultiPolygon";
-    }
+    // /**
+    //  * @return string
+    //  */
+    // public function getFeatureTypeAttribute()
+    // {
+    //     return "MultiPolygon";
+    // }
 
 
     /**
@@ -61,11 +64,7 @@ class ParkReserve extends Model
      */
     public function getGeometryAttribute()
     {
-        $geometry = DB::connection('mapper')->table('park_reserves')
-                ->where('id', $this->id)
-                ->value(DB::raw('ST_AsGeoJSON(geom)'));
-
-        return json_decode($geometry);
+        return json_decode($this->geojson);
     }
 
     /**

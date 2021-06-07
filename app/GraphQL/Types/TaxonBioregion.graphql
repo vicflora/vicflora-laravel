@@ -4,4 +4,6 @@ type TaxonBioregion {
     bioregion: BioregionFeature
     occurrenceStatus: OccurrenceStatus
     establishmentMeans: EstablishmentMeans
+    bioregionName: String @rename(attribute: "bioregion_name")
+    bioregionCode: String @rename(attribute: "bioregion_code")
 }
