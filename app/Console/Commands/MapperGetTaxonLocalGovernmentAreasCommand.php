@@ -60,15 +60,14 @@ class MapperGetTaxonLocalGovernmentAreasCommand extends Command
             Log::channel('mapper')->info("Processing $index of $count: $taxon->scientific_name");
 
             $lgas = DB::table('mapper.taxon_occurrences as o')
-                    ->join('mapper.local_government_area_occurrences as lgao', DB::raw('o.occurrence_id::text'), '=', 'lgao.occurrence_id')
-                    ->join('mapper.local_government_areas as lga', 'lgao.local_government_area_id', '=', 'lga.id')
+                    ->join('mapper.local_government_areas as lga', function($join) {
+                        $join->whereRaw('ST_Intersects(o.geom, lga.geom)');
+                    })
                     ->where('o.taxon_concept_id', $taxon->id)
                     ->select(
                             DB::raw('now() as created_at'),
                             'o.taxon_concept_id',
-                            'lga.lga_pid',
-                            'lga.lga_name',
-                            'lga.abb_name as abbreviated_name',
+                            'lga.id as local_government_area_id',
                             DB::raw("CASE
                                         WHEN 'present' = ANY (array_agg(o.occurrence_status)::text[]) THEN 'present'
                                         WHEN 'endemic' = ANY (array_agg(o.occurrence_status)::text[]) THEN 'present'
@@ -83,8 +82,7 @@ class MapperGetTaxonLocalGovernmentAreasCommand extends Command
                                             WHEN 'cultivated' = ANY (array_agg(o.establishment_means)::text[]) THEN 'cultivated'
                                             WHEN 'uncertain' = ANY (array_agg(o.establishment_means)::text[]) THEN 'uncertain'
                                             ELSE NULL
-                                    END AS establishment_means"),
-                            'lga.geom'
+                                    END AS establishment_means")
                     )
                     ->groupByRaw('o.taxon_concept_id, lga.id')
                     ->get();

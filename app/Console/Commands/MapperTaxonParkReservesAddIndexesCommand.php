@@ -42,9 +42,7 @@ class MapperTaxonParkReservesAddIndexesCommand extends Command
         Schema::table('mapper.taxon_park_reserves', function(Blueprint $table) {
             $table->index('taxon_concept_id');
             $table->index('scientific_name');
-            $table->index('park_id');
-            $table->index('park_name');
-            $table->index('park_short_name');
+            $table->index('park_reserve_id');
             $table->index('occurrence_status');
             $table->index('establishment_means');
         });

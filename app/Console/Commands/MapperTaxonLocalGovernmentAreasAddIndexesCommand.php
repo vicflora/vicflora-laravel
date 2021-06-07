@@ -42,9 +42,7 @@ class MapperTaxonLocalGovernmentAreasAddIndexesCommand extends Command
         Schema::table('mapper.taxon_local_government_areas', function(Blueprint $table) {
             $table->index('taxon_concept_id');
             $table->index('scientific_name');
-            $table->index('lga_pid');
-            $table->index('lga_name');
-            $table->index('abbreviated_name');
+            $table->index('local_government_area_id');
             $table->index('occurrence_status');
             $table->index('establishment_means');
         });

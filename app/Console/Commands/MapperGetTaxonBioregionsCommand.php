@@ -61,15 +61,14 @@ class MapperGetTaxonBioregionsCommand extends Command
             Log::channel('mapper')->info("Processing $index of $count: $taxon->scientific_name");
 
             $bioregions = DB::table('mapper.taxon_occurrences as o')
-                    ->join('mapper.bioregion_occurrences as bo', DB::raw('o.occurrence_id::text'), '=', 'bo.occurrence_id')
-                    ->join('mapper.bioregions as b', 'bo.bioregion_id', '=', 'b.id')
+                    ->join('mapper.bioregions as b', function($join) {
+                        $join->whereRaw('ST_Intersects(o.geom, b.geom)');
+                    })
                     ->where('o.taxon_concept_id', $taxon->id)
                     ->select(
                             DB::raw('now() as created_at'),
                             'o.taxon_concept_id',
                             'b.id as bioregion_id',
-                            'b.bioregion as bioregion_name',
-                            'b.bioregcode as bioregion_code',
                             DB::raw("CASE
                                         WHEN 'present' = ANY (array_agg(o.occurrence_status)::text[]) THEN 'present'
                                         WHEN 'endemic' = ANY (array_agg(o.occurrence_status)::text[]) THEN 'present'
@@ -84,8 +83,7 @@ class MapperGetTaxonBioregionsCommand extends Command
                                             WHEN 'cultivated' = ANY (array_agg(o.establishment_means)::text[]) THEN 'cultivated'
                                             WHEN 'uncertain' = ANY (array_agg(o.establishment_means)::text[]) THEN 'uncertain'
                                             ELSE NULL
-                                    END AS establishment_means"),
-                            'b.geom'
+                                    END AS establishment_means")
                     )
                     ->groupByRaw('o.taxon_concept_id, b.id')
                     ->get();

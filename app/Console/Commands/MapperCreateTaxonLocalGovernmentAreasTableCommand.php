@@ -49,13 +49,10 @@ class MapperCreateTaxonLocalGovernmentAreasTableCommand extends Command
             $table->timestampsTz();
             $table->uuid('taxon_concept_id');
             $table->string('scientific_name', 128);
-            $table->string('lga_pid', 16);    
-            $table->string('lga_name', 64);
-            $table->string('abbreviated_name', 64);
+            $table->integer('local_government_area_id');    
             $table->string('occurrence_status', 32)->nullable();
             $table->string('establishment_means', 32)->nullable();
             $table->string('degree_of_establishment', 32)->nullable();
-            $table->multiPolygon('geom', 'GEOMETRY', 4326);
         });
     }
 }

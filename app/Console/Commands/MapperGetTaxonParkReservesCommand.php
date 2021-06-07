@@ -60,15 +60,14 @@ class MapperGetTaxonParkReservesCommand extends Command
             Log::channel('mapper')->info("Processing $index of $count: $taxon->scientific_name");
 
             $parks = DB::table('mapper.taxon_occurrences as o')
-                    ->join('mapper.park_reserve_occurrences as pro', DB::raw('o.occurrence_id::text'), '=', 'pro.occurrence_id')
-                    ->join('mapper.park_reserves as pr', 'pro.park_reserve_id', '=', 'pr.id')
+                    ->join('mapper.park_reserves as pr', function($join) {
+                        $join->whereRaw('ST_Intersects(o.geom, pr.geom)');
+                    })
                     ->where('o.taxon_concept_id', $taxon->id)
                     ->select(
                             DB::raw('now() as created_at'),
                             'o.taxon_concept_id',
-                            'pr.id as park_id',
-                            'pr.name as park_name',
-                            'pr.name_short as park_short_name',
+                            'pr.id as park_reserve_id',
                             DB::raw("CASE
                                         WHEN 'present' = ANY (array_agg(o.occurrence_status)::text[]) THEN 'present'
                                         WHEN 'endemic' = ANY (array_agg(o.occurrence_status)::text[]) THEN 'present'
@@ -83,8 +82,7 @@ class MapperGetTaxonParkReservesCommand extends Command
                                             WHEN 'cultivated' = ANY (array_agg(o.establishment_means)::text[]) THEN 'cultivated'
                                             WHEN 'uncertain' = ANY (array_agg(o.establishment_means)::text[]) THEN 'uncertain'
                                             ELSE 'native'
-                                    END AS establishment_means"),
-                            'pr.geom'
+                                    END AS establishment_means")
                     )
                     ->groupByRaw('o.taxon_concept_id, pr.id')
                     ->get();
