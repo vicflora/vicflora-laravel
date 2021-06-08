@@ -41,7 +41,7 @@ class TaxonConceptMapLinks
         $year = date('Y');
         $source = <<<EOT
             AVH ({$year}). <i>Australia's Virtual Herbarium</i>, Council of Heads of 
-            Australasian Herbaria, &lt;<a href="http://avh.chah.org.au">http://avh.chah.org.au</a>&gt;.
+            Australasian Herbaria, &lt;<a href="https://avh.chah.org.au">http://avh.chah.org.au</a>&gt;.
             <a href="https://avh.ala.org.au/occurrences/search?taxa={$nameSlug}" target="_blank">Find {$name->full_name} in AVH <i class="fa fa-external-link"></i></a>;
             <i>Victorian Biodiversity Atlas</i>, © The State of Victoria, Department of Environment and Primary Industries (published Dec. 2014)
             <a href="https://biocache.ala.org.au/occurrences/search?taxa={$nameSlug}&fq=data_resource_uid:dr1097" target="_blank">Find {$name->full_name} in Victorian Biodiversity Atlas <i class="fa fa-external-link"></i></a>
