@@ -33,4 +33,21 @@ type OccurrenceProperties {
 
 extend type Query {
     occurrence(id: ID! @eq(key: "uuid")): OccurrenceFeature @find
+
+    taxonOccurrences(taxonConceptId: ID!): [OccurrenceFeature]!
+        @paginate(
+            type: PAGINATOR
+            defaultCount: 100
+            builder: "\\App\\GraphQL\\Queries\\TaxonOccurrences"
+        )
+    taxonOccurrencesAtPoint(
+        taxonConceptId: ID!
+        latitude: Float!
+        longitude: Float!
+    ): [OccurrenceFeature]!
+        @paginate(
+            type: PAGINATOR
+            defaultCount: 100
+            builder: "\\App\\GraphQL\\Queries\\TaxonOccurrencesAtPoint"
+        )
 }
