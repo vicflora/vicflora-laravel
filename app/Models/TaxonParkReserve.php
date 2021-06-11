@@ -39,7 +39,7 @@ class TaxonParkReserve extends Model
      */
     public function parkReserve(): BelongsTo
     {
-        return $this->belongsTo(ParkReserve::class, 'park_id', 'id');
+        return $this->belongsTo(ParkReserve::class, 'park_reserve_id', 'id');
     }
 
     /**

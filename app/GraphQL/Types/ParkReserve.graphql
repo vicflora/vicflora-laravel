@@ -22,14 +22,6 @@ type ParkReserveProperties {
     areaSqm: Float
 }
 
-type TaxonParkReserve {
-    id: ID
-    taxonConcept: TaxonConcept
-    ParkReserve: ParkReserveFeature
-    occurrenceStatus: OccurrenceStatus
-    establishmentMeans: EstablishmentMeans
-}
-
 extend type Query {
     parkReserve(id: ID! @eq): ParkReserveFeature @find
 

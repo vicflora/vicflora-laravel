@@ -49,8 +49,8 @@ class TaxonLocalGovernmentArea extends Model
      */
     public function localGovernmentArea(): BelongsTo
     {
-        return $this->belongsTo(LocalGovernmentArea::class, 'lga_pid', 
-                'lga_pid');
+        return $this->belongsTo(LocalGovernmentArea::class, 
+                'local_government_area_id', 'id');
     }
 
     /**
