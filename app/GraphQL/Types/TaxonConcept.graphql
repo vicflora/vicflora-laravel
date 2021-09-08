@@ -9,7 +9,8 @@ type TaxonConcept {
     parent: TaxonConcept
     taxonTreeDefItem: TaxonTreeDefItem
     taxonTreeItem: TaxonTreeItem
-    taxonomicStatus: TaxonomicStatus
+    taxonomicStatus: TaxonomicStatusEnum
+        @rename(attribute: "taxonomicStatusName")
     occurrenceStatus: OccurrenceStatus
     establishmentMeans: EstablishmentMeans
     degreeOfEstablishment: DegreeOfEstablishment

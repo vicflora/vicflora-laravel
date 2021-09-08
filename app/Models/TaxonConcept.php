@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
+use PhpParser\Node\Expr\Cast\String_;
 
 /**
  * @property integer $id
@@ -383,5 +384,31 @@ class TaxonConcept extends BaseModel
     {
         return $this->hasMany(TaxonOccurrence::class, 'taxon_concept_id', 
                 'guid');
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getTaxonomicStatusNameAttribute(): ?string
+    {
+        if ($this->taxonomic_status_id) {
+            $ts = TaxonomicStatus::find($this->taxonomic_status_id)->first();
+            return $ts->name;
+        }
+        return null;
+    }
+
+    /**
+     * Sets taxonomic_status_id, if taxonomicStatusName attribute is supplied
+     *
+     * @param string|null $value
+     * @return void
+     */
+    public function setTaxonomicStatusNameAttribute($value)
+    {
+        if ($value) {
+            $ts = TaxonomicStatus::where('name', $value)->first();
+            $this->taxonomic_status_id = $ts->id;
+        }
     }
 }

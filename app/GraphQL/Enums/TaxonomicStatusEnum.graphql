@@ -1,0 +1,8 @@
+enum TaxonomicStatusEnum {
+    ACCEPTED @enum(value: "accepted")
+    SYNONYM @enum(value: "synonym")
+    HOMOTYPIC_SYNONYM @enum(value: "homotypicSynonym")
+    HETEROTYPIC_SYNONYM @enum(value: "heterotypicSynonym")
+    MISAPPLICATION @enum(value: "misapplication")
+    NOT_ACCEPTED @enum(value: "notCurrent")
+}
