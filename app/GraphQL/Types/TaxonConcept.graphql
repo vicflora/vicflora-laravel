@@ -11,7 +11,8 @@ type TaxonConcept {
     taxonTreeItem: TaxonTreeItem
     taxonomicStatus: TaxonomicStatusEnum
         @rename(attribute: "taxonomicStatusName")
-    occurrenceStatus: OccurrenceStatus
+    occurrenceStatus: OccurrenceStatusEnum
+        @rename(attribute: "occurrenceStatusName")
     establishmentMeans: EstablishmentMeans
     degreeOfEstablishment: DegreeOfEstablishment
 

@@ -411,4 +411,30 @@ class TaxonConcept extends BaseModel
             $this->taxonomic_status_id = $ts->id;
         }
     }
+
+    /**
+     * @return string|null
+     */
+    public function getOccurrenceStatusNameAttribute(): ?string
+    {
+        if ($this->occurrence_status_id) {
+            $os = OccurrenceStatus::find($this->occurrence_status_id)->first();
+            return $os->name;
+        }
+        return null;
+    }
+
+    /**
+     * Sets taxonomic_status_id, if taxonomicStatusName attribute is supplied
+     *
+     * @param string|null $value
+     * @return void
+     */
+    public function setOccurrenceStatusNameAttribute($value)
+    {
+        if ($value) {
+            $os = OccurrenceStatus::where('name', $value)->first();
+            $this->occurrence_status_id = $os->id;
+        }
+    }
 }
