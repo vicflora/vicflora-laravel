@@ -88,4 +88,11 @@ type IdentificationKey {
 
 extend type Query {
     taxonConcept(id: ID! @eq(key: "guid")): TaxonConcept @find
+
+    taxonConceptsByWkt(wkt: String!): [TaxonConcept]!
+        @paginate(
+            type: PAGINATOR
+            defaultCount: 20
+            builder: "\\App\\GraphQL\\Queries\\TaxonConceptsByWkt"
+        )
 }
