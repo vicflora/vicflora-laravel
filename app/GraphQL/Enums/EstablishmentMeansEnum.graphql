@@ -1,0 +1,9 @@
+enum EstablishmentMeansEnum {
+    NATIVE @enum(value: "native")
+    INTRODUCED @enum(value: "introduced")
+    UNCERTAIN @enum(value: "uncertain")
+    NATURALISED @enum(value: "naturalised")
+    ADVENTIVE @enum(value: "adventive")
+    CULTIVATED @enum(value: "cultivated")
+    NATIVE_DUAL @enum(value: "native(naturalisedInPart(s)OfState)")
+}
