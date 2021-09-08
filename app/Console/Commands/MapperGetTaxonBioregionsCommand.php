@@ -41,7 +41,9 @@ class MapperGetTaxonBioregionsCommand extends Command
      */
     public function handle()
     {
-        
+        $this->info('Drop distribution views');
+        Artisan::call('vicflora-mapper:drop-distribution-views');
+
         $this->info('Recreate mapper.taxon_bioregions table');
         Log::channel('mapper')->info('Recreate mapper.taxon_bioregions table');
         Artisan::call('vicflora-mapper:create-taxon-bioregions-table');
@@ -74,7 +76,7 @@ class MapperGetTaxonBioregionsCommand extends Command
                                         WHEN 'endemic' = ANY (array_agg(o.occurrence_status)::text[]) THEN 'present'
                                         WHEN 'extinct' = ANY (array_agg(o.occurrence_status)::text[]) THEN 'extinct'
                                         WHEN 'doubtful' = ANY (array_agg(o.occurrence_status)::text[]) THEN 'doubtful'
-                                        ELSE NULL
+                                        ELSE 'present'
                                     END AS occurrence_status"),
                             DB::raw("CASE
                                             WHEN 'native' = ANY (array_agg(o.establishment_means)::text[]) THEN 'native'
@@ -82,7 +84,7 @@ class MapperGetTaxonBioregionsCommand extends Command
                                             WHEN 'introduced' = ANY (array_agg(o.establishment_means)::text[]) THEN 'introduced'
                                             WHEN 'cultivated' = ANY (array_agg(o.establishment_means)::text[]) THEN 'cultivated'
                                             WHEN 'uncertain' = ANY (array_agg(o.establishment_means)::text[]) THEN 'uncertain'
-                                            ELSE NULL
+                                            ELSE 'native'
                                     END AS establishment_means")
                     )
                     ->groupByRaw('o.taxon_concept_id, b.id')

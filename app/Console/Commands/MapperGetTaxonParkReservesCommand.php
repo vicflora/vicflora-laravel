@@ -41,6 +41,9 @@ class MapperGetTaxonParkReservesCommand extends Command
      */
     public function handle()
     {
+        $this->info('Drop distribution views');
+        Artisan::call('vicflora-mapper:drop-distribution-views');
+        
         $this->info('Recreate mapper.taxon_park_reserves table');
         Log::channel('mapper')->info('Recreate mapper.taxon_park_reserves table');
         Artisan::call('vicflora-mapper:create-taxon-park-reserves-table');

@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 
 class MapperCreateDistributionViewsCommand extends Command
@@ -39,8 +40,9 @@ class MapperCreateDistributionViewsCommand extends Command
      */
     public function handle()
     {
-        $this->info('Drop mapper.taxon_bioregions_view');
-        DB::statement('DROP VIEW IF EXISTS mapper.taxon_bioregions_view');
+
+        $this->info('Drop distribution views');
+        Artisan::call('vicflora-mapper:drop-distribution-views');
 
         $sql = <<<SQL
 CREATE OR REPLACE VIEW mapper.taxon_bioregions_view AS
@@ -60,8 +62,6 @@ SQL;
         $this->info('Create mapper.taxon_bioregions_view');
         DB::statement($sql);
 
-        $this->info('Drop mapper.taxon_local_government_areas_view');
-        DB::statement('DROP VIEW IF EXISTS mapper.taxon_local_government_areas_view');
 
         $sql = <<<SQL
 CREATE OR REPLACE VIEW mapper.taxon_local_government_areas_view AS
@@ -81,8 +81,6 @@ SQL;
         $this->info('Create mapper.taxon_local_government_areas_view');
         DB::statement($sql);
 
-        $this->info('Drop mapper.taxon_park_reserves_view');
-        DB::statement('DROP VIEW IF EXISTS mapper.taxon_park_reserves_view');
 
         $sql = <<<SQL
 CREATE OR REPLACE VIEW mapper.taxon_park_reserves_view AS
