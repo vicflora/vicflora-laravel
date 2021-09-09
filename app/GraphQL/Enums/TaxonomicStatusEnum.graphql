@@ -1,8 +1,18 @@
+"""
+Enumeration for the dwc:taxonomicStatus term. We follow the GBIF Taxonomic
+Status Vocabulary, https://rs.gbif.org/vocabulary/gbif/taxonomic_status.xml
+"""
 enum TaxonomicStatusEnum {
+    "http://rs.gbif.org/vocabulary/gbif/taxonomicStatus/accepted"
     ACCEPTED @enum(value: "accepted")
+    "http://rs.gbif.org/vocabulary/gbif/taxonomicStatus/synonym"
     SYNONYM @enum(value: "synonym")
+    "http://rs.gbif.org/vocabulary/gbif/taxonomicStatus/homotypicSynonym"
     HOMOTYPIC_SYNONYM @enum(value: "homotypicSynonym")
+    "http://rs.gbif.org/vocabulary/gbif/taxonomicStatus/heterotypicSynonym"
     HETEROTYPIC_SYNONYM @enum(value: "heterotypicSynonym")
+    "http://rs.gbif.org/vocabulary/gbif/taxonomicStatus/misapplication"
     MISAPPLICATION @enum(value: "misapplication")
+    "This is not a standard term, but negates 'accepted'"
     NOT_ACCEPTED @enum(value: "notCurrent")
 }
