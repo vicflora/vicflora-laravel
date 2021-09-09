@@ -1,0 +1,30 @@
+"""
+Reference types: values are subtypes of http://schema.org/CreativeWork
+"""
+enum ReferenceTypeEnum {
+    ARTICLE @enum(value: "Article")
+    AUDIO_VISUAL_DOCUMENT @enum(value: "AudioVisualDocument")
+    BOOK @enum(value: "Book")
+    BOOK_SERIES @enum(value: "BOOK_SERIES")
+    CHAPTER @enum(value: "Chapter")
+    JOURNAL @enum(values: "Journal")
+    """
+    Everything associated with a name at its valid publication, i.e. description
+    or diagnosis, illustrations, references, synonyms, geographical data,
+    citation of specimens, discussion and comments. 'Protologue' is not in
+    schema.org, but we have it as a separate type, as protologue citations
+    mostly come in abbreviated form, from which it is not always clear whether
+    it is an Article or a Book, etc. and whether or not it coincides with other
+    References.
+    """
+    PROTOLOGUE @enum(value: "Protologue")
+    """
+    Abbreviated citations given as the according-to in misapplied names and
+    informal names, e.g. Dianella tasmanica sensu Fl. Victoria 2:649 (1994).
+    These still need to be replaced by full references.
+    """
+    SENSU @enum(value: "Sensu")
+    SOFTWARE_APPLICATION @enum(value: "SoftwareApplication")
+    WEB_PAGE @enum(value: "WebPage")
+    WEB_SITE @enum(value: "WebSite")
+}

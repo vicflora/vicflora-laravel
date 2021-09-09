@@ -22,7 +22,7 @@ type Reference {
     citationHtml: String
 
     author: Agent
-    referenceType: ReferenceType
+    referenceType: ReferenceTypeEnum @rename(attribute: "referenceTypeName")
 
     taxonNames: [TaxonName]
 }

@@ -93,6 +93,34 @@ class Reference extends BaseModel
     }
 
     /**
+     * Gets the reference type controlled value
+     *
+     * @return string|null
+     */
+    public function getReferenceTypeNameAttribute(): ?string
+    {
+        if ($this->reference_type_id) {
+            $rt = ReferenceType::find($this->reference_type_id);
+            return $rt->name;
+        }
+        return null;
+    }
+
+    /**
+     * Sets reference_type_id if referenceTypeName attribute is provided
+     *
+     * @param string|null $value
+     * @return void
+     */
+    public function setReferenceTypeNameAttribute(?string $value)
+    {
+        if ($value) {
+            $rt = ReferenceType::where('name', $value)->first();
+            $this->reference_type_id = $rt->id;
+        }
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function parent(): BelongsTo
