@@ -1,0 +1,7 @@
+enum NameTypeEnum {
+    SCIENTIFIC @enum(value: "scientific")
+    INFORMAL @enum(value: "informal")
+    HYBRID_NAME @enum(value: "hybridName")
+    HYBRID_FORMULA @enum(value: "hybridFormula")
+    CULTIVAR @enum(value: "cultivar")
+}

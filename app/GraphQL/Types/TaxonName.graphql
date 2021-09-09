@@ -8,7 +8,7 @@ type TaxonName {
     nomenclaturalNote: String @rename(attribute: "nomenclatural_note")
     remarks: String
 
-    nameType: NameType
+    nameType: NameTypeEnum @rename(attribute: "nameTypeName")
     nomenclaturalStatus: NomenclaturalStatus
     basionym: TaxonName
     replacedSynonym: TaxonName

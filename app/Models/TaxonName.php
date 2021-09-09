@@ -61,6 +61,32 @@ class TaxonName extends BaseModel
     }
 
     /**
+     * @return string|null
+     */
+    public function getNameTypeNameAttribute(): ?string
+    {
+        if ($this->name_type_id) {
+            $nt = NameType::find($this->name_type_id);
+            return $nt->name;
+        }
+        return null;
+    }
+
+    /**
+     * Set name_type_id if nameTypeName attribute is provided
+     *
+     * @param string|null $value
+     * @return void
+     */
+    public function setNameTypeAttribute(?string $value)
+    {
+        if ($value) {
+            $nt = NameType::where('name', $value)->first();
+            $this->name_type_id = $nt->id;
+        }
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function nomenclaturalStatus(): BelongsTo
