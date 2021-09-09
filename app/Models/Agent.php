@@ -47,4 +47,28 @@ class Agent extends BaseModel
     {
         return $this->belongsTo(AgentType::class);
     }
+
+    /**
+     * @return string|null
+     */
+    public function getAgentTypeNameAttribute(): ?string
+    {
+        if ($this->agent_type_id) {
+            $at = AgentType::find($this->agent_type_id);
+            return $at->name;
+        }
+        return null;
+    }
+
+    /**
+     * @param string|null $value
+     * @return void
+     */
+    public function setAgentTypeNameAttribute($value)
+    {
+        if ($value) {
+            $at = AgentType::where('name', $value)->first();
+            $this->agent_type_id = $at->id;
+        }
+    }
 }

@@ -1,4 +1,3 @@
-"Agent type"
 type Agent {
     id: ID! @rename(attribute: "guid")
 
@@ -11,7 +10,7 @@ type Agent {
     legalName: String @rename(attribute: "legal_name")
 
     "Type of agent"
-    agentType: AgentType
+    agentType: AgentTypeEnum @rename(attribute: "agentTypeName")
 }
 
 extend type Query {

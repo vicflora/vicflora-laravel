@@ -1,0 +1,10 @@
+enum AgentTypeEnum {
+    PERSON @enum(value: "Person")
+    GROUP @enum(value: "Group")
+    """
+    A named group of people, like 'Angiosperm Phylogeny Group', the composition
+    of which might change over time, is treated here as an ORGANIZATION
+    """
+    ORGANIZATION @enum(value: "Organization")
+    OTHER @enum(value: "Other")
+}
