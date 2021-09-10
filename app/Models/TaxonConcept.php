@@ -112,6 +112,34 @@ class TaxonConcept extends BaseModel
         return $this->belongsTo(TaxonTreeDefItem::class);
     }
 
+    /**
+     * Get taxonRank 
+     *
+     * @return string|null
+     */
+    public function getTaxonRankAttribute(): ?string
+    {
+        if ($this->taxon_tree_def_item_id) {
+            $tr = TaxonTreeDefItem::find($this->taxon_tree_def_item_id);
+            return $tr->name;
+        }
+        return null;
+    }
+
+    /**
+     * Set taxon_tree_def_item_id if taxonRank attribute is provided
+     *
+     * @param string|null $value
+     * @return void
+     */
+    public function setTaxonRankAttributeItem(?string $value)
+    {
+        if ($value) {
+            $tr = TaxonTreeDefItem::where('name', $value)->first();
+            $this->taxon_tree_def_item_id = $tr->id;
+        }
+    }
+
     // /**
     //  * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
     //  */
