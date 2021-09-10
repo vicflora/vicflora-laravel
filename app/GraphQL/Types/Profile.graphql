@@ -8,7 +8,8 @@ type Profile {
     taxonConcept: TaxonConcept
     acceptedConcept: TaxonConcept
     source: Reference
-    taxonomicStatus: TaxonomicStatus
+    # taxonomicStatus: TaxonomicStatusEnum
+    #     @rename(attribute: "taxonomicStatusName")
 
     createdBy: Agent
     modifiedBy: Agent

@@ -72,4 +72,32 @@ class Profile extends BaseModel
     {
         return $this->guid . ":" . $this->version;
     }
+
+    /**
+     * Get taxonomicStatus controlled term
+     *
+     * @return string|null
+     */
+    public function getTaxonomicStatusNameAttribute(): ?string
+    {
+        if ($this->taxonomic_status_id) {
+            $ts = TaxonomicStatus::find($this->taxonomic_status_id);
+            return $ts->name;
+        }
+        return null;
+    }
+
+    /**
+     * Set taxonomic_status_id if taxonomicStatusName attribute is provided
+     *
+     * @param string|null $value
+     * @return void
+     */
+    public function setTaxonomicStatusNameAttribute(?string $value)
+    {
+        if ($value) {
+            $ts = TaxonomicStatus::where('name', $value)->first();
+            $this->taxonomic_status_id = $ts->id;
+        }
+    }
 }
