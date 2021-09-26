@@ -64,7 +64,7 @@ class SpecimenImage extends BaseModel
      */
     public function getThumbnailUrlAttribute()
     {
-        return 'https://data.rbg.vic.gov.au/cip/preview/thumbnail/public/' . 
-                $this->cumulus_record_id;
+        return 'https://images.ala.org.au/image/proxyImageThumbnail?imageId=' . 
+                $this->ala_image_guid;
     }
 }
