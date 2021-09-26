@@ -12,8 +12,12 @@ class TaxonConceptSpecimenImages
     /**
      * @param  TaxonConcept  $taxonConcept
      */
-    public function __invoke(TaxonConcept $taxonConcept)
+    public function __invoke(?TaxonConcept $taxonConcept, $args)
     {
+        if (!$taxonConcept && isset($args['taxonConceptId'])) {
+            $taxonConcept = TaxonConcept::where('guid', $args['taxonConceptId'])->first();
+        }
+
         $node = TaxonTreeItem::where('taxon_concept_id', $taxonConcept->id)->first();
         return SpecimenImage::whereHas('acceptedConcept', function(Builder $query) use ($node) {
                 $query->whereHas('taxonTreeItem', function(Builder $query) use ($node) {

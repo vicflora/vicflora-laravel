@@ -28,11 +28,13 @@ type TaxonConcept {
     profilesAccepted: [Profile]
     currentProfile: Profile
     heroImage: Image
+    hasImages: Boolean
     images: [Image]
         @paginate(
             builder: "\\App\\GraphQL\\Queries\\TaxonConceptImages"
             defaultCount: 20
         )
+    hasSpecimenImages: Boolean
     specimenImages: [SpecimenImage]
         @paginate(
             builder: "\\App\\GraphQL\\Queries\\TaxonConceptSpecimenImages"
@@ -68,6 +70,12 @@ type TaxonConcept {
         @field(resolver: "\\App\\GraphQL\\Queries\\TaxonConceptKeys")
 
     synonyms: [TaxonName]
+    """
+    This has been added, because currently the VicFlora system requires synonyms
+    to be provided as usages (concepts). Once VicFlora is set up for concept
+    alignments, we might not be able to provide synonyms this way anymore.
+    """
+    synonymUsages: [TaxonConcept]
     misapplications: [TaxonConcept]
 
     createdBy: Agent
@@ -98,5 +106,17 @@ extend type Query {
             type: PAGINATOR
             defaultCount: 20
             builder: "\\App\\GraphQL\\Queries\\TaxonConceptsByWkt"
+        )
+
+    taxonConceptImages(taxonConceptId: ID!): [Image]
+        @paginate(
+            builder: "\\App\\GraphQL\\Queries\\TaxonConceptImages"
+            defaultCount: 20
+        )
+
+    taxonConceptSpecimenImages(taxonConceptId: ID!): [SpecimenImage]
+        @paginate(
+            builder: "\\App\\GraphQL\\Queries\\TaxonConceptSpecimenImages"
+            defaultCount: 20
         )
 }
