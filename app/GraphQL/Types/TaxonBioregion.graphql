@@ -2,8 +2,16 @@ type TaxonBioregion {
     id: ID
     taxonConcept: TaxonConcept
     bioregion: BioregionFeature
-    occurrenceStatus: OccurrenceStatus
-    establishmentMeans: EstablishmentMeans
+    occurrenceStatus: OccurrenceStatusEnum
+        @rename(attribute: "occurrence_status")
+    establishmentMeans: EstablishmentMeansEnum
+        @rename(attribute: "establishment_means")
     bioregionName: String @rename(attribute: "bioregion_name")
     bioregionCode: String @rename(attribute: "bioregion_code")
+}
+
+extend type Query {
+    taxonConceptBioregions(
+        taxonConceptId: ID! @eq(key: "taxon_concept_id")
+    ): [TaxonBioregion] @orderBy(column: "bioregion_name") @all
 }

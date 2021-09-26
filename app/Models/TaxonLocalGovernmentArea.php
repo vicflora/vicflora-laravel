@@ -21,9 +21,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * 
  * @property TaxonConcept $taxonConcept
  * @property LocalGovernmentArea $localGovernmentArea
- * @property OccurrenceStatus $occurrenceStatus
- * @property EstablishmentMeans $establishmentMeans
- * @property DegreeOfEstablishment $degreeOfEstablishment
  */
 class TaxonLocalGovernmentArea extends Model
 {
@@ -51,32 +48,5 @@ class TaxonLocalGovernmentArea extends Model
     {
         return $this->belongsTo(LocalGovernmentArea::class, 
                 'local_government_area_id', 'id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function occurrenceStatus(): BelongsTo
-    {
-        return $this->belongsTo(OccurrenceStatus::class, 'occurrence_status', 
-                'name');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function establishmentMeans(): BelongsTo
-    {
-        return $this->belongsTo(EstablishmentMeans::class, 
-                'establishment_means', 'name');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function degreeOfEstablishment(): BelongsTo
-    {
-        return $this->belongsTo(DegreeOfEstablishment::class, 
-                'degree_of_establishment', 'name');
     }
 }

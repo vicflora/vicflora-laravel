@@ -18,8 +18,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $geom
  * @property TaxonConcept $taxonConcept
  * @property Bioregion $bioregion
- * @property OccurrenceStatus $occurrenceStatus
- * @property EstablishmentMeans $establishmentMeans
  */
 class TaxonBioregion extends Model
 {
@@ -46,32 +44,5 @@ class TaxonBioregion extends Model
     {
         return $this->belongsTo(TaxonConcept::class, 'taxon_concept_id', 
                 'guid');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function occurrenceStatus(): BelongsTo
-    {
-        return $this->belongsTo(OccurrenceStatus::class, 'occurrence_status', 
-                'name');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function establishmentMeans(): BelongsTo
-    {
-        return $this->belongsTo(EstablishmentMeans::class, 
-                'establishment_means', 'name');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function degreeOfEstablishment(): BelongsTo
-    {
-        return $this->belongsTo(DegreeOfEstablishment::class, 
-                'degree_of_establishment', 'name');
     }
 }

@@ -2,6 +2,18 @@ type TaxonLocalGovernmentArea {
     id: ID
     taxonConcept: TaxonConcept
     localGovernmentArea: LocalGovernmentAreaFeature
-    occurrenceStatus: OccurrenceStatus
-    establishmentMeans: EstablishmentMeans
+    localGovernmentAreaName: String
+        @rename(attribute: "local_government_area_name")
+    localGovernmentAreaAbbreviatedName: String
+        @rename(attribute: "local_government_area_abbr_name")
+    occurrenceStatus: OccurrenceStatusEnum
+        @rename(attribute: "occurrence_status")
+    establishmentMeans: EstablishmentMeansEnum
+        @rename(attribute: "establishment_means")
+}
+
+extend type Query {
+    taxonConceptLocalGovernmentAreas(
+        taxonConceptId: ID! @eq(key: "taxon_concept_id")
+    ): [TaxonLocalGovernmentArea] @all
 }
