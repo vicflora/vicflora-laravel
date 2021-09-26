@@ -370,6 +370,19 @@ class TaxonConcept extends BaseModel
     /**
      * @return \Illuminate\Database\Eloquent\Collection
      */
+    public function getSynonymUsagesAttribute(): EloquentCollection
+    {
+        return TaxonConcept::where('accepted_id', $this->id)
+                ->whereHas('taxonomicStatus', function(Builder $query) {
+                    $query->whereIn('name', ['synonym', 'heterotypicSynonym', 'homotypicSynonym']);
+                })
+                ->get();
+    }
+    
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
     public function getMisapplicationsAttribute(): EloquentCollection
     {
         return TaxonConcept::where('accepted_id', $this->id)
@@ -420,7 +433,7 @@ class TaxonConcept extends BaseModel
     public function getTaxonomicStatusNameAttribute(): ?string
     {
         if ($this->taxonomic_status_id) {
-            $ts = TaxonomicStatus::find($this->taxonomic_status_id)->first();
+            $ts = TaxonomicStatus::find($this->taxonomic_status_id);
             return $ts->name;
         }
         return null;
@@ -446,7 +459,7 @@ class TaxonConcept extends BaseModel
     public function getOccurrenceStatusNameAttribute(): ?string
     {
         if ($this->occurrence_status_id) {
-            $os = OccurrenceStatus::find($this->occurrence_status_id)->first();
+            $os = OccurrenceStatus::find($this->occurrence_status_id);
             return $os->name;
         }
         return null;
@@ -472,7 +485,7 @@ class TaxonConcept extends BaseModel
     public function getEstablishmentMeansNameAttribute(): ?string
     {
         if ($this->establishment_means_id) {
-            $em = EstablishmentMeans::find($this->establishment_means_id)->first();
+            $em = EstablishmentMeans::find($this->establishment_means_id);
             return $em->name;
         }
         return null;
@@ -490,5 +503,26 @@ class TaxonConcept extends BaseModel
             $em = EstablishmentMeans::where('name', $value)->first();
             $this->establishment_means_id = $em->id;
         }
+    }
+
+    /**
+     * Check if model has associated images
+     *
+     * @return boolean
+     */
+    public function getHasImagesAttribute(): bool
+    {
+        return $this->imagesAccepted()->exists();
+    }
+
+
+    /**
+     * Check if model has associated specimen images
+     *
+     * @return boolean
+     */
+    public function getHasSpecimenImagesAttribute(): bool
+    {
+        return $this->specimenImagesAccepted()->exists();
     }
 }
