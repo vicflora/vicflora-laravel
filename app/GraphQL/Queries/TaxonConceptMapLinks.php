@@ -16,18 +16,18 @@ class TaxonConceptMapLinks
             return null;
         }
         $maps = [];
-        $url = 'https://data.rbg.vic.gov.au/geoserver/vicflora-mapper/wms';
+        $url = env('VICFLORA_MAPPER_WMS_URL');
         $queryVars = [ 
             'service' => 'WMS', 
             'version' => '1.1.0', 
             'request' => 'GetMap', 
             'layers' => 'vicflora-mapper:victoria_outline,vicflora-mapper:taxon_occurrences', 
-            'styles' => 'polygon-no-fill-black-outline,', 
             'bbox' => '140.8,-39.3,150.2,-33.8', 
             'width' => '600', 
             'height' => '363', 
             'srs' => 'EPSG:4326', 
-            'format' => 'image/svg', 
+            'format' => 'image/png',
+            'transparent' => 'true',
             'cql_filter' => "INCLUDE;" . 
                     "taxon_concept_id='{$taxonConcept->guid}' " . 
                     "AND establishment_means NOT IN ('cultivated') " .
