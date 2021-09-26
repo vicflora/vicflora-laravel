@@ -49,7 +49,9 @@ class MapperCreateTaxonLocalGovernmentAreasTableCommand extends Command
             $table->timestampsTz();
             $table->uuid('taxon_concept_id');
             $table->string('scientific_name', 128);
-            $table->integer('local_government_area_id');    
+            $table->integer('local_government_area_id');
+            $table->string('local_government_area_name', 100);    
+            $table->string('local_government_area_abbr_name', 100);    
             $table->string('occurrence_status', 32)->nullable();
             $table->string('establishment_means', 32)->nullable();
             $table->string('degree_of_establishment', 32)->nullable();

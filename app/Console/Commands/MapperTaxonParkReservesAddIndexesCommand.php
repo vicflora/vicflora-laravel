@@ -43,6 +43,9 @@ class MapperTaxonParkReservesAddIndexesCommand extends Command
             $table->index('taxon_concept_id');
             $table->index('scientific_name');
             $table->index('park_reserve_id');
+            $table->index('park_reserve_name');
+            $table->index('park_reserve_short_name');
+            $table->index('park_reserve_area_type');
             $table->index('occurrence_status');
             $table->index('establishment_means');
         });

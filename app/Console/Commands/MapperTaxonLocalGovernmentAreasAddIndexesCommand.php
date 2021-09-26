@@ -43,6 +43,8 @@ class MapperTaxonLocalGovernmentAreasAddIndexesCommand extends Command
             $table->index('taxon_concept_id');
             $table->index('scientific_name');
             $table->index('local_government_area_id');
+            $table->index('local_government_area_name');
+            $table->index('local_government_area_abbr_name');
             $table->index('occurrence_status');
             $table->index('establishment_means');
         });

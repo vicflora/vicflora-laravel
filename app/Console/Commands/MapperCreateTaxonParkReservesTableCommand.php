@@ -50,6 +50,9 @@ class MapperCreateTaxonParkReservesTableCommand extends Command
             $table->uuid('taxon_concept_id');
             $table->string('scientific_name', 128);
             $table->integer('park_reserve_id');
+            $table->string('park_reserve_name', 120);
+            $table->string('park_reserve_short_name', 120);
+            $table->string('park_reserve_area_type', 100);
             $table->string('occurrence_status', 32)->nullable();
             $table->string('establishment_means', 32)->nullable();
             $table->string('degree_of_establishment', 32)->nullable();

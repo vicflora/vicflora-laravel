@@ -43,8 +43,8 @@ class MapperTaxonBioregionsAddIndexesCommand extends Command
             $table->index('taxon_concept_id');
             $table->index('scientific_name');
             $table->index('bioregion_id');
-            // $table->index('bioregion_code');
-            // $table->index('bioregion_name');
+            $table->index('bioregion_code');
+            $table->index('bioregion_name');
             $table->index('occurrence_status');
             $table->index('establishment_means');
         });

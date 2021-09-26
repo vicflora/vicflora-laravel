@@ -71,6 +71,8 @@ class MapperGetTaxonLocalGovernmentAreasCommand extends Command
                             DB::raw('now() as created_at'),
                             'o.taxon_concept_id',
                             'lga.id as local_government_area_id',
+                            'lga.lga_name as local_government_area_name',
+                            'lga.abb_name as local_government_area_abbr_name',
                             DB::raw("CASE
                                         WHEN 'present' = ANY (array_agg(o.occurrence_status)::text[]) THEN 'present'
                                         WHEN 'endemic' = ANY (array_agg(o.occurrence_status)::text[]) THEN 'present'
@@ -96,6 +98,11 @@ class MapperGetTaxonLocalGovernmentAreasCommand extends Command
             }
 
         }
+
+        $this->info('Add indexes');
+        Log::channel('mapper')->info('Add indexes');
+        Artisan::call('vicflora-mapper:taxon-local-government-areas-add-indexes');
+
         $end = new DateTime();
         $this->info('Completed: ' . $end->format('Y-m-d H:i:s'));
         Log::channel('mapper')->info('Completed: ' . $end->format('Y-m-d H:i:s'));
@@ -104,8 +111,5 @@ class MapperGetTaxonLocalGovernmentAreasCommand extends Command
         $this->info('Duration: ' . $duration->format('%H:%I:%S'));
         Log::channel('mapper')->info('Duration: ' . $duration->format('%H:%I:%S'));
 
-        $this->info('Add indexes');
-        Log::channel('mapper')->info('Add indexes');
-        Artisan::call('vicflora-mapper:taxon-local-government-areas-add-indexes');
     }
 }

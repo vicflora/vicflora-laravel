@@ -49,7 +49,9 @@ class MapperCreateTaxonBioregionsTableCommand extends Command
             $table->timestampsTz();
             $table->uuid('taxon_concept_id');
             $table->string('scientific_name', 128);
-            $table->integer('bioregion_id');    
+            $table->integer('bioregion_id'); 
+            $table->string('bioregion_name', 50);
+            $table->string('bioregion_code', 16);
             $table->string('occurrence_status', 32)->nullable();
             $table->string('establishment_means', 32)->nullable();
             $table->string('degree_of_establishment', 32)->nullable();

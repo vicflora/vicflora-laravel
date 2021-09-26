@@ -71,6 +71,9 @@ class MapperGetTaxonParkReservesCommand extends Command
                             DB::raw('now() as created_at'),
                             'o.taxon_concept_id',
                             'pr.id as park_reserve_id',
+                            'pr.name as park_reserve_name',
+                            'pr.name_short as park_reserve_short_name',
+                            'pr.area_type as park_reserve_area_type',
                             DB::raw("CASE
                                         WHEN 'present' = ANY (array_agg(o.occurrence_status)::text[]) THEN 'present'
                                         WHEN 'endemic' = ANY (array_agg(o.occurrence_status)::text[]) THEN 'present'
@@ -98,6 +101,10 @@ class MapperGetTaxonParkReservesCommand extends Command
             }
 
         }
+        $this->info('Add indexes');
+        Log::channel('mapper')->info('Add indexes');
+        Artisan::call('vicflora-mapper:taxon-park-reserves-add-indexes');
+
         $end = new DateTime();
         $this->info('Completed: ' . $end->format('Y-m-d H:i:s'));
         Log::channel('mapper')->info('Completed: ' . $end->format('Y-m-d H:i:s'));
@@ -105,9 +112,5 @@ class MapperGetTaxonParkReservesCommand extends Command
         $duration = $start->diff($end);
         $this->info('Duration: ' . $duration->format('%H:%I:%S'));
         Log::channel('mapper')->info('Duration: ' . $duration->format('%H:%I:%S'));
-
-        $this->info('Add indexes');
-        Log::channel('mapper')->info('Add indexes');
-        Artisan::call('vicflora-mapper:taxon-park-reserves-add-indexes');
     }
 }
