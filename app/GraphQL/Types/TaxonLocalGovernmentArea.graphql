@@ -15,5 +15,7 @@ type TaxonLocalGovernmentArea {
 extend type Query {
     taxonConceptLocalGovernmentAreas(
         taxonConceptId: ID! @eq(key: "taxon_concept_id")
-    ): [TaxonLocalGovernmentArea] @all
+    ): [TaxonLocalGovernmentArea]
+        @orderBy(column: "local_government_area_name")
+        @all
 }
