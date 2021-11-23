@@ -1,13 +1,8 @@
 type LocalGovernmentAreaFeature
     @model(class: "\\App\\Models\\LocalGovernmentArea") {
     type: String
-    geometry: LocalGovernmentAreaGeometry
+    geometry: MultiPolygonGeometry
     properties: LocalGovernmentAreaProperties
-}
-
-type LocalGovernmentAreaGeometry {
-    type: String!
-    coordinates: [[[[Float]]]]
 }
 
 type LocalGovernmentAreaProperties {

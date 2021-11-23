@@ -1,12 +1,7 @@
 type ParkReserveFeature @model(class: "\\App\\Models\\ParkReserve") {
     type: String
-    geometry: ParkReserveGeometry
+    geometry: MultiPolygonGeometry
     properties: ParkReserveProperties
-}
-
-type ParkReserveGeometry {
-    type: String!
-    coordinates: [[[[Float]]]]
 }
 
 type ParkReserveProperties {

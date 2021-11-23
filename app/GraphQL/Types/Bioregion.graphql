@@ -4,13 +4,8 @@ geometry with both its properties are used.
 """
 type BioregionFeature @model(class: "\\App\\Models\\Bioregion") {
     type: String
-    geometry: BioregionGeometry
+    geometry: MultiPolygonGeometry
     properties: BioregionProperties
-}
-
-type BioregionGeometry {
-    type: String!
-    coordinates: [[[[Float]]]]
 }
 
 type BioregionProperties {
