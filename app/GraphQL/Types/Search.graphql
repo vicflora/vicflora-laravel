@@ -38,12 +38,13 @@ type SearchResultDocument {
     establishmentMeans: [String]
     threatStatus: [String]
     taxonRemarks: String
-    vernacularName: String
-    ibra7Subregion: [String]
-    nrmRegion: [String]
-    epbc: String
-    vrot: String
-    ffg: String
+    vernacularName: [String]
+    preferredVernacularName: String
+    # ibra7Subregion: [String]
+    # nrmRegion: [String]
+    # epbc: String
+    # vrot: String
+    # ffg: String
 }
 
 type SearchResultFacetField {
@@ -97,8 +98,8 @@ input SearchInput {
         "superorder"
         "order"
         "family"
-        "ibra_7_subregion"
-        "nrm_region"
+        # "ibra_7_subregion"
+        # "nrm_region"
         "media"
     ]
     facetSort: String
@@ -127,7 +128,7 @@ input DownloadInput {
         "sensu"
         "threat_status"
         "profile"
-        "vernacular_name"
+        "preferred_vernacular_name"
     ]
 }
 

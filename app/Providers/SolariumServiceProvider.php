@@ -20,7 +20,8 @@ class SolariumServiceProvider extends ServiceProvider
     {
         $this->app->bind(Client::class, function ($app) {
             $adapter = new Curl();
-            $eventDispatcher = new EventDispatcher;
+            $adapter->setTimeout(120);
+            $eventDispatcher = new EventDispatcher();
             return new Client($adapter, $eventDispatcher, $app['config']['solarium']);
         });
     }
