@@ -45,10 +45,10 @@ class CreateApiDocumentation extends Command
         $this->info(getcwd());
 
         $this->info("Create new documentation");
-        exec('npx spectaql config.yml');
+        exec('npx spectaql -JC config.yml');
 
         $this->info("Copy documentation to 'public/apidocs' directory");
-        rename('public', '../../public/apidocs');
+        copy('public/index.html', '../../public/apidocs/index.html');
 
         $this->info('API documentation has been successfully updated');
 
