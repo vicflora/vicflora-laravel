@@ -4,7 +4,7 @@ geometry with both its properties are used.
 """
 type BioregionFeature @model(class: "\\App\\Models\\Bioregion") {
     type: String
-    geometry: MultiPolygonGeometry
+    geometry: GeoJSONGeometry
     properties: BioregionProperties
 }
 

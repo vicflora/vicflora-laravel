@@ -1,7 +1,7 @@
 type LocalGovernmentAreaFeature
     @model(class: "\\App\\Models\\LocalGovernmentArea") {
     type: String
-    geometry: MultiPolygonGeometry
+    geometry: GeoJSONGeometry
     properties: LocalGovernmentAreaProperties
 }
 

@@ -1,4 +1,0 @@
-type MultiPolygonGeometry {
-    type: String!
-    coordinates: [[[[Float]]]]
-}

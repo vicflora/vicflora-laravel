@@ -1,0 +1,4 @@
+type GeoJSONGeometry {
+    type: String!
+    coordinates: JSON!
+}

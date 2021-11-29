@@ -1,6 +1,6 @@
 type ParkReserveFeature @model(class: "\\App\\Models\\ParkReserve") {
     type: String
-    geometry: MultiPolygonGeometry
+    geometry: GeoJSONGeometry
     properties: ParkReserveProperties
 }
 
