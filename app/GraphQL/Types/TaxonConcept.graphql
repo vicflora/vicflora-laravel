@@ -16,7 +16,7 @@ type TaxonConcept {
         @rename(attribute: "occurrenceStatusName")
     establishmentMeans: EstablishmentMeansEnum
         @rename(attribute: "establishmentMeansName")
-    degreeOfEstablishment: DegreeOfEstablishment
+    # degreeOfEstablishment: DegreeOfEstablishment
 
     children: [TaxonConcept]
     siblings: [TaxonConcept]

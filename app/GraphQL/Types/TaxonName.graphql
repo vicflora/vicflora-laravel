@@ -9,7 +9,7 @@ type TaxonName {
     remarks: String
 
     nameType: NameTypeEnum @rename(attribute: "nameTypeName")
-    nomenclaturalStatus: NomenclaturalStatus
+    # nomenclaturalStatus: NomenclaturalStatus
     basionym: TaxonName
     replacedSynonym: TaxonName
     protologue: Reference
