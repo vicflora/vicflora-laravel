@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\File;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +21,7 @@ Route::get('/', function () {
 });
 
 Route::get('/apidocs', function () {
-    return \File::get(public_path() . '/apidocs/index.html');
+    return File::get(public_path() . '/apidocs/index.html');
 });
 
 Auth::routes();
