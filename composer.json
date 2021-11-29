@@ -30,7 +30,6 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.2",
         "mll-lab/graphql-php-scalars": "^4.0",
-        "mll-lab/laravel-graphql-playground": "^2.5",
         "nuwave/lighthouse": "^5.3",
         "solarium/solarium": "^6.1",
         "mstaack/laravel-postgis": "dev-dependency-fix"
@@ -39,6 +38,7 @@
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
         "laravel/sail": "^1.0.1",
+        "mll-lab/laravel-graphql-playground": "^2.5",
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^5.0",
         "phpunit/phpunit": "^9.3.3"
