@@ -120,7 +120,7 @@ introspection:
   # even if it's there
   #
   # Default: true
-  metadatas: false
+  metadatas: true
 
   #
   #
@@ -132,7 +132,7 @@ introspection:
   # out doing nothing
   #
   # Default: ./customizations/examples
-  # dynamicExamplesProcessingModule: path/to/examples.js
+  dynamicExamplesProcessingModule: ./customizations/examples
 
   ##############################################
   # These options specify what the default behavior should be
@@ -236,7 +236,7 @@ info:
     
     You'll find the GraphQL endpoint for VicFlora at http://vicflora.test/graphql.<br/><br/>
 
-    This endpoint can be queried by GraphQL clients like [GrapiQL](https://github.com/graphql/graphiql)
+    This endpoint can be queried by GraphQL clients like [GraphiQL](https://github.com/graphql/graphiql)
     and [Altair](https://altair.sirmuel.design/), as well as general API 
     platforms like [Postman](https://www.postman.com/) and [Insomnia](https://insomnia.rest/).
 

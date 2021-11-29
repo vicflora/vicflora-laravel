@@ -1,1 +1,100 @@
-{}
+{
+  "OBJECT": {
+    "GeoJSONGeometry": {
+      "fields": {
+        "type": {
+          "documentation": { "example": "MultiPolygon" }
+        },
+        "coordinates": {
+          "documentation": {
+            "example": [
+              [
+                [
+                  [100.0, 0.0], 
+                  [101.0, 0.0], 
+                  [101.0, 1.0],
+                  [100.0, 1.0], 
+                  [100.0, 0.0]
+                ]
+              ],
+              [
+                [
+                  [100.0, 0.0], 
+                  [101.0, 0.0], 
+                  [101.0, 1.0],
+                  [100.0, 1.0], 
+                  [100.0, 0.0]
+                ]
+              ]
+            ]
+          }
+        }
+      }
+    },
+    "Mutation": {
+      "fields": {
+        "forgotPassword": {
+          "documentation": {
+            "undocumented": true
+          }
+        },
+        "login": {
+          "documentation": {
+            "documented": true
+          }
+        },
+        "logout": {
+          "documentation": {
+            "documented": true
+          }
+        },
+        "refreshToken": {
+          "documentation": {
+            "undocumented": true
+          }
+        },
+        "register": {
+          "documentation": {
+            "undocumented": true
+          }
+        },
+        "socialLogin": {
+          "documentation": {
+            "undocumented": true
+          }
+        },
+        "updateForgottenPassword": {
+          "documentation": {
+            "undocumented": true
+          }
+        },
+        "updatePassword": {
+          "documentation": {
+            "undocumented": true
+          }
+        },
+        "verifyEmail": {
+          "documentation": {
+            "undocumented": true
+          }
+        }
+      }
+    },
+    "Query": {}
+  },
+  "SCALAR": {
+    "DateTime": {
+      "documentation": { "example": "\"2016-10-07T01:08:03.420Z\"" }
+    },
+    "DateTimeTz": {
+      "documentation": { "example": "\"2016-10-06T01:08:03.420+10\"" }
+    },
+    "ID": {
+      "documentation": { 
+        "description": "The `ID` scalar type represents a unique identifier",
+        "example": "\"0c8e21a6-fe09-4835-84e1-d9531ad24728\"" 
+      }
+    }
+  },
+  "INPUT_OBJECT": {}
+}
