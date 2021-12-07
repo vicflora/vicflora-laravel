@@ -1,0 +1,9 @@
+vendor
+node_modules
+.git
+.gitignore
+.editorconfig
+.gitattributes
+.styleci.ymldocker images
+.env
+docker-compose.prod-test.yml
