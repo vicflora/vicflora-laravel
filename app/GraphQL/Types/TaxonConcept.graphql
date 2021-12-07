@@ -16,7 +16,6 @@ type TaxonConcept {
         @rename(attribute: "occurrenceStatusName")
     establishmentMeans: EstablishmentMeansEnum
         @rename(attribute: "establishmentMeansName")
-    # degreeOfEstablishment: DegreeOfEstablishment
 
     children: [TaxonConcept]
     siblings: [TaxonConcept]
@@ -118,5 +117,19 @@ extend type Query {
         @paginate(
             builder: "\\App\\GraphQL\\Queries\\TaxonConceptSpecimenImages"
             defaultCount: 20
+        )
+
+    "Get siblings of a TaxonConcept"
+    taxonConceptSiblings(taxonConceptId: ID!): [TaxonConcept]
+        @field(resolver: "\\App\\GraphQL\\Queries\\TaxonConceptSiblings")
+
+    "Get children of a TaxonConcept"
+    taxonConceptChildren(taxonConceptId: ID!): [TaxonConcept]
+        @field(resolver: "\\App\\GraphQL\\Queries\\TaxonConceptChildren")
+
+    "Get higher classification of a TaxonConcept"
+    taxonConceptHigherClassifcation(taxonConceptId: ID!): [TaxonTreeItem]
+        @field(
+            resolver: "\\App\\GraphQL\\Queries\\TaxonConceptHigherClassification"
         )
 }
