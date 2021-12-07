@@ -230,7 +230,7 @@ info:
   ##############################################
 
   title: VicFlora API
-  version: 1.0.0
+  version: 1.0.0-beta
   description: >
     Documentation for the VicFlora GraphQL API<br/><br/>
     
