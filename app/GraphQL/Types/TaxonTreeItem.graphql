@@ -6,6 +6,7 @@ type TaxonTreeItem {
     depth: Int
     path: String
     namePath: String @rename(attribute: "name_path")
+    rank: String
 
     taxonConcept: TaxonConcept!
 

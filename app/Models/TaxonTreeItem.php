@@ -47,4 +47,12 @@ class TaxonTreeItem extends BaseModel
     {
         return $this->belongsTo(TaxonConcept::class);
     }
+
+    /**
+     * @return String|null
+     */
+    public function getRankAttribute(): ?String
+    {
+        return $this->taxonConcept->taxonTreeDefitem->name;
+    }
 }
