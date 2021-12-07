@@ -16,8 +16,7 @@ use Illuminate\Support\Facades\File;
 */
 
 Route::get('/', function () {
-    // return view('welcome');
-    return redirect('/apidocs');
+    return view('welcome');
 });
 
 Route::get('/apidocs', function () {
