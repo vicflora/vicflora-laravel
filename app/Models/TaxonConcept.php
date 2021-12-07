@@ -309,6 +309,11 @@ class TaxonConcept extends BaseModel
             return TaxonTreeItem::where('node_number', '<', $node->node_number)
                     ->where('highest_descendant_node_number', '>=', 
                             $node->node_number)
+                    ->whereHas('taxonConcept', function (Builder $query) {
+                        $query->whereHas('taxonName', function (Builder $query) {
+                            $query->where('name_part', '!=', 'Life');
+                        });
+                    })
                     ->get();
         }
         return collect([]);                    
