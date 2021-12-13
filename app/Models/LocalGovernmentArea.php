@@ -13,7 +13,7 @@ use Illuminate\Support\Str;
  * @property string $abb_name
  * @property integer $state_pid
  * @property string $geojson
- * 
+ *
  * @property string $type
  * @property array<mixed> $geometry
  * @property array<mixed> $properties
@@ -21,18 +21,11 @@ use Illuminate\Support\Str;
 class LocalGovernmentArea extends Model
 {
     /**
-     * The database connection that should be used by the model.
-     *
-     * @var string
-     */
-    protected $connection = 'mapper';
-
-    /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'local_government_areas';
+    protected $table = 'mapper.local_government_areas';
 
     /**
      * @return string
@@ -41,7 +34,7 @@ class LocalGovernmentArea extends Model
     {
         return 'Feature';
     }
-    
+
     // /**
     //  * @return string
     //  */

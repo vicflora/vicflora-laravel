@@ -19,26 +19,20 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $vers_date
  * @property float $area_sqm
  * @property string $geojson
- * 
+ *
  * @property string $type
  * @property array<mixed> $geometry
  * @property array<mixed> $properties
  */
 class ParkReserve extends Model
 {
-    /**
-     * The database connection that should be used by the model.
-     *
-     * @var string
-     */
-    protected $connection = 'mapper';
 
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'park_reserves';
+    protected $table = 'mapper.park_reserves';
 
     /**
      * @return string
@@ -47,7 +41,7 @@ class ParkReserve extends Model
     {
         return 'Feature';
     }
-    
+
     // /**
     //  * @return string
     //  */
