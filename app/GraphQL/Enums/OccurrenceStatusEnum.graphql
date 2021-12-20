@@ -3,4 +3,5 @@ enum OccurrenceStatusEnum {
     ENDEMIC @enum(value: "endemic")
     EXTINCT @enum(value: "extinct")
     EXCLUDED @enum(value: "excluded")
+    DOUBTFUL @enum(value: "doubtful")
 }
