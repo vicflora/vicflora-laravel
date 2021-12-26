@@ -14,7 +14,6 @@ type BioregionProperties {
     name: String
     code: String
     label: String
-    regionCode: String
 }
 
 extend type Query {
