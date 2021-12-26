@@ -44,7 +44,7 @@ class Bioregion extends Model
             'number' => $this->bioregno,
             'name' => $this->bioregion,
             'code' => $this->bioregcode,
-            'label' => $this->bioregion . ' (' . $this->bioregioncode . ')'
+            'label' => $this->bioregion . ' (' . $this->bioregcode . ')'
             'regionCode' => $this->reg
         ];
     }
