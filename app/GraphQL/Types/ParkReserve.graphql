@@ -6,7 +6,8 @@ type ParkReserveFeature @model(class: "\\App\\Models\\ParkReserve") {
 
 type ParkReserveProperties {
     id: ID
-    name: String!
+    name: String
+    label: String
     nameShort: String
     areaType: String
     areaSrc: String

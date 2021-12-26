@@ -71,6 +71,7 @@ class ParkReserve extends Model
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'label' => $this->name,
             'nameShort' => $this->name_short,
             'areaType' => $this->area_type,
             'areaSrc' => $this->area_src,

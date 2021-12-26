@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $geojson
  * @property string $depi_code
  * @property integer $depi_order
- * 
+ *
  * @property string $type
  * @property array<mixed> $geometry
  * @property array<mixed> $properties
@@ -44,6 +44,7 @@ class Bioregion extends Model
             'number' => $this->bioregno,
             'name' => $this->bioregion,
             'code' => $this->bioregcode,
+            'label' => $this->bioregion . ' (' . $this->bioregioncode . ')'
             'regionCode' => $this->reg
         ];
     }

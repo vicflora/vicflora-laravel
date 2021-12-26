@@ -13,6 +13,7 @@ type BioregionProperties {
     number: String
     name: String
     code: String
+    label: String
     regionCode: String
 }
 

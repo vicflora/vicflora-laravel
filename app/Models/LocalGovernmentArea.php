@@ -64,6 +64,7 @@ class LocalGovernmentArea extends Model
         return [
             'id' => $this->lga_pid,
             'name' => Str::title($this->lga_name),
+            'label' => Str::title($this->lga_name),
             'nameAbbr' => Str::title($this->abb_name),
             'created' => $this->dt_create,
             'gazetted' => $this->dt_gazetd,
