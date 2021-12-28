@@ -2,7 +2,6 @@ type SearchResult {
     meta: SearchMetadata
     docs: [SearchResultDocument]
     facetFields: [SearchResultFacetField]
-    selectionSet: JSON
 }
 
 type Download {
