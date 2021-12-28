@@ -93,12 +93,8 @@ input SearchInput {
         "establishment_means"
         "threat_status"
         "class"
-        "subclass"
-        "superorder"
         "order"
         "family"
-        # "ibra_7_subregion"
-        # "nrm_region"
         "media"
     ]
     facetSort: String
