@@ -42,11 +42,11 @@ class MapperGetTaxonParkReservesCommand extends Command
     public function handle()
     {
         $this->info('Drop distribution views');
-        Artisan::call('vicflora-mapper:drop-distribution-views');
-        
+        $this->call('vicflora-mapper:drop-distribution-views');
+
         $this->info('Recreate mapper.taxon_park_reserves table');
         Log::channel('mapper')->info('Recreate mapper.taxon_park_reserves table');
-        Artisan::call('vicflora-mapper:create-taxon-park-reserves-table');
+        $this->call('vicflora-mapper:create-taxon-park-reserves-table');
 
         $taxa = DB::table('mapper.taxa')
                 ->where('taxonomic_status', 'accepted')
@@ -103,7 +103,7 @@ class MapperGetTaxonParkReservesCommand extends Command
         }
         $this->info('Add indexes');
         Log::channel('mapper')->info('Add indexes');
-        Artisan::call('vicflora-mapper:taxon-park-reserves-add-indexes');
+        $this->call('vicflora-mapper:taxon-park-reserves-add-indexes');
 
         $end = new DateTime();
         $this->info('Completed: ' . $end->format('Y-m-d H:i:s'));

@@ -42,11 +42,11 @@ class MapperGetTaxonLocalGovernmentAreasCommand extends Command
     public function handle()
     {
         $this->info('Drop distribution views');
-        Artisan::call('vicflora-mapper:drop-distribution-views');
+        $this->call('vicflora-mapper:drop-distribution-views');
 
         $this->info('Recreate mapper.taxon_local_government_areas table');
         Log::channel('mapper')->info('Recreate mapper.taxon_local_government_areas table');
-        Artisan::call('vicflora-mapper:create-local-government-areas-table');
+        $this->call('vicflora-mapper:create-local-government-areas-table');
 
         $taxa = DB::table('mapper.taxa')
                 ->where('taxonomic_status', 'accepted')
@@ -101,7 +101,7 @@ class MapperGetTaxonLocalGovernmentAreasCommand extends Command
 
         $this->info('Add indexes');
         Log::channel('mapper')->info('Add indexes');
-        Artisan::call('vicflora-mapper:taxon-local-government-areas-add-indexes');
+        $this->call('vicflora-mapper:taxon-local-government-areas-add-indexes');
 
         $end = new DateTime();
         $this->info('Completed: ' . $end->format('Y-m-d H:i:s'));

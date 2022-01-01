@@ -39,24 +39,24 @@ class DataMigrateReferences extends Command
     public function handle()
     {
         // Some cleanup
-        Artisan::call('data:migrate:references:cleanup');
+        $this->call('data:migrate:references:cleanup');
 
         // Reference Types
-        Artisan::call('data:migrate:references:reference-types');
+        $this->call('data:migrate:references:reference-types');
 
         // Protologues
-        Artisan::call('data:migrate:references:protologues');
+        $this->call('data:migrate:references:protologues');
 
         // Articles
-        Artisan::call('data:migrate:references:articles');
+        $this->call('data:migrate:references:articles');
 
         // Books
-        Artisan::call('data:migrate:references:books');
+        $this->call('data:migrate:references:books');
 
         // Chapters
-        Artisan::call('data:migrate:references:chapters');
+        $this->call('data:migrate:references:chapters');
 
         // Remaining references
-        Artisan::call('data:migrate:references:remaining');
+        $this->call('data:migrate:references:remaining');
     }
 }

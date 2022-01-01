@@ -42,11 +42,11 @@ class MapperGetTaxonBioregionsCommand extends Command
     public function handle()
     {
         $this->info('Drop distribution views');
-        Artisan::call('vicflora-mapper:drop-distribution-views');
+        $this->call('vicflora-mapper:drop-distribution-views');
 
         $this->info('Recreate mapper.taxon_bioregions table');
         Log::channel('mapper')->info('Recreate mapper.taxon_bioregions table');
-        Artisan::call('vicflora-mapper:create-taxon-bioregions-table');
+        $this->call('vicflora-mapper:create-taxon-bioregions-table');
 
         $taxa = DB::table('mapper.taxa')
                 ->where('taxonomic_status', 'accepted')
@@ -101,7 +101,7 @@ class MapperGetTaxonBioregionsCommand extends Command
 
         $this->info('Add indexes');
         Log::channel('mapper')->info('Add indexes');
-        Artisan::call('vicflora-mapper:taxon_bioregions-add-indexes');
+        $this->call('vicflora-mapper:taxon_bioregions-add-indexes');
 
         $end = new DateTime();
         $this->info('Completed: ' . $end->format('Y-m-d H:i:s'));

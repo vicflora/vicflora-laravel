@@ -20,7 +20,7 @@ class MapperCreateDistributionViewsCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Create bioregion, Local Government Area and 
+    protected $description = 'Create bioregion, Local Government Area and
             parks and reserves view for use with GeoServer';
 
     /**
@@ -42,7 +42,7 @@ class MapperCreateDistributionViewsCommand extends Command
     {
 
         $this->info('Drop distribution views');
-        Artisan::call('vicflora-mapper:drop-distribution-views');
+        $this->call('vicflora-mapper:drop-distribution-views');
 
         $sql = <<<SQL
 CREATE OR REPLACE VIEW mapper.taxon_bioregions_view AS

@@ -40,8 +40,8 @@ class VbaLoadData extends Command
      */
     public function handle()
     {
-        Artisan::call('vba:drop-table');
-        Artisan::call('vba:create-table');
+        $this->call('vba:drop-table');
+        $this->call('vba:create-table');
 
 
         $filePath = storage_path('app/data_vic/VBA_TAXA_LIST.csv');
@@ -115,7 +115,7 @@ class VbaLoadData extends Command
      * @param string $str
      * @return string|null
      */
-    protected function matchVbaNameString($str) 
+    protected function matchVbaNameString($str)
     {
         $strToMatch = $str;
         if (preg_match('/s\.s\.$/', $str)) {

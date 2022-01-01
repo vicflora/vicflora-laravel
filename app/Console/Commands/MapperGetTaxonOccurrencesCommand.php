@@ -43,7 +43,7 @@ class MapperGetTaxonOccurrencesCommand extends Command
     {
         $this->info('Recreate mapper.taxon_occurrences table');
         Log::channel('mapper')->info('Recreate mapper.taxon_occurrences table');
-        Artisan::call('vicflora-mapper:create-taxon-occurrences-table');
+        $this->call('vicflora-mapper:create-taxon-occurrences-table');
 
         $taxa = DB::table('mapper.taxa')
                 ->where('taxonomic_status', 'accepted')
@@ -140,6 +140,6 @@ class MapperGetTaxonOccurrencesCommand extends Command
 
         $this->info('Add indexes');
         Log::channel('mapper')->info('Add indexes');
-        Artisan::call('vicflora-mapper:taxon-occurrences-add-indexes');
+        $this->call('vicflora-mapper:taxon-occurrences-add-indexes');
     }
 }
