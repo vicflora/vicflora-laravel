@@ -1,5 +1,23 @@
 {
   "OBJECT": {
+    "User": { "documentation": { "undocumented": true } },
+    "UserPaginator": { "documentation": { "undocumented": true } },
+    "AuthPayload": { "documentation": { "undocumented": true } },
+    "RefreshTokenPayload": { "documentation": { "undocumented": true } },
+    "LogoutResponse": { "documentation": { "undocumented": true } },
+    "ForgotPasswordResponse": { "documentation": { "undocumented": true } },
+    "RegisterResponse": { "documentation": { "undocumented": true } },
+    "UpdatePasswordResponse": { "documentation": { "undocumented": true } },
+
+    "CarouselSlide": { "documentation": { "undocumented": true } },
+    "Highlight": { "documentation": { "undocumented": true } },
+
+    "TaxonomicStatus": { "documentation": { "undocumented": true } },
+    "OccurrenceStatus": { "documentation": { "undocumented": true } },
+    "EstablishmentMeans": { "documentation": { "undocumented": true } },
+
+
+
     "GeoJSONGeometry": {
       "fields": {
         "type": {
@@ -10,19 +28,19 @@
             "example": [
               [
                 [
-                  [100.0, 0.0], 
-                  [101.0, 0.0], 
+                  [100.0, 0.0],
+                  [101.0, 0.0],
                   [101.0, 1.0],
-                  [100.0, 1.0], 
+                  [100.0, 1.0],
                   [100.0, 0.0]
                 ]
               ],
               [
                 [
-                  [100.0, 0.0], 
-                  [101.0, 0.0], 
+                  [100.0, 0.0],
+                  [101.0, 0.0],
                   [101.0, 1.0],
-                  [100.0, 1.0], 
+                  [100.0, 1.0],
                   [100.0, 0.0]
                 ]
               ]
@@ -90,11 +108,20 @@
       "documentation": { "example": "\"2016-10-06T01:08:03.420+10\"" }
     },
     "ID": {
-      "documentation": { 
+      "documentation": {
         "description": "The `ID` scalar type represents a unique identifier",
-        "example": "\"0c8e21a6-fe09-4835-84e1-d9531ad24728\"" 
+        "example": "\"0c8e21a6-fe09-4835-84e1-d9531ad24728\""
       }
     }
   },
-  "INPUT_OBJECT": {}
+  "INPUT_OBJECT": {
+    "LoginInput": { "documentation": { "undocumented": true } },
+    "RefreshTokenInput": { "documentation": { "undocumented": true } },
+    "ForgotPasswordInput": { "documentation": { "undocumented": true } },
+    "NewPasswordWithCodeInput": { "documentation": { "undocumented": true } },
+    "RegisterInput": { "documentation": { "undocumented": true } },
+    "SocialLoginInput": { "documentation": { "undocumented": true } },
+    "VerifyEmailInput": { "documentation": { "undocumented": true } },
+    "UpdatePassword": { "documentation": { "undocumented": true } }
+  }
 }
