@@ -30,9 +30,10 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.2",
         "mll-lab/graphql-php-scalars": "^4.0",
+        "mstaack/laravel-postgis": "dev-dependency-fix",
         "nuwave/lighthouse": "^5.3",
         "solarium/solarium": "^6.1",
-        "mstaack/laravel-postgis": "dev-dependency-fix"
+        "zanysoft/laravel-zip": "^1.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
