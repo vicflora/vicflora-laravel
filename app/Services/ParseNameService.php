@@ -20,6 +20,7 @@ namespace App\Services;
 
 use Illuminate\Support\Facades\DB;
 use GuzzleHttp\Client;
+use stdClass;
 
 /**
  * ParseNameService
@@ -69,7 +70,7 @@ class ParseNameService {
                 'scientific_name' => $name,
                 'type' => 'UNPARSED'
             ]
-            );
+        );
     }
 
     /**
@@ -150,5 +151,40 @@ class ParseNameService {
         };
 
         return DB::table('mapper.parsed_names')->insertGetId($insert);
+    }
+
+    /**
+     * Update a parsed name record
+     *
+     * @param object $parsed_name
+     * @param object|boolean $matched_name
+     * @return integer
+     */
+    public function updateUnparsedName($id, $parsed_name, $matched_name=false)
+    {
+        $now = date('Y-m-d H:i:s');
+
+        $update = [
+            'created_at' => $now,
+            'updated_at' => $now,
+            'scientific_name' => $parsed_name->scientificName,
+            'type' => $parsed_name->type,
+            'genus_or_above' => isset($parsed_name->genusOrAbove) ? $parsed_name->genusOrAbove : null,
+            'specific_epithet' => isset($parsed_name->specificEpithet) ? $parsed_name->specificEpithet: null,
+            'authorship' => isset($parsed_name->authorship) ? $parsed_name->authorship : null,
+            'bracket_authorship' => isset($parsed_name->bracketAuthorship) ? $parsed_name->bracketAuthorship : null,
+            'authors_parsed' => (bool) $parsed_name->parsed,
+            'canonical_name' => isset($parsed_name->canonicalName) ? $parsed_name->canonicalName : null,
+            'canonical_name_with_marker' => isset($parsed_name->canonicalNameWithMarker) ? $parsed_name->canonicalNameWithMarker : null,
+            'canonical_name_complete' => isset($parsed_name->canonicalNameComplete) ? $parsed_name->canonicalNameComplete : null,
+            'rank_marker' => isset($parsed_name->rankMarker) ? $parsed_name->rankMarker : null,
+        ];
+
+        if ($matched_name) {
+            $update['vicflora_scientific_name_id'] = $matched_name->scientific_name_id;
+            $update['name_match_type'] = $matched_name->match_type;
+        };
+
+        DB::table('mapper.parsed_names')->where('id', $id)->update($update);
     }
 }
