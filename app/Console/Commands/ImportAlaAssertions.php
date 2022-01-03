@@ -16,7 +16,7 @@ class ImportAlaAssertions extends Command
      *
      * @var string
      */
-    protected $signature = 'mapper:import-ala-assertions';
+    protected $signature = 'mapper:import-ala-assertions {--source=AVH}';
 
     /**
      * The console command description.
@@ -51,7 +51,8 @@ class ImportAlaAssertions extends Command
             $establishment_means[$val->value] = $val->id;
         }
 
-        $file = new SplFileObject(storage_path('app/ala/assertions_avh.csv'), 'r');
+        $source = $this->option('source') === 'VBA' ? 'vba' : 'avh';
+        $file = new SplFileObject(storage_path("app/ala/assertions_{$source}.csv"), 'r');
         $file->seek(PHP_INT_MAX);
         $max = $file->key();
         $file->rewind();
