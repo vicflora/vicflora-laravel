@@ -88,7 +88,7 @@ class DataMigrateAuthors extends Command
                             $agentType = AgentType::where('name', 'Other')->first();
                         }
                     }
-                    
+
                 }
                 else {
                     $agentType = AgentType::where('name', 'Organization')->first();
@@ -192,7 +192,7 @@ class DataMigrateAuthors extends Command
                 ->where('n.Author', 'not like', DB::raw("concat('%', r.Author)"))
                 ->select('r.guid', DB::raw("trim(r.author) as author"))
                 ->get();
-        
+
         foreach ($protoAuthors as $author) {
             $agent = Agent::where('name', $author->author)->first();
             if (!$agent) {
@@ -205,11 +205,13 @@ class DataMigrateAuthors extends Command
             }
 
             $reference = Reference::where('guid', $author->guid)->first();
-            $reference->author_id = $agent->id;
-            $reference->save();
+            if ($reference) {
+                $reference->author_id = $agent->id;
+                $reference->save();
+            }
         }
 
-        
+
     }
 
     private function splitAuthorString($str)

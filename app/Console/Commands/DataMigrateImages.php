@@ -6,6 +6,7 @@ use App\Models\Image;
 use App\Models\TaxonConcept;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\QueryException;
 
 class DataMigrateImages extends Command
 {
@@ -87,47 +88,52 @@ class DataMigrateImages extends Command
                 ->get();
 
         foreach($images as $img) {
-            Image::create([
-                // 'timestamp_created' => $img->timestamp_created,
-                // 'timestamp_modified' => $img->timestamp_modified,
-                'version' => $img->version,
-                'asset_creation_date' => $img->asset_creation_date,
-                'caption' => $img->caption,
-                'catalog_number' => $img->catalog_number,
-                'copyright_owner' => $img->copyright_owner,
-                'country' => $img->country,
-                'country_code' => $img->country_code,
-                'creation_date' => $img->creation_date,
-                'creator' => $img->creator,
-                'cumulus_catalog' => $img->cumulus_catalog,
-                'cumulus_record_id' => $img->cumulus_record_id,
-                'cumulus_record_name' => $img->cumulus_record_name,
-                'decimal_latitude' => $img->decimal_latitude,
-                'decimal_longitude' => $img->decimal_longitude,
-                'hero_image' => $img->hero_image,
-                'license' => $img->license,
-                'locality' => $img->locality,
-                'modified' => $img->modified,
-                'originating_program' => $img->originating_program,
-                'pixel_x_dimension' => $img->pixel_x_dimension,
-                'pixel_y_dimension' => $img->pixel_y_dimension,
-                'rating' => $img->rating,
-                'recorded_by' => $img->recorded_by,
-                'record_number' => $img->record_number,
-                'rights' => $img->rights,
-                'scientific_name' => $img->scientific_name,
-                'source' => $img->source,
-                'state_province' => $img->state_province,
-                'subject_category' => $img->subject_category,
-                'subject_orientation' => $img->subject_orientation,
-                'subject_part' => $img->subject_part,
-                'subtype' => $img->subtype,
-                'title' => $img->title,
-                'type' => $img->type,
-                'uid' => $img->uid,
-                'taxon_id' => TaxonConcept::where('guid', $img->taxon_guid)->value('id'),
-                'accepted_id' => TaxonConcept::where('guid', $img->taxon_guid)->value('id'),
-            ]);
+            try {
+                Image::create([
+                    // 'timestamp_created' => $img->timestamp_created,
+                    // 'timestamp_modified' => $img->timestamp_modified,
+                    'version' => $img->version,
+                    'asset_creation_date' => $img->asset_creation_date,
+                    'caption' => $img->caption,
+                    'catalog_number' => $img->catalog_number,
+                    'copyright_owner' => $img->copyright_owner,
+                    'country' => $img->country,
+                    'country_code' => $img->country_code,
+                    'creation_date' => $img->creation_date,
+                    'creator' => $img->creator,
+                    'cumulus_catalog' => $img->cumulus_catalog,
+                    'cumulus_record_id' => $img->cumulus_record_id,
+                    'cumulus_record_name' => $img->cumulus_record_name,
+                    'decimal_latitude' => $img->decimal_latitude,
+                    'decimal_longitude' => $img->decimal_longitude,
+                    'hero_image' => $img->hero_image,
+                    'license' => $img->license,
+                    'locality' => $img->locality,
+                    'modified' => $img->modified,
+                    'originating_program' => $img->originating_program,
+                    'pixel_x_dimension' => $img->pixel_x_dimension,
+                    'pixel_y_dimension' => $img->pixel_y_dimension,
+                    'rating' => $img->rating,
+                    'recorded_by' => $img->recorded_by,
+                    'record_number' => $img->record_number,
+                    'rights' => $img->rights,
+                    'scientific_name' => $img->scientific_name,
+                    'source' => $img->source,
+                    'state_province' => $img->state_province,
+                    'subject_category' => $img->subject_category,
+                    'subject_orientation' => $img->subject_orientation,
+                    'subject_part' => $img->subject_part,
+                    'subtype' => $img->subtype,
+                    'title' => $img->title,
+                    'type' => $img->type,
+                    'uid' => $img->uid,
+                    'taxon_id' => TaxonConcept::where('guid', $img->taxon_guid)->value('id'),
+                    'accepted_id' => TaxonConcept::where('guid', $img->taxon_guid)->value('id'),
+                ]);
+            }
+            catch (QueryException $e) {
+                echo "Taxon Concept {$img->taxon_guid} not found. Image skipped.\n";
+            }
         }
     }
 }

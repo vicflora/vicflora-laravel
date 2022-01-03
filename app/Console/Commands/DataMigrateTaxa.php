@@ -56,16 +56,20 @@ class DataMigrateTaxa extends Command
                 ->leftJoin('vicflora_taxon as p', 't.ParentID', '=', 'p.TaxonID')
                 ->leftJoin('users as cb', 't.CreatedByID', '=', 'cb.UsersID')
                 ->leftJoin('users as mb', 't.ModifiedByID', '=', 'mb.UsersID')
-                ->select('t.guid', 't.sensu', 
-                        't.TaxonomicStatus as taxonomic_status',
+                ->leftJoin('vicflora_taxontree as tt', 't.TaxonID', '=', 'tt.TaxonID')
+                ->select('t.guid', 't.sensu',
+                        DB::raw("coalesce(t.TaxonomicStatus, 'undefined') as taxonomic_status"),
                         't.OccurrenceStatus as occurrence_status',
                         't.EstablishmentMeans as establishment_means',
                         't.RankID as rank_id',
-                        'n.guid as name_guid', 
+                        'n.guid as name_guid',
                         'a.guid as accepted_guid', 'p.guid as parent_guid',
                         'cb.Email as created_by', 'mb.Email as modified_by',
-                        't.TimestampCreated as created_at', 
+                        't.TimestampCreated as created_at',
                         't.TimestampModified as updated_at')
+                ->whereNotNull('tt.TaxonTreeID')
+                ->orWhere('t.TaxonomicStatus', '!=', 'accepted')
+                ->orWhereNull('t.TaxonomicStatus')
                 ->get();
 
         $undefined = TaxonTreeDefItem::where('name', 'undefined')->first();
@@ -105,7 +109,7 @@ class DataMigrateTaxa extends Command
                     ]);
                 }
             }
-            
+
             if ($taxon->establishment_means) {
                 $establishmentMeans = EstablishmentMeans::where('name', Str::camel($taxon->establishment_means))
                         ->first();
@@ -130,7 +134,7 @@ class DataMigrateTaxa extends Command
                     ]);
                 }
             }
-            
+
             TaxonConcept::create([
                 'guid' => $taxon->guid,
                 'according_to_id' => $taxon->sensu ? $sensu->id : null,
@@ -150,7 +154,7 @@ class DataMigrateTaxa extends Command
         foreach ($taxa as $taxon) {
             $concept = TaxonConcept::where('guid', $taxon->guid)->first();
             $concept->parent_id = TaxonConcept::where('guid', $taxon->parent_guid)->value('id');
-            $concept->accepted_id = $taxon->guid != $taxon->accepted_guid ? 
+            $concept->accepted_id = $taxon->guid != $taxon->accepted_guid ?
                     TaxonConcept::where('guid', $taxon->accepted_guid)->value('id')
                     : null;
             $concept->save();

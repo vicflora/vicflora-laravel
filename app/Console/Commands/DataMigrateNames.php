@@ -46,20 +46,42 @@ class DataMigrateNames extends Command
     {
         $conn = DB::connection('mysql');
 
+        /*
+	select n.NameID
+	from vicflora_name n
+	join vicflora_taxon t on n.NameID=t.NameID
+    left join vicflora_taxontree tr on t.TaxonID=tr.TaxonID
+	where TaxonomicStatus='accepted'
+	  and tr.TaxonTreeID is null
+	group by n.NameID) as sub on sub.NameID=n.NameID
+
+        */
+
+        $unclassified = $conn->table('vicflora_name as n')
+                ->join('vicflora_taxon as t', 'n.NameID', '=', 't.NameID')
+                ->leftJoin('vicflora_taxontree as tr', 't.TaxonID', '=', 'tr.TaxonID')
+                ->where('t.TaxonomicStatus', 'accepted')
+                ->whereNull('tr.TaxonTreeID')
+                ->select('n.NameID');
+
         $names = $conn->table('vicflora_name as n')
                 ->leftJoin('vicflora_reference as r', 'n.ProtologueID', '=', 'r.ReferenceID')
                 ->leftJoin('users as cb', 'n.CreatedByID', '=', 'cb.UsersID')
                 ->leftJoin('users as mb', 'n.ModifiedByID', '=', 'mb.UsersID')
-                ->select('n.guid', 'n.Name as name_element', 
-                        'n.FullName as full_name', 'n.author', 
-                        'n.FullNameWithAuthor as full_name_with_authorship', 
+                ->leftJoinSub($unclassified, 'sub', function($join) {
+                    $join->on('n.NameID', '=', 'sub.NameID');
+                })
+                ->whereNull('sub.NameID')
+                ->select('n.guid', 'n.Name as name_element',
+                        'n.FullName as full_name', 'n.author',
+                        'n.FullNameWithAuthor as full_name_with_authorship',
                         'n.NomenclaturalNote as nomenclatural_note',
-                        'n.name_type', 'r.GUID as protologue_guid', 
+                        'n.name_type', 'r.GUID as protologue_guid',
                         'cb.Email as created_by', 'mb.Email as modified_by',
-                        'n.TimestampCreated as created_at', 
+                        'n.TimestampCreated as created_at',
                         'n.TimestampModified as updated_at')
                 ->get();
-        
+
         foreach ($names as $name) {
             if ($name->name_type) {
                 $nameType = NameType::where('name', Str::camel($name->name_type))

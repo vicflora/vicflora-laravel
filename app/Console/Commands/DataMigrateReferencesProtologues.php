@@ -43,13 +43,25 @@ class DataMigrateReferencesProtologues extends Command
     {
         $conn = DB::connection('mysql');
 
+        $unclassified = $conn->table('vicflora_name as n')
+                ->join('vicflora_taxon as t', 'n.NameID', '=', 't.NameID')
+                ->leftJoin('vicflora_taxontree as tr', 't.TaxonID', '=', 'tr.TaxonID')
+                ->where('t.TaxonomicStatus', 'accepted')
+                ->whereNull('tr.TaxonTreeID')
+                ->whereNotNull('n.ProtologueID')
+                ->select('n.ProtologueID');
+
         $protologues = $conn->table('vicflora_reference as r')
                 ->leftJoin('users as cb', 'r.CreatedByID', '=', 'cb.UsersID')
                 ->leftJoin('users as mb', 'r.CreatedByID', '=', 'mb.UsersID')
+                ->leftJoinSub($unclassified, 'sub', function($join) {
+                    $join->on('r.ReferenceID', '=', 'sub.ProtologueID');
+                })
+                ->whereNull('sub.ProtologueID')
                 ->where('r.ReferenceType', 'Protologue')
-                ->select('r.guid', DB::raw('coalesce(r.JournalOrBook, r.Title) as title'), 
+                ->select('r.guid', DB::raw('coalesce(r.JournalOrBook, r.Title) as title'),
                         'r.volume', 'r.page', 'r.PublicationYear as publication_year',
-                        'cb.Email as created_by', 'mb.Email as modified_by', 
+                        'cb.Email as created_by', 'mb.Email as modified_by',
                         'r.TimestampCreated as created_at',
                         'r.TimestampModified as updated_at')
                 ->get();

@@ -38,10 +38,12 @@ class MigrateAll extends Command
      */
     public function handle()
     {
-        $this->info('Roll back migrations...');
-        $this->call('migrate:rollback');
-        $this->info('Running migrations...');
-        $this->call('migrate');
+        // $this->info('Roll back migrations...');
+        // $this->call('migrate:rollback');
+        // $this->info('Running migrations...');
+        // $this->call('migrate');
+        $this->info('Drop all tables and re-run all migrations');
+        $this->call('migrate:fresh');
         $this->info('Create administrator agent...');
         $this->call('data:migrate:create-first-agent');
         $this->info('Create agent types...');
