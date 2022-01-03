@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use MStaack\LaravelPostgis\Eloquent\PostgisTrait;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
@@ -24,28 +26,21 @@ use Illuminate\Database\Eloquent\Builder;
  * @property string $occurrence_status_source
  * @property string $establishment_means
  * @property string $establishment_means_source
- * 
+ *
  * @property string $type
  * @property array<mixed> $geometry
  * @property array<mixed> $properties
  */
 class Occurrence extends Model
 {
-    use HasFactory;
-
-    /**
-     * The database connection that should be used by the model.
-     *
-     * @var string
-     */
-    protected $connection = 'mapper';
+    use PostgisTrait;
 
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'occurrence_view';
+    protected $table = 'mapper.occurrences';
 
     /**
      * The primary key associated with the table.
@@ -60,6 +55,48 @@ class Occurrence extends Model
      * @var string
      */
     protected $keyType = 'string';
+
+    public $incrementing = false;
+
+    protected $fillable = [
+        'uuid',
+        'parsed_name_id',
+        'data_resource_uid',
+        'data_source_id',
+        'bioregion_id',
+        'nrm_region_id',
+        'scientific_name_id',
+        'created_at',
+        'updated_at',
+        'institution_code',
+        'collection_code',
+        'catalog_number',
+        'scientific_name',
+        'unprocessed_scientific_name',
+        'latitude',
+        'longitude',
+        'geom',
+        'deleted_at',
+        'taxon_id',
+        'data_source_id',
+    ];
+
+    /**
+     * @var array
+     */
+    protected $postgisFields = [
+        'geom'
+    ];
+
+    /**
+     * @var array
+     */
+    protected $postgisTypes = [
+        'geom' => [
+            'geomtype' => 'GEOMETRY',
+            'srid' => 4326
+        ]
+    ];
 
     public function getTypeAttribute()
     {
