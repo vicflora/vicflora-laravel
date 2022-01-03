@@ -76,7 +76,8 @@ class ImportAlaAssertions extends Command
                         'occurrence_id' => $occurrence->uuid,
                         'term_id' => 2,
                         'term_value_id' => $establishment_means[$row['establishment_means']],
-                        'assertion_source_id' => 2
+                        'assertion_source_id' => 2,
+                        'assetion_source_id' => 2,
                     ]);
 
                 }
