@@ -76,9 +76,11 @@ class ImportAlaAssertions extends Command
                     Assertion::create([
                         'occurrence_id' => $occurrence->uuid,
                         'term_id' => 2,
-                        'term_value_id' => $establishment_means[$row['establishment_means']],
+                        'term_value_id' => 
+                            $establishment_means[$row['establishment_means'] === 'managed' 
+                            ? 'cultivated' : $row['establishment_means']],
                         'assertion_source_id' => 2,
-                        'assetion_source_id' => 2,
+                        'assetion_source_id' => $source === 'avh' ? 2 : 3,
                     ]);
 
                 }
