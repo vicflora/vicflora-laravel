@@ -2,13 +2,13 @@
 
 /**
  * Copyright 2021 Royal Botanic Gardens Victoria
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -138,6 +138,12 @@ class SolariumUpdateService
         return $query->get();
     }
 
+    public function getSqlString()
+    {
+        $query = $this->buildQuery();
+        return $query->toSql();
+    }
+
     public function buildQuery()
     {
         $children = DB::table('taxon_concepts')
@@ -156,11 +162,11 @@ class SolariumUpdateService
         $lgas = DB::table('mapper.taxon_local_government_areas')
                 ->select('taxon_concept_id', DB::raw("json_agg(local_government_area_name) as local_government_areas"))
                 ->groupBy('taxon_concept_id');
-        
+
         $parks = DB::table('mapper.taxon_park_reserves')
                 ->select('taxon_concept_id', DB::raw("json_agg(park_reserve_name) as park_reserves"))
                 ->groupBy('taxon_concept_id');
-        
+
         $query = DB::table('taxon_concepts as t')
                 ->join('taxon_names as n', 't.taxon_name_id', '=', 'n.id')
                 ->leftJoin('taxon_tree_def_items as r', 't.taxon_tree_def_item_id', '=', 'r.id')
@@ -243,9 +249,9 @@ class SolariumUpdateService
                 })
 
                 ->select(
-                        't.guid as id', 
+                        't.guid as id',
                         'n.guid as name_id',
-                        'n.full_name', 
+                        'n.full_name',
                         'n.authorship',
                         'nt.name as name_type',
                         'ns.name as nomenclatural_status',
@@ -272,7 +278,7 @@ class SolariumUpdateService
                 );
 
         $species = <<<SQL
-case 
+case
     when td0.name='species' then tn0.full_name
     when td1.name='species' then tn1.full_name
     else null
@@ -281,7 +287,7 @@ SQL;
         $query->addSelect(DB::raw($species));
 
         $genus = <<<SQL
-case 
+case
     when td0.name='genus' then tn0.full_name
     when td1.name='genus' then tn1.full_name
     when td2.name='genus' then tn2.full_name
@@ -289,9 +295,9 @@ case
 end as genus
 SQL;
         $query->addSelect(DB::raw($genus));
-        
+
         $family = <<<SQL
-case 
+case
     when td0.name='family' then tn0.full_name
 	when td1.name='family' then tn1.full_name
 	when td2.name='family' then tn2.full_name
@@ -305,9 +311,9 @@ case
 end as family
 SQL;
         $query->addSelect(DB::raw($family));
-        
+
         $order = <<<SQL
-case 
+case
     when td0.name='order' then tn0.full_name
 	when td1.name='order' then tn1.full_name
 	when td2.name='order' then tn2.full_name
@@ -323,7 +329,7 @@ SQL;
         $query->addSelect(DB::raw($order));
 
         $class = <<<SQL
-case 
+case
     when td0.name='class' then tn0.full_name
 	when td1.name='class' then tn1.full_name
 	when td2.name='class' then tn2.full_name
@@ -339,7 +345,7 @@ SQL;
         $query->addSelect(DB::raw($class));
 
         $phylum = <<<SQL
-case 
+case
     when td0.name='phylum' then tn0.full_name
 	when td1.name='phylum' then tn1.full_name
 	when td2.name='phylum' then tn2.full_name
@@ -357,7 +363,7 @@ SQL;
         $query->addSelect(DB::raw($phylum));
 
         $kingdom = <<<SQL
-case 
+case
     when td0.name='kingdom' then tn0.full_name
 	when td1.name='kingdom' then tn1.full_name
 	when td2.name='kingdom' then tn2.full_name
@@ -375,7 +381,7 @@ SQL;
         $query->addSelect(DB::raw($kingdom));
 
         $endOrHigher = <<<SQL
-case 
+case
   	when ct.parent_id is not null then 'higher'
 	else 'end'
 end as end_or_higher_taxon
@@ -383,7 +389,7 @@ SQL;
         $query->addSelect(DB::raw($endOrHigher));
 
         $genericName = <<<SQL
-case 
+case
     when n.full_name like '% %' then substring(n.full_name for position(' ' in n.full_name)-1)
 	else null
 end as generic_name
@@ -391,7 +397,7 @@ SQL;
         $query->addSelect(DB::raw($genericName));
 
         $specificEpithet = <<<SQL
-case 
+case
   	when n.full_name like '% %' and pn.full_name not like '% %' then n.name_part
 	when pn.full_name like '% %' then pn.name_part
 	else null
@@ -400,7 +406,7 @@ SQL;
         $query->addSelect(DB::raw($specificEpithet));
 
         $infraspecificEpithet = <<<SQL
-case 
+case
   	when pn.full_name like '% %' then n.name_part
 	else null
 end as infraspecific_epithet
