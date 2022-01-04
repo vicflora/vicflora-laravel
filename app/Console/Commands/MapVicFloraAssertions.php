@@ -6,6 +6,7 @@ use App\Models\Assertion;
 use App\Models\Occurrence;
 use App\Models\TermValue;
 use Illuminate\Console\Command;
+use Illuminate\Support\Str;
 
 class MapVicFloraAssertions extends Command
 {
@@ -60,8 +61,10 @@ class MapVicFloraAssertions extends Command
                 foreach ($line as $key => $value) {
                     $row[$firstRow[$key]] = $value ?: null;
                 }
-                if (!is_numeric($row['catalog_number'])) {
-
+                if (is_numeric($row['catalog_number'])) {
+                    $row['catalog_number'] = floor($row['catalog_number']);
+                }
+                if ($row['asserted_value']) {
                     // $occurrence = Occurrence::where('catalog_number', $row['catalog_number'])->first();
                     $occurrence = Occurrence::whereRaw("replace(catalog_number, ' ', '')='" . str_replace(' ', '', $row['catalog_number']) . "'")
                             ->first();
@@ -69,6 +72,15 @@ class MapVicFloraAssertions extends Command
                     if ($occurrence) {
                         $this->info($occurrence->uuid);
                         $term_value = TermValue::where('value', $row['asserted_value'])->first();
+
+                        if (!$term_value) {
+                            $fill = [
+                                'term_id' => $row['term'] === 'occurrenceStatus' ? 1 : 2,
+                                'value' => $row['asserted_value'],
+                                'label' => Str::title($row['asserted_value']),
+                            ];
+                            $term_value = TermValue::create($fill);
+                        }
 
                         Assertion::create([
                             'occurrence_id' => $occurrence->uuid,
