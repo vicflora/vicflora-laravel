@@ -42,7 +42,7 @@ class DataMigrateSpecimenImages extends Command
     {
         $conn = DB::connection('mysql');
 
-        $images = $conn->table('vicflora_specimen_images as i')
+        $query = $conn->table('vicflora_specimen_images as i')
                 ->join('vicflora_taxon as t', 'i.taxon_id', '=', 't.TaxonID')
                 ->join('vicflora_taxon as a', 'i.accepted_id', '=', 'a.TaxonID')
                 ->select('i.cumulus_record_id',
@@ -56,8 +56,10 @@ class DataMigrateSpecimenImages extends Command
                         'i.pixel_y_dimension',
                         'i.scientific_name',
                         't.guid as taxon_guid',
-                        'a.guid as accepted_guid')
-                ->get();
+                        'a.guid as accepted_guid');
+
+        // $this->info($query->toSql());
+        $images = $query->get();
 
         foreach ($images as $image) {
 
@@ -66,21 +68,32 @@ class DataMigrateSpecimenImages extends Command
                 $catalogNumber = str_replace('_', '', $catalogNumber);
             }
 
-            SpecimenImage::create([
-                'cumulus_record_id' => $image->cumulus_record_id,
-                'record_name' => $image->record_name,
-                'catalog_number' => $catalogNumber,
-                'ala_image_guid' => $image->ala_image_uuid,
-                'title' => $image->title,
-                'caption' => $image->caption,
-                'originating_program' => $image->originating_program,
-                'subject_category' => $image->subject_category,
-                'pixel_x_dimension' => $image->pixel_x_dimension,
-                'pixel_y_dimension' => $image->pixel_y_dimension,
-                'scientific_name' => $image->scientific_name,
-                'taxon_concept_id' => TaxonConcept::where('guid', $image->taxon_guid)->value('id'),
-                'accepted_id' => TaxonConcept::where('guid', $image->accepted_guid)->value('id')
-            ]);
+            $taxonConceptId = TaxonConcept::where('guid', $image->taxon_guid)->value('id');
+            $acceptedId = TaxonConcept::where('guid', $image->accepted_guid)->value('id');
+
+            if ($taxonConceptId && $acceptedId) {
+                SpecimenImage::create([
+                    'cumulus_record_id' => $image->cumulus_record_id,
+                    'record_name' => $image->record_name,
+                    'catalog_number' => $catalogNumber,
+                    'ala_image_guid' => $image->ala_image_uuid,
+                    'title' => $image->title,
+                    'caption' => $image->caption,
+                    'originating_program' => $image->originating_program,
+                    'subject_category' => $image->subject_category,
+                    'pixel_x_dimension' => $image->pixel_x_dimension,
+                    'pixel_y_dimension' => $image->pixel_y_dimension,
+                    'scientific_name' => $image->scientific_name,
+                    'taxon_concept_id' => $taxonConceptId,
+                    'accepted_id' => TaxonConcept::where('guid', $image->accepted_guid)->value('id')
+                ]);
+            }
+            elseif (!$taxonConceptId) {
+                $this->info("Taxon concept not in system: {$image->scientific_name} ({$image->taxon_guid})");
+            }
+            else {
+                $this->info("Accepted concept not in system: {$image->accepted_guid}");
+            }
         }
     }
 }

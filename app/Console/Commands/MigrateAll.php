@@ -68,13 +68,10 @@ class MigrateAll extends Command
         $this->call('data:migrate:profiles');
         $this->info('Load images...');
         $this->call('data:migrate:images');
+        $this->info('Load specimen images...');
+        $this->call('data:migrate:specimen-images');
         $this->info('Create taxon tree...');
         $this->call('data:create-taxon-tree');
-
-        // $this->info('Create home page highlights');
-        // $this->call('data:highlights');
-        // $this->info('Create carousel slides');
-        // $this->call('data:carousel-slides');
 
         $this->info('');
         $this->info('Done for now.');
