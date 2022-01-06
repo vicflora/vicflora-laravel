@@ -44,7 +44,7 @@ class TaxonOccurrence extends Model
      */
     public function taxonConcept(): BelongsTo
     {
-        return $this->belongsTo(TaxonConcept::class, 'taxon_concept_id', 
+        return $this->belongsTo(TaxonConcept::class, 'taxon_concept_id',
                 'guid');
     }
 
@@ -77,7 +77,7 @@ class TaxonOccurrence extends Model
      */
     public function acceptedNameUsage(): BelongsTo
     {
-        return $this->belongsTo(TaxonConcept::class, 'accepted_name_usage_id', 
+        return $this->belongsTo(TaxonConcept::class, 'accepted_name_usage_id',
                 'guid');
     }
 
@@ -86,7 +86,7 @@ class TaxonOccurrence extends Model
      */
     public function occurrenceStatus(): BelongsTo
     {
-        return $this->belongsTo(OccurrenceStatus::class, 'occurrence_status', 
+        return $this->belongsTo(OccurrenceStatus::class, 'occurrence_status',
                 'name');
     }
 
@@ -95,7 +95,7 @@ class TaxonOccurrence extends Model
      */
     public function establishmentMeans(): BelongsTo
     {
-        return $this->belongsTo(EstablishmentMeans::class, 
+        return $this->belongsTo(EstablishmentMeans::class,
                 'establishment_means', 'name');
     }
 
@@ -104,7 +104,7 @@ class TaxonOccurrence extends Model
      */
     public function degreeOfEstablishment(): BelongsTo
     {
-        return $this->belongsTo(DegreeOfEstablishment::class, 
+        return $this->belongsTo(DegreeOfEstablishment::class,
                 'degree_of_establishment', 'name');
     }
 
@@ -136,7 +136,7 @@ class TaxonOccurrence extends Model
     {
         return [
             'uuid' => $this->occurrence_id,
-            'data_source' => $this->data_source,
+            'dataSource' => $this->data_source,
             'catalogNumber' => $this->catalog_number,
             'taxonId' => $this->taxon_id,
             'speciesId' => $this->species_id,
