@@ -58,7 +58,7 @@ class TaxonConcept extends BaseModel
 {
     /**
      * The "type" of the auto-incrementing ID.
-     * 
+     *
      * @var string
      */
     protected $keyType = 'integer';
@@ -66,10 +66,10 @@ class TaxonConcept extends BaseModel
     /**
      * @var array
      */
-    protected $fillable = ['created_by_id', 'modified_by_id', 'taxon_name_id', 
-            'according_to_id', 'taxon_tree_def_item_id', 'accepted_id', 'parent_id', 
-            'taxonomic_status_id', 'occurrence_status_id', 'establishment_means_id', 
-            'degree_of_establishment_id', 'created_at', 'updated_at', 'rank_id', 
+    protected $fillable = ['created_by_id', 'modified_by_id', 'taxon_name_id',
+            'according_to_id', 'taxon_tree_def_item_id', 'accepted_id', 'parent_id',
+            'taxonomic_status_id', 'occurrence_status_id', 'establishment_means_id',
+            'degree_of_establishment_id', 'created_at', 'updated_at', 'rank_id',
             'remarks', 'editor_notes', 'version', 'guid'];
 
     /**
@@ -113,7 +113,7 @@ class TaxonConcept extends BaseModel
     }
 
     /**
-     * Get taxonRank 
+     * Get taxonRank
      *
      * @return string|null
      */
@@ -305,9 +305,9 @@ class TaxonConcept extends BaseModel
         if ($this->taxonomicStatus->name === 'accepted') {
             $node = TaxonTreeItem::where('taxon_concept_id', $this->id)
                     ->first();
-            
+
             return TaxonTreeItem::where('node_number', '<', $node->node_number)
-                    ->where('highest_descendant_node_number', '>=', 
+                    ->where('highest_descendant_node_number', '>=',
                             $node->node_number)
                     ->whereHas('taxonConcept', function (Builder $query) {
                         $query->whereHas('taxonName', function (Builder $query) {
@@ -316,7 +316,7 @@ class TaxonConcept extends BaseModel
                     })
                     ->get();
         }
-        return collect([]);                    
+        return collect([]);
     }
 
     /**
@@ -383,7 +383,7 @@ class TaxonConcept extends BaseModel
                 })
                 ->get();
     }
-    
+
 
     /**
      * @return \Illuminate\Database\Eloquent\Collection
@@ -404,13 +404,13 @@ class TaxonConcept extends BaseModel
     {
         return $this->hasMany(TaxonBioregion::class, 'taxon_concept_id', 'guid');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function localGovernmentAreas(): HasMany
     {
-        return $this->hasMany(TaxonLocalGovernmentArea::class, 
+        return $this->hasMany(TaxonLocalGovernmentArea::class,
                 'taxon_concept_id', 'guid');
     }
 
@@ -419,7 +419,7 @@ class TaxonConcept extends BaseModel
      */
     public function parkReserves(): HasMany
     {
-        return $this->hasMany(TaxonParkReserve::class, 'taxon_concept_id', 
+        return $this->hasMany(TaxonParkReserve::class, 'taxon_concept_id',
                 'guid');
     }
 
@@ -428,7 +428,7 @@ class TaxonConcept extends BaseModel
      */
     public function occurrences(): HasMany
     {
-        return $this->hasMany(TaxonOccurrence::class, 'taxon_concept_id', 
+        return $this->hasMany(TaxonOccurrence::class, 'taxon_concept_id',
                 'guid');
     }
 
@@ -529,5 +529,48 @@ class TaxonConcept extends BaseModel
     public function getHasSpecimenImagesAttribute(): bool
     {
         return $this->specimenImagesAccepted()->exists();
+    }
+
+
+    /**
+     * EPBC
+     *
+     * @return string|null
+     */
+    public function getEpbcAttribute(): ?string
+    {
+        $vba = VbaTaxon::where('taxon_name_id', $this->taxon_name_id)->first();
+        if ($vba) {
+            return $vba->epbc;
+        }
+        return null;
+    }
+
+    /**
+     * FFG
+     *
+     * @return string|null
+     */
+    public function getFfgAttribute(): ?string
+    {
+        $vba = VbaTaxon::where('taxon_name_id', $this->taxon_name_id)->first();
+        if ($vba) {
+            return $vba->ffg;
+        }
+        return null;
+    }
+
+    /**
+     * Vic. Advisory List
+     *
+     * @return string|null
+     */
+    public function getVicAdvisoryAttribute(): ?string
+    {
+        $vba = VbaTaxon::where('taxon_name_id', $this->taxon_name_id)->first();
+        if ($vba) {
+            return $vba->vic_adv;
+        }
+        return null;
     }
 }

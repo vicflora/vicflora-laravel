@@ -36,8 +36,15 @@ use App\Models\BaseModel;
 class VbaTaxon extends BaseModel
 {
     /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'vba.vba_taxa';
+
+    /**
      * The "type" of the auto-incrementing ID.
-     * 
+     *
      * @var string
      */
     protected $keyType = 'integer';
@@ -45,16 +52,16 @@ class VbaTaxon extends BaseModel
     /**
      * @var array
      */
-    protected $fillable = ['vba_id','taxon_name_id', 'created_at', 'updated_at', 
-            'scientific_name', 'common_name', 'authority', 'ffg', 'ffg_desc', 
-            'epbc', 'epbc_desc', 'vic_adv', 'vic_adv_desc', 'restriction', 
-            'origin', 'taxon_type', 'vic_life_form', 'fire_response', 
-            'nvis_growth_form', 'treaty', 'discipline', 'taxon_level', 
+    protected $fillable = ['vba_id','taxon_name_id', 'created_at', 'updated_at',
+            'scientific_name', 'common_name', 'authority', 'ffg', 'ffg_desc',
+            'epbc', 'epbc_desc', 'vic_adv', 'vic_adv_desc', 'restriction',
+            'origin', 'taxon_type', 'vic_life_form', 'fire_response',
+            'nvis_growth_form', 'treaty', 'discipline', 'taxon_level',
             'fis_species_number', 'record_modification_date', 'version_date'];
 
     /**
      * Indicates if the model should be timestamped.
-     * 
+     *
      * @var bool
      */
     public $timestamps = true;
