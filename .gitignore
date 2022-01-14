@@ -14,3 +14,5 @@ yarn-error.log
 /public/apidocs*
 !/public/apidocs
 /resources/spectaql/public
+/.vscode
+.styleci.yml
