@@ -17,6 +17,21 @@ type TaxonConcept {
     establishmentMeans: EstablishmentMeansEnum
         @rename(attribute: "establishmentMeansName")
 
+    """
+    Environment Protection and Biodiversity Conservation (EPBC) Act 1999
+    """
+    epbc: IUCNThreatStatusEnum
+
+    """
+    Flora and Fauna Guarantee (FFG) Act 1988
+    """
+    ffg: IUCNThreatStatusEnum
+
+    """
+    Advisory list of rare or threatened plants in Victoria
+    """
+    vicAdvisory: VicAdvisoryEnum
+
     children: [TaxonConcept]
     siblings: [TaxonConcept]
     higherClassification: [TaxonTreeItem]
