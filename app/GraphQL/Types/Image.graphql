@@ -2,7 +2,7 @@ type Image {
     id: ID!
     uid: String!
     assetCreationDate: DateTime @rename(attribute: "asset_creation_date")
-    caption: String
+    caption: String @field(resolver: "\\App\\GraphQL\\Queries\\ImageCaption")
     catalogNumber: String @rename(attribute: "catalog_number")
     copyrightOwner: String @rename(attribute: "copyright_owner")
     country: String
