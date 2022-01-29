@@ -1,6 +1,15 @@
+"""
+The IUCN Red List Categories and Criteria were developed for assessing
+extinction risk at the global level, considering the global population of a
+taxon. The threat statuses in this vocabulary also include two additional
+regional statuses from IUCN used for non-endemic species at regional or national
+levels (RE & NA).
+
+https://rs.gbif.org/vocabulary/iucn/threat_status.xml
+"""
 enum IUCNThreatStatusEnum {
     """
-    Extinct – A taxon is Extinct when there is no reasonable doubt that the last
+    **Extinct** – A taxon is Extinct when there is no reasonable doubt that the last
     individual has died. A taxon is presumed Extinct when exhaustive surveys in
     known and/or expected habitat, at appropriate times (diurnal, seasonal,
     annual), throughout its historic range have failed to record an individual.
@@ -10,7 +19,7 @@ enum IUCNThreatStatusEnum {
     EX
 
     """
-    Extinct in the wild – A taxon is Extinct in the Wild when it is known only
+    **Extinct in the wild** – A taxon is Extinct in the Wild when it is known only
     to survive in cultivation, in captivity or as a naturalized population (or
     populations) well outside the past range. A taxon is presumed Extinct in
     the Wild when exhaustive surveys in known and/or expected habitat, at
@@ -21,7 +30,7 @@ enum IUCNThreatStatusEnum {
     EW
 
     """
-    Regionally extinct – Category for a taxon when there is no reasonable doubt
+    **Regionally extinct** – Category for a taxon when there is no reasonable doubt
     that the last individual potentially capable of reproduction within the
     region has died or has disappeared from the wild in the region, or when,
     if it is a former visiting taxon, the last individual has died or
@@ -32,7 +41,7 @@ enum IUCNThreatStatusEnum {
     RE
 
     """
-    Critically Endangered – A taxon is Critically Endangered when the best
+    **Critically Endangered** – A taxon is Critically Endangered when the best
     available evidence indicates that it meets any of the criteria A to E for
     Critically Endangered (see Section V), and it is therefore considered to be
     facing an extremely high risk of extinction in the wild.
@@ -40,7 +49,7 @@ enum IUCNThreatStatusEnum {
     CR
 
     """
-    Endangered – A taxon is Endangered when the best available evidence
+    **Endangered** – A taxon is Endangered when the best available evidence
     indicates that it meets any of the criteria A to E for Endangered (see
     Section V), and it is therefore considered to be facing a very high risk of
     extinction in the wild.
@@ -48,7 +57,7 @@ enum IUCNThreatStatusEnum {
     EN
 
     """
-    Vulnerable – A taxon is Vulnerable when the best available evidence
+    **Vulnerable** – A taxon is Vulnerable when the best available evidence
     indicates that it meets any of the criteria A to E for Vulnerable (see
     Section V), and it is therefore considered to be facing a high risk of
     extinction in the wild.
@@ -56,7 +65,7 @@ enum IUCNThreatStatusEnum {
     VU
 
     """
-    Near Threatened: A taxon is Near Threatened when it has been evaluated
+    **Near Threatened** – A taxon is Near Threatened when it has been evaluated
     against the criteria but does not qualify for Critically Endangered,
     Endangered or Vulnerable now, but is close to qualifying for or is likely
     to qualify for a threatened category in the near future.
@@ -64,7 +73,7 @@ enum IUCNThreatStatusEnum {
     NT
 
     """
-    Least Concern – A taxon is Least Concern when it has been evaluated against
+    **Least Concern** – A taxon is Least Concern when it has been evaluated against
     the criteria and does not qualify for Critically Endangered, Endangered,
     Vulnerable or Near Threatened. Widespread and abundant taxa are included
     in this category.
@@ -72,7 +81,7 @@ enum IUCNThreatStatusEnum {
     LC
 
     """
-    Data Deficient – A taxon is Data Deficient when there is inadequate
+    **Data Deficient** – A taxon is Data Deficient when there is inadequate
     information to make a direct, or indirect, assessment of its risk of
     extinction based on its distribution and/or population status. A taxon in
     this category may be well studied, and its biology well known, but
@@ -89,7 +98,7 @@ enum IUCNThreatStatusEnum {
     DD
 
     """
-    Not Applicable – Category for a taxon deemed to be ineligible for assessment
+    **Not Applicable** – Category for a taxon deemed to be ineligible for assessment
     at a regional level. A taxon may be NA because it is not a wild population
     or not within its natural range in the region, or because it is a vagrant
     to the region. It may also be NA because it occurs at very low numbers in
@@ -104,7 +113,7 @@ enum IUCNThreatStatusEnum {
     NA
 
     """
-    Not Evaluated – A taxon is Not Evaluated when it is has not yet been
+    **Not Evaluated** – A taxon is Not Evaluated when it is has not yet been
     evaluated against the criteria.
     """
     NE

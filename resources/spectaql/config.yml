@@ -13,7 +13,7 @@ spectaql:
   #     You can then season to taste with your own additional CSS
   #
   # Default: full
-  cssBuildMode: full
+  cssBuildMode: basic
 
 
 introspection:
@@ -233,11 +233,11 @@ info:
   version: 1.0.0-beta
   description: >
     Documentation for the VicFlora GraphQL API<br/><br/>
-    
+
     You'll find the GraphQL endpoint for VicFlora at http://vicflora.test/graphql.<br/><br/>
 
     This endpoint can be queried by GraphQL clients like [GraphiQL](https://github.com/graphql/graphiql)
-    and [Altair](https://altair.sirmuel.design/), as well as general API 
+    and [Altair](https://altair.sirmuel.design/), as well as general API
     platforms like [Postman](https://www.postman.com/) and [Insomnia](https://insomnia.rest/).
 
   # This is non-standard and optional. If omitted, will use "title". Also only relevant
@@ -264,7 +264,7 @@ info:
     #     You'll find the GraphQL endpoint for VicFlora at http://vicflora.test/graphql.
     # - description: >
     #     This endpoint can be queried by GraphQL clients like [GrapiQL](https://github.com/graphql/graphiql)
-    #     and [Altair](https://altair.sirmuel.design/), as well as general API 
+    #     and [Altair](https://altair.sirmuel.design/), as well as general API
     #     platforms like [Postman](https://www.postman.com/) and [Insomnia](https://insomnia.rest/).
 
   # If you really want to hide the "Documentation by" at the bottom of your output, you can do so here
