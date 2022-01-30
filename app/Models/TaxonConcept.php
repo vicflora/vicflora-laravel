@@ -250,7 +250,7 @@ class TaxonConcept extends BaseModel
     public function getCurrentProfileAttribute()
     {
         if ($this->taxonomicStatus->name == 'accepted') {
-            return Profile::where('taxon_concept_id', $this->id)
+            return Profile::where('accepted_id', $this->id)
                     ->where('is_current', true)->first();
         }
         return null;
