@@ -17,21 +17,21 @@ class TaxonConceptMapLinks
         }
         $maps = [];
         $url = env('VICFLORA_MAPPER_WMS_URL');
-        $queryVars = [ 
-            'service' => 'WMS', 
-            'version' => '1.1.0', 
-            'request' => 'GetMap', 
-            'layers' => 'vicflora-mapper:victoria_outline,vicflora-mapper:taxon_occurrences', 
-            'bbox' => '140.8,-39.3,150.2,-33.8', 
-            'width' => '600', 
-            'height' => '363', 
-            'srs' => 'EPSG:4326', 
+        $queryVars = [
+            'service' => 'WMS',
+            'version' => '1.1.0',
+            'request' => 'GetMap',
+            'layers' => 'vicflora-mapper:victoria_outline,vicflora-mapper:taxon_occurrences',
+            'bbox' => '140.8,-39.3,150.2,-33.8',
+            'width' => '600',
+            'height' => '363',
+            'srs' => 'EPSG:4326',
             'format' => 'image/png',
             'transparent' => 'true',
-            'cql_filter' => "INCLUDE;" . 
-                    "taxon_concept_id='{$taxonConcept->guid}' " . 
+            'cql_filter' => "INCLUDE;" .
+                    "accepted_name_usage_id='{$taxonConcept->guid}' " .
                     "AND establishment_means NOT IN ('cultivated') " .
-                    "AND occurrence_status NOT IN ('doubtful','absent', 'excluded')"            
+                    "AND occurrence_status NOT IN ('doubtful','absent', 'excluded')"
         ];
 
         $maps['profileMap'] = $url . '?' . http_build_query($queryVars);
@@ -40,14 +40,14 @@ class TaxonConceptMapLinks
         $nameSlug = urlencode($name->full_name);
         $year = date('Y');
         $source = <<<EOT
-            AVH ({$year}). <i>Australia's Virtual Herbarium</i>, Council of Heads of 
+            AVH ({$year}). <i>Australia's Virtual Herbarium</i>, Council of Heads of
             Australasian Herbaria, &lt;<a href="https://avh.chah.org.au">http://avh.chah.org.au</a>&gt;.
             <a href="https://avh.ala.org.au/occurrences/search?taxa={$nameSlug}" target="_blank">Find {$name->full_name} in AVH <i class="fa fa-external-link"></i></a>;
             <i>Victorian Biodiversity Atlas</i>, © The State of Victoria, Department of Environment and Primary Industries (published Dec. 2014)
             <a href="https://biocache.ala.org.au/occurrences/search?taxa={$nameSlug}&fq=data_resource_uid:dr1097" target="_blank">Find {$name->full_name} in Victorian Biodiversity Atlas <i class="fa fa-external-link"></i></a>
 EOT;
         $maps['mapSource'] = trim(preg_replace('/\s+/', ' ', $source));
-        
+
         return $maps;
     }
 }
