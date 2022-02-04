@@ -16,8 +16,12 @@ type OccurrenceGeometry {
 
 type OccurrenceProperties {
     uuid: ID!
-    catalogNumber: String
     dataSource: String
+    collection: String
+    catalogNumber: String
+    recordedBy: String
+    recordNumber: String
+    eventDate: String
     scientificName: String
     speciesName: String
     acceptedNameUsage: String
@@ -27,8 +31,6 @@ type OccurrenceProperties {
     occurrenceStatusSource: String
     establishmentMeans: String
     establishmentMeansSource: String
-    # sensitive: Boolean
-    # generalised: Boolean
 }
 
 extend type Query {

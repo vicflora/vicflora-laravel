@@ -137,7 +137,11 @@ class TaxonOccurrence extends Model
         return [
             'uuid' => $this->occurrence_id,
             'dataSource' => $this->data_source,
+            'collection' => $this->collection,
             'catalogNumber' => $this->catalog_number,
+            'recordedBy' => $this->recorded_by,
+            'recordNumber' => $this->record_number,
+            'eventDate' => $this->event_date,
             'taxonId' => $this->taxon_id,
             'speciesId' => $this->species_id,
             'acceptedNameUsageId' => $this->accepted_name_usage_id,
