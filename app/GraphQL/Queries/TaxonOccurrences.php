@@ -12,6 +12,7 @@ class TaxonOccurrences
      */
     public function __invoke($_, array $args)
     {
-        return TaxonOccurrence::where('taxon_concept_id', $args['taxonConceptId']);
+        return TaxonOccurrence::where('taxon_concept_id', $args['taxonConceptId'])
+                ->orderBy('data_source');
     }
 }
