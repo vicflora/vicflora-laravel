@@ -272,11 +272,13 @@ class TaxonConcept extends BaseModel
     public function getChildrenAttribute(): Collection
     {
         if ($this->taxonomicStatus->name === 'accepted') {
-            return TaxonConcept::where('parent_id', $this->id)
-                    ->whereHas('taxonomicStatus', function (Builder $query) {
-                        $query->where('name', 'accepted');
-                    })
-                    ->get();
+            return TaxonConcept::select('taxon_concepts.*', 'taxon_names.full_name')
+                ->join('taxonomic_statuses', 'taxon_concepts.taxonomic_status_id', '=', 'taxonomic_statuses.id')
+                ->join('taxon_names', 'taxon_concepts.taxon_name_id', '=', 'taxon_names.id')
+                ->where('taxon_concepts.parent_id', $this->id)
+                ->where('taxonomic_statuses.name', 'accepted')
+                ->orderBy('full_name')
+                ->get();
         }
         return collect([]);
     }
@@ -287,11 +289,13 @@ class TaxonConcept extends BaseModel
     public function getSiblingsAttribute(): Collection
     {
         if ($this->taxonomicStatus->name === 'accepted') {
-            return TaxonConcept::where('parent_id', $this->parent_id)
-                    ->whereHas('taxonomicStatus', function (Builder $query) {
-                        $query->where('name', 'accepted');
-                    })
-                    ->get();
+            return TaxonConcept::select('taxon_concepts.*', 'taxon_names.full_name')
+                ->join('taxonomic_statuses', 'taxon_concepts.taxonomic_status_id', '=', 'taxonomic_statuses.id')
+                ->join('taxon_names', 'taxon_concepts.taxon_name_id', '=', 'taxon_names.id')
+                ->where('taxon_concepts.parent_id', $this->parent_id)
+                ->where('taxonomic_statuses.name', 'accepted')
+                ->orderBy('full_name')
+                ->get();
         }
         return collect([]);
     }
