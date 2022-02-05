@@ -1,25 +1,25 @@
 type Reference {
     id: ID! @rename(attribute: "guid")
     created: String
-    publicationYear: String
+    publicationYear: String @rename(attribute: "publication_year")
     title: String!
-    shortTitle: String
+    shortTitle: String @rename(attribute: "short_title")
     edition: String
     volume: String
     issue: String
-    pageStart: Int
-    pageEnd: Int
+    pageStart: Int @rename(attribute: "page_start")
+    pageEnd: Int @rename(attribute: "page_end")
     pages: String
-    numberOfPages: String
+    numberOfPages: String @rename(attribute: "number_of_pages")
     publisher: String
-    placeOfPublication: String
-    shortDescription: String
+    placeOfPublication: String @rename(attribute: "place_of_publication")
+    shortDescription: String @rename(attribute: "short_description")
     abstract: String
     isbn: String
     issn: String
     doi: String
     citation: String
-    citationHtml: String
+    citationHtml: String @rename(attribute: "citation_html")
 
     author: Agent
     referenceType: ReferenceTypeEnum @rename(attribute: "referenceTypeName")
