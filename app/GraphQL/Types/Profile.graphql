@@ -11,9 +11,11 @@ type Profile {
     # taxonomicStatus: TaxonomicStatusEnum
     #     @rename(attribute: "taxonomicStatusName")
 
-    createdBy: Agent
-    modifiedBy: Agent
-    createdAt: DateTimeTz
-    updatedAt: DateTimeTz
+    creator: Agent
+    updatedBy: Agent
+    created: Date
+    modified: Date
+    # createdAt: DateTimeTz
+    # updatedAt: DateTimeTz
     version: Int
 }

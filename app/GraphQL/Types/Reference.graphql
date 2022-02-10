@@ -20,6 +20,7 @@ type Reference {
     doi: String
     citation: String
     citationHtml: String @rename(attribute: "citation_html")
+    citationMarkdown: String
 
     author: Agent
     referenceType: ReferenceTypeEnum @rename(attribute: "referenceTypeName")

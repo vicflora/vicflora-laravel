@@ -41,6 +41,7 @@ type TaxonConcept {
     profiles: [Profile]
     profilesAccepted: [Profile]
     currentProfile: Profile
+        @field(resolver: "\\App\\GraphQL\\Queries\\TaxonConceptCurrentProfile")
     heroImage: Image
     hasImages: Boolean
     images: [Image]

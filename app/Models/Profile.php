@@ -3,6 +3,9 @@
 namespace App\Models;
 
 use App\Models\BaseModel;
+use DateTime;
+use DateTimeZone;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property integer $id
@@ -29,7 +32,7 @@ class Profile extends BaseModel
 {
     /**
      * The "type" of the auto-incrementing ID.
-     * 
+     *
      * @var string
      */
     protected $keyType = 'integer';
@@ -88,6 +91,22 @@ class Profile extends BaseModel
     }
 
     /**
+     * @return BelongsTo
+     */
+    public function createdBy(): BelongsTo
+    {
+        return $this->belongsTo(Agent::class, 'created_by_id');
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function updatedBy(): BelongsTo
+    {
+        return $this->belongsTo(Agent::class, 'updated_by_id');
+    }
+
+    /**
      * Set taxonomic_status_id if taxonomicStatusName attribute is provided
      *
      * @param string|null $value
@@ -99,5 +118,69 @@ class Profile extends BaseModel
             $ts = TaxonomicStatus::where('name', $value)->first();
             $this->taxonomic_status_id = $ts->id;
         }
+    }
+
+    /**
+     * Date the first version was created
+     *
+     * @return string|null
+     */
+    public function getCreatedAttribute(): ?string
+    {
+        if (!$this->source_id) {
+            $origProfile = Profile::where('guid', $this->guid)
+                    ->where('version', 1)
+                    ->first();
+            $date = DateTime::createFromFormat('Y-m-d H:i:s',
+                    $origProfile->created_at);
+            return $date->setTimezone(new DateTimeZone('Australia/Melbourne'))
+                    ->format('Y-m-d');
+        }
+        return null;
+    }
+
+    /**
+     * Creator of the first version
+     *
+     * @return Agent|null
+     */
+    public function getCreatorAttribute(): ?Agent
+    {
+        if ($this->is_current && !$this->source_id) {
+            $origProfile = Profile::where('guid', $this->guid)
+                    ->where('version', 1)
+                    ->first();
+            return $origProfile->createdBy;
+        }
+        return null;
+    }
+
+    /**
+     * Date the updated version was created
+     *
+     * @return string|null
+     */
+    public function getModifiedAttribute(): ?string
+    {
+        if ($this->is_updated) {
+            $date = DateTime::createFromFormat('Y-m-d H:i:s',
+                    $this->updated_at);
+            return $date->setTimezone(new DateTimeZone('Australia/Melbourne'))
+                    ->format('Y-m-d');
+        }
+        return null;
+    }
+
+    /**
+     * Creator of the updated version
+     *
+     * @return Agent|null
+     */
+    public function getUpdatedByAttribute(): ?Agent
+    {
+        if ($this->is_updated) {
+            return $this->createdBy;
+        }
+        return null;
     }
 }
