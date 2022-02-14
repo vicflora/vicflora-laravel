@@ -30,7 +30,7 @@ introspection:
   # URL of the GraphQL endpoint to hit if you want to generate the documentation based on live Introspection Query results
   # NOTE: If not using introspection.url OR servers[], you need to provide x-swaggerUrl
   # to satisfy the URL Swagger requirement.
-  # url: http://vicflora,test/graphql
+  # url: http://vicflora.test/graphql
 
   # If using the "url" option above, any headers (such as Authorization) can be added here. This
   # can also be added via the CLI options
@@ -194,8 +194,8 @@ servers:
 
   # same format as for OpenAPI Specification https://swagger.io/specification/#server-object
 
-  - url: http://vicflora.test/graphql
-    description: Development Server
+  - url: https://vicflora-test.rbg.vic.gov.au/graphql
+    description: Development Site
     # Indicates to use this server's URL as the typical GraphQL request base in the documentation
     # If no server entries have this indicator, the first server's URL will be used.
     # If no server entries are defined at all, the Introspection URL will be used.
@@ -230,11 +230,11 @@ info:
   ##############################################
 
   title: VicFlora API
-  version: 1.0.0-beta
+  version: 0.0.1-beta
   description: >
     Documentation for the VicFlora GraphQL API<br/><br/>
 
-    You'll find the GraphQL endpoint for VicFlora at http://vicflora.test/graphql.<br/><br/>
+    You'll find the GraphQL endpoint for VicFlora at https://vicflora-test.rbg.vic.gov.au/graphql.<br/><br/>
 
     This endpoint can be queried by GraphQL clients like [GraphiQL](https://github.com/graphql/graphiql)
     and [Altair](https://altair.sirmuel.design/), as well as general API
@@ -273,4 +273,4 @@ info:
 
   # If not using introspection.url OR servers[], you need to provide x-swaggerUrl
   # to satisfy the URL Swagger requirement. This allows for that.
-  x-swaggerUrl: https://vicflora.test/graphql
+  x-swaggerUrl: https://vicflora-test.rbg.vic.gov.au/graphql
