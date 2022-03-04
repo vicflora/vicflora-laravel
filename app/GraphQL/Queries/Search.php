@@ -18,7 +18,7 @@ class Search
     protected $queryService;
 
     /**
-     * Default download fields; will be used when no field list (fl) is given 
+     * Default download fields; will be used when no field list (fl) is given
      * with the arguments
      *
      * @var array
@@ -32,6 +32,7 @@ class Search
         'family',
         'occurrence_status',
         'establishment_means',
+        'degree_of_establishment',
         'accepted_name_usage_id',
         'accepted_name_usage',
         'accepted_name_usage_authorship',
@@ -44,7 +45,7 @@ class Search
     ];
 
     /**
-     * Default facet fields; will be used when the facetField argument is not 
+     * Default facet fields; will be used when the facetField argument is not
      * set and 'facet' is not false
      *
      * @var array
@@ -55,14 +56,13 @@ class Search
         'taxon_rank',
         'occurrence_status',
         'establishment_means',
+        'degree_of_establishment',
         'threat_status',
         'class',
         'subclass',
         'superorder',
         'order',
         'family',
-        'ibra_7_subregion',
-        'nrm_region',
         'media'
     ];
 
@@ -152,7 +152,7 @@ class Search
         if (isset($args['input']['facetOffset'])) {
             $params['facetOffset'] = $args['input']['facetOffset'];
         }
-        
+
         return $params;
     }
 

@@ -25,6 +25,6 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
-        "spectaql": "^0.11.0"
+        "spectaql": "^0.12.0"
     }
 }

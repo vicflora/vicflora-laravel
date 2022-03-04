@@ -16,6 +16,20 @@ type TaxonConcept {
         @rename(attribute: "occurrenceStatusName")
     establishmentMeans: EstablishmentMeansEnum
         @rename(attribute: "establishmentMeansName")
+    degreeOfEstablishment: DegreeOfEstablishmentEnum
+        @rename(attribute: "degreeOfEstablishmentName")
+    """
+    Endemis to Victoria; does not natively occur outside Victoria.
+    """
+    endemic: Boolean @rename(attribute: "is_endemic")
+
+    """
+    Taxon is native to Victoria, but there are introduced  occurrences in
+    Victoria as well. This flag is used to deal with the 'dual status' from the
+    old vascular plant censuses.
+    """
+    hasIntroducedOccurrences: Boolean
+        @rename(attribute: "has_introduced_occurrences")
 
     """
     Environment Protection and Biodiversity Conservation (EPBC) Act 1999

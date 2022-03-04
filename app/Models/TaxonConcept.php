@@ -514,6 +514,32 @@ class TaxonConcept extends BaseModel
     }
 
     /**
+     * @return string|null
+     */
+    public function getDegreeOfEstablishmentNameAttribute(): ?string
+    {
+        if ($this->establishment_means_id) {
+            $doe = DegreeOfEstablishment::find($this->degree_of_establishment_id);
+            return $doe->name;
+        }
+        return null;
+    }
+
+    /**
+     * Sets taxonomic_status_id, if taxonomicStatusName attribute is supplied
+     *
+     * @param string|null $value
+     * @return void
+     */
+    public function setDegreeOfEstablishmentNameAttribute($value)
+    {
+        if ($value) {
+            $doe = DegreeOfEstablishment::where('name', $value)->first();
+            $this->degree_of_establishment_id = $doe->id;
+        }
+    }
+
+    /**
      * Check if model has associated images
      *
      * @return boolean
@@ -542,7 +568,7 @@ class TaxonConcept extends BaseModel
      */
     public function getEpbcAttribute(): ?string
     {
-        $vba = VbaTaxon::where('taxon_name_id', $this->taxon_name_id)->first();
+        $vba = VbaTaxon::where('taxon_name_id', $this->taxonName->guid)->first();
         if ($vba) {
             return $vba->epbc;
         }
@@ -556,7 +582,7 @@ class TaxonConcept extends BaseModel
      */
     public function getFfgAttribute(): ?string
     {
-        $vba = VbaTaxon::where('taxon_name_id', $this->taxon_name_id)->first();
+        $vba = VbaTaxon::where('taxon_name_id', $this->taxonName->guid)->first();
         if ($vba) {
             return $vba->ffg;
         }
@@ -570,7 +596,7 @@ class TaxonConcept extends BaseModel
      */
     public function getVicAdvisoryAttribute(): ?string
     {
-        $vba = VbaTaxon::where('taxon_name_id', $this->taxon_name_id)->first();
+        $vba = VbaTaxon::where('taxon_name_id', $this->taxonName->guid)->first();
         if ($vba) {
             return $vba->vic_adv;
         }

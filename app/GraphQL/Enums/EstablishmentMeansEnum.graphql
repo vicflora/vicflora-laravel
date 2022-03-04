@@ -1,9 +1,22 @@
 enum EstablishmentMeansEnum {
+    """
+    A taxon occurring within its natural range.
+    """
     NATIVE @enum(value: "native")
+
+    """
+    A taxon re-established by direct introduction by humans into an area that
+    was once part of its natural range, but from where it had become extinct.
+    """
+    NATIVE_REINTRODUCED @enum(attribute: "nativeReintroduced")
+
+    """
+    Establishment of a taxon by human agency into an area that is not part of its natural range.
+    """
     INTRODUCED @enum(value: "introduced")
+
+    """
+    The origin of the occurrence of the taxon in an area is obscure.
+    """
     UNCERTAIN @enum(value: "uncertain")
-    NATURALISED @enum(value: "naturalised")
-    ADVENTIVE @enum(value: "adventive")
-    CULTIVATED @enum(value: "cultivated")
-    NATIVE_DUAL @enum(value: "native(naturalisedInPart(s)OfState)")
 }

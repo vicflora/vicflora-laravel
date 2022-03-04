@@ -11,6 +11,20 @@ type EstablishmentMeans {
     updatedAt: DateTimeTz @rename(attribute: "updated_at")
 }
 
+type DegreeOfEstablishment {
+    id: ID! @rename(attribute: "guid")
+    name: String!
+    uri: String
+    label: String
+    description: String
+
+    createdBy: Agent
+    modifiedBy: Agent
+    createdAt: DateTimeTz @rename(attribute: "created_at")
+    updatedAt: DateTimeTz @rename(attribute: "updated_at")
+}
+
 extend type Query {
     establishmentMeans: [EstablishmentMeans!]! @all
+    degreeOfEstablishment: [DegreeOfEstablishment!]! @all
 }

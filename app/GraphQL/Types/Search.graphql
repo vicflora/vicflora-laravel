@@ -33,17 +33,15 @@ type SearchResultDocument {
     acceptedNameUsage: String
     acceptedNameUsageAuthorship: String
     taxonomicStatus: String
-    occurrenceStatus: [String]
-    establishmentMeans: [String]
+    occurrenceStatus: String
+    establishmentMeans: String
+    degreeOfEstablishment: String
+    endemic: Boolean
+    hasIntroducedOccurrences: Boolean
     threatStatus: [String]
     taxonRemarks: String
     vernacularName: [String]
     preferredVernacularName: String
-    # ibra7Subregion: [String]
-    # nrmRegion: [String]
-    # epbc: String
-    # vrot: String
-    # ffg: String
 }
 
 type SearchResultFacetField {
@@ -91,6 +89,7 @@ input SearchInput {
         "taxon_rank"
         "occurrence_status"
         "establishment_means"
+        "degree_of_establishment"
         "threat_status"
         "class"
         "order"
@@ -115,6 +114,7 @@ input DownloadInput {
         "family"
         "occurrence_status"
         "establishment_means"
+        "degree_of_establishment"
         "accepted_name_usage_id"
         "accepted_name_usage"
         "accepted_name_usage_authorship"
