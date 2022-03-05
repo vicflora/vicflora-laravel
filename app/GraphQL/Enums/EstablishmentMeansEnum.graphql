@@ -1,22 +1,28 @@
+"""
+Controlled vocabulary for `establishmentMeans`. We use the Darwin Core
+vocabulary (https://dwc.tdwg.org/em/).
+"""
 enum EstablishmentMeansEnum {
     """
-    A taxon occurring within its natural range.
+    **Native** – Occurring within its natural range.
     """
     NATIVE @enum(value: "native")
 
     """
-    A taxon re-established by direct introduction by humans into an area that
-    was once part of its natural range, but from where it had become extinct.
+    **Native: reintroduced** – Re-established by direct introduction by humans
+    into an area that was once part of its natural range, but from where it had
+    become extinct.
     """
     NATIVE_REINTRODUCED @enum(attribute: "nativeReintroduced")
 
     """
-    Establishment of a taxon by human agency into an area that is not part of its natural range.
+    **Introduced** – Established by human agency into an area that is not part
+    of its natural range.
     """
     INTRODUCED @enum(value: "introduced")
 
     """
-    The origin of the occurrence of the taxon in an area is obscure.
+    **Uncertain** – The origin of the occurrence in an area is obscure.
     """
     UNCERTAIN @enum(value: "uncertain")
 }

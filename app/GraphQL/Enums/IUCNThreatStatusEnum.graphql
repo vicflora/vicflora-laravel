@@ -9,19 +9,19 @@ https://rs.gbif.org/vocabulary/iucn/threat_status.xml
 """
 enum IUCNThreatStatusEnum {
     """
-    **Extinct** – A taxon is Extinct when there is no reasonable doubt that the last
-    individual has died. A taxon is presumed Extinct when exhaustive surveys in
-    known and/or expected habitat, at appropriate times (diurnal, seasonal,
-    annual), throughout its historic range have failed to record an individual.
-    Surveys should be over a time frame appropriate to the taxon's life cycle
-    and life form.
+    **Extinct** – A taxon is Extinct when there is no reasonable doubt that the
+    last individual has died. A taxon is presumed Extinct when exhaustive
+    surveys in known and/or expected habitat, at appropriate times (diurnal,
+    seasonal, annual), throughout its historic range have failed to record an
+    individual. Surveys should be over a time frame appropriate to the taxon's
+    life cycle and life form.
     """
     EX
 
     """
-    **Extinct in the wild** – A taxon is Extinct in the Wild when it is known only
-    to survive in cultivation, in captivity or as a naturalized population (or
-    populations) well outside the past range. A taxon is presumed Extinct in
+    **Extinct in the wild** – A taxon is Extinct in the Wild when it is known
+    only to survive in cultivation, in captivity or as a naturalized population
+    (or populations) well outside the past range. A taxon is presumed Extinct in
     the Wild when exhaustive surveys in known and/or expected habitat, at
     appropriate times (diurnal, seasonal, annual), throughout its historic
     range have failed to record an individual. Surveys should be over a time
@@ -30,9 +30,9 @@ enum IUCNThreatStatusEnum {
     EW
 
     """
-    **Regionally extinct** – Category for a taxon when there is no reasonable doubt
-    that the last individual potentially capable of reproduction within the
-    region has died or has disappeared from the wild in the region, or when,
+    **Regionally extinct** – Category for a taxon when there is no reasonable
+    doubt that the last individual potentially capable of reproduction within
+    the region has died or has disappeared from the wild in the region, or when,
     if it is a former visiting taxon, the last individual has died or
     disappeared in the wild from the region. The setting of any time limit for
     listing under RE is left to the discretion of the regional Red List
@@ -73,10 +73,10 @@ enum IUCNThreatStatusEnum {
     NT
 
     """
-    **Least Concern** – A taxon is Least Concern when it has been evaluated against
-    the criteria and does not qualify for Critically Endangered, Endangered,
-    Vulnerable or Near Threatened. Widespread and abundant taxa are included
-    in this category.
+    **Least Concern** – A taxon is Least Concern when it has been evaluated
+    against the criteria and does not qualify for Critically Endangered,
+    Endangered, Vulnerable or Near Threatened. Widespread and abundant taxa are
+    included in this category.
     """
     LC
 
@@ -98,14 +98,15 @@ enum IUCNThreatStatusEnum {
     DD
 
     """
-    **Not Applicable** – Category for a taxon deemed to be ineligible for assessment
-    at a regional level. A taxon may be NA because it is not a wild population
-    or not within its natural range in the region, or because it is a vagrant
-    to the region. It may also be NA because it occurs at very low numbers in
-    the region (i.e. when the regional Red List authority has decided to use a
-    filter to exclude taxa before the assessment procedure) or the taxon may be
-    classified at a lower taxonomic level (e.g. below the level of species or
-    subspecies) than considered eligible by the regional Red List authority.
+    **Not Applicable** – Category for a taxon deemed to be ineligible for
+    assessment at a regional level. A taxon may be NA because it is not a wild
+    population or not within its natural range in the region, or because it is a
+    vagrant to the region. It may also be NA because it occurs at very low
+    numbers in the region (i.e. when the regional Red List authority has decided
+    to use a filter to exclude taxa before the assessment procedure) or the
+    taxon may be classified at a lower taxonomic level (e.g. below the level of
+    species or subspecies) than considered eligible by the regional Red List
+    authority.
     In contrast to other Red List Categories, it is not mandatory to use NA for
     all taxa to which it applies; but is recommended for taxa where its use is
     informative.

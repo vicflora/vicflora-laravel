@@ -10,14 +10,41 @@ type TaxonConcept {
     taxonRank: TaxonRankEnum
     taxonTreeDefItem: TaxonTreeDefItem
     taxonTreeItem: TaxonTreeItem
+
+    """
+    The status of the use of the scientificName as a label for a taxon.
+    Requires taxonomic opinion to define the scope of a taxon. Rules of
+    priority then are used to define the taxonomic status of the nomenclature
+    contained in that scope, combined with the experts opinion. It must be
+    linked to a specific taxonomic reference that defines the concept
+    (http://rs.tdwg.org/dwc/terms/taxonomicStatus).
+    """
     taxonomicStatus: TaxonomicStatusEnum
         @rename(attribute: "taxonomicStatusName")
+
+    """
+    A statement about the presence or absence of a Taxon at a Location
+    (http://rs.tdwg.org/dwc/terms/occurrenceStatus).
+    """
     occurrenceStatus: OccurrenceStatusEnum
         @rename(attribute: "occurrenceStatusName")
+
+    """
+    Statement about whether an organism or organisms have been introduced to a
+    given place and time through the direct or indirect activity of modern
+    humans (http://rs.tdwg.org/dwc/terms/establishmentMeans).
+    """
     establishmentMeans: EstablishmentMeansEnum
         @rename(attribute: "establishmentMeansName")
+
+    """
+    The degree to which an Organism survives, reproduces, and expands its range
+    at the given place and time
+    (http://rs.tdwg.org/dwc/terms/degreeOfEstablishment).
+    """
     degreeOfEstablishment: DegreeOfEstablishmentEnum
         @rename(attribute: "degreeOfEstablishmentName")
+
     """
     Endemis to Victoria; does not natively occur outside Victoria.
     """

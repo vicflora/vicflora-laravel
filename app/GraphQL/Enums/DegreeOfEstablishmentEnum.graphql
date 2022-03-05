@@ -1,53 +1,48 @@
+"""
+Controlled vocabulary for `degreeOfEstablishment` ()
+"""
 enum DegreeOfEstablishmentEnum {
     """
-    Not transported beyond limits of native range.
-
-    Considered native and naturally occurring.
+    **Native** – Not transported beyond limits of native range. Considered
+    native and naturally occurring.
     """
     NATIVE @enum(value: "native")
 
     """
-    Individuals in cultivation (i.e., individuals provided with conditions
-    suitable for them, but explicit measures to prevent dispersal are limited
-    at best).
-
-    Examples include gardens, parks and farms.
+    **Cultivated** – Individuals in cultivation (i.e., individuals provided with
+    conditions suitable for them, but explicit measures to prevent dispersal are
+    limited at best). Examples include gardens, parks and farms.
     """
     CULTIVATED @enum(value: "cultivated")
 
     """
-    Individuals surviving outside of captivity or cultivation in a location
-    with no reproduction.
-
-    Trees planted in the wild for forestry or ornament may come under this
-    category.
+    **Casual** – Individuals surviving outside of captivity or cultivation in a
+    location with no reproduction. Trees planted in the wild for forestry or
+    ornament may come under this category.
     """
     CASUAL @enum(value: "casual")
 
     """
-    Individuals surviving outside of captivity or cultivation in a location.
-    Reproduction is occurring, but population not self-sustaining.
-
-    Offspring are produced, but these either do not survive or are not fertile
-    enough to maintain the population.
+    **Reproducing** – Individuals surviving outside of captivity or cultivation
+    in a location. Reproduction is occurring, but population not
+    self-sustaining. Offspring are produced, but these either do not survive or
+    are not fertile enough to maintain the population.
 
     """
     REPRODUCING @enum(value: "reproducing")
 
     """
-    Individuals surviving outside of captivity or cultivation in a location.
-    Reproduction occurring, and population self-sustaining.
-
-    The population is maintained by reproduction, but is not spreading.
+    **Established** – Individuals surviving outside of captivity or cultivation
+    in a location. Reproduction occurring, and population self-sustaining. The
+    population is maintained by reproduction, but is not spreading.
     """
     ESTABLISHED @enum(value: "established")
 
     """
-    Self-sustaining population outside of captivity or cultivation, with
-    individuals surviving a significant distance from the original point of
-    introduction.
-
-    The population is maintained by reproduction and is spreading.
+    **Colonising** – Self-sustaining population outside of captivity or
+    cultivation, with individuals surviving a significant distance from the
+    original point of introduction. The population is maintained by reproduction
+    and is spreading.
     """
     COLONISING @enum(value: "colonising")
 }

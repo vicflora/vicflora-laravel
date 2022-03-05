@@ -3,16 +3,39 @@ Enumeration for the dwc:taxonomicStatus term. We follow the GBIF Taxonomic
 Status Vocabulary, https://rs.gbif.org/vocabulary/gbif/taxonomic_status.xml
 """
 enum TaxonomicStatusEnum {
-    "http://rs.gbif.org/vocabulary/gbif/taxonomicStatus/accepted"
+    """
+    **Accepted** – The taxon is currently accepted in VicFlora
+    """
     ACCEPTED @enum(value: "accepted")
-    "http://rs.gbif.org/vocabulary/gbif/taxonomicStatus/synonym"
+
+    """
+    **Synonym** – The name is a synonym of the name of an accepted taxon.
+    In VicFlora we tend to use this only for names that cannot be considered
+    homotypic or heterotypic synonyms, like autonyms and phrase names. In the
+    front end we call all synonyms just 'synonyms'.
+    """
     SYNONYM @enum(value: "synonym")
-    "http://rs.gbif.org/vocabulary/gbif/taxonomicStatus/homotypicSynonym"
+
+    """
+    **Homotypic synonym** – The name is a homotypic (syn.: nomenclatural)
+    synonym.
+    """
     HOMOTYPIC_SYNONYM @enum(value: "homotypicSynonym")
-    "http://rs.gbif.org/vocabulary/gbif/taxonomicStatus/heterotypicSynonym"
+
+    """
+    **Heterotypic synonym** – The name is a heterotypic (syn.: taxonomic)
+    synonym.
+    """
     HETEROTYPIC_SYNONYM @enum(value: "heterotypicSynonym")
-    "http://rs.gbif.org/vocabulary/gbif/taxonomicStatus/misapplication"
+
+    """
+    **Misapplication** – The name has been misapplied.
+    """
     MISAPPLICATION @enum(value: "misapplication")
-    "This is not a standard term, but negates 'accepted'"
+
+    """
+    **Not accepted** – The name is not currently accepted in VicFlora, but can
+    also not be considered a synonym or misapplication.
+    """
     NOT_ACCEPTED @enum(value: "notCurrent")
 }

@@ -28,7 +28,6 @@
           <a href="#operation-bioregion-Queries"> bioregion </a>
           <a href="#operation-bioregionsbyname-Queries"> bioregionsByName </a>
           <a href="#operation-bioregionsbypoint-Queries"> bioregionsByPoint </a>
-          <a href="#operation-degreeofestablishment-Queries"> degreeOfEstablishment </a>
           <a href="#operation-download-Queries"> download </a>
           <a href="#operation-facetfield-Queries"> facetField </a>
           <a href="#operation-glossaryterm-Queries"> glossaryTerm </a>
@@ -75,7 +74,6 @@
           <a href="#definition-Date"> Date </a>
           <a href="#definition-DateTime"> DateTime </a>
           <a href="#definition-DateTimeTz"> DateTimeTz </a>
-          <a href="#definition-DegreeOfEstablishment"> DegreeOfEstablishment </a>
           <a href="#definition-DegreeOfEstablishmentEnum"> DegreeOfEstablishmentEnum </a>
           <a href="#definition-Download"> Download </a>
           <a href="#definition-DownloadInput"> DownloadInput </a>
@@ -145,7 +143,6 @@
           <a href="#definition-TaxonomicStatusEnum"> TaxonomicStatusEnum </a>
           <a href="#definition-Trashed"> Trashed </a>
           <a href="#definition-UUID"> UUID </a>
-          <a href="#definition-VBAConservationStatus"> VBAConservationStatus </a>
           <a href="#definition-VbaTaxon"> VbaTaxon </a>
           <a href="#definition-VbaTaxonPaginator"> VbaTaxonPaginator </a>
           <a href="#definition-VernacularName"> VernacularName </a>
@@ -261,10 +258,10 @@ https://vicflora-test.rbg.vic.gov.au/graphql
   <span class="hljs-attr">"data"</span>: {
     <span class="hljs-attr">"agent"</span>: {
       <span class="hljs-attr">"id"</span>: <span class="hljs-string">ID</span>,
-      <span class="hljs-attr">"name"</span>: <span class="hljs-string">"xyz789"</span>,
-      <span class="hljs-attr">"lastName"</span>: <span class="hljs-string">"abc123"</span>,
+      <span class="hljs-attr">"name"</span>: <span class="hljs-string">"abc123"</span>,
+      <span class="hljs-attr">"lastName"</span>: <span class="hljs-string">"xyz789"</span>,
       <span class="hljs-attr">"firstName"</span>: <span class="hljs-string">"abc123"</span>,
-      <span class="hljs-attr">"initials"</span>: <span class="hljs-string">"abc123"</span>,
+      <span class="hljs-attr">"initials"</span>: <span class="hljs-string">"xyz789"</span>,
       <span class="hljs-attr">"email"</span>: <span class="hljs-string">Email</span>,
       <span class="hljs-attr">"legalName"</span>: <span class="hljs-string">"abc123"</span>,
       <span class="hljs-attr">"agentType"</span>: <span class="hljs-string">AgentTypeEnum</span>
@@ -396,7 +393,7 @@ https://vicflora-test.rbg.vic.gov.au/graphql
                   <body><pre><code class="hljs language-json">{
   <span class="hljs-attr">"data"</span>: {
     <span class="hljs-attr">"bioregion"</span>: {
-      <span class="hljs-attr">"type"</span>: <span class="hljs-string">"xyz789"</span>,
+      <span class="hljs-attr">"type"</span>: <span class="hljs-string">"abc123"</span>,
       <span class="hljs-attr">"geometry"</span>: <span class="hljs-string">GeoJSONGeometry</span>,
       <span class="hljs-attr">"properties"</span>: <span class="hljs-string">BioregionProperties</span>
     }
@@ -455,7 +452,7 @@ https://vicflora-test.rbg.vic.gov.au/graphql
                   <h5>Variables</h5>
                   <html>
                   <head></head>
-                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"name"</span>: <span class="hljs-string">"abc123"</span>}
+                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"name"</span>: <span class="hljs-string">"xyz789"</span>}
 </code></pre> </body>
                   </html>
                 </section>
@@ -472,7 +469,7 @@ https://vicflora-test.rbg.vic.gov.au/graphql
   <span class="hljs-attr">"data"</span>: {
     <span class="hljs-attr">"bioregionsByName"</span>: [
       {
-        <span class="hljs-attr">"type"</span>: <span class="hljs-string">"abc123"</span>,
+        <span class="hljs-attr">"type"</span>: <span class="hljs-string">"xyz789"</span>,
         <span class="hljs-attr">"geometry"</span>: <span class="hljs-string">GeoJSONGeometry</span>,
         <span class="hljs-attr">"properties"</span>: <span class="hljs-string">BioregionProperties</span>
       }
@@ -538,7 +535,7 @@ https://vicflora-test.rbg.vic.gov.au/graphql
                   <h5>Variables</h5>
                   <html>
                   <head></head>
-                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"latitude"</span>: <span class="hljs-number">987.65</span>, <span class="hljs-attr">"longitude"</span>: <span class="hljs-number">987.65</span>}
+                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"latitude"</span>: <span class="hljs-number">123.45</span>, <span class="hljs-attr">"longitude"</span>: <span class="hljs-number">987.65</span>}
 </code></pre> </body>
                   </html>
                 </section>
@@ -555,77 +552,9 @@ https://vicflora-test.rbg.vic.gov.au/graphql
   <span class="hljs-attr">"data"</span>: {
     <span class="hljs-attr">"bioregionsByPoint"</span>: [
       {
-        <span class="hljs-attr">"type"</span>: <span class="hljs-string">"abc123"</span>,
+        <span class="hljs-attr">"type"</span>: <span class="hljs-string">"xyz789"</span>,
         <span class="hljs-attr">"geometry"</span>: <span class="hljs-string">GeoJSONGeometry</span>,
         <span class="hljs-attr">"properties"</span>: <span class="hljs-string">BioregionProperties</span>
-      }
-    ]
-  }
-}
-</code></pre> </body>
-                  </html>
-                </section>
-              </div>
-            </div>
-          </div>
-          <span id="path-degreeofestablishment"></span>
-          <div id="operation-degreeofestablishment-Queries" class="operation panel" data-traverse-target="operation-degreeofestablishment-Queries">
-            <h2 class="operation-name "> <code>degreeOfEstablishment</code> </h2>
-            <div class="doc-row">
-              <div class="doc-copy">
-                <section class="swagger-request-body"> </section>
-                <section class="swagger-responses"> Returns
-                  <a href="#definition-DegreeOfEstablishment"><code>[DegreeOfEstablishment!]!</code></a>
-                </section>
-                <br> </div>
-              <div class="doc-examples">
-                <section>
-                  <h4>Example</h4>
-                  <h5>Query</h5>
-                  <html>
-                  <head></head>
-                  <body><pre><code class="hljs language-gql"><span class="hljs-symbol"><span class="hljs-keyword">query</span> degreeOfEstablishment <span class="hljs-tag">{
-  <span class="hljs-symbol">degreeOfEstablishment <span class="hljs-tag">{
-    <span class="hljs-symbol">id</span>
-    <span class="hljs-symbol">name</span>
-    <span class="hljs-symbol">uri</span>
-    <span class="hljs-symbol">label</span>
-    <span class="hljs-symbol">description</span>
-    <span class="hljs-symbol">createdBy <span class="hljs-tag">{
-      <span class="hljs-type">...AgentFragment</span>
-    }</span></span>
-    <span class="hljs-symbol">modifiedBy <span class="hljs-tag">{
-      <span class="hljs-type">...AgentFragment</span>
-    }</span></span>
-    <span class="hljs-symbol">createdAt</span>
-    <span class="hljs-symbol">updatedAt</span>
-  }</span></span>
-}</span></span>
-</code></pre> </body>
-                  </html>
-                </section>
-              </div>
-            </div>
-            <div class="doc-row">
-              <div class="doc-copy"> </div>
-              <div class="doc-examples">
-                <section>
-                  <h5>Response </h5>
-                  <html>
-                  <head></head>
-                  <body><pre><code class="hljs language-json">{
-  <span class="hljs-attr">"data"</span>: {
-    <span class="hljs-attr">"degreeOfEstablishment"</span>: [
-      {
-        <span class="hljs-attr">"id"</span>: <span class="hljs-string">ID</span>,
-        <span class="hljs-attr">"name"</span>: <span class="hljs-string">"xyz789"</span>,
-        <span class="hljs-attr">"uri"</span>: <span class="hljs-string">"abc123"</span>,
-        <span class="hljs-attr">"label"</span>: <span class="hljs-string">"abc123"</span>,
-        <span class="hljs-attr">"description"</span>: <span class="hljs-string">"xyz789"</span>,
-        <span class="hljs-attr">"createdBy"</span>: <span class="hljs-string">Agent</span>,
-        <span class="hljs-attr">"modifiedBy"</span>: <span class="hljs-string">Agent</span>,
-        <span class="hljs-attr">"createdAt"</span>: <span class="hljs-string">DateTimeTz</span>,
-        <span class="hljs-attr">"updatedAt"</span>: <span class="hljs-string">DateTimeTz</span>
       }
     ]
   }
@@ -690,7 +619,7 @@ https://vicflora-test.rbg.vic.gov.au/graphql
                   <h5>Response </h5>
                   <html>
                   <head></head>
-                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"data"</span>: {<span class="hljs-attr">"download"</span>: {<span class="hljs-attr">"data"</span>: <span class="hljs-string">"abc123"</span>}}}
+                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"data"</span>: {<span class="hljs-attr">"download"</span>: {<span class="hljs-attr">"data"</span>: <span class="hljs-string">"xyz789"</span>}}}
 </code></pre> </body>
                   </html>
                 </section>
@@ -842,10 +771,10 @@ https://vicflora-test.rbg.vic.gov.au/graphql
   <span class="hljs-attr">"data"</span>: {
     <span class="hljs-attr">"glossaryTerm"</span>: {
       <span class="hljs-attr">"id"</span>: <span class="hljs-string">ID</span>,
-      <span class="hljs-attr">"name"</span>: <span class="hljs-string">"xyz789"</span>,
-      <span class="hljs-attr">"definition"</span>: <span class="hljs-string">"xyz789"</span>,
-      <span class="hljs-attr">"isDiscouraged"</span>: <span class="hljs-literal">false</span>,
-      <span class="hljs-attr">"language"</span>: <span class="hljs-string">"abc123"</span>,
+      <span class="hljs-attr">"name"</span>: <span class="hljs-string">"abc123"</span>,
+      <span class="hljs-attr">"definition"</span>: <span class="hljs-string">"abc123"</span>,
+      <span class="hljs-attr">"isDiscouraged"</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-attr">"language"</span>: <span class="hljs-string">"xyz789"</span>,
       <span class="hljs-attr">"nameAddendum"</span>: <span class="hljs-string">"xyz789"</span>,
       <span class="hljs-attr">"relationships"</span>: [<span class="hljs-string">GlossaryRelationship</span>],
       <span class="hljs-attr">"inverseRelationships"</span>: [<span class="hljs-string">GlossaryRelationship</span>],
@@ -890,7 +819,7 @@ https://vicflora-test.rbg.vic.gov.au/graphql
                   <h5>Response </h5>
                   <html>
                   <head></head>
-                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"data"</span>: {<span class="hljs-attr">"glossaryTermFirstLetters"</span>: [<span class="hljs-string">"abc123"</span>]}}
+                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"data"</span>: {<span class="hljs-attr">"glossaryTermFirstLetters"</span>: [<span class="hljs-string">"xyz789"</span>]}}
 </code></pre> </body>
                   </html>
                 </section>
@@ -970,9 +899,9 @@ https://vicflora-test.rbg.vic.gov.au/graphql
     <span class="hljs-attr">"glossaryTermsByName"</span>: [
       {
         <span class="hljs-attr">"id"</span>: <span class="hljs-string">ID</span>,
-        <span class="hljs-attr">"name"</span>: <span class="hljs-string">"abc123"</span>,
+        <span class="hljs-attr">"name"</span>: <span class="hljs-string">"xyz789"</span>,
         <span class="hljs-attr">"definition"</span>: <span class="hljs-string">"abc123"</span>,
-        <span class="hljs-attr">"isDiscouraged"</span>: <span class="hljs-literal">false</span>,
+        <span class="hljs-attr">"isDiscouraged"</span>: <span class="hljs-literal">true</span>,
         <span class="hljs-attr">"language"</span>: <span class="hljs-string">"abc123"</span>,
         <span class="hljs-attr">"nameAddendum"</span>: <span class="hljs-string">"abc123"</span>,
         <span class="hljs-attr">"relationships"</span>: [<span class="hljs-string">GlossaryRelationship</span>],
@@ -1032,9 +961,9 @@ https://vicflora-test.rbg.vic.gov.au/graphql
       {
         <span class="hljs-attr">"name"</span>: <span class="hljs-string">"xyz789"</span>,
         <span class="hljs-attr">"type"</span>: <span class="hljs-string">"abc123"</span>,
-        <span class="hljs-attr">"indexed"</span>: <span class="hljs-literal">true</span>,
-        <span class="hljs-attr">"stored"</span>: <span class="hljs-literal">false</span>,
-        <span class="hljs-attr">"required"</span>: <span class="hljs-literal">false</span>,
+        <span class="hljs-attr">"indexed"</span>: <span class="hljs-literal">false</span>,
+        <span class="hljs-attr">"stored"</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-attr">"required"</span>: <span class="hljs-literal">true</span>,
         <span class="hljs-attr">"multiValued"</span>: <span class="hljs-literal">true</span>
       }
     ]
@@ -1109,7 +1038,7 @@ https://vicflora-test.rbg.vic.gov.au/graphql
                   <body><pre><code class="hljs language-json">{
   <span class="hljs-attr">"data"</span>: {
     <span class="hljs-attr">"localGovernmentArea"</span>: {
-      <span class="hljs-attr">"type"</span>: <span class="hljs-string">"abc123"</span>,
+      <span class="hljs-attr">"type"</span>: <span class="hljs-string">"xyz789"</span>,
       <span class="hljs-attr">"geometry"</span>: <span class="hljs-string">GeoJSONGeometry</span>,
       <span class="hljs-attr">"properties"</span>: <span class="hljs-string">LocalGovernmentAreaProperties</span>
     }
@@ -1168,7 +1097,7 @@ https://vicflora-test.rbg.vic.gov.au/graphql
                   <h5>Variables</h5>
                   <html>
                   <head></head>
-                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"name"</span>: <span class="hljs-string">"xyz789"</span>}
+                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"name"</span>: <span class="hljs-string">"abc123"</span>}
 </code></pre> </body>
                   </html>
                 </section>
@@ -1185,7 +1114,7 @@ https://vicflora-test.rbg.vic.gov.au/graphql
   <span class="hljs-attr">"data"</span>: {
     <span class="hljs-attr">"localGovernmentAreasByName"</span>: [
       {
-        <span class="hljs-attr">"type"</span>: <span class="hljs-string">"abc123"</span>,
+        <span class="hljs-attr">"type"</span>: <span class="hljs-string">"xyz789"</span>,
         <span class="hljs-attr">"geometry"</span>: <span class="hljs-string">GeoJSONGeometry</span>,
         <span class="hljs-attr">"properties"</span>: <span class="hljs-string">LocalGovernmentAreaProperties</span>
       }
@@ -1268,7 +1197,7 @@ https://vicflora-test.rbg.vic.gov.au/graphql
   <span class="hljs-attr">"data"</span>: {
     <span class="hljs-attr">"localGovernmentAreasByPoint"</span>: [
       {
-        <span class="hljs-attr">"type"</span>: <span class="hljs-string">"xyz789"</span>,
+        <span class="hljs-attr">"type"</span>: <span class="hljs-string">"abc123"</span>,
         <span class="hljs-attr">"geometry"</span>: <span class="hljs-string">GeoJSONGeometry</span>,
         <span class="hljs-attr">"properties"</span>: <span class="hljs-string">LocalGovernmentAreaProperties</span>
       }
@@ -1333,7 +1262,7 @@ https://vicflora-test.rbg.vic.gov.au/graphql
                   <h5>Response </h5>
                   <html>
                   <head></head>
-                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"data"</span>: {<span class="hljs-attr">"nameTypeAhead"</span>: [<span class="hljs-string">"xyz789"</span>]}}
+                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"data"</span>: {<span class="hljs-attr">"nameTypeAhead"</span>: [<span class="hljs-string">"abc123"</span>]}}
 </code></pre> </body>
                   </html>
                 </section>
@@ -1394,10 +1323,10 @@ https://vicflora-test.rbg.vic.gov.au/graphql
     <span class="hljs-attr">"nameTypes"</span>: [
       {
         <span class="hljs-attr">"id"</span>: <span class="hljs-string">ID</span>,
-        <span class="hljs-attr">"name"</span>: <span class="hljs-string">"xyz789"</span>,
-        <span class="hljs-attr">"uri"</span>: <span class="hljs-string">"abc123"</span>,
-        <span class="hljs-attr">"label"</span>: <span class="hljs-string">"abc123"</span>,
-        <span class="hljs-attr">"description"</span>: <span class="hljs-string">"xyz789"</span>,
+        <span class="hljs-attr">"name"</span>: <span class="hljs-string">"abc123"</span>,
+        <span class="hljs-attr">"uri"</span>: <span class="hljs-string">"xyz789"</span>,
+        <span class="hljs-attr">"label"</span>: <span class="hljs-string">"xyz789"</span>,
+        <span class="hljs-attr">"description"</span>: <span class="hljs-string">"abc123"</span>,
         <span class="hljs-attr">"taxonNames"</span>: [<span class="hljs-string">TaxonName</span>],
         <span class="hljs-attr">"createdBy"</span>: <span class="hljs-string">Agent</span>,
         <span class="hljs-attr">"modifiedBy"</span>: <span class="hljs-string">Agent</span>,
@@ -1472,14 +1401,14 @@ https://vicflora-test.rbg.vic.gov.au/graphql
         <span class="hljs-attr">"guid"</span>: <span class="hljs-string">UUID</span>,
         <span class="hljs-attr">"name"</span>: <span class="hljs-string">"xyz789"</span>,
         <span class="hljs-attr">"uri"</span>: <span class="hljs-string">"xyz789"</span>,
-        <span class="hljs-attr">"label"</span>: <span class="hljs-string">"xyz789"</span>,
-        <span class="hljs-attr">"description"</span>: <span class="hljs-string">"xyz789"</span>,
+        <span class="hljs-attr">"label"</span>: <span class="hljs-string">"abc123"</span>,
+        <span class="hljs-attr">"description"</span>: <span class="hljs-string">"abc123"</span>,
         <span class="hljs-attr">"taxonNames"</span>: [<span class="hljs-string">TaxonName</span>],
         <span class="hljs-attr">"createdBy"</span>: <span class="hljs-string">Agent</span>,
         <span class="hljs-attr">"modifiedBy"</span>: <span class="hljs-string">Agent</span>,
         <span class="hljs-attr">"createdAt"</span>: <span class="hljs-string">DateTimeTz</span>,
         <span class="hljs-attr">"updatedAt"</span>: <span class="hljs-string">DateTimeTz</span>,
-        <span class="hljs-attr">"version"</span>: <span class="hljs-number">987</span>
+        <span class="hljs-attr">"version"</span>: <span class="hljs-number">123</span>
       }
     ]
   }
@@ -1553,7 +1482,7 @@ https://vicflora-test.rbg.vic.gov.au/graphql
                   <body><pre><code class="hljs language-json">{
   <span class="hljs-attr">"data"</span>: {
     <span class="hljs-attr">"occurrence"</span>: {
-      <span class="hljs-attr">"type"</span>: <span class="hljs-string">"abc123"</span>,
+      <span class="hljs-attr">"type"</span>: <span class="hljs-string">"xyz789"</span>,
       <span class="hljs-attr">"geometry"</span>: <span class="hljs-string">OccurrenceGeometry</span>,
       <span class="hljs-attr">"properties"</span>: <span class="hljs-string">OccurrenceProperties</span>
     }
@@ -1628,7 +1557,7 @@ https://vicflora-test.rbg.vic.gov.au/graphql
                   <body><pre><code class="hljs language-json">{
   <span class="hljs-attr">"data"</span>: {
     <span class="hljs-attr">"parkReserve"</span>: {
-      <span class="hljs-attr">"type"</span>: <span class="hljs-string">"abc123"</span>,
+      <span class="hljs-attr">"type"</span>: <span class="hljs-string">"xyz789"</span>,
       <span class="hljs-attr">"geometry"</span>: <span class="hljs-string">GeoJSONGeometry</span>,
       <span class="hljs-attr">"properties"</span>: <span class="hljs-string">ParkReserveProperties</span>
     }
@@ -1704,7 +1633,7 @@ https://vicflora-test.rbg.vic.gov.au/graphql
   <span class="hljs-attr">"data"</span>: {
     <span class="hljs-attr">"parkReservesByName"</span>: [
       {
-        <span class="hljs-attr">"type"</span>: <span class="hljs-string">"abc123"</span>,
+        <span class="hljs-attr">"type"</span>: <span class="hljs-string">"xyz789"</span>,
         <span class="hljs-attr">"geometry"</span>: <span class="hljs-string">GeoJSONGeometry</span>,
         <span class="hljs-attr">"properties"</span>: <span class="hljs-string">ParkReserveProperties</span>
       }
@@ -1770,7 +1699,7 @@ https://vicflora-test.rbg.vic.gov.au/graphql
                   <h5>Variables</h5>
                   <html>
                   <head></head>
-                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"latitude"</span>: <span class="hljs-number">987.65</span>, <span class="hljs-attr">"longitude"</span>: <span class="hljs-number">123.45</span>}
+                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"latitude"</span>: <span class="hljs-number">987.65</span>, <span class="hljs-attr">"longitude"</span>: <span class="hljs-number">987.65</span>}
 </code></pre> </body>
                   </html>
                 </section>
@@ -1887,24 +1816,24 @@ https://vicflora-test.rbg.vic.gov.au/graphql
     <span class="hljs-attr">"reference"</span>: {
       <span class="hljs-attr">"id"</span>: <span class="hljs-string">ID</span>,
       <span class="hljs-attr">"created"</span>: <span class="hljs-string">"abc123"</span>,
-      <span class="hljs-attr">"publicationYear"</span>: <span class="hljs-string">"abc123"</span>,
-      <span class="hljs-attr">"title"</span>: <span class="hljs-string">"xyz789"</span>,
+      <span class="hljs-attr">"publicationYear"</span>: <span class="hljs-string">"xyz789"</span>,
+      <span class="hljs-attr">"title"</span>: <span class="hljs-string">"abc123"</span>,
       <span class="hljs-attr">"shortTitle"</span>: <span class="hljs-string">"abc123"</span>,
       <span class="hljs-attr">"edition"</span>: <span class="hljs-string">"abc123"</span>,
-      <span class="hljs-attr">"volume"</span>: <span class="hljs-string">"abc123"</span>,
-      <span class="hljs-attr">"issue"</span>: <span class="hljs-string">"abc123"</span>,
+      <span class="hljs-attr">"volume"</span>: <span class="hljs-string">"xyz789"</span>,
+      <span class="hljs-attr">"issue"</span>: <span class="hljs-string">"xyz789"</span>,
       <span class="hljs-attr">"pageStart"</span>: <span class="hljs-number">123</span>,
-      <span class="hljs-attr">"pageEnd"</span>: <span class="hljs-number">987</span>,
-      <span class="hljs-attr">"pages"</span>: <span class="hljs-string">"xyz789"</span>,
+      <span class="hljs-attr">"pageEnd"</span>: <span class="hljs-number">123</span>,
+      <span class="hljs-attr">"pages"</span>: <span class="hljs-string">"abc123"</span>,
       <span class="hljs-attr">"numberOfPages"</span>: <span class="hljs-string">"xyz789"</span>,
-      <span class="hljs-attr">"publisher"</span>: <span class="hljs-string">"xyz789"</span>,
+      <span class="hljs-attr">"publisher"</span>: <span class="hljs-string">"abc123"</span>,
       <span class="hljs-attr">"placeOfPublication"</span>: <span class="hljs-string">"abc123"</span>,
-      <span class="hljs-attr">"shortDescription"</span>: <span class="hljs-string">"abc123"</span>,
-      <span class="hljs-attr">"abstract"</span>: <span class="hljs-string">"xyz789"</span>,
+      <span class="hljs-attr">"shortDescription"</span>: <span class="hljs-string">"xyz789"</span>,
+      <span class="hljs-attr">"abstract"</span>: <span class="hljs-string">"abc123"</span>,
       <span class="hljs-attr">"isbn"</span>: <span class="hljs-string">"abc123"</span>,
       <span class="hljs-attr">"issn"</span>: <span class="hljs-string">"abc123"</span>,
-      <span class="hljs-attr">"doi"</span>: <span class="hljs-string">"abc123"</span>,
-      <span class="hljs-attr">"citation"</span>: <span class="hljs-string">"abc123"</span>,
+      <span class="hljs-attr">"doi"</span>: <span class="hljs-string">"xyz789"</span>,
+      <span class="hljs-attr">"citation"</span>: <span class="hljs-string">"xyz789"</span>,
       <span class="hljs-attr">"citationHtml"</span>: <span class="hljs-string">"xyz789"</span>,
       <span class="hljs-attr">"citationMarkdown"</span>: <span class="hljs-string">"abc123"</span>,
       <span class="hljs-attr">"author"</span>: <span class="hljs-string">Agent</span>,
@@ -1962,9 +1891,9 @@ https://vicflora-test.rbg.vic.gov.au/graphql
       {
         <span class="hljs-attr">"id"</span>: <span class="hljs-string">ID</span>,
         <span class="hljs-attr">"name"</span>: <span class="hljs-string">"abc123"</span>,
-        <span class="hljs-attr">"uri"</span>: <span class="hljs-string">"abc123"</span>,
-        <span class="hljs-attr">"label"</span>: <span class="hljs-string">"xyz789"</span>,
-        <span class="hljs-attr">"description"</span>: <span class="hljs-string">"abc123"</span>
+        <span class="hljs-attr">"uri"</span>: <span class="hljs-string">"xyz789"</span>,
+        <span class="hljs-attr">"label"</span>: <span class="hljs-string">"abc123"</span>,
+        <span class="hljs-attr">"description"</span>: <span class="hljs-string">"xyz789"</span>
       }
     ]
   }
@@ -2220,8 +2149,8 @@ https://vicflora-test.rbg.vic.gov.au/graphql
   <span class="hljs-attr">"data"</span>: {
     <span class="hljs-attr">"taxonConcept"</span>: {
       <span class="hljs-attr">"id"</span>: <span class="hljs-string">ID</span>,
-      <span class="hljs-attr">"remarks"</span>: <span class="hljs-string">"abc123"</span>,
-      <span class="hljs-attr">"editorNotes"</span>: <span class="hljs-string">"xyz789"</span>,
+      <span class="hljs-attr">"remarks"</span>: <span class="hljs-string">"xyz789"</span>,
+      <span class="hljs-attr">"editorNotes"</span>: <span class="hljs-string">"abc123"</span>,
       <span class="hljs-attr">"taxonName"</span>: <span class="hljs-string">TaxonName</span>,
       <span class="hljs-attr">"accordingTo"</span>: <span class="hljs-string">Reference</span>,
       <span class="hljs-attr">"acceptedConcept"</span>: <span class="hljs-string">TaxonConcept</span>,
@@ -2350,7 +2279,7 @@ https://vicflora-test.rbg.vic.gov.au/graphql
         <span class="hljs-attr">"bioregion"</span>: <span class="hljs-string">BioregionFeature</span>,
         <span class="hljs-attr">"occurrenceStatus"</span>: <span class="hljs-string">OccurrenceStatusEnum</span>,
         <span class="hljs-attr">"establishmentMeans"</span>: <span class="hljs-string">EstablishmentMeansEnum</span>,
-        <span class="hljs-attr">"bioregionName"</span>: <span class="hljs-string">"abc123"</span>,
+        <span class="hljs-attr">"bioregionName"</span>: <span class="hljs-string">"xyz789"</span>,
         <span class="hljs-attr">"bioregionCode"</span>: <span class="hljs-string">"abc123"</span>
       }
     ]
@@ -2537,7 +2466,7 @@ https://vicflora-test.rbg.vic.gov.au/graphql
       {
         <span class="hljs-attr">"id"</span>: <span class="hljs-string">ID</span>,
         <span class="hljs-attr">"remarks"</span>: <span class="hljs-string">"abc123"</span>,
-        <span class="hljs-attr">"editorNotes"</span>: <span class="hljs-string">"abc123"</span>,
+        <span class="hljs-attr">"editorNotes"</span>: <span class="hljs-string">"xyz789"</span>,
         <span class="hljs-attr">"taxonName"</span>: <span class="hljs-string">TaxonName</span>,
         <span class="hljs-attr">"accordingTo"</span>: <span class="hljs-string">Reference</span>,
         <span class="hljs-attr">"acceptedConcept"</span>: <span class="hljs-string">TaxonConcept</span>,
@@ -2564,7 +2493,7 @@ https://vicflora-test.rbg.vic.gov.au/graphql
         <span class="hljs-attr">"profilesAccepted"</span>: [<span class="hljs-string">Profile</span>],
         <span class="hljs-attr">"currentProfile"</span>: <span class="hljs-string">Profile</span>,
         <span class="hljs-attr">"heroImage"</span>: <span class="hljs-string">Image</span>,
-        <span class="hljs-attr">"hasImages"</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-attr">"hasImages"</span>: <span class="hljs-literal">false</span>,
         <span class="hljs-attr">"images"</span>: <span class="hljs-string">ImagePaginator</span>,
         <span class="hljs-attr">"hasSpecimenImages"</span>: <span class="hljs-literal">false</span>,
         <span class="hljs-attr">"specimenImages"</span>: <span class="hljs-string">SpecimenImagePaginator</span>,
@@ -2585,7 +2514,7 @@ https://vicflora-test.rbg.vic.gov.au/graphql
         <span class="hljs-attr">"modifiedBy"</span>: <span class="hljs-string">Agent</span>,
         <span class="hljs-attr">"createdAt"</span>: <span class="hljs-string">DateTimeTz</span>,
         <span class="hljs-attr">"updatedAt"</span>: <span class="hljs-string">DateTimeTz</span>,
-        <span class="hljs-attr">"version"</span>: <span class="hljs-number">987</span>
+        <span class="hljs-attr">"version"</span>: <span class="hljs-number">123</span>
       }
     ]
   }
@@ -2756,7 +2685,7 @@ https://vicflora-test.rbg.vic.gov.au/graphql
                   <h5>Variables</h5>
                   <html>
                   <head></head>
-                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"taxonConceptId"</span>: <span class="hljs-string">ID</span>, <span class="hljs-attr">"first"</span>: <span class="hljs-number">20</span>, <span class="hljs-attr">"page"</span>: <span class="hljs-number">987</span>}
+                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"taxonConceptId"</span>: <span class="hljs-string">ID</span>, <span class="hljs-attr">"first"</span>: <span class="hljs-number">20</span>, <span class="hljs-attr">"page"</span>: <span class="hljs-number">123</span>}
 </code></pre> </body>
                   </html>
                 </section>
@@ -2854,8 +2783,8 @@ https://vicflora-test.rbg.vic.gov.au/graphql
         <span class="hljs-attr">"id"</span>: <span class="hljs-string">ID</span>,
         <span class="hljs-attr">"taxonConcept"</span>: <span class="hljs-string">TaxonConcept</span>,
         <span class="hljs-attr">"localGovernmentArea"</span>: <span class="hljs-string">LocalGovernmentAreaFeature</span>,
-        <span class="hljs-attr">"localGovernmentAreaName"</span>: <span class="hljs-string">"abc123"</span>,
-        <span class="hljs-attr">"localGovernmentAreaAbbreviatedName"</span>: <span class="hljs-string">"xyz789"</span>,
+        <span class="hljs-attr">"localGovernmentAreaName"</span>: <span class="hljs-string">"xyz789"</span>,
+        <span class="hljs-attr">"localGovernmentAreaAbbreviatedName"</span>: <span class="hljs-string">"abc123"</span>,
         <span class="hljs-attr">"occurrenceStatus"</span>: <span class="hljs-string">OccurrenceStatusEnum</span>,
         <span class="hljs-attr">"establishmentMeans"</span>: <span class="hljs-string">EstablishmentMeansEnum</span>
       }
@@ -3332,7 +3261,7 @@ https://vicflora-test.rbg.vic.gov.au/graphql
                   <h5>Variables</h5>
                   <html>
                   <head></head>
-                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"wkt"</span>: <span class="hljs-string">"abc123"</span>, <span class="hljs-attr">"first"</span>: <span class="hljs-number">20</span>, <span class="hljs-attr">"page"</span>: <span class="hljs-number">987</span>}
+                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"wkt"</span>: <span class="hljs-string">"xyz789"</span>, <span class="hljs-attr">"first"</span>: <span class="hljs-number">20</span>, <span class="hljs-attr">"page"</span>: <span class="hljs-number">987</span>}
 </code></pre> </body>
                   </html>
                 </section>
@@ -3446,11 +3375,11 @@ https://vicflora-test.rbg.vic.gov.au/graphql
     <span class="hljs-attr">"taxonName"</span>: {
       <span class="hljs-attr">"id"</span>: <span class="hljs-string">ID</span>,
       <span class="hljs-attr">"namePart"</span>: <span class="hljs-string">"abc123"</span>,
-      <span class="hljs-attr">"fullName"</span>: <span class="hljs-string">"abc123"</span>,
-      <span class="hljs-attr">"authorship"</span>: <span class="hljs-string">"xyz789"</span>,
-      <span class="hljs-attr">"fullNameWithAuthorship"</span>: <span class="hljs-string">"xyz789"</span>,
+      <span class="hljs-attr">"fullName"</span>: <span class="hljs-string">"xyz789"</span>,
+      <span class="hljs-attr">"authorship"</span>: <span class="hljs-string">"abc123"</span>,
+      <span class="hljs-attr">"fullNameWithAuthorship"</span>: <span class="hljs-string">"abc123"</span>,
       <span class="hljs-attr">"nomenclaturalNote"</span>: <span class="hljs-string">"xyz789"</span>,
-      <span class="hljs-attr">"remarks"</span>: <span class="hljs-string">"xyz789"</span>,
+      <span class="hljs-attr">"remarks"</span>: <span class="hljs-string">"abc123"</span>,
       <span class="hljs-attr">"nameType"</span>: <span class="hljs-string">NameTypeEnum</span>,
       <span class="hljs-attr">"basionym"</span>: <span class="hljs-string">TaxonName</span>,
       <span class="hljs-attr">"replacedSynonym"</span>: <span class="hljs-string">TaxonName</span>,
@@ -3460,7 +3389,7 @@ https://vicflora-test.rbg.vic.gov.au/graphql
       <span class="hljs-attr">"modifiedBy"</span>: <span class="hljs-string">Agent</span>,
       <span class="hljs-attr">"createdAt"</span>: <span class="hljs-string">DateTimeTz</span>,
       <span class="hljs-attr">"updatedAt"</span>: <span class="hljs-string">DateTimeTz</span>,
-      <span class="hljs-attr">"version"</span>: <span class="hljs-number">987</span>
+      <span class="hljs-attr">"version"</span>: <span class="hljs-number">123</span>
     }
   }
 }
@@ -3627,10 +3556,10 @@ https://vicflora-test.rbg.vic.gov.au/graphql
                   <head></head>
                   <body><pre><code class="hljs language-json">{
   <span class="hljs-attr">"taxonConceptId"</span>: <span class="hljs-string">ID</span>,
-  <span class="hljs-attr">"latitude"</span>: <span class="hljs-number">123.45</span>,
-  <span class="hljs-attr">"longitude"</span>: <span class="hljs-number">123.45</span>,
+  <span class="hljs-attr">"latitude"</span>: <span class="hljs-number">987.65</span>,
+  <span class="hljs-attr">"longitude"</span>: <span class="hljs-number">987.65</span>,
   <span class="hljs-attr">"first"</span>: <span class="hljs-number">100</span>,
-  <span class="hljs-attr">"page"</span>: <span class="hljs-number">123</span>
+  <span class="hljs-attr">"page"</span>: <span class="hljs-number">987</span>
 }
 </code></pre> </body>
                   </html>
@@ -3710,7 +3639,7 @@ https://vicflora-test.rbg.vic.gov.au/graphql
                   <h5>Variables</h5>
                   <html>
                   <head></head>
-                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"first"</span>: <span class="hljs-number">20</span>, <span class="hljs-attr">"page"</span>: <span class="hljs-number">987</span>}
+                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"first"</span>: <span class="hljs-number">20</span>, <span class="hljs-attr">"page"</span>: <span class="hljs-number">123</span>}
 </code></pre> </body>
                   </html>
                 </section>
@@ -3774,15 +3703,6 @@ https://vicflora-test.rbg.vic.gov.au/graphql
     <span class="hljs-symbol">scientificName</span>
     <span class="hljs-symbol">commonName</span>
     <span class="hljs-symbol">authority</span>
-    <span class="hljs-symbol">ffg <span class="hljs-tag">{
-      <span class="hljs-type">...VBAConservationStatusFragment</span>
-    }</span></span>
-    <span class="hljs-symbol">epbc <span class="hljs-tag">{
-      <span class="hljs-type">...VBAConservationStatusFragment</span>
-    }</span></span>
-    <span class="hljs-symbol">vicAdvice <span class="hljs-tag">{
-      <span class="hljs-type">...VBAConservationStatusFragment</span>
-    }</span></span>
     <span class="hljs-symbol">restriction</span>
     <span class="hljs-symbol">origin</span>
     <span class="hljs-symbol">taxonType</span>
@@ -3822,24 +3742,21 @@ https://vicflora-test.rbg.vic.gov.au/graphql
   <span class="hljs-attr">"data"</span>: {
     <span class="hljs-attr">"vbaTaxon"</span>: {
       <span class="hljs-attr">"id"</span>: <span class="hljs-string">ID</span>,
-      <span class="hljs-attr">"scientificName"</span>: <span class="hljs-string">"xyz789"</span>,
+      <span class="hljs-attr">"scientificName"</span>: <span class="hljs-string">"abc123"</span>,
       <span class="hljs-attr">"commonName"</span>: <span class="hljs-string">"abc123"</span>,
       <span class="hljs-attr">"authority"</span>: <span class="hljs-string">"xyz789"</span>,
-      <span class="hljs-attr">"ffg"</span>: <span class="hljs-string">VBAConservationStatus</span>,
-      <span class="hljs-attr">"epbc"</span>: <span class="hljs-string">VBAConservationStatus</span>,
-      <span class="hljs-attr">"vicAdvice"</span>: <span class="hljs-string">VBAConservationStatus</span>,
       <span class="hljs-attr">"restriction"</span>: <span class="hljs-string">"abc123"</span>,
-      <span class="hljs-attr">"origin"</span>: <span class="hljs-string">"abc123"</span>,
+      <span class="hljs-attr">"origin"</span>: <span class="hljs-string">"xyz789"</span>,
       <span class="hljs-attr">"taxonType"</span>: <span class="hljs-string">"xyz789"</span>,
-      <span class="hljs-attr">"lifeForm"</span>: <span class="hljs-string">"xyz789"</span>,
+      <span class="hljs-attr">"lifeForm"</span>: <span class="hljs-string">"abc123"</span>,
       <span class="hljs-attr">"nvisGrowthForm"</span>: <span class="hljs-string">"abc123"</span>,
-      <span class="hljs-attr">"fireResponse"</span>: <span class="hljs-string">"abc123"</span>,
+      <span class="hljs-attr">"fireResponse"</span>: <span class="hljs-string">"xyz789"</span>,
       <span class="hljs-attr">"treaty"</span>: <span class="hljs-string">"abc123"</span>,
       <span class="hljs-attr">"discipline"</span>: <span class="hljs-string">"xyz789"</span>,
-      <span class="hljs-attr">"taxonLevel"</span>: <span class="hljs-string">"xyz789"</span>,
+      <span class="hljs-attr">"taxonLevel"</span>: <span class="hljs-string">"abc123"</span>,
       <span class="hljs-attr">"fisSpeciesNumber"</span>: <span class="hljs-number">123</span>,
-      <span class="hljs-attr">"recordModificationDate"</span>: <span class="hljs-string">"2021-09-04T07:54:05.171Z"</span>,
-      <span class="hljs-attr">"versionDate"</span>: <span class="hljs-string">"2021-09-04T07:54:05.171Z"</span>,
+      <span class="hljs-attr">"recordModificationDate"</span>: <span class="hljs-string">"2022-03-05T02:33:55.557Z"</span>,
+      <span class="hljs-attr">"versionDate"</span>: <span class="hljs-string">"2021-09-05T02:33:55.557Z"</span>,
       <span class="hljs-attr">"taxonName"</span>: <span class="hljs-string">TaxonName</span>
     }
   }
@@ -3923,12 +3840,12 @@ https://vicflora-test.rbg.vic.gov.au/graphql
                   <head></head>
                   <body><pre><code class="hljs language-json">{
   <span class="hljs-attr">"id"</span>: <span class="hljs-string">ID</span>,
-  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"xyz789"</span>,
-  <span class="hljs-attr">"lastName"</span>: <span class="hljs-string">"abc123"</span>,
-  <span class="hljs-attr">"firstName"</span>: <span class="hljs-string">"xyz789"</span>,
-  <span class="hljs-attr">"initials"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"lastName"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"firstName"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"initials"</span>: <span class="hljs-string">"abc123"</span>,
   <span class="hljs-attr">"email"</span>: <span class="hljs-string">Email</span>,
-  <span class="hljs-attr">"legalName"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"legalName"</span>: <span class="hljs-string">"abc123"</span>,
   <span class="hljs-attr">"agentType"</span>: <span class="hljs-string">AgentTypeEnum</span>
 }
 </code></pre> </body>
@@ -4141,16 +4058,16 @@ https://vicflora-test.rbg.vic.gov.au/graphql
                   <head></head>
                   <body><pre><code class="hljs language-json">{
   <span class="hljs-attr">"id"</span>: <span class="hljs-string">ID</span>,
-  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"uri"</span>: <span class="hljs-string">"abc123"</span>,
   <span class="hljs-attr">"description"</span>: <span class="hljs-string">"abc123"</span>,
-  <span class="hljs-attr">"remarks"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"remarks"</span>: <span class="hljs-string">"abc123"</span>,
   <span class="hljs-attr">"attributeValues"</span>: [<span class="hljs-string">AttributeValue</span>],
   <span class="hljs-attr">"createdBy"</span>: <span class="hljs-string">Agent</span>,
   <span class="hljs-attr">"modifiedBy"</span>: <span class="hljs-string">Agent</span>,
   <span class="hljs-attr">"createdAt"</span>: <span class="hljs-string">DateTimeTz</span>,
   <span class="hljs-attr">"updatedAt"</span>: <span class="hljs-string">DateTimeTz</span>,
-  <span class="hljs-attr">"version"</span>: <span class="hljs-number">987</span>
+  <span class="hljs-attr">"version"</span>: <span class="hljs-number">123</span>
 }
 </code></pre> </body>
                   </html>
@@ -4244,15 +4161,15 @@ https://vicflora-test.rbg.vic.gov.au/graphql
                   <head></head>
                   <body><pre><code class="hljs language-json">{
   <span class="hljs-attr">"id"</span>: <span class="hljs-string">ID</span>,
-  <span class="hljs-attr">"value"</span>: <span class="hljs-string">"abc123"</span>,
-  <span class="hljs-attr">"uri"</span>: <span class="hljs-string">"xyz789"</span>,
-  <span class="hljs-attr">"description"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"value"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"uri"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"description"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"attribute"</span>: <span class="hljs-string">Attribute</span>,
   <span class="hljs-attr">"createdBy"</span>: <span class="hljs-string">Agent</span>,
   <span class="hljs-attr">"modifiedBy"</span>: <span class="hljs-string">Agent</span>,
   <span class="hljs-attr">"createdAt"</span>: <span class="hljs-string">DateTimeTz</span>,
   <span class="hljs-attr">"updatedAt"</span>: <span class="hljs-string">DateTimeTz</span>,
-  <span class="hljs-attr">"version"</span>: <span class="hljs-number">123</span>
+  <span class="hljs-attr">"version"</span>: <span class="hljs-number">987</span>
 }
 </code></pre> </body>
                   </html>
@@ -4371,10 +4288,10 @@ https://vicflora-test.rbg.vic.gov.au/graphql
                   <html>
                   <head></head>
                   <body><pre><code class="hljs language-json">{
-  <span class="hljs-attr">"id"</span>: <span class="hljs-number">987</span>,
-  <span class="hljs-attr">"number"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"id"</span>: <span class="hljs-number">123</span>,
+  <span class="hljs-attr">"number"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"name"</span>: <span class="hljs-string">"abc123"</span>,
-  <span class="hljs-attr">"code"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"code"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"label"</span>: <span class="hljs-string">"abc123"</span>
 }
 </code></pre> </body>
@@ -4428,7 +4345,7 @@ https://vicflora-test.rbg.vic.gov.au/graphql
                   <h5>Example</h5>
                   <html>
                   <head></head>
-                  <body><pre><code class="hljs language-gql"><span class="hljs-symbol">2022-03-04T07:54:05.171Z</span>
+                  <body><pre><code class="hljs language-gql"><span class="hljs-symbol">2021-09-05T02:33:55.557Z</span>
 </code></pre> </body>
                   </html>
                 </section>
@@ -4487,101 +4404,6 @@ https://vicflora-test.rbg.vic.gov.au/graphql
               </div>
             </div>
           </div>
-          <div id="definition-DegreeOfEstablishment" class="definition panel" data-traverse-target="definition-DegreeOfEstablishment">
-            <div class="definition-tags">
-              <a class="label" href="#tag-types">Types</a>
-            </div>
-            <h2 class="panel-title">
-              <a name="/definitions/DegreeOfEstablishment"></a>
-              <p><code>DegreeOfEstablishment</code></p>
-            </h2>
-            <div class="doc-row">
-              <div class="doc-copy">
-                <section class="json-schema-properties-blank">
-                  <table>
-                    <tr>
-                      <th>Field Name</th>
-                      <th>Description</th>
-                    </tr>
-                    <tr>
-                      <td data-property-name="id"> <code>id</code> -
-                        <a href="#definition-ID"><code>ID!</code></a>
-                      </td>
-                      <td> </td>
-                    </tr>
-                    <tr>
-                      <td data-property-name="name"> <code>name</code> -
-                        <a href="#definition-String"><code>String!</code></a>
-                      </td>
-                      <td> </td>
-                    </tr>
-                    <tr>
-                      <td data-property-name="uri"> <code>uri</code> -
-                        <a href="#definition-String"><code>String</code></a>
-                      </td>
-                      <td> </td>
-                    </tr>
-                    <tr>
-                      <td data-property-name="label"> <code>label</code> -
-                        <a href="#definition-String"><code>String</code></a>
-                      </td>
-                      <td> </td>
-                    </tr>
-                    <tr>
-                      <td data-property-name="description"> <code>description</code> -
-                        <a href="#definition-String"><code>String</code></a>
-                      </td>
-                      <td> </td>
-                    </tr>
-                    <tr>
-                      <td data-property-name="createdBy"> <code>createdBy</code> -
-                        <a href="#definition-Agent"><code>Agent</code></a>
-                      </td>
-                      <td> </td>
-                    </tr>
-                    <tr>
-                      <td data-property-name="modifiedBy"> <code>modifiedBy</code> -
-                        <a href="#definition-Agent"><code>Agent</code></a>
-                      </td>
-                      <td> </td>
-                    </tr>
-                    <tr>
-                      <td data-property-name="createdAt"> <code>createdAt</code> -
-                        <a href="#definition-DateTimeTz"><code>DateTimeTz</code></a>
-                      </td>
-                      <td> </td>
-                    </tr>
-                    <tr>
-                      <td data-property-name="updatedAt"> <code>updatedAt</code> -
-                        <a href="#definition-DateTimeTz"><code>DateTimeTz</code></a>
-                      </td>
-                      <td> </td>
-                    </tr>
-                  </table>
-                </section>
-              </div>
-              <div class="doc-examples">
-                <section>
-                  <h5>Example</h5>
-                  <html>
-                  <head></head>
-                  <body><pre><code class="hljs language-json">{
-  <span class="hljs-attr">"id"</span>: <span class="hljs-string">ID</span>,
-  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"abc123"</span>,
-  <span class="hljs-attr">"uri"</span>: <span class="hljs-string">"abc123"</span>,
-  <span class="hljs-attr">"label"</span>: <span class="hljs-string">"xyz789"</span>,
-  <span class="hljs-attr">"description"</span>: <span class="hljs-string">"xyz789"</span>,
-  <span class="hljs-attr">"createdBy"</span>: <span class="hljs-string">Agent</span>,
-  <span class="hljs-attr">"modifiedBy"</span>: <span class="hljs-string">Agent</span>,
-  <span class="hljs-attr">"createdAt"</span>: <span class="hljs-string">DateTimeTz</span>,
-  <span class="hljs-attr">"updatedAt"</span>: <span class="hljs-string">DateTimeTz</span>
-}
-</code></pre> </body>
-                  </html>
-                </section>
-              </div>
-            </div>
-          </div>
           <div id="definition-DegreeOfEstablishmentEnum" class="definition panel" data-traverse-target="definition-DegreeOfEstablishmentEnum">
             <div class="definition-tags">
               <a class="label" href="#tag-types">Types</a>
@@ -4592,6 +4414,9 @@ https://vicflora-test.rbg.vic.gov.au/graphql
             </h2>
             <div class="doc-row">
               <div class="doc-copy">
+                <section class="json-schema-description">
+                  <p>Controlled vocabulary for <code>degreeOfEstablishment</code> ()</p>
+                </section>
                 <section class="json-schema-properties-blank">
                   <table>
                     <tr>
@@ -4603,54 +4428,42 @@ https://vicflora-test.rbg.vic.gov.au/graphql
                         <p><code>NATIVE</code></p>
                       </td>
                       <td>
-                        <p>Not transported beyond limits of native range.</p>
-                        <p>Considered native and naturally occurring.</p>
-                      </td>
+                        <strong>Native</strong> – Not transported beyond limits of native range. Considered native and naturally occurring. </td>
                     </tr>
                     <tr>
                       <td>
                         <p><code>CULTIVATED</code></p>
                       </td>
                       <td>
-                        <p>Individuals in cultivation (i.e., individuals provided with conditions suitable for them, but explicit measures to prevent dispersal are limited at best).</p>
-                        <p>Examples include gardens, parks and farms.</p>
-                      </td>
+                        <strong>Cultivated</strong> – Individuals in cultivation (i.e., individuals provided with conditions suitable for them, but explicit measures to prevent dispersal are limited at best). Examples include gardens, parks and farms. </td>
                     </tr>
                     <tr>
                       <td>
                         <p><code>CASUAL</code></p>
                       </td>
                       <td>
-                        <p>Individuals surviving outside of captivity or cultivation in a location with no reproduction.</p>
-                        <p>Trees planted in the wild for forestry or ornament may come under this category.</p>
-                      </td>
+                        <strong>Casual</strong> – Individuals surviving outside of captivity or cultivation in a location with no reproduction. Trees planted in the wild for forestry or ornament may come under this category. </td>
                     </tr>
                     <tr>
                       <td>
                         <p><code>REPRODUCING</code></p>
                       </td>
                       <td>
-                        <p>Individuals surviving outside of captivity or cultivation in a location. Reproduction is occurring, but population not self-sustaining.</p>
-                        <p>Offspring are produced, but these either do not survive or are not fertile enough to maintain the population.</p>
-                      </td>
+                        <strong>Reproducing</strong> – Individuals surviving outside of captivity or cultivation in a location. Reproduction is occurring, but population not self-sustaining. Offspring are produced, but these either do not survive or are not fertile enough to maintain the population. </td>
                     </tr>
                     <tr>
                       <td>
                         <p><code>ESTABLISHED</code></p>
                       </td>
                       <td>
-                        <p>Individuals surviving outside of captivity or cultivation in a location. Reproduction occurring, and population self-sustaining.</p>
-                        <p>The population is maintained by reproduction, but is not spreading.</p>
-                      </td>
+                        <strong>Established</strong> – Individuals surviving outside of captivity or cultivation in a location. Reproduction occurring, and population self-sustaining. The population is maintained by reproduction, but is not spreading. </td>
                     </tr>
                     <tr>
                       <td>
                         <p><code>COLONISING</code></p>
                       </td>
                       <td>
-                        <p>Self-sustaining population outside of captivity or cultivation, with individuals surviving a significant distance from the original point of introduction.</p>
-                        <p>The population is maintained by reproduction and is spreading.</p>
-                      </td>
+                        <strong>Colonising</strong> – Self-sustaining population outside of captivity or cultivation, with individuals surviving a significant distance from the original point of introduction. The population is maintained by reproduction and is spreading. </td>
                     </tr>
                   </table>
                 </section>
@@ -4687,7 +4500,7 @@ https://vicflora-test.rbg.vic.gov.au/graphql
                   <h5>Example</h5>
                   <html>
                   <head></head>
-                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"data"</span>: <span class="hljs-string">"xyz789"</span>}
+                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"data"</span>: <span class="hljs-string">"abc123"</span>}
 </code></pre> </body>
                   </html>
                 </section>
@@ -4741,7 +4554,7 @@ https://vicflora-test.rbg.vic.gov.au/graphql
                   <head></head>
                   <body><pre><code class="hljs language-json">{
   <span class="hljs-attr">"q"</span>: <span class="hljs-string">"*:*"</span>,
-  <span class="hljs-attr">"fq"</span>: [<span class="hljs-string">"abc123"</span>],
+  <span class="hljs-attr">"fq"</span>: [<span class="hljs-string">"xyz789"</span>],
   <span class="hljs-attr">"sort"</span>: [<span class="hljs-string">scientific_name asc</span>],
   <span class="hljs-attr">"fl"</span>: [
     <span class="hljs-string">id</span>,
@@ -4807,6 +4620,10 @@ https://vicflora-test.rbg.vic.gov.au/graphql
             </h2>
             <div class="doc-row">
               <div class="doc-copy">
+                <section class="json-schema-description">
+                  <p>Controlled vocabulary for <code>establishmentMeans</code>. We use the Darwin Core vocabulary (
+                    <a href="https://dwc.tdwg.org/em/">https://dwc.tdwg.org/em/</a>).</p>
+                </section>
                 <section class="json-schema-properties-blank">
                   <table>
                     <tr>
@@ -4817,25 +4634,29 @@ https://vicflora-test.rbg.vic.gov.au/graphql
                       <td>
                         <p><code>NATIVE</code></p>
                       </td>
-                      <td> A taxon occurring within its natural range. </td>
+                      <td>
+                        <strong>Native</strong> – Occurring within its natural range. </td>
                     </tr>
                     <tr>
                       <td>
                         <p><code>NATIVE_REINTRODUCED</code></p>
                       </td>
-                      <td> A taxon re-established by direct introduction by humans into an area that was once part of its natural range, but from where it had become extinct. </td>
+                      <td>
+                        <strong>Native: reintroduced</strong> – Re-established by direct introduction by humans into an area that was once part of its natural range, but from where it had become extinct. </td>
                     </tr>
                     <tr>
                       <td>
                         <p><code>INTRODUCED</code></p>
                       </td>
-                      <td> Establishment of a taxon by human agency into an area that is not part of its natural range. </td>
+                      <td>
+                        <strong>Introduced</strong> – Established by human agency into an area that is not part of its natural range. </td>
                     </tr>
                     <tr>
                       <td>
                         <p><code>UNCERTAIN</code></p>
                       </td>
-                      <td> The origin of the occurrence of the taxon in an area is obscure. </td>
+                      <td>
+                        <strong>Uncertain</strong> – The origin of the occurrence in an area is obscure. </td>
                     </tr>
                   </table>
                 </section>
@@ -4903,7 +4724,7 @@ https://vicflora-test.rbg.vic.gov.au/graphql
   <span class="hljs-attr">"field"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"q"</span>: <span class="hljs-string">"*:*"</span>,
   <span class="hljs-attr">"fq"</span>: [<span class="hljs-string">"abc123"</span>],
-  <span class="hljs-attr">"sort"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"sort"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"limit"</span>: <span class="hljs-number">100</span>,
   <span class="hljs-attr">"offset"</span>: <span class="hljs-number">0</span>
 }
@@ -5054,7 +4875,7 @@ https://vicflora-test.rbg.vic.gov.au/graphql
   <span class="hljs-attr">"term"</span>: <span class="hljs-string">GlossaryTerm</span>,
   <span class="hljs-attr">"relatedTerm"</span>: <span class="hljs-string">GlossaryTerm</span>,
   <span class="hljs-attr">"relationshipType"</span>: <span class="hljs-string">GlossaryRelationshipType</span>,
-  <span class="hljs-attr">"isMisapplied"</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">"isMisapplied"</span>: <span class="hljs-literal">false</span>,
   <span class="hljs-attr">"isDiscouraged"</span>: <span class="hljs-literal">true</span>
 }
 </code></pre> </body>
@@ -5126,10 +4947,10 @@ https://vicflora-test.rbg.vic.gov.au/graphql
                   <body><pre><code class="hljs language-json">{
   <span class="hljs-attr">"id"</span>: <span class="hljs-string">ID</span>,
   <span class="hljs-attr">"name"</span>: <span class="hljs-string">"xyz789"</span>,
-  <span class="hljs-attr">"url"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"url"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"label"</span>: <span class="hljs-string">"xyz789"</span>,
-  <span class="hljs-attr">"description"</span>: <span class="hljs-string">"xyz789"</span>,
-  <span class="hljs-attr">"shorthand"</span>: <span class="hljs-string">"abc123"</span>
+  <span class="hljs-attr">"description"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"shorthand"</span>: <span class="hljs-string">"xyz789"</span>
 }
 </code></pre> </body>
                   </html>
@@ -5301,10 +5122,10 @@ https://vicflora-test.rbg.vic.gov.au/graphql
                   <body><pre><code class="hljs language-json">{
   <span class="hljs-attr">"id"</span>: <span class="hljs-string">ID</span>,
   <span class="hljs-attr">"term"</span>: <span class="hljs-string">GlossaryTerm</span>,
-  <span class="hljs-attr">"imageUrl"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"imageUrl"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"creator"</span>: <span class="hljs-string">"abc123"</span>,
-  <span class="hljs-attr">"rights"</span>: <span class="hljs-string">"abc123"</span>,
-  <span class="hljs-attr">"caption"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"rights"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"caption"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"licenseLogoUrl"</span>: <span class="hljs-string">"abc123"</span>
 }
 </code></pre> </body>
@@ -5493,7 +5314,7 @@ https://vicflora-test.rbg.vic.gov.au/graphql
                   <head></head>
                   <body><pre><code class="hljs language-json">{
   <span class="hljs-attr">"id"</span>: <span class="hljs-string">ID</span>,
-  <span class="hljs-attr">"title"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"title"</span>: <span class="hljs-string">"abc123"</span>,
   <span class="hljs-attr">"taxonomicScope"</span>: <span class="hljs-string">"abc123"</span>,
   <span class="hljs-attr">"geographicScope"</span>: <span class="hljs-string">"xyz789"</span>
 }
@@ -5783,38 +5604,38 @@ https://vicflora-test.rbg.vic.gov.au/graphql
   <span class="hljs-attr">"id"</span>: <span class="hljs-string">ID</span>,
   <span class="hljs-attr">"uid"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"assetCreationDate"</span>: <span class="hljs-string">DateTime</span>,
-  <span class="hljs-attr">"caption"</span>: <span class="hljs-string">"xyz789"</span>,
-  <span class="hljs-attr">"catalogNumber"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"caption"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"catalogNumber"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"copyrightOwner"</span>: <span class="hljs-string">"abc123"</span>,
-  <span class="hljs-attr">"country"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"country"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"countryCode"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"creationDate"</span>: <span class="hljs-string">DateTime</span>,
   <span class="hljs-attr">"creator"</span>: <span class="hljs-string">"abc123"</span>,
-  <span class="hljs-attr">"cumulusCatalog"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"cumulusCatalog"</span>: <span class="hljs-string">"abc123"</span>,
   <span class="hljs-attr">"cumulusRecordId"</span>: <span class="hljs-number">987</span>,
   <span class="hljs-attr">"cumulusRecordName"</span>: <span class="hljs-string">"abc123"</span>,
-  <span class="hljs-attr">"decimalLatitude"</span>: <span class="hljs-number">123.45</span>,
+  <span class="hljs-attr">"decimalLatitude"</span>: <span class="hljs-number">987.65</span>,
   <span class="hljs-attr">"decimalLongitude"</span>: <span class="hljs-number">123.45</span>,
-  <span class="hljs-attr">"heroImage"</span>: <span class="hljs-literal">false</span>,
+  <span class="hljs-attr">"heroImage"</span>: <span class="hljs-literal">true</span>,
   <span class="hljs-attr">"license"</span>: <span class="hljs-string">"xyz789"</span>,
-  <span class="hljs-attr">"locality"</span>: <span class="hljs-string">"abc123"</span>,
-  <span class="hljs-attr">"modified"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"locality"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"modified"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"originatingProgram"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"pixelXDimension"</span>: <span class="hljs-number">123</span>,
-  <span class="hljs-attr">"pixelYDimension"</span>: <span class="hljs-number">987</span>,
+  <span class="hljs-attr">"pixelYDimension"</span>: <span class="hljs-number">123</span>,
   <span class="hljs-attr">"rating"</span>: <span class="hljs-number">987</span>,
-  <span class="hljs-attr">"recordedBy"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"recordedBy"</span>: <span class="hljs-string">"abc123"</span>,
   <span class="hljs-attr">"recordNumber"</span>: <span class="hljs-string">"xyz789"</span>,
-  <span class="hljs-attr">"rights"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"rights"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"scientificName"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"source"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"stateProvince"</span>: <span class="hljs-string">"xyz789"</span>,
-  <span class="hljs-attr">"subjectCategory"</span>: <span class="hljs-string">"xyz789"</span>,
-  <span class="hljs-attr">"subjectOrientation"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"subjectCategory"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"subjectOrientation"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"subjectPart"</span>: <span class="hljs-string">"abc123"</span>,
-  <span class="hljs-attr">"subtype"</span>: <span class="hljs-string">"xyz789"</span>,
-  <span class="hljs-attr">"title"</span>: <span class="hljs-string">"xyz789"</span>,
-  <span class="hljs-attr">"type"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"subtype"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"title"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"type"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"taxonConcept"</span>: <span class="hljs-string">TaxonConcept</span>,
   <span class="hljs-attr">"acceptedConcept"</span>: <span class="hljs-string">TaxonConcept</span>,
   <span class="hljs-attr">"thumbnailUrl"</span>: <span class="hljs-string">"xyz789"</span>,
@@ -5939,9 +5760,9 @@ https://vicflora-test.rbg.vic.gov.au/graphql
                   <html>
                   <head></head>
                   <body><pre><code class="hljs language-json">{
-  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"xyz789"</span>,
-  <span class="hljs-attr">"type"</span>: <span class="hljs-string">"abc123"</span>,
-  <span class="hljs-attr">"indexed"</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"type"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"indexed"</span>: <span class="hljs-literal">false</span>,
   <span class="hljs-attr">"stored"</span>: <span class="hljs-literal">true</span>,
   <span class="hljs-attr">"required"</span>: <span class="hljs-literal">true</span>,
   <span class="hljs-attr">"multiValued"</span>: <span class="hljs-literal">false</span>
@@ -6048,7 +5869,7 @@ https://vicflora-test.rbg.vic.gov.au/graphql
                   <html>
                   <head></head>
                   <body><pre><code class="hljs language-json">{
-  <span class="hljs-attr">"type"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"type"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"geometry"</span>: <span class="hljs-string">GeoJSONGeometry</span>,
   <span class="hljs-attr">"properties"</span>: <span class="hljs-string">LocalGovernmentAreaProperties</span>
 }
@@ -6123,8 +5944,8 @@ https://vicflora-test.rbg.vic.gov.au/graphql
   <span class="hljs-attr">"name"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"label"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"nameAbbr"</span>: <span class="hljs-string">"abc123"</span>,
-  <span class="hljs-attr">"created"</span>: <span class="hljs-string">"2021-09-04T07:54:05.171Z"</span>,
-  <span class="hljs-attr">"gazetted"</span>: <span class="hljs-string">"2022-03-04T07:54:05.171Z"</span>
+  <span class="hljs-attr">"created"</span>: <span class="hljs-string">"2022-03-05T02:33:55.557Z"</span>,
+  <span class="hljs-attr">"gazetted"</span>: <span class="hljs-string">"2021-09-05T02:33:55.557Z"</span>
 }
 </code></pre> </body>
                   </html>
@@ -6174,7 +5995,7 @@ https://vicflora-test.rbg.vic.gov.au/graphql
                   <h5>Example</h5>
                   <html>
                   <head></head>
-                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"profileMap"</span>: <span class="hljs-string">"xyz789"</span>, <span class="hljs-attr">"distributionMap"</span>: <span class="hljs-string">"xyz789"</span>, <span class="hljs-attr">"mapSource"</span>: <span class="hljs-string">"abc123"</span>}
+                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"profileMap"</span>: <span class="hljs-string">"xyz789"</span>, <span class="hljs-attr">"distributionMap"</span>: <span class="hljs-string">"xyz789"</span>, <span class="hljs-attr">"mapSource"</span>: <span class="hljs-string">"xyz789"</span>}
 </code></pre> </body>
                   </html>
                 </section>
@@ -6274,7 +6095,7 @@ https://vicflora-test.rbg.vic.gov.au/graphql
                   <body><pre><code class="hljs language-json">{
   <span class="hljs-attr">"id"</span>: <span class="hljs-string">ID</span>,
   <span class="hljs-attr">"name"</span>: <span class="hljs-string">"xyz789"</span>,
-  <span class="hljs-attr">"uri"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"uri"</span>: <span class="hljs-string">"abc123"</span>,
   <span class="hljs-attr">"label"</span>: <span class="hljs-string">"abc123"</span>,
   <span class="hljs-attr">"description"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"taxonNames"</span>: [<span class="hljs-string">TaxonName</span>],
@@ -6440,7 +6261,7 @@ https://vicflora-test.rbg.vic.gov.au/graphql
                   <body><pre><code class="hljs language-json">{
   <span class="hljs-attr">"id"</span>: <span class="hljs-string">ID</span>,
   <span class="hljs-attr">"guid"</span>: <span class="hljs-string">UUID</span>,
-  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"uri"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"label"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"description"</span>: <span class="hljs-string">"xyz789"</span>,
@@ -6503,7 +6324,7 @@ https://vicflora-test.rbg.vic.gov.au/graphql
                   <html>
                   <head></head>
                   <body><pre><code class="hljs language-json">{
-  <span class="hljs-attr">"type"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"type"</span>: <span class="hljs-string">"abc123"</span>,
   <span class="hljs-attr">"geometry"</span>: <span class="hljs-string">OccurrenceGeometry</span>,
   <span class="hljs-attr">"properties"</span>: <span class="hljs-string">OccurrenceProperties</span>
 }
@@ -6598,7 +6419,7 @@ https://vicflora-test.rbg.vic.gov.au/graphql
                   <h5>Example</h5>
                   <html>
                   <head></head>
-                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"type"</span>: <span class="hljs-string">"xyz789"</span>, <span class="hljs-attr">"coordinates"</span>: [<span class="hljs-number">987.65</span>]}
+                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"type"</span>: <span class="hljs-string">"abc123"</span>, <span class="hljs-attr">"coordinates"</span>: [<span class="hljs-number">123.45</span>]}
 </code></pre> </body>
                   </html>
                 </section>
@@ -6728,18 +6549,18 @@ https://vicflora-test.rbg.vic.gov.au/graphql
                   <body><pre><code class="hljs language-json">{
   <span class="hljs-attr">"uuid"</span>: <span class="hljs-string">ID</span>,
   <span class="hljs-attr">"dataSource"</span>: <span class="hljs-string">"xyz789"</span>,
-  <span class="hljs-attr">"collection"</span>: <span class="hljs-string">"xyz789"</span>,
-  <span class="hljs-attr">"catalogNumber"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"collection"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"catalogNumber"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"recordedBy"</span>: <span class="hljs-string">"abc123"</span>,
-  <span class="hljs-attr">"recordNumber"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"recordNumber"</span>: <span class="hljs-string">"abc123"</span>,
   <span class="hljs-attr">"eventDate"</span>: <span class="hljs-string">"abc123"</span>,
   <span class="hljs-attr">"scientificName"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"speciesName"</span>: <span class="hljs-string">"xyz789"</span>,
-  <span class="hljs-attr">"acceptedNameUsage"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"acceptedNameUsage"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"decimalLatitude"</span>: <span class="hljs-number">987.65</span>,
-  <span class="hljs-attr">"decimalLongitude"</span>: <span class="hljs-number">987.65</span>,
+  <span class="hljs-attr">"decimalLongitude"</span>: <span class="hljs-number">123.45</span>,
   <span class="hljs-attr">"occurrenceStatus"</span>: <span class="hljs-string">"xyz789"</span>,
-  <span class="hljs-attr">"occurrenceStatusSource"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"occurrenceStatusSource"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"establishmentMeans"</span>: <span class="hljs-string">"abc123"</span>,
   <span class="hljs-attr">"establishmentMeansSource"</span>: <span class="hljs-string">"abc123"</span>
 }
@@ -6759,6 +6580,10 @@ https://vicflora-test.rbg.vic.gov.au/graphql
             </h2>
             <div class="doc-row">
               <div class="doc-copy">
+                <section class="json-schema-description">
+                  <p>Controlled vocabulary for <code>occurrenceStatus</code>. We use a previous version of the GBIF vocabulary (
+                    <a href="https://rs.gbif.org/vocabulary/gbif/occurrence_status.xml">https://rs.gbif.org/vocabulary/gbif/occurrence_status.xml</a>).</p>
+                </section>
                 <section class="json-schema-properties-blank">
                   <table>
                     <tr>
@@ -6769,31 +6594,29 @@ https://vicflora-test.rbg.vic.gov.au/graphql
                       <td>
                         <p><code>PRESENT</code></p>
                       </td>
-                      <td> </td>
-                    </tr>
-                    <tr>
                       <td>
-                        <p><code>ENDEMIC</code></p>
-                      </td>
-                      <td> </td>
+                        <strong>Present</strong> – There is at least one well-documented record of the taxon in the area. </td>
                     </tr>
                     <tr>
                       <td>
                         <p><code>EXTINCT</code></p>
                       </td>
-                      <td> </td>
+                      <td>
+                        <strong>Extinct</strong> – There is no evidence that the taxon is still present in the area. </td>
                     </tr>
                     <tr>
                       <td>
                         <p><code>EXCLUDED</code></p>
                       </td>
-                      <td> </td>
+                      <td>
+                        <strong>Excluded</strong> – The taxon has been reported for the area, but the report is based on a misdetermination. A "taxon" that is solely identified by its name can also be considered 'excluded', because the taxonomy has changed. </td>
                     </tr>
                     <tr>
                       <td>
                         <p><code>DOUBTFUL</code></p>
                       </td>
-                      <td> </td>
+                      <td>
+                        <strong>Doubtful</strong> – Presence of an organism in the area is doubtful. In VicFlora we do not use this term at the taxon level, nor at the scale of Victoria, but only at the occurrence record level </td>
                     </tr>
                   </table>
                 </section>
@@ -6926,13 +6749,13 @@ https://vicflora-test.rbg.vic.gov.au/graphql
                   <html>
                   <head></head>
                   <body><pre><code class="hljs language-json">{
-  <span class="hljs-attr">"hasNextPage"</span>: <span class="hljs-literal">false</span>,
-  <span class="hljs-attr">"hasPreviousPage"</span>: <span class="hljs-literal">false</span>,
+  <span class="hljs-attr">"hasNextPage"</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">"hasPreviousPage"</span>: <span class="hljs-literal">true</span>,
   <span class="hljs-attr">"startCursor"</span>: <span class="hljs-string">"xyz789"</span>,
-  <span class="hljs-attr">"endCursor"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"endCursor"</span>: <span class="hljs-string">"abc123"</span>,
   <span class="hljs-attr">"total"</span>: <span class="hljs-number">123</span>,
   <span class="hljs-attr">"count"</span>: <span class="hljs-number">987</span>,
-  <span class="hljs-attr">"currentPage"</span>: <span class="hljs-number">123</span>,
+  <span class="hljs-attr">"currentPage"</span>: <span class="hljs-number">987</span>,
   <span class="hljs-attr">"lastPage"</span>: <span class="hljs-number">123</span>
 }
 </code></pre> </body>
@@ -7022,7 +6845,7 @@ https://vicflora-test.rbg.vic.gov.au/graphql
   <span class="hljs-attr">"firstItem"</span>: <span class="hljs-number">123</span>,
   <span class="hljs-attr">"hasMorePages"</span>: <span class="hljs-literal">false</span>,
   <span class="hljs-attr">"lastItem"</span>: <span class="hljs-number">987</span>,
-  <span class="hljs-attr">"lastPage"</span>: <span class="hljs-number">123</span>,
+  <span class="hljs-attr">"lastPage"</span>: <span class="hljs-number">987</span>,
   <span class="hljs-attr">"perPage"</span>: <span class="hljs-number">123</span>,
   <span class="hljs-attr">"total"</span>: <span class="hljs-number">123</span>
 }
@@ -7075,7 +6898,7 @@ https://vicflora-test.rbg.vic.gov.au/graphql
                   <html>
                   <head></head>
                   <body><pre><code class="hljs language-json">{
-  <span class="hljs-attr">"type"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"type"</span>: <span class="hljs-string">"abc123"</span>,
   <span class="hljs-attr">"geometry"</span>: <span class="hljs-string">GeoJSONGeometry</span>,
   <span class="hljs-attr">"properties"</span>: <span class="hljs-string">ParkReserveProperties</span>
 }
@@ -7177,15 +7000,15 @@ https://vicflora-test.rbg.vic.gov.au/graphql
                   <head></head>
                   <body><pre><code class="hljs language-json">{
   <span class="hljs-attr">"id"</span>: <span class="hljs-string">ID</span>,
-  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"abc123"</span>,
-  <span class="hljs-attr">"label"</span>: <span class="hljs-string">"xyz789"</span>,
-  <span class="hljs-attr">"nameShort"</span>: <span class="hljs-string">"xyz789"</span>,
-  <span class="hljs-attr">"areaType"</span>: <span class="hljs-string">"xyz789"</span>,
-  <span class="hljs-attr">"areaSrc"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"label"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"nameShort"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"areaType"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"areaSrc"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"veacRec"</span>: <span class="hljs-string">"xyz789"</span>,
-  <span class="hljs-attr">"veacStudy"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"veacStudy"</span>: <span class="hljs-string">"abc123"</span>,
   <span class="hljs-attr">"iucn"</span>: <span class="hljs-string">"xyz789"</span>,
-  <span class="hljs-attr">"establishmentDate"</span>: <span class="hljs-string">"2022-03-04T07:54:05.171Z"</span>,
+  <span class="hljs-attr">"establishmentDate"</span>: <span class="hljs-string">"2021-09-05T02:33:55.557Z"</span>,
   <span class="hljs-attr">"areaSqm"</span>: <span class="hljs-number">987.65</span>
 }
 </code></pre> </body>
@@ -7300,16 +7123,16 @@ https://vicflora-test.rbg.vic.gov.au/graphql
   <span class="hljs-attr">"id"</span>: <span class="hljs-string">ID</span>,
   <span class="hljs-attr">"guid"</span>: <span class="hljs-string">UUID</span>,
   <span class="hljs-attr">"profile"</span>: <span class="hljs-string">"xyz789"</span>,
-  <span class="hljs-attr">"isCurrent"</span>: <span class="hljs-literal">false</span>,
-  <span class="hljs-attr">"isUpdated"</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">"isCurrent"</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">"isUpdated"</span>: <span class="hljs-literal">false</span>,
   <span class="hljs-attr">"taxonConcept"</span>: <span class="hljs-string">TaxonConcept</span>,
   <span class="hljs-attr">"acceptedConcept"</span>: <span class="hljs-string">TaxonConcept</span>,
   <span class="hljs-attr">"source"</span>: <span class="hljs-string">Reference</span>,
   <span class="hljs-attr">"creator"</span>: <span class="hljs-string">Agent</span>,
   <span class="hljs-attr">"updatedBy"</span>: <span class="hljs-string">Agent</span>,
-  <span class="hljs-attr">"created"</span>: <span class="hljs-string">"2021-09-04T07:54:05.171Z"</span>,
-  <span class="hljs-attr">"modified"</span>: <span class="hljs-string">"2022-03-04T07:54:05.171Z"</span>,
-  <span class="hljs-attr">"version"</span>: <span class="hljs-number">987</span>
+  <span class="hljs-attr">"created"</span>: <span class="hljs-string">"2022-03-05T02:33:55.557Z"</span>,
+  <span class="hljs-attr">"modified"</span>: <span class="hljs-string">"2021-09-05T02:33:55.557Z"</span>,
+  <span class="hljs-attr">"version"</span>: <span class="hljs-number">123</span>
 }
 </code></pre> </body>
                   </html>
@@ -7494,26 +7317,26 @@ https://vicflora-test.rbg.vic.gov.au/graphql
                   <body><pre><code class="hljs language-json">{
   <span class="hljs-attr">"id"</span>: <span class="hljs-string">ID</span>,
   <span class="hljs-attr">"created"</span>: <span class="hljs-string">"xyz789"</span>,
-  <span class="hljs-attr">"publicationYear"</span>: <span class="hljs-string">"abc123"</span>,
-  <span class="hljs-attr">"title"</span>: <span class="hljs-string">"abc123"</span>,
-  <span class="hljs-attr">"shortTitle"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"publicationYear"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"title"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"shortTitle"</span>: <span class="hljs-string">"abc123"</span>,
   <span class="hljs-attr">"edition"</span>: <span class="hljs-string">"xyz789"</span>,
-  <span class="hljs-attr">"volume"</span>: <span class="hljs-string">"abc123"</span>,
-  <span class="hljs-attr">"issue"</span>: <span class="hljs-string">"xyz789"</span>,
-  <span class="hljs-attr">"pageStart"</span>: <span class="hljs-number">123</span>,
+  <span class="hljs-attr">"volume"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"issue"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"pageStart"</span>: <span class="hljs-number">987</span>,
   <span class="hljs-attr">"pageEnd"</span>: <span class="hljs-number">987</span>,
-  <span class="hljs-attr">"pages"</span>: <span class="hljs-string">"abc123"</span>,
-  <span class="hljs-attr">"numberOfPages"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"pages"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"numberOfPages"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"publisher"</span>: <span class="hljs-string">"abc123"</span>,
-  <span class="hljs-attr">"placeOfPublication"</span>: <span class="hljs-string">"abc123"</span>,
-  <span class="hljs-attr">"shortDescription"</span>: <span class="hljs-string">"abc123"</span>,
-  <span class="hljs-attr">"abstract"</span>: <span class="hljs-string">"abc123"</span>,
-  <span class="hljs-attr">"isbn"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"placeOfPublication"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"shortDescription"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"abstract"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"isbn"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"issn"</span>: <span class="hljs-string">"xyz789"</span>,
-  <span class="hljs-attr">"doi"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"doi"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"citation"</span>: <span class="hljs-string">"abc123"</span>,
   <span class="hljs-attr">"citationHtml"</span>: <span class="hljs-string">"xyz789"</span>,
-  <span class="hljs-attr">"citationMarkdown"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"citationMarkdown"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"author"</span>: <span class="hljs-string">Agent</span>,
   <span class="hljs-attr">"referenceType"</span>: <span class="hljs-string">ReferenceTypeEnum</span>,
   <span class="hljs-attr">"taxonNames"</span>: [<span class="hljs-string">TaxonName</span>]
@@ -7581,9 +7404,9 @@ https://vicflora-test.rbg.vic.gov.au/graphql
                   <body><pre><code class="hljs language-json">{
   <span class="hljs-attr">"id"</span>: <span class="hljs-string">ID</span>,
   <span class="hljs-attr">"name"</span>: <span class="hljs-string">"abc123"</span>,
-  <span class="hljs-attr">"uri"</span>: <span class="hljs-string">"xyz789"</span>,
-  <span class="hljs-attr">"label"</span>: <span class="hljs-string">"xyz789"</span>,
-  <span class="hljs-attr">"description"</span>: <span class="hljs-string">"abc123"</span>
+  <span class="hljs-attr">"uri"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"label"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"description"</span>: <span class="hljs-string">"xyz789"</span>
 }
 </code></pre> </body>
                   </html>
@@ -7812,7 +7635,7 @@ https://vicflora-test.rbg.vic.gov.au/graphql
     <span class="hljs-string">family</span>,
     <span class="hljs-string">media</span>
   ],
-  <span class="hljs-attr">"facetSort"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"facetSort"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"facetLimit"</span>: <span class="hljs-number">10</span>,
   <span class="hljs-attr">"facetOffset"</span>: <span class="hljs-number">0</span>
 }
@@ -7866,7 +7689,7 @@ https://vicflora-test.rbg.vic.gov.au/graphql
                   <head></head>
                   <body><pre><code class="hljs language-json">{
   <span class="hljs-attr">"params"</span>: <span class="hljs-string">SearchParameters</span>,
-  <span class="hljs-attr">"query"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"query"</span>: <span class="hljs-string">"abc123"</span>,
   <span class="hljs-attr">"pagination"</span>: <span class="hljs-string">PaginatorInfo</span>
 }
 </code></pre> </body>
@@ -7966,16 +7789,16 @@ https://vicflora-test.rbg.vic.gov.au/graphql
                   <html>
                   <head></head>
                   <body><pre><code class="hljs language-json">{
-  <span class="hljs-attr">"q"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"q"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"fq"</span>: [<span class="hljs-string">"xyz789"</span>],
   <span class="hljs-attr">"fl"</span>: [<span class="hljs-string">"xyz789"</span>],
-  <span class="hljs-attr">"rows"</span>: <span class="hljs-number">987</span>,
-  <span class="hljs-attr">"page"</span>: <span class="hljs-number">987</span>,
+  <span class="hljs-attr">"rows"</span>: <span class="hljs-number">123</span>,
+  <span class="hljs-attr">"page"</span>: <span class="hljs-number">123</span>,
   <span class="hljs-attr">"start"</span>: <span class="hljs-number">987</span>,
   <span class="hljs-attr">"facet"</span>: <span class="hljs-literal">false</span>,
-  <span class="hljs-attr">"facetField"</span>: [<span class="hljs-string">"xyz789"</span>],
-  <span class="hljs-attr">"facetSort"</span>: <span class="hljs-string">"abc123"</span>,
-  <span class="hljs-attr">"facetLimit"</span>: <span class="hljs-number">123</span>,
+  <span class="hljs-attr">"facetField"</span>: [<span class="hljs-string">"abc123"</span>],
+  <span class="hljs-attr">"facetSort"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"facetLimit"</span>: <span class="hljs-number">987</span>,
   <span class="hljs-attr">"facetOffset"</span>: <span class="hljs-number">123</span>
 }
 </code></pre> </body>
@@ -8264,33 +8087,33 @@ https://vicflora-test.rbg.vic.gov.au/graphql
   <span class="hljs-attr">"taxonRank"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"scientificNameId"</span>: <span class="hljs-string">"abc123"</span>,
   <span class="hljs-attr">"scientificName"</span>: <span class="hljs-string">"abc123"</span>,
-  <span class="hljs-attr">"scientificNameAuthorship"</span>: <span class="hljs-string">"xyz789"</span>,
-  <span class="hljs-attr">"nameType"</span>: <span class="hljs-string">"xyz789"</span>,
-  <span class="hljs-attr">"namePublishedInId"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"scientificNameAuthorship"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"nameType"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"namePublishedInId"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"namePublishedIn"</span>: <span class="hljs-string">"abc123"</span>,
   <span class="hljs-attr">"namePublishedInYear"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"nameAccordingTo"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"kingdom"</span>: <span class="hljs-string">"abc123"</span>,
   <span class="hljs-attr">"phylum"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"class"</span>: <span class="hljs-string">"abc123"</span>,
-  <span class="hljs-attr">"order"</span>: <span class="hljs-string">"abc123"</span>,
-  <span class="hljs-attr">"family"</span>: <span class="hljs-string">"abc123"</span>,
-  <span class="hljs-attr">"genus"</span>: <span class="hljs-string">"xyz789"</span>,
-  <span class="hljs-attr">"specificEpithet"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"order"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"family"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"genus"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"specificEpithet"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"infraspecificEpithet"</span>: <span class="hljs-string">"xyz789"</span>,
-  <span class="hljs-attr">"parentNameUsageId"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"parentNameUsageId"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"parentNameUsage"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"acceptedNameUsageId"</span>: <span class="hljs-string">"xyz789"</span>,
-  <span class="hljs-attr">"acceptedNameUsage"</span>: <span class="hljs-string">"xyz789"</span>,
-  <span class="hljs-attr">"acceptedNameUsageAuthorship"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"acceptedNameUsage"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"acceptedNameUsageAuthorship"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"taxonomicStatus"</span>: <span class="hljs-string">"abc123"</span>,
-  <span class="hljs-attr">"occurrenceStatus"</span>: <span class="hljs-string">"xyz789"</span>,
-  <span class="hljs-attr">"establishmentMeans"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"occurrenceStatus"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"establishmentMeans"</span>: <span class="hljs-string">"abc123"</span>,
   <span class="hljs-attr">"degreeOfEstablishment"</span>: <span class="hljs-string">"abc123"</span>,
   <span class="hljs-attr">"endemic"</span>: <span class="hljs-literal">true</span>,
   <span class="hljs-attr">"hasIntroducedOccurrences"</span>: <span class="hljs-literal">true</span>,
-  <span class="hljs-attr">"threatStatus"</span>: [<span class="hljs-string">"xyz789"</span>],
-  <span class="hljs-attr">"taxonRemarks"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"threatStatus"</span>: [<span class="hljs-string">"abc123"</span>],
+  <span class="hljs-attr">"taxonRemarks"</span>: <span class="hljs-string">"abc123"</span>,
   <span class="hljs-attr">"vernacularName"</span>: [<span class="hljs-string">"xyz789"</span>],
   <span class="hljs-attr">"preferredVernacularName"</span>: <span class="hljs-string">"abc123"</span>
 }
@@ -8342,7 +8165,7 @@ https://vicflora-test.rbg.vic.gov.au/graphql
                   <h5>Example</h5>
                   <html>
                   <head></head>
-                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"value"</span>: <span class="hljs-string">"xyz789"</span>, <span class="hljs-attr">"count"</span>: <span class="hljs-number">123</span>, <span class="hljs-attr">"fq"</span>: <span class="hljs-string">"abc123"</span>}
+                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"value"</span>: <span class="hljs-string">"abc123"</span>, <span class="hljs-attr">"count"</span>: <span class="hljs-number">987</span>, <span class="hljs-attr">"fq"</span>: <span class="hljs-string">"abc123"</span>}
 </code></pre> </body>
                   </html>
                 </section>
@@ -8392,7 +8215,7 @@ https://vicflora-test.rbg.vic.gov.au/graphql
                   <html>
                   <head></head>
                   <body><pre><code class="hljs language-json">{
-  <span class="hljs-attr">"fieldName"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"fieldName"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"fieldLabel"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"facets"</span>: [<span class="hljs-string">SearchResultFacet</span>]
 }
@@ -8554,18 +8377,18 @@ https://vicflora-test.rbg.vic.gov.au/graphql
                   <head></head>
                   <body><pre><code class="hljs language-json">{
   <span class="hljs-attr">"id"</span>: <span class="hljs-string">ID</span>,
-  <span class="hljs-attr">"cumulusRecordId"</span>: <span class="hljs-number">987</span>,
+  <span class="hljs-attr">"cumulusRecordId"</span>: <span class="hljs-number">123</span>,
   <span class="hljs-attr">"recordName"</span>: <span class="hljs-string">"xyz789"</span>,
-  <span class="hljs-attr">"catalogNumber"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"catalogNumber"</span>: <span class="hljs-string">"abc123"</span>,
   <span class="hljs-attr">"alaImageUuid"</span>: <span class="hljs-string">"abc123"</span>,
-  <span class="hljs-attr">"title"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"title"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"caption"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"originatingProgram"</span>: <span class="hljs-string">"xyz789"</span>,
-  <span class="hljs-attr">"subjectCategory"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"subjectCategory"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"pixelXDimension"</span>: <span class="hljs-number">123</span>,
   <span class="hljs-attr">"pixelYDimension"</span>: <span class="hljs-number">987</span>,
-  <span class="hljs-attr">"scientificName"</span>: <span class="hljs-string">"abc123"</span>,
-  <span class="hljs-attr">"thumbnailUrl"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"scientificName"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"thumbnailUrl"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"taxonConcept"</span>: <span class="hljs-string">TaxonConcept</span>,
   <span class="hljs-attr">"acceptedConcept"</span>: <span class="hljs-string">TaxonConcept</span>
 }
@@ -8814,8 +8637,8 @@ https://vicflora-test.rbg.vic.gov.au/graphql
   <span class="hljs-attr">"bioregion"</span>: <span class="hljs-string">BioregionFeature</span>,
   <span class="hljs-attr">"occurrenceStatus"</span>: <span class="hljs-string">OccurrenceStatusEnum</span>,
   <span class="hljs-attr">"establishmentMeans"</span>: <span class="hljs-string">EstablishmentMeansEnum</span>,
-  <span class="hljs-attr">"bioregionName"</span>: <span class="hljs-string">"xyz789"</span>,
-  <span class="hljs-attr">"bioregionCode"</span>: <span class="hljs-string">"abc123"</span>
+  <span class="hljs-attr">"bioregionName"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"bioregionCode"</span>: <span class="hljs-string">"xyz789"</span>
 }
 </code></pre> </body>
                   </html>
@@ -8903,25 +8726,29 @@ https://vicflora-test.rbg.vic.gov.au/graphql
                       <td data-property-name="taxonomicStatus"> <code>taxonomicStatus</code> -
                         <a href="#definition-TaxonomicStatusEnum"><code>TaxonomicStatusEnum</code></a>
                       </td>
-                      <td> </td>
+                      <td> The status of the use of the scientificName as a label for a taxon. Requires taxonomic opinion to define the scope of a taxon. Rules of priority then are used to define the taxonomic status of the nomenclature contained in that scope, combined with the experts opinion. It must be linked to a specific taxonomic reference that defines the concept (
+                        <a href="http://rs.tdwg.org/dwc/terms/taxonomicStatus">http://rs.tdwg.org/dwc/terms/taxonomicStatus</a>). </td>
                     </tr>
                     <tr>
                       <td data-property-name="occurrenceStatus"> <code>occurrenceStatus</code> -
                         <a href="#definition-OccurrenceStatusEnum"><code>OccurrenceStatusEnum</code></a>
                       </td>
-                      <td> </td>
+                      <td> A statement about the presence or absence of a Taxon at a Location (
+                        <a href="http://rs.tdwg.org/dwc/terms/occurrenceStatus">http://rs.tdwg.org/dwc/terms/occurrenceStatus</a>). </td>
                     </tr>
                     <tr>
                       <td data-property-name="establishmentMeans"> <code>establishmentMeans</code> -
                         <a href="#definition-EstablishmentMeansEnum"><code>EstablishmentMeansEnum</code></a>
                       </td>
-                      <td> </td>
+                      <td> Statement about whether an organism or organisms have been introduced to a given place and time through the direct or indirect activity of modern humans (
+                        <a href="http://rs.tdwg.org/dwc/terms/establishmentMeans">http://rs.tdwg.org/dwc/terms/establishmentMeans</a>). </td>
                     </tr>
                     <tr>
                       <td data-property-name="degreeOfEstablishment"> <code>degreeOfEstablishment</code> -
                         <a href="#definition-DegreeOfEstablishmentEnum"><code>DegreeOfEstablishmentEnum</code></a>
                       </td>
-                      <td> </td>
+                      <td> The degree to which an Organism survives, reproduces, and expands its range at the given place and time (
+                        <a href="http://rs.tdwg.org/dwc/terms/degreeOfEstablishment">http://rs.tdwg.org/dwc/terms/degreeOfEstablishment</a>). </td>
                     </tr>
                     <tr>
                       <td data-property-name="endemic"> <code>endemic</code> -
@@ -9258,7 +9085,7 @@ https://vicflora-test.rbg.vic.gov.au/graphql
                   <head></head>
                   <body><pre><code class="hljs language-json">{
   <span class="hljs-attr">"id"</span>: <span class="hljs-string">ID</span>,
-  <span class="hljs-attr">"remarks"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"remarks"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"editorNotes"</span>: <span class="hljs-string">"abc123"</span>,
   <span class="hljs-attr">"taxonName"</span>: <span class="hljs-string">TaxonName</span>,
   <span class="hljs-attr">"accordingTo"</span>: <span class="hljs-string">Reference</span>,
@@ -9271,7 +9098,7 @@ https://vicflora-test.rbg.vic.gov.au/graphql
   <span class="hljs-attr">"occurrenceStatus"</span>: <span class="hljs-string">OccurrenceStatusEnum</span>,
   <span class="hljs-attr">"establishmentMeans"</span>: <span class="hljs-string">EstablishmentMeansEnum</span>,
   <span class="hljs-attr">"degreeOfEstablishment"</span>: <span class="hljs-string">DegreeOfEstablishmentEnum</span>,
-  <span class="hljs-attr">"endemic"</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">"endemic"</span>: <span class="hljs-literal">false</span>,
   <span class="hljs-attr">"hasIntroducedOccurrences"</span>: <span class="hljs-literal">false</span>,
   <span class="hljs-attr">"epbc"</span>: <span class="hljs-string">IUCNThreatStatusEnum</span>,
   <span class="hljs-attr">"ffg"</span>: <span class="hljs-string">IUCNThreatStatusEnum</span>,
@@ -9571,10 +9398,10 @@ https://vicflora-test.rbg.vic.gov.au/graphql
                   <head></head>
                   <body><pre><code class="hljs language-json">{
   <span class="hljs-attr">"id"</span>: <span class="hljs-string">ID</span>,
-  <span class="hljs-attr">"namePart"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"namePart"</span>: <span class="hljs-string">"abc123"</span>,
   <span class="hljs-attr">"fullName"</span>: <span class="hljs-string">"abc123"</span>,
   <span class="hljs-attr">"authorship"</span>: <span class="hljs-string">"abc123"</span>,
-  <span class="hljs-attr">"fullNameWithAuthorship"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"fullNameWithAuthorship"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"nomenclaturalNote"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"remarks"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"nameType"</span>: <span class="hljs-string">NameTypeEnum</span>,
@@ -9670,7 +9497,7 @@ https://vicflora-test.rbg.vic.gov.au/graphql
   <span class="hljs-attr">"id"</span>: <span class="hljs-string">ID</span>,
   <span class="hljs-attr">"taxonConcept"</span>: <span class="hljs-string">TaxonConcept</span>,
   <span class="hljs-attr">"parkReserve"</span>: <span class="hljs-string">ParkReserveFeature</span>,
-  <span class="hljs-attr">"parkReserveName"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"parkReserveName"</span>: <span class="hljs-string">"abc123"</span>,
   <span class="hljs-attr">"parkReserveShortName"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"parkReserveAreaType"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"occurrenceStatus"</span>: <span class="hljs-string">OccurrenceStatusEnum</span>,
@@ -9956,7 +9783,7 @@ https://vicflora-test.rbg.vic.gov.au/graphql
   <span class="hljs-attr">"modifiedBy"</span>: <span class="hljs-string">Agent</span>,
   <span class="hljs-attr">"createdAt"</span>: <span class="hljs-string">DateTimeTz</span>,
   <span class="hljs-attr">"updatedAt"</span>: <span class="hljs-string">DateTimeTz</span>,
-  <span class="hljs-attr">"version"</span>: <span class="hljs-number">987</span>
+  <span class="hljs-attr">"version"</span>: <span class="hljs-number">123</span>
 }
 </code></pre> </body>
                   </html>
@@ -10044,10 +9871,10 @@ https://vicflora-test.rbg.vic.gov.au/graphql
                   <head></head>
                   <body><pre><code class="hljs language-json">{
   <span class="hljs-attr">"id"</span>: <span class="hljs-string">ID</span>,
-  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"abc123"</span>,
   <span class="hljs-attr">"uri"</span>: <span class="hljs-string">"abc123"</span>,
   <span class="hljs-attr">"label"</span>: <span class="hljs-string">"abc123"</span>,
-  <span class="hljs-attr">"description"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"description"</span>: <span class="hljs-string">"abc123"</span>,
   <span class="hljs-attr">"createdBy"</span>: <span class="hljs-string">Agent</span>,
   <span class="hljs-attr">"modifiedBy"</span>: <span class="hljs-string">Agent</span>,
   <span class="hljs-attr">"createdAt"</span>: <span class="hljs-string">DateTimeTz</span>,
@@ -10141,8 +9968,8 @@ https://vicflora-test.rbg.vic.gov.au/graphql
   <span class="hljs-attr">"id"</span>: <span class="hljs-string">ID</span>,
   <span class="hljs-attr">"name"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"uri"</span>: <span class="hljs-string">"abc123"</span>,
-  <span class="hljs-attr">"label"</span>: <span class="hljs-string">"xyz789"</span>,
-  <span class="hljs-attr">"description"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"label"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"description"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"createdBy"</span>: <span class="hljs-string">Agent</span>,
   <span class="hljs-attr">"modifiedBy"</span>: <span class="hljs-string">Agent</span>,
   <span class="hljs-attr">"createdAt"</span>: <span class="hljs-string">DateTimeTz</span>,
@@ -10235,7 +10062,7 @@ https://vicflora-test.rbg.vic.gov.au/graphql
                   <body><pre><code class="hljs language-json">{
   <span class="hljs-attr">"id"</span>: <span class="hljs-string">ID</span>,
   <span class="hljs-attr">"name"</span>: <span class="hljs-string">"abc123"</span>,
-  <span class="hljs-attr">"uri"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"uri"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"label"</span>: <span class="hljs-string">"abc123"</span>,
   <span class="hljs-attr">"description"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"createdBy"</span>: <span class="hljs-string">Agent</span>,
@@ -10366,19 +10193,19 @@ https://vicflora-test.rbg.vic.gov.au/graphql
                   <body><pre><code class="hljs language-json">{
   <span class="hljs-attr">"id"</span>: <span class="hljs-string">ID</span>,
   <span class="hljs-attr">"name"</span>: <span class="hljs-string">"xyz789"</span>,
-  <span class="hljs-attr">"textBefore"</span>: <span class="hljs-string">"abc123"</span>,
-  <span class="hljs-attr">"textAfter"</span>: <span class="hljs-string">"abc123"</span>,
-  <span class="hljs-attr">"fullNameSeparator"</span>: <span class="hljs-string">"abc123"</span>,
-  <span class="hljs-attr">"isEnforced"</span>: <span class="hljs-literal">true</span>,
-  <span class="hljs-attr">"isInFullName"</span>: <span class="hljs-literal">false</span>,
-  <span class="hljs-attr">"rankId"</span>: <span class="hljs-number">123</span>,
+  <span class="hljs-attr">"textBefore"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"textAfter"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"fullNameSeparator"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"isEnforced"</span>: <span class="hljs-literal">false</span>,
+  <span class="hljs-attr">"isInFullName"</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">"rankId"</span>: <span class="hljs-number">987</span>,
   <span class="hljs-attr">"parentItem"</span>: <span class="hljs-string">TaxonTreeDefItem</span>,
   <span class="hljs-attr">"taxonConcepts"</span>: [<span class="hljs-string">TaxonConcept</span>],
   <span class="hljs-attr">"createdBy"</span>: <span class="hljs-string">Agent</span>,
   <span class="hljs-attr">"modifiedBy"</span>: <span class="hljs-string">Agent</span>,
   <span class="hljs-attr">"createdAt"</span>: <span class="hljs-string">DateTimeTz</span>,
   <span class="hljs-attr">"updatedAt"</span>: <span class="hljs-string">DateTimeTz</span>,
-  <span class="hljs-attr">"version"</span>: <span class="hljs-number">123</span>
+  <span class="hljs-attr">"version"</span>: <span class="hljs-number">987</span>
 }
 </code></pre> </body>
                   </html>
@@ -10484,12 +10311,12 @@ https://vicflora-test.rbg.vic.gov.au/graphql
                   <head></head>
                   <body><pre><code class="hljs language-json">{
   <span class="hljs-attr">"id"</span>: <span class="hljs-string">ID</span>,
-  <span class="hljs-attr">"nodeNumber"</span>: <span class="hljs-number">987</span>,
+  <span class="hljs-attr">"nodeNumber"</span>: <span class="hljs-number">123</span>,
   <span class="hljs-attr">"highestDescendantNodeNumber"</span>: <span class="hljs-number">987</span>,
   <span class="hljs-attr">"depth"</span>: <span class="hljs-number">123</span>,
   <span class="hljs-attr">"path"</span>: <span class="hljs-string">"abc123"</span>,
-  <span class="hljs-attr">"namePath"</span>: <span class="hljs-string">"abc123"</span>,
-  <span class="hljs-attr">"rank"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"namePath"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"rank"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"taxonConcept"</span>: <span class="hljs-string">TaxonConcept</span>,
   <span class="hljs-attr">"createdBy"</span>: <span class="hljs-string">Agent</span>,
   <span class="hljs-attr">"modifiedBy"</span>: <span class="hljs-string">Agent</span>,
@@ -10528,46 +10355,42 @@ https://vicflora-test.rbg.vic.gov.au/graphql
                         <p><code>ACCEPTED</code></p>
                       </td>
                       <td>
-                        <a href="http://rs.gbif.org/vocabulary/gbif/taxonomicStatus/accepted">http://rs.gbif.org/vocabulary/gbif/taxonomicStatus/accepted</a>
-                      </td>
+                        <strong>Accepted</strong> – The taxon is currently accepted in VicFlora </td>
                     </tr>
                     <tr>
                       <td>
                         <p><code>SYNONYM</code></p>
                       </td>
                       <td>
-                        <a href="http://rs.gbif.org/vocabulary/gbif/taxonomicStatus/synonym">http://rs.gbif.org/vocabulary/gbif/taxonomicStatus/synonym</a>
-                      </td>
+                        <strong>Synonym</strong> – The name is a synonym of the name of an accepted taxon. In VicFlora we tend to use this only for names that cannot be considered homotypic or heterotypic synonyms, like autonyms and phrase names. In the front end we call all synonyms just 'synonyms'. </td>
                     </tr>
                     <tr>
                       <td>
                         <p><code>HOMOTYPIC_SYNONYM</code></p>
                       </td>
                       <td>
-                        <a href="http://rs.gbif.org/vocabulary/gbif/taxonomicStatus/homotypicSynonym">http://rs.gbif.org/vocabulary/gbif/taxonomicStatus/homotypicSynonym</a>
-                      </td>
+                        <strong>Homotypic synonym</strong> – The name is a homotypic (syn.: nomenclatural) synonym. </td>
                     </tr>
                     <tr>
                       <td>
                         <p><code>HETEROTYPIC_SYNONYM</code></p>
                       </td>
                       <td>
-                        <a href="http://rs.gbif.org/vocabulary/gbif/taxonomicStatus/heterotypicSynonym">http://rs.gbif.org/vocabulary/gbif/taxonomicStatus/heterotypicSynonym</a>
-                      </td>
+                        <strong>Heterotypic synonym</strong> – The name is a heterotypic (syn.: taxonomic) synonym. </td>
                     </tr>
                     <tr>
                       <td>
                         <p><code>MISAPPLICATION</code></p>
                       </td>
                       <td>
-                        <a href="http://rs.gbif.org/vocabulary/gbif/taxonomicStatus/misapplication">http://rs.gbif.org/vocabulary/gbif/taxonomicStatus/misapplication</a>
-                      </td>
+                        <strong>Misapplication</strong> – The name has been misapplied. </td>
                     </tr>
                     <tr>
                       <td>
                         <p><code>NOT_ACCEPTED</code></p>
                       </td>
-                      <td> This is not a standard term, but negates 'accepted' </td>
+                      <td>
+                        <strong>Not accepted</strong> – The name is not currently accepted in VicFlora, but can also not be considered a synonym or misapplication. </td>
                     </tr>
                   </table>
                 </section>
@@ -10642,49 +10465,6 @@ https://vicflora-test.rbg.vic.gov.au/graphql
               </div>
             </div>
           </div>
-          <div id="definition-VBAConservationStatus" class="definition panel" data-traverse-target="definition-VBAConservationStatus">
-            <div class="definition-tags">
-              <a class="label" href="#tag-types">Types</a>
-            </div>
-            <h2 class="panel-title">
-              <a name="/definitions/VBAConservationStatus"></a>
-              <p><code>VBAConservationStatus</code></p>
-            </h2>
-            <div class="doc-row">
-              <div class="doc-copy">
-                <section class="json-schema-properties-blank">
-                  <table>
-                    <tr>
-                      <th>Field Name</th>
-                      <th>Description</th>
-                    </tr>
-                    <tr>
-                      <td data-property-name="code"> <code>code</code> -
-                        <a href="#definition-String"><code>String</code></a>
-                      </td>
-                      <td> </td>
-                    </tr>
-                    <tr>
-                      <td data-property-name="description"> <code>description</code> -
-                        <a href="#definition-String"><code>String</code></a>
-                      </td>
-                      <td> </td>
-                    </tr>
-                  </table>
-                </section>
-              </div>
-              <div class="doc-examples">
-                <section>
-                  <h5>Example</h5>
-                  <html>
-                  <head></head>
-                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"code"</span>: <span class="hljs-string">"abc123"</span>, <span class="hljs-attr">"description"</span>: <span class="hljs-string">"abc123"</span>}
-</code></pre> </body>
-                  </html>
-                </section>
-              </div>
-            </div>
-          </div>
           <div id="definition-VbaTaxon" class="definition panel" data-traverse-target="definition-VbaTaxon">
             <div class="definition-tags">
               <a class="label" href="#tag-types">Types</a>
@@ -10722,24 +10502,6 @@ https://vicflora-test.rbg.vic.gov.au/graphql
                     <tr>
                       <td data-property-name="authority"> <code>authority</code> -
                         <a href="#definition-String"><code>String</code></a>
-                      </td>
-                      <td> </td>
-                    </tr>
-                    <tr>
-                      <td data-property-name="ffg"> <code>ffg</code> -
-                        <a href="#definition-VBAConservationStatus"><code>VBAConservationStatus</code></a>
-                      </td>
-                      <td> </td>
-                    </tr>
-                    <tr>
-                      <td data-property-name="epbc"> <code>epbc</code> -
-                        <a href="#definition-VBAConservationStatus"><code>VBAConservationStatus</code></a>
-                      </td>
-                      <td> </td>
-                    </tr>
-                    <tr>
-                      <td data-property-name="vicAdvice"> <code>vicAdvice</code> -
-                        <a href="#definition-VBAConservationStatus"><code>VBAConservationStatus</code></a>
                       </td>
                       <td> </td>
                     </tr>
@@ -10832,23 +10594,20 @@ https://vicflora-test.rbg.vic.gov.au/graphql
                   <body><pre><code class="hljs language-json">{
   <span class="hljs-attr">"id"</span>: <span class="hljs-string">ID</span>,
   <span class="hljs-attr">"scientificName"</span>: <span class="hljs-string">"abc123"</span>,
-  <span class="hljs-attr">"commonName"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"commonName"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"authority"</span>: <span class="hljs-string">"abc123"</span>,
-  <span class="hljs-attr">"ffg"</span>: <span class="hljs-string">VBAConservationStatus</span>,
-  <span class="hljs-attr">"epbc"</span>: <span class="hljs-string">VBAConservationStatus</span>,
-  <span class="hljs-attr">"vicAdvice"</span>: <span class="hljs-string">VBAConservationStatus</span>,
   <span class="hljs-attr">"restriction"</span>: <span class="hljs-string">"abc123"</span>,
-  <span class="hljs-attr">"origin"</span>: <span class="hljs-string">"xyz789"</span>,
-  <span class="hljs-attr">"taxonType"</span>: <span class="hljs-string">"xyz789"</span>,
-  <span class="hljs-attr">"lifeForm"</span>: <span class="hljs-string">"xyz789"</span>,
-  <span class="hljs-attr">"nvisGrowthForm"</span>: <span class="hljs-string">"xyz789"</span>,
-  <span class="hljs-attr">"fireResponse"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"origin"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"taxonType"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"lifeForm"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"nvisGrowthForm"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"fireResponse"</span>: <span class="hljs-string">"abc123"</span>,
   <span class="hljs-attr">"treaty"</span>: <span class="hljs-string">"abc123"</span>,
-  <span class="hljs-attr">"discipline"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"discipline"</span>: <span class="hljs-string">"abc123"</span>,
   <span class="hljs-attr">"taxonLevel"</span>: <span class="hljs-string">"abc123"</span>,
-  <span class="hljs-attr">"fisSpeciesNumber"</span>: <span class="hljs-number">123</span>,
-  <span class="hljs-attr">"recordModificationDate"</span>: <span class="hljs-string">"2021-09-04T07:54:05.171Z"</span>,
-  <span class="hljs-attr">"versionDate"</span>: <span class="hljs-string">"2021-09-04T07:54:05.171Z"</span>,
+  <span class="hljs-attr">"fisSpeciesNumber"</span>: <span class="hljs-number">987</span>,
+  <span class="hljs-attr">"recordModificationDate"</span>: <span class="hljs-string">"2021-09-05T02:33:55.557Z"</span>,
+  <span class="hljs-attr">"versionDate"</span>: <span class="hljs-string">"2021-09-05T02:33:55.557Z"</span>,
   <span class="hljs-attr">"taxonName"</span>: <span class="hljs-string">TaxonName</span>
 }
 </code></pre> </body>
@@ -10998,10 +10757,10 @@ https://vicflora-test.rbg.vic.gov.au/graphql
                   <head></head>
                   <body><pre><code class="hljs language-json">{
   <span class="hljs-attr">"id"</span>: <span class="hljs-string">ID</span>,
-  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"isPreferred"</span>: <span class="hljs-literal">true</span>,
-  <span class="hljs-attr">"nameUsage"</span>: <span class="hljs-string">"abc123"</span>,
-  <span class="hljs-attr">"remarks"</span>: <span class="hljs-string">"abc123"</span>,
+  <span class="hljs-attr">"nameUsage"</span>: <span class="hljs-string">"xyz789"</span>,
+  <span class="hljs-attr">"remarks"</span>: <span class="hljs-string">"xyz789"</span>,
   <span class="hljs-attr">"taxonConcept"</span>: <span class="hljs-string">TaxonConcept</span>,
   <span class="hljs-attr">"createdBy"</span>: <span class="hljs-string">Agent</span>,
   <span class="hljs-attr">"modifiedBy"</span>: <span class="hljs-string">Agent</span>,

@@ -1,127 +1,134 @@
 {
-  "OBJECT": {
-    "User": { "documentation": { "undocumented": true } },
-    "UserPaginator": { "documentation": { "undocumented": true } },
-    "AuthPayload": { "documentation": { "undocumented": true } },
-    "RefreshTokenPayload": { "documentation": { "undocumented": true } },
-    "LogoutResponse": { "documentation": { "undocumented": true } },
-    "ForgotPasswordResponse": { "documentation": { "undocumented": true } },
-    "RegisterResponse": { "documentation": { "undocumented": true } },
-    "UpdatePasswordResponse": { "documentation": { "undocumented": true } },
+    "OBJECT": {
+        "User": { "documentation": { "undocumented": true } },
+        "UserPaginator": { "documentation": { "undocumented": true } },
+        "AuthPayload": { "documentation": { "undocumented": true } },
+        "RefreshTokenPayload": { "documentation": { "undocumented": true } },
+        "LogoutResponse": { "documentation": { "undocumented": true } },
+        "ForgotPasswordResponse": { "documentation": { "undocumented": true } },
+        "RegisterResponse": { "documentation": { "undocumented": true } },
+        "UpdatePasswordResponse": { "documentation": { "undocumented": true } },
 
-    "CarouselSlide": { "documentation": { "undocumented": true } },
-    "Highlight": { "documentation": { "undocumented": true } },
+        "CarouselSlide": { "documentation": { "undocumented": true } },
+        "Highlight": { "documentation": { "undocumented": true } },
 
-    "TaxonomicStatus": { "documentation": { "undocumented": true } },
-    "OccurrenceStatus": { "documentation": { "undocumented": true } },
-    "EstablishmentMeans": { "documentation": { "undocumented": true } },
+        "TaxonomicStatus": { "documentation": { "undocumented": true } },
+        "OccurrenceStatus": { "documentation": { "undocumented": true } },
+        "EstablishmentMeans": { "documentation": { "undocumented": true } },
+        "DegreeOfEstablishment": { "documentation": { "undocumented": true } },
+        "VBAConservationStatus": { "documentation": { "undocumented": true } },
 
 
 
-    "GeoJSONGeometry": {
-      "fields": {
-        "type": {
-          "documentation": { "example": "MultiPolygon" }
+        "GeoJSONGeometry": {
+            "fields": {
+                "type": {
+                    "documentation": { "example": "MultiPolygon" }
+                },
+                "coordinates": {
+                    "documentation": {
+                        "example": [
+                            [
+                                [
+                                    [100.0, 0.0],
+                                    [101.0, 0.0],
+                                    [101.0, 1.0],
+                                    [100.0, 1.0],
+                                    [100.0, 0.0]
+                                ]
+                            ],
+                            [
+                                [
+                                    [100.0, 0.0],
+                                    [101.0, 0.0],
+                                    [101.0, 1.0],
+                                    [100.0, 1.0],
+                                    [100.0, 0.0]
+                                ]
+                            ]
+                        ]
+                    }
+                }
+            }
         },
-        "coordinates": {
-          "documentation": {
-            "example": [
-              [
-                [
-                  [100.0, 0.0],
-                  [101.0, 0.0],
-                  [101.0, 1.0],
-                  [100.0, 1.0],
-                  [100.0, 0.0]
-                ]
-              ],
-              [
-                [
-                  [100.0, 0.0],
-                  [101.0, 0.0],
-                  [101.0, 1.0],
-                  [100.0, 1.0],
-                  [100.0, 0.0]
-                ]
-              ]
-            ]
-          }
+        "Mutation": {
+            "fields": {
+                "forgotPassword": {
+                    "documentation": {
+                        "undocumented": true
+                    }
+                },
+                "login": {
+                    "documentation": {
+                        "documented": true
+                    }
+                },
+                "logout": {
+                    "documentation": {
+                        "documented": true
+                    }
+                },
+                "refreshToken": {
+                    "documentation": {
+                        "undocumented": true
+                    }
+                },
+                "register": {
+                    "documentation": {
+                        "undocumented": true
+                    }
+                },
+                "socialLogin": {
+                    "documentation": {
+                        "undocumented": true
+                    }
+                },
+                "updateForgottenPassword": {
+                    "documentation": {
+                        "undocumented": true
+                    }
+                },
+                "updatePassword": {
+                    "documentation": {
+                        "undocumented": true
+                    }
+                },
+                "verifyEmail": {
+                    "documentation": {
+                        "undocumented": true
+                    }
+                }
+            }
+        },
+        "Query": {}
+    },
+    "ENUM_OBJECT": {
+        "Trashed": {
+            "documentation": { "undocumented": true }
         }
-      }
     },
-    "Mutation": {
-      "fields": {
-        "forgotPassword": {
-          "documentation": {
-            "undocumented": true
-          }
+    "SCALAR": {
+        "DateTime": {
+            "documentation": { "example": "\"2016-10-07T01:08:03.420Z\"" }
         },
-        "login": {
-          "documentation": {
-            "documented": true
-          }
+        "DateTimeTz": {
+            "documentation": { "example": "\"2016-10-06T01:08:03.420+10\"" }
         },
-        "logout": {
-          "documentation": {
-            "documented": true
-          }
-        },
-        "refreshToken": {
-          "documentation": {
-            "undocumented": true
-          }
-        },
-        "register": {
-          "documentation": {
-            "undocumented": true
-          }
-        },
-        "socialLogin": {
-          "documentation": {
-            "undocumented": true
-          }
-        },
-        "updateForgottenPassword": {
-          "documentation": {
-            "undocumented": true
-          }
-        },
-        "updatePassword": {
-          "documentation": {
-            "undocumented": true
-          }
-        },
-        "verifyEmail": {
-          "documentation": {
-            "undocumented": true
-          }
+        "ID": {
+            "documentation": {
+                "description": "The `ID` scalar type represents a unique identifier",
+                "example": "\"0c8e21a6-fe09-4835-84e1-d9531ad24728\""
+            }
         }
-      }
     },
-    "Query": {}
-  },
-  "SCALAR": {
-    "DateTime": {
-      "documentation": { "example": "\"2016-10-07T01:08:03.420Z\"" }
-    },
-    "DateTimeTz": {
-      "documentation": { "example": "\"2016-10-06T01:08:03.420+10\"" }
-    },
-    "ID": {
-      "documentation": {
-        "description": "The `ID` scalar type represents a unique identifier",
-        "example": "\"0c8e21a6-fe09-4835-84e1-d9531ad24728\""
-      }
+    "INPUT_OBJECT": {
+        "LoginInput": { "documentation": { "undocumented": true } },
+        "RefreshTokenInput": { "documentation": { "undocumented": true } },
+        "ForgotPasswordInput": { "documentation": { "undocumented": true } },
+        "NewPasswordWithCodeInput": { "documentation": { "undocumented": true } },
+        "RegisterInput": { "documentation": { "undocumented": true } },
+        "SocialLoginInput": { "documentation": { "undocumented": true } },
+        "VerifyEmailInput": { "documentation": { "undocumented": true } },
+        "UpdatePassword": { "documentation": { "undocumented": true } }
     }
-  },
-  "INPUT_OBJECT": {
-    "LoginInput": { "documentation": { "undocumented": true } },
-    "RefreshTokenInput": { "documentation": { "undocumented": true } },
-    "ForgotPasswordInput": { "documentation": { "undocumented": true } },
-    "NewPasswordWithCodeInput": { "documentation": { "undocumented": true } },
-    "RegisterInput": { "documentation": { "undocumented": true } },
-    "SocialLoginInput": { "documentation": { "undocumented": true } },
-    "VerifyEmailInput": { "documentation": { "undocumented": true } },
-    "UpdatePassword": { "documentation": { "undocumented": true } }
-  }
 }
