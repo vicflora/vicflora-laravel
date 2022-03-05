@@ -38,7 +38,7 @@ class SolariumQueryService {
     public $client;
 
     /**
-     * 
+     *
      */
     public function __construct(Client $client)
     {
@@ -263,7 +263,7 @@ class SolariumQueryService {
             foreach ($fields as $field) {
                 $facetField = [
                     'fieldName' => Str::camel($field),
-                    'fieldLabel' => Str::ucfirst(Str::replaceFirst('_', ' ', $field)),
+                    'fieldLabel' => $this->createFilterLabel($field),
                     'facets' => [],
 
                 ];
@@ -289,6 +289,28 @@ class SolariumQueryService {
             }
             return $facetFields;
         //}
+    }
+
+    protected function createFilterLabel($field)
+    {
+        switch ($field) {
+            case 'ffg':
+                $label = 'FFG';
+                break;
+
+            case 'epbc':
+                $label = 'EPBC';
+                break;
+
+            case 'vic_advisory':
+                $label = 'Vic. Advisory';
+                break;
+
+            default:
+                $label = ucfirst(str_replace('_', ' ', $field));
+                break;
+        }
+        return $label;
     }
 
     /**
@@ -365,7 +387,7 @@ class SolariumQueryService {
 
     /**
      * Convert a multi-dimensional, associative array to CSV data
-     * 
+     *
      * @param  array $data the array of data
      * @return string       CSV text
      */
@@ -373,11 +395,11 @@ class SolariumQueryService {
 
         $fields = explode(',', $params['fl']);
             # Generate CSV data from array
-            $fh = fopen('php://temp', 'rw'); 
+            $fh = fopen('php://temp', 'rw');
 
             # write out the headers
             fputcsv($fh, $fields);
-            
+
             # write out the data
             foreach ( $data as $row ) {
                 $values = [];

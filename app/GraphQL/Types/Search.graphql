@@ -38,7 +38,9 @@ type SearchResultDocument {
     degreeOfEstablishment: String
     endemic: Boolean
     hasIntroducedOccurrences: Boolean
-    threatStatus: [String]
+    ffg: String
+    epbc: String
+    vicAdvisory: String
     taxonRemarks: String
     vernacularName: [String]
     preferredVernacularName: String
