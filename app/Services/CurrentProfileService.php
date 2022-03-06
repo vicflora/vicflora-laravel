@@ -202,7 +202,10 @@ class CurrentProfileService
                     . '">' . $region->bioregion_code . '</span>';
             $ret[] = $str;
         }
-        return implode(', ', $ret) . '.';
+        if ($ret) {
+            return implode(', ', $ret) . '.';
+        }
+        return null;
     }
 
     protected function scientificNameLinks($text)
