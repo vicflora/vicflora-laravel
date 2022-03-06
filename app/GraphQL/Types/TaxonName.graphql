@@ -16,6 +16,12 @@ type TaxonName {
 
     taxonConcepts: [TaxonConcept]
 
+    "Link to name record in APNI"
+    apniName: ApniName
+
+    "Link to taxon record in VBA"
+    vbaTaxon: VbaTaxon
+
     createdBy: Agent
     modifiedBy: Agent
     createdAt: DateTimeTz @rename(attribute: "created_at")

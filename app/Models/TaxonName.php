@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\BaseModel;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * @property integer $id
@@ -38,7 +39,7 @@ class TaxonName extends BaseModel
 {
     /**
      * The "type" of the auto-incrementing ID.
-     * 
+     *
      * @var string
      */
     protected $keyType = 'integer';
@@ -46,10 +47,10 @@ class TaxonName extends BaseModel
     /**
      * @var array
      */
-    protected $fillable = ['protologue_id', 'nomenclatural_status_id', 
-            'name_type_id', 'basionym_id', 'replaced_synonym_id', 'created_by_id', 
-            'modified_by_id', 'created_at', 'updated_at', 'name_part', 'full_name', 
-            'authorship', 'full_name_with_authorship', 'nomenclatural_note', 
+    protected $fillable = ['protologue_id', 'nomenclatural_status_id',
+            'name_type_id', 'basionym_id', 'replaced_synonym_id', 'created_by_id',
+            'modified_by_id', 'created_at', 'updated_at', 'name_part', 'full_name',
+            'authorship', 'full_name_with_authorship', 'nomenclatural_note',
             'remarks', 'version', 'guid'];
 
     /**
@@ -124,5 +125,25 @@ class TaxonName extends BaseModel
     public function taxonConcepts(): HasMany
     {
         return $this->hasMany(TaxonConcept::class);
+    }
+
+    /**
+     * Link to APNI name record
+     *
+     * @return HasOne
+     */
+    public function apniName(): HasOne
+    {
+        return $this->hasOne(ApniName::class, 'taxon_name_id', 'guid');
+    }
+
+    /**
+     * Link to VBA taxon record
+     *
+     * @return HasOne
+     */
+    public function vbaName(): HasOne
+    {
+        return $this->hasOne(VbaName::class, 'taxon_name_id', 'guid');
     }
 }
