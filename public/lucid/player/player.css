@@ -1,0 +1,21 @@
+body {
+	margin: 10px;
+}
+div#player {
+  font-family: Arial Unicode MS, Arial, sans-serif;
+  font-size: small;
+}
+.white-iframe {
+	background: #fff;
+}
+.mfp-iframe-scaler iframe {
+	background: #fff
+}
+
+.gwt-Tree .gwt-TreeItem {
+  display: table !important;
+}
+
+.gwt-Tree .gwt-TreeItem-selected  {
+  background: transparent !important;
+}

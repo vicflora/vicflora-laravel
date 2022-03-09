@@ -1,0 +1,154 @@
+<html><head>
+<title>Configuring the Player</title>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<link rel="stylesheet" href="assets/css/default.css">
+<script src="assets/js/highlight.js" type="text/javascript"></script>
+</head>
+<body onload="highlight();"><div id="content">
+<h1>Configuring the Player</h1>
+<h2>These options may only be available if the Author of the key has provided a settings option page with the key</h2>
+<h2>Keeping subsets on restart</h2>
+<p>By default, if you have chosen one or more <a href="using_subsets_of_features_and_entities.htm">subsets</a> 
+ during an identification and you click the <i>Restart</i> 
+ button, the subsets will be retained when the key is restarted. If instead you would like any subsets 
+ to be reset (so the key is restarted using all features and entities), 
+ uncheck the <i>Retain selected subsets on restart</i> option.</p>
+ <h2><a name="Allowing_Misinterpretations"></a>Allowing misinterpretations</h2>
+ <p>In Lucid keys, some entities may be scored as having a feature <i>by misinterpretation</i>. For example, 
+ some groups of wasps are distinctive in having a strikingly narrowed section 
+ or "waist" between the thorax and abdomen, while in other groups of wasps 
+ and in most other insects there is no such narrowing. However, some members 
+ of the "waisted" wasps, such as the common honeybee, have a very short 
+ waist that is almost hidden by the other body segments and is easily overlooked. 
+ </p><p>If a key to wasps has a feature <i>Waist 
+ present/absent</i>, there is a danger that the waist on a honeybee 
+ would be overlooked by a user who would incorrectly describe their specimen 
+ as not having a waste. This could result in a misidentification.</p><p>To prevent such errors, the key’s builder will score the honeybee as 
+ <i>Waist present</i> (true) and <i>Waist absent</i> (<i>by 
+ misinterpretation</i>). The Lucid Player treats the by misinterpretation 
+ score as though it were a true score, so the honeybee will be retained 
+ in <i>Entities Remaining</i> even if 
+ the waist is overlooked.</p><p>However, another user - who is more experienced in identification - 
+ may wish to have such misinterpretations ignored and to only see a list 
+ of all wasps that truly lack a waist. In this case, the honeybee should 
+ be removed from <i>Entities Remaining</i>. 
+ </p><p>The Lucid Player allows users to select these different modes of operation 
+ through the <i>Allow Misinterpretations</i> 
+ item of the <i>Key</i> menu. With <i>Allow Misinterpretations</i> checked (the 
+ default behaviour), entities scored for a state using the by misinterpretation 
+ score will remain in <i>Entities Remaining</i> 
+ when the state is selected; with <i>Allow 
+ Misinterpretations</i> turned off, such entities will be discarded.</p>
+ <h2><a name="Retain_uncertain_entities"></a>Retaining uncertain entities</h2>
+ <p>In Lucid keys, some entities may be scored as <i>Uncertain</i> 
+ for some states. For example, a key to plants may include features concerning 
+ fruits, but some rare species may never have been observed at the fruiting 
+ stage when the key was being built. In this case the builder of the key 
+ would score fruit features and states for such entities as <i>Uncertain</i>. 
+ </p><p>In normal identifications, it is important for the Lucid Player to treat 
+ entities scored as <i>uncertain</i> 
+ for a state in the same way as entities scored <i>present</i> 
+ for the state. Using the example above, a user of the key may have a specimen 
+ of the rare species that does have fruits, and hence may be able to address 
+ the fruit features. In such a case, the species should remain in <i>Entities Remaining</i> even though the 
+ key builder could not properly score the fruit features.</p><p>However, another user may wish to have such uncertain scores ignored and to only see a list of all species that are <i>known</i> 
+ to have fruits of a particular shape or colour. In this case, the species 
+ with unknown fruits should be removed from <i>Entities 
+ Remaining.</i></p>
+ <p>The Lucid Player allows users to select these different modes of operation 
+ through the <i>Retain Uncertains</i> option. With <i>Retain Uncertains</i> checked (the default 
+ behaviour), entities scored for a state using the uncertain score will 
+ remain in <i>Entities Remaining</i> when the state is selected; with <i>Retain 
+ Uncertains</i> turned off, such entities will be discarded.</p>
+ <h2><a name="Matching_Methods"></a>The Lucid Matching Methods</h2>
+ <p>Lucid matches entities against selected features to determine which 
+ entities match and which do not.</p><p>Two options, accessed through the <i>Match 
+ Method</i> option of the <i>Key</i> menu, allow you to vary the way the Lucid Player handles the matching. 
+ </p><p>Using the <i>Any State</i> matching method, entities will be kept in <i>Entities 
+ Remaining</i> if they match any chosen state of a feature. Using the 
+ <i>All States</i> matching method, entities will only be kept in <i>Entities Remaining</i> 
+ if they match all chosen states of a feature.</p><p>To understand these modes, consider a feature <i>Flower 
+ colour</i> with the following states:</p><p>Flower colour<br/>
+white<br/>
+red<br/>
+blue<br/>
+yellow</p><p>Consider three entities <i>e1</i>, 
+ <i>e2</i> and <i>e3</i> 
+ that have been scored by the key’s builder as follows: <i>e1</i> 
+ has been scored for <i>blue</i> only, 
+ <i>e2</i> has been scored for <i>yellow</i> only, while <i>e3</i> 
+ has been scored for both <i>blue and yellow</i>.</p><p>Using the <i>Any State</i> match method 
+ in the Player and choosing the state <i>blue</i>, 
+ <i>e1</i> and <i>e3</i> 
+ will remain in <i>Entities Remaining</i> 
+ (since both are scored as having blue flowers) while <i>e2</i> 
+ will be moved to <i>Entities Discarded</i>. 
+ If you choose instead the state yellow, <i>e2</i> 
+ and <i>e3</i> will remain in <i>Entities 
+ Remaining</i> while <i>e1</i> will 
+ be moved to <i>Entities Discarded</i>. 
+ Finally, if you choose both states blue and yellow, all three entities 
+ will remain in <i>Entities Remaining</i> 
+ (that is, the Player is returning all entities scored for either blue 
+ or yellow)</p><p>By contrast, using the <i>All States</i> 
+ match method and choosing the state blue, only <i>e1</i> 
+ will remain in <i>Entities Remaining</i> 
+ (since only it is scored for only blue) and <i>e2</i> 
+ and <i>e3</i> will be moved to <i>Entities Discarded</i>. If 
+ you choose instead the state yellow, only <i>e2</i> 
+ will remain in <i>Entities Remaining</i> 
+ while e1 and e3 will be moved to <i>Entities 
+ Discarded</i>. Finally, if you choose both states blue and yellow, 
+ only <i>e3</i> will remain in <i>Entities Remaining</i> while <i>e1</i> 
+ and <i>e2</i> will be moved to <i>Entities Discarded</i> (that is, the Player 
+ is returning only entities scored for both blue <i>and 
+ yellow</i>).</p><p>The normal matching method for most identifications is <i>Any 
+ State</i>, as this allows more flexibility between the scores given 
+ by the key’s builder and the answers provided during the identification. 
+ In some circumstances, you may wish to change the mode to <i>All 
+ States</i>. This can be done at any time. You should be careful to 
+ understand how this method works before changing to it.</p><p><strong>Note</strong> also that some 
+ authors may set All States as the default Match Method and have scored 
+ their keys, such as diagnostic keys, on this basis. In 
+ this case, changing the Match Method will cause the key to operate in 
+ a very different way from that intended by the author.</p>
+ <h2><a name="Sorting_Methods"></a>The Lucid Sorting Methods</h2>
+<h2>Please note: This feature is not yet available in the JavaScript based Lucid Player</h2>
+ <p>Lucid matches entities against each selected feature to determine which 
+ entities match and which do not.</p><p>Two options, accessed through the <i>Sorting 
+ Method</i> option of the <i>Entities</i> 
+ menu, allow you to vary the way the Lucid Player reports the results 
+ of the matching.</p><p>In a <i>Filtered</i> sort, entities 
+ that do and do not match the selected features are sorted into two lists, 
+ <i>Entities Remaining</i> and <i>Entities Discarded </i>respectively.</p><p>In a <i>Ranked</i> sort, all entities 
+ are listed in the <i>Entities Remaining</i> 
+ panel (and the <i>Entities Discarded</i> 
+ panel is hidden). Entities are prefixed by their percentage match to the 
+ selected features (when using the <i>Any 
+ State</i> matching method) or selected states (when using the <i>All States</i> matching method). (For more 
+ information on the matching methods, see the topic Lucid Matching methods 
+ above)</p><p>The entities in a <i>Ranked</i> sort 
+ are ranked by their percentage match value. For example, if an entity 
+ matches all the selected features it will have a match value of 100% and 
+ will appear in the top rank of the <i>Entities</i> 
+ list. If another entity matches half the selected features (or states) 
+ it will have a match value of 50% and will be ranked lower in the list.</p>
+ <p><figure>
+	<img src="assets/images/filtered_mode.gif" width="287px" height="230px" border="0">
+	<figcaption>Entities sorted using the Filter Method </figcaption>
+</figure>
+</p>
+<p><figure>
+<img src="assets/images/ranked_mode.gif" width="287px" height="230px" border="0"><br/>
+<figcaption>Entities sorted using the Ranked Method </figcaption>
+</figure>
+</p>
+<h2><a name="Automating_Best_Prune"></a>Automating Best and Prune</h2>
+<p>The <i><a href="finding_the_best_feature_-_the_best_function.htm">Best</a></i> and <i><a href="pruning_the_feature_tree_-_the_prune_redundants_function.htm">Prune Redundants</a></i> functions by default are only applied when you click the appropriate button or menu item.</p><p>However, you may automate these functions, so they are applied whenever a state is chosen. With these automated, after addressing each feature the <i>Features Available</i> list will be automatically pruned of redundant features.</p><p>To set <i>Best</i> and <i>Prune Redundants</i> to be automatically applied, check the <i>Auto Best</i> and <i>Auto Prune</i> from the <i>Automate</i> 
+ section of the settings page.</p>
+ <p>If you need to choose several states from one feature before applying the <i>Best</i> and <i>Prune functions</i>, hold down the <i>Control</i> key while choosing the states. The automated functions will be paused until the control key is released.</p>
+
+ <h2><a name="Font_Size"></a>Font Size (Display Size)</h2>
+ <p>If you wish to change the size of the text displayed with the Lucid Player, use the browsers inherent font size/page zoom feature to increase or decrease the display. For most browsers using Ctrl + [+|-] keys will perform this function.</p>
+ </body>
+</html>

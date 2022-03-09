@@ -1,0 +1,41 @@
+<html><head>
+<title>Choosing numeric features</title>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<link rel="stylesheet" href="assets/css/default.css">
+<script src="assets/js/highlight.js" type="text/javascript"></script>
+</head>
+<body onload="highlight();"><div id="content">
+<h1>Choosing numeric features</h1>
+<p>For numeric features, you must enter a value rather than choose from 
+ a set of states. Length and width features, for example, may be treated 
+ in Lucid keys as numeric rather than multi-state features.</p><p>Numeric features are preceded by an 
+ edit box rather than a checkbox:</p>
+ <p><img src="assets/images/numerics_dialog.png" width="328" height="180" border="0"></p>
+ <p>To enter details about a numeric feature, click its edit box. A dialog 
+ box will pop up into which you can type the appropriate value.</p>
+ <p>You can enter single 
+ values and ranges. Valid entries will be of the 
+ form:</p><ul type="disc">
+	
+	<li><p>x (a single value)</p></li>
+	
+	<li><p>x-y (between x and y)</p></li>
+	
+	<li><p>&lt;x (less than x)</p></li>
+	
+	<li><p>&gt;y (greater than y)</p></li>
+</ul><p>It's good practice when using numeric features to enter a range rather 
+ than a single value if possible. For example, if a key to plants has a 
+ feature <i>Leaf length</i>, it's better 
+ to choose several typical leaves from your specimen and to enter the range 
+ of leaf lengths found over those leaves (ignoring unusually small or unusually 
+ large leaves) than to enter the length of a single leaf.</p>
+ <p><strong>Note </strong>that the Lucid 
+ Player assumes an accuracy for numeric values based on the number of decimal 
+ places specified. For example, entering the value 10 (no decimal places) 
+ will be read by Lucid as meaning the range between 9.5 and 10.5; entering 
+ 10.5 will be read as the range between 10.45 and 10.55. Hence, if you 
+ enter the single value 10, an entity scored as having the value 9.6 will 
+ be regarded as a match.</p>
+ </body>
+</html>

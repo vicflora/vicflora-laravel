@@ -23,6 +23,10 @@ Route::get('/apidocs', function () {
     return File::get(public_path() . '/apidocs/index.html');
 });
 
+Route::get('lucid-keys/{slug}', function($slug) {
+    return view('lucidkey', ['slug' => $slug]);
+});
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

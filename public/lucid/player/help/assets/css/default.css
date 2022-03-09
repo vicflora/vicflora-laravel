@@ -1,0 +1,97 @@
+﻿body { 
+      font-family: 'open_sansregular';
+      background-color:#ffffff; 
+      margin:0px; 
+      padding:0px; 
+	  }
+@font-face {
+    font-family: 'open_sansregular';
+    src: url('../font/OpenSans-Regular-webfont.eot');
+    src: url('../font/OpenSans-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../font/OpenSans-Regular-webfont.woff') format('woff'),
+         url('../font/OpenSans-Regular-webfont.ttf') format('truetype'),
+         url('../font/OpenSans-Regular-webfont.svg#open_sansregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+#header {
+	background-image:url('../images/page_header.jpg');
+	height:45px;
+	width: 548px;
+	background-repeat:none;
+}
+#content {
+	margin-top:5px;
+	margin-left:20px;
+	margin-bottom:10px;
+}
+#index_content {
+	margin-top:5px;
+	margin-left:5px;
+	margin-bottom:5px;
+}
+h1 { 
+    font-size:18px; 
+    font-weight:bold; 
+    color:#006699; 
+    font-family: 'open_sansregular';  }
+
+h2 { 
+    font-size:16px; 
+    font-weight:bold; 
+    color:#006699; 
+    font-family: 'open_sansregular';  }
+
+h3 { 
+    font-size:14px; 
+    font-weight:bold; 
+    font-style:normal; 
+    color:#004D71; 
+    font-family: 'open_sansregular'; }
+
+h4 { 
+    font-weight:bold; 
+    font-style:italic; 
+    font-size:13px; 
+    color:#004D71; 
+    font-family: 'open_sansregular';  }
+
+h5 { 
+    font-weight:bold; 
+    font-size:12px; 
+    font-family: 'open_sansregular';  }
+
+h6 { 
+    font-weight:bold; 
+    font-size:11px; 
+    font-family: 'open_sansregular'; }
+p { 
+   color:#000000; 
+    }
+	
+img { 
+     margin:2px; 
+     vertical-align:middle;  }
+
+table { 
+       background-color:#F4FDFF; 
+       border:1px solid #0099CC; 
+       border-collapse:collapse;  }
+th { 
+    border-bottom:1px solid #0099CC; 
+    background-color:#BBE9FF; 
+    font-size:13px;  }
+td { 
+    border:1px dotted #0099CC; 
+    padding:3px;  }
+ul li { 
+       margin-bottom:5px;  }
+ul.index
+{
+    list-style-type: none;
+}
+a:link { 
+        text-decoration:underline;  }
+a:visited { 
+           text-decoration:none;  }
+.highlight { background: #FFFF40; }
