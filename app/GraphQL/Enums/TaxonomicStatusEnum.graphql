@@ -4,7 +4,7 @@ Status Vocabulary, https://rs.gbif.org/vocabulary/gbif/taxonomic_status.xml
 """
 enum TaxonomicStatusEnum {
     """
-    **Accepted** – The taxon is currently accepted in VicFlora
+    **Accepted** – The taxon is currently accepted in VicFlora.
     """
     ACCEPTED @enum(value: "accepted")
 

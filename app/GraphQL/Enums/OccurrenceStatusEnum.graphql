@@ -4,26 +4,28 @@ GBIF vocabulary (https://rs.gbif.org/vocabulary/gbif/occurrence_status.xml).
 """
 enum OccurrenceStatusEnum {
     """
-    **Present** – There is at least one well-documented record of the taxon in the area.
+    **Present** – There is at least one well-documented record of the taxon in 
+    the area.
     """
     PRESENT @enum(value: "present")
 
     """
-    **Extinct** – There is no evidence that the taxon is still present in the area.
+    **Extinct** – There is no evidence that the taxon is still present in the 
+    area.
     """
     EXTINCT @enum(value: "extinct")
 
     """
     **Excluded** – The taxon has been reported for the area, but the report is
     based on a misdetermination. A "taxon" that is solely identified by its name
-    can also be considered 'excluded', because the taxonomy has changed.
+    can also be considered 'excluded' because the taxonomy has changed.
     """
     EXCLUDED @enum(value: "excluded")
 
     """
     **Doubtful** – Presence of an organism in the area is doubtful. In VicFlora
     we do not use this term at the taxon level, nor at the scale of Victoria,
-    but only at the occurrence record level
+    but only at the occurrence record level.
     """
     DOUBTFUL @enum(value: "doubtful")
 }
