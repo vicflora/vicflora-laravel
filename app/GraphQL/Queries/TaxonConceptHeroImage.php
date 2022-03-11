@@ -4,20 +4,16 @@ namespace App\GraphQL\Queries;
 
 use App\Models\Image;
 use App\Models\TaxonConcept;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
 
-class TaxonConceptImages
+class TaxonConceptHeroImage
 {
     /**
-     * @param  TaxonConcept  $taxonConcept
+     * @param  null  $_
+     * @param  array<string, mixed>  $args
      */
-    public function __invoke(?TaxonConcept $taxonConcept, $args): Builder
+    public function __invoke(TaxonConcept $taxonConcept, array $args)
     {
-        if (!$taxonConcept && isset($args['taxonConceptId'])) {
-            $taxonConcept = TaxonConcept::where('guid', $args['taxonConceptId'])->first();
-        }
-
         $query = TaxonConcept::where('id', $taxonConcept->id)
         ->union(
             TaxonConcept::select('taxon_concepts.*')
@@ -35,6 +31,7 @@ class TaxonConceptImages
                 ->orderBy('hero_image', 'desc')
                 ->orderBy('subtype', 'desc')
                 ->orderBy('rating', 'desc')
-                ->orderBy(DB::raw('random()'));
+                ->orderBy(DB::raw('random()'))
+                ->first();
     }
 }

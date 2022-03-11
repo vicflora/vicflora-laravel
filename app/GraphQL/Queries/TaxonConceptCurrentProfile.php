@@ -19,10 +19,13 @@ class TaxonConceptCurrentProfile
                     ->where('is_current', true)
                     ->first();
 
-            $currentProfileService = new CurrentProfileService($taxonConcept->guid, $profile->profile);
-            $profile->profile = $currentProfileService->formatProfile();
+            if ($profile) {
+                $currentProfileService = new CurrentProfileService($taxonConcept->guid, $profile->profile);
+                $profile->profile = $currentProfileService->formatProfile();
 
-            return $profile;
+                return $profile;
+            }
+            return null;
         }
         return null;
     }

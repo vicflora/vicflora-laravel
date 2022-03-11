@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
+use Staudenmeir\LaravelCte\Eloquent\QueriesExpressions;
+
 
 /**
  * @property integer $id
@@ -42,7 +44,6 @@ use Illuminate\Support\Facades\DB;
  * @property TaxonName $taxonName
  * @property Agent $createdBy
  * @property Agent $modifiedBy
- * @property TaxonTreeItem[] $taxonTreeItem
  * @property TaxonRelationship[] $subjectOfTaxonRelationships
  * @property TaxonRelationship[] $objectOfTaxonRelationships
  * @property Profile[] $profiles
@@ -55,6 +56,9 @@ use Illuminate\Support\Facades\DB;
  */
 class TaxonConcept extends BaseModel
 {
+    use QueriesExpressions;
+    
+
     /**
      * The "type" of the auto-incrementing ID.
      *
@@ -139,14 +143,6 @@ class TaxonConcept extends BaseModel
         }
     }
 
-    // /**
-    //  * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-    //  */
-    // public function parent(): BelongsTo
-    // {
-    //     return $this->belongsTo(TaxonConcept::class, 'parent_id');
-    // }
-
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -169,14 +165,6 @@ class TaxonConcept extends BaseModel
     public function taxonName(): BelongsTo
     {
         return $this->belongsTo(TaxonName::class);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function taxonTreeItem(): HasOne
-    {
-        return $this->hasOne(TaxonTreeItem::class);
     }
 
     /**
@@ -301,51 +289,39 @@ class TaxonConcept extends BaseModel
     }
 
     /**
-     * @return \Illuminate\Support\Collection
+     * Gets ancestors by recursive query
+     *
+     * @return EloquentCollection
      */
-    public function getHigherClassificationAttribute(): Collection
+    public function getAncestorsAttribute(): EloquentCollection
     {
-        if ($this->taxonomicStatus->name === 'accepted') {
-            $node = TaxonTreeItem::where('taxon_concept_id', $this->id)
-                    ->first();
+        $query = TaxonConcept::where('id', $this->parent_id)
+        ->union(
+            TaxonConcept::select('taxon_concepts.*')
+                ->join('ancestors', 'ancestors.parent_id', '=', 'taxon_concepts.id')
+        );
 
-            return TaxonTreeItem::where('node_number', '<', $node->node_number)
-                    ->where('highest_descendant_node_number', '>=',
-                            $node->node_number)
-                    ->whereHas('taxonConcept', function (Builder $query) {
-                        $query->whereHas('taxonName', function (Builder $query) {
-                            $query->where('name_part', '!=', 'Life');
-                        });
-                    })
-                    ->get();
-        }
-        return collect([]);
+        return TaxonConcept::from('ancestors')
+                ->withRecursiveExpression('ancestors', $query)
+                ->get();
     }
 
     /**
-     * @return \App\Models\Image|null
+     * Gets descendants by recursive query
+     *
+     * @return EloquentCollection
      */
-    public function getHeroImageAttribute()
+    public function getDescendantsAttribute(): EloquentCollection
     {
-        $node = TaxonTreeItem::where('taxon_concept_id', $this->id)->first();
+        $query = TaxonConcept::where('parent_id', $this->id)
+        ->union(
+            TaxonConcept::select('taxon_concepts.*')
+                ->join('descendants', 'descendants.id', '=', 'taxon_concepts.parent_id')
+        );
 
-        if ($node) {
-            return Image::whereHas('taxonConcept', function (Builder $query) use ($node) {
-                $query->whereHas('taxonomicStatus', function(Builder $query) {
-                            $query->where('name', 'accepted');
-                        })
-                        ->whereHas('taxonTreeItem', function (Builder $query) use ($node) {
-                            $query->where('node_number', '>=', $node->node_number)
-                                    ->where('node_number', '<=', $node->highest_descendant_node_number);
-                        });
-                    })
-                    ->where('pixel_x_dimension', '>', 0)
-                    ->orderBy('hero_image', 'desc')
-                    ->orderBy('subtype', 'desc')
-                    ->orderBy('rating', 'desc')
-                    ->orderBy(DB::raw('random()'))
-                    ->first();
-        }
+        return TaxonConcept::from('descendants')
+                ->withRecursiveExpression('descendants', $query)
+                ->get();
     }
 
     /**
@@ -442,7 +418,7 @@ class TaxonConcept extends BaseModel
     {
         if ($this->taxonomic_status_id) {
             $ts = TaxonomicStatus::find($this->taxonomic_status_id);
-            return $ts->name;
+            return $ts ? $ts->name : null;
         }
         return null;
     }
@@ -468,7 +444,7 @@ class TaxonConcept extends BaseModel
     {
         if ($this->occurrence_status_id) {
             $os = OccurrenceStatus::find($this->occurrence_status_id);
-            return $os->name;
+            return $os ? $os->name : null;
         }
         return null;
     }
@@ -494,7 +470,7 @@ class TaxonConcept extends BaseModel
     {
         if ($this->establishment_means_id) {
             $em = EstablishmentMeans::find($this->establishment_means_id);
-            return $em->name;
+            return $em ? $em->name : null;
         }
         return null;
     }
@@ -520,7 +496,7 @@ class TaxonConcept extends BaseModel
     {
         if ($this->establishment_means_id) {
             $doe = DegreeOfEstablishment::find($this->degree_of_establishment_id);
-            return $doe->name;
+            return $doe ? $doe->name : null;
         }
         return null;
     }

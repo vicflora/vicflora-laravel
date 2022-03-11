@@ -16,6 +16,34 @@ class TaxonConceptHigherClassification
             $taxonConcept = TaxonConcept::where('guid', $args['taxonConceptId'])->first();
         }
 
-        return $taxonConcept->higherClassification;
+        if ($taxonConcept->taxonomicStatus->name === 'accepted') {
+            $query = TaxonConcept::where('id', $taxonConcept->parent_id)
+            ->union(
+                TaxonConcept::select('taxon_concepts.*')
+                    ->join('tree', 'tree.parent_id', '=', 'taxon_concepts.id')
+            );
+    
+            $tree = TaxonConcept::from('tree')
+                    ->withRecursiveExpression('tree', $query)
+                    ->get();
+
+            $allowedRanks = [
+                'kingdom',
+                'phylum',
+                'class',
+                'order',
+                'family',
+                'genus',
+                'species',
+            ];
+
+            return $tree->filter(function($element) use ($allowedRanks) {
+                        return in_array($element->taxonTreeDefItem->name, $allowedRanks);
+                    })->sortBy([
+                        fn ($a, $b) 
+                            => $a->taxonTreeDefItem->rank_id <=> $b->taxonTreeDefItem->rank_id,
+                    ]);
+        }
+        return null;
     }
 }

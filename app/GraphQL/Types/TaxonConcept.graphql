@@ -75,7 +75,8 @@ type TaxonConcept {
 
     children: [TaxonConcept]
     siblings: [TaxonConcept]
-    higherClassification: [TaxonTreeItem]
+    higherClassification: [TaxonConcept]
+        @field(resolver: "\\App\\GraphQL\\Queries\\TaxonConceptHigherClassification")
     taxonAttributes: [TaxonAttribute]
     vernacularNames: [VernacularName]
     preferredVernacularName: VernacularName
@@ -84,6 +85,7 @@ type TaxonConcept {
     currentProfile: Profile
         @field(resolver: "\\App\\GraphQL\\Queries\\TaxonConceptCurrentProfile")
     heroImage: Image
+        @field(resolver: "\\App\\GraphQL\\Queries\\TaxonConceptHeroImage")
     hasImages: Boolean
     images: [Image]
         @paginate(
@@ -185,7 +187,7 @@ extend type Query {
         @field(resolver: "\\App\\GraphQL\\Queries\\TaxonConceptChildren")
 
     "Get higher classification of a TaxonConcept"
-    taxonConceptHigherClassifcation(taxonConceptId: ID!): [TaxonTreeItem]
+    taxonConceptHigherClassifcation(taxonConceptId: ID!): [TaxonConcept]
         @field(
             resolver: "\\App\\GraphQL\\Queries\\TaxonConceptHigherClassification"
         )
