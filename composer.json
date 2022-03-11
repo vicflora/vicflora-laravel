@@ -33,6 +33,7 @@
         "mstaack/laravel-postgis": "dev-dependency-fix",
         "nuwave/lighthouse": "^5.3",
         "solarium/solarium": "^6.1",
+        "staudenmeir/laravel-cte": "^1.5",
         "zanysoft/laravel-zip": "^1.0"
     },
     "require-dev": {
