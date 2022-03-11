@@ -32,9 +32,6 @@ class TaxonConceptImages
                     $join->on('images.accepted_id', '=', 'descendants.id');
                 })
                 ->where('pixel_x_dimension', '>', 0)
-                ->orderBy('hero_image', 'desc')
-                ->orderBy('subtype', 'desc')
-                ->orderBy('rating', 'desc')
-                ->orderBy(DB::raw('random()'));
+                ->select('images.*');
     }
 }

@@ -29,6 +29,7 @@ class TaxonConceptSpecimenImages
         return SpecimenImage::from('specimen_images')
                 ->joinSub($descendants, 'descendants', function($join) {
                     $join->on('specimen_images.accepted_id', '=', 'descendants.id');
-                });
+                })
+                ->select('specimen_images.*');
     }
 }
