@@ -1,15 +1,75 @@
 type TaxonConcept {
     id: ID! @rename(attribute: "guid")
-    remarks: String
-    editorNotes: String @rename(attribute: "editor_notes")
 
+    """
+    editorNotes about a taxon. We only use this for Taxon Concepts that are not 
+    currently recognised. For currently accepted taxa the notes are in the 
+    profile.
+    """
+    remarks: String
+
+    """
+    Name of a taxon
+    """
     taxonName: TaxonName!
+
+    """
+    Source of the taxon name and application. This is currently only used with 
+    misapplications.
+    """
     accordingTo: Reference
+
+    """
+    Accepted name, e.g. for a synonym. We currently still deal with synonyms as 
+    Taxon Concepts.
+    """
     acceptedConcept: TaxonConcept
+
+    """
+    Parent of a taxon, e.g. a genus a species belongs to.
+    """
     parent: TaxonConcept
+
+    """
+    Children of a taxon, e.g. varieties of a species or species in a genus.
+    """
+    children: [TaxonConcept]
+
+    """
+    Siblings of the taxon, e.g. species in the same genus. Also includes the 
+    current Taxon Concept itself.
+    """
+    siblings: [TaxonConcept]
+
+    """
+    All ancestors of Taxon
+    """
+    ancestors: [TaxonConcept]
+
+    """
+    All descendants of a taxon, e.g. genera, species and infraspecific taxa in a 
+    family.
+    """
+    descendants: [TaxonConcept]
+
+    """
+    Higher classification of a taxon. Like ancestors, but ordered from higher to 
+    lower rank, and only including major ranks: kingdom, phylum, class, order, 
+    family, genus, species.
+    """
+    higherClassification: [TaxonConcept]
+        @field(resolver: "\\App\\GraphQL\\Queries\\TaxonConceptHigherClassification")
+
+    """
+    The rank of a taxon, or rather its name. This is an enumeration, so output 
+    is a (all uppercase) string.
+    """
     taxonRank: TaxonRankEnum
+
+    """
+    Rank of a taxon in the form of an object.
+    """
     taxonTreeDefItem: TaxonTreeDefItem
-    taxonTreeItem: TaxonTreeItem
 
     """
     The status of the use of the scientificName as a label for a taxon.
@@ -73,25 +133,62 @@ type TaxonConcept {
     """
     vicAdvisory: VicAdvisoryEnum
 
-    children: [TaxonConcept]
-    siblings: [TaxonConcept]
-    higherClassification: [TaxonConcept]
-        @field(resolver: "\\App\\GraphQL\\Queries\\TaxonConceptHigherClassification")
-    taxonAttributes: [TaxonAttribute]
+    """
+    Common or vernacular names
+    """
     vernacularNames: [VernacularName]
+
+    """
+    Preferred vernacular name. Often there are multiple vernacular names for the 
+    same taxon. The preferred vascular name is the one we use in VicFlora.
+    """
     preferredVernacularName: VernacularName
+
+    """
+    Profiles for a Taxon Concept. We save previous profiles and versions of 
+    profiles.
+    """
     profiles: [Profile]
-    profilesAccepted: [Profile]
+
+    """
+    Current profile for a Taxon Concept. The body of the current profile is 
+    changed in the API from what is stored in the database. We add links to 
+    taxon pages in VicFlora for names that are mentioned in the notes, add the 
+    Victorian bioregions the taxon is reported from and add the source and 
+    information on when and by whom a profile was created or last updated.
+    """
     currentProfile: Profile
         @field(resolver: "\\App\\GraphQL\\Queries\\TaxonConceptCurrentProfile")
+
+    """
+    Hero image for a taxon, i.e. the image that is shown in the overview tab.
+    """
     heroImage: Image
         @field(resolver: "\\App\\GraphQL\\Queries\\TaxonConceptHeroImage")
+
+    """
+    Flag to indicate whether a Taxon Concept has images associated with it. Used 
+    in VicFlora to see if an Image tab needs to be created on the taxon 
+    page. Image metadata and thumbnails will be fetched once the Image tab is 
+    opened.
+    """
     hasImages: Boolean
+
+    """
+    Images associated with a Taxon Concept
+    """
     images: [Image]
         @paginate(
             builder: "\\App\\GraphQL\\Queries\\TaxonConceptImages"
             defaultCount: 20
         )
+
+    """
+    Flag to indicate whether a Taxon Concept has specimen images associated with 
+    it. Used in VicFlora to see if a Specimen Image tab needs to be created on 
+    the taxon page. Image metadata and thumbnails will be fetched once the 
+    Specimen Image tab is opened.
+    """
     hasSpecimenImages: Boolean
     specimenImages: [SpecimenImage]
         @paginate(
@@ -99,41 +196,67 @@ type TaxonConcept {
             defaultCount: 20
         )
 
+    """
+    Victorian bioregions where the taxon occurs.
+    """
     bioregions: [TaxonBioregion]
+
+    """
+    Local Government Areas where the taxon occurs
+    """
     localGovernmentAreas: [TaxonLocalGovernmentArea]
+
+    """
+    Parks and reserves where the taxon occurs.
+    """
     parkReserves: [TaxonParkReserve]
 
-    occurrences(source: String @eq(key: "data_source")): [OccurrenceFeature]
-        @paginate(
-            type: PAGINATOR
-            defaultCount: 20
-            builder: "\\App\\GraphQL\\Queries\\TaxonConceptOccurrences"
-        )
-    avhOccurrences: [OccurrenceFeature]
-        @paginate(
-            type: PAGINATOR
-            defaultCount: 20
-            builder: "\\App\\GraphQL\\Queries\\TaxonConceptAvhOccurrences"
-        )
-    vbaOccurrences: [OccurrenceFeature]
-        @paginate(
-            type: PAGINATOR
-            defaultCount: 20
-            builder: "\\App\\GraphQL\\Queries\\TaxonConceptVbaOccurrences"
-        )
+    # occurrences(source: String @eq(key: "data_source")): [OccurrenceFeature]
+    #     @paginate(
+    #         type: PAGINATOR
+    #         defaultCount: 20
+    #         builder: "\\App\\GraphQL\\Queries\\TaxonConceptOccurrences"
+    #     )
+    # avhOccurrences: [OccurrenceFeature]
+    #     @paginate(
+    #         type: PAGINATOR
+    #         defaultCount: 20
+    #         builder: "\\App\\GraphQL\\Queries\\TaxonConceptAvhOccurrences"
+    #     )
+    # vbaOccurrences: [OccurrenceFeature]
+    #     @paginate(
+    #         type: PAGINATOR
+    #         defaultCount: 20
+    #         builder: "\\App\\GraphQL\\Queries\\TaxonConceptVbaOccurrences"
+    #     )
 
+    """
+    Links to distribution maps for a taxon from the Geoserver instance, as well 
+    as the captions.
+    """
     mapLinks: MapLinks
         @field(resolver: "\\App\\GraphQL\\Queries\\TaxonConceptMapLinks")
     identificationKeys: [IdentificationKey!]!
         @field(resolver: "\\App\\GraphQL\\Queries\\TaxonConceptKeys")
 
+    """
+    Synonyms of the accepted name (`taxonName`). 
+    """
     synonyms: [TaxonName]
+
     """
     This has been added, because currently the VicFlora system requires synonyms
     to be provided as usages (concepts). Once VicFlora is set up for concept
     alignments, we might not be able to provide synonyms this way anymore.
     """
     synonymUsages: [TaxonConcept]
+
+    """
+    This has been added, because currently the VicFlora system requires 
+    misapplications to be provided as usages (concepts). Once VicFlora is set up 
+    for concept alignments, we might not be able to provide synonyms this way 
+    anymore.
+    """
     misapplications: [TaxonConcept]
 
     createdBy: Agent
