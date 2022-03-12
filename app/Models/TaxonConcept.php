@@ -116,6 +116,14 @@ class TaxonConcept extends BaseModel
     }
 
     /**
+     * @return HasMany
+     */
+    public function taxonConceptReferences(): HasMany
+    {
+        return $this->hasMany(TaxonConceptReference::class);
+    }
+
+    /**
      * Get taxonRank
      *
      * @return string|null

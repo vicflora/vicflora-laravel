@@ -18,14 +18,42 @@ type Reference {
     isbn: String
     issn: String
     doi: String
-    citation: String
-    citationHtml: String @rename(attribute: "citation_html")
+
+    """
+    Citation of a Reference as an unformatted string
+    """
+    citation: String 
+        @field(resolver: "\\App\\GraphQL\\Queries\\ReferenceCitation")
+
+    """
+    Citation of a Reference in HTML format
+    """
+    citationHtml: String
+        @field(resolver: "\\App\\GraphQL\\Queries\\ReferenceCitationHtml")
+
+    """
+    Citation of a Reference in Markdown format
+    """
     citationMarkdown: String
+        @field(resolver: "\\App\\GraphQL\\Queries\\ReferenceCitationMarkdown")
 
     author: Agent
     referenceType: ReferenceTypeEnum @rename(attribute: "referenceTypeName")
 
+    """
+    Taxon Names for which this Reference is the protologue
+    """
     taxonNames: [TaxonName]
+
+    """
+    Taxon Concepts where this Reference is cited. **Note:** We have a Taxon 
+    Concept Reference type rather than a simple association to resolve the 
+    many-to-many relationship between Taxon Concept and Reference. At the moment 
+    it does not have any data properties, but we have the option to add them 
+    later.
+    """
+    taxonConcepts: [TaxonConceptReference] 
+        @rename(attribute: "taxonConceptReferences")
 }
 
 extend type Query {
