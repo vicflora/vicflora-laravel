@@ -2,6 +2,7 @@
 
 namespace App\GraphQL\Queries;
 
+use App\Actions\CreateCurrentProfile;
 use App\Models\Profile;
 use App\Models\TaxonConcept;
 use App\Services\CurrentProfileService;
@@ -15,17 +16,8 @@ class TaxonConceptCurrentProfile
     public function __invoke(TaxonConcept $taxonConcept, array $args)
     {
         if ($taxonConcept->taxonomicStatus->name === 'accepted') {
-            $profile = Profile::where('accepted_id', $taxonConcept->id)
-                    ->where('is_current', true)
-                    ->first();
-
-            if ($profile) {
-                $currentProfileService = new CurrentProfileService($taxonConcept->guid, $profile->profile);
-                $profile->profile = $currentProfileService->formatProfile();
-
-                return $profile;
-            }
-            return null;
+            $createCurrentProfile = new CreateCurrentProfile;
+            return $createCurrentProfile($taxonConcept);
         }
         return null;
     }
