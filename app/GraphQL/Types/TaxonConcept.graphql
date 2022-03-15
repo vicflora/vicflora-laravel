@@ -267,14 +267,14 @@ type TaxonConcept {
     later.
     """
     references: [TaxonConceptReference] 
-        @rename(attribute: "taxonConceptReferences")
+        @rename(attribute: "orderedReferences")
 
     """
     Links to other floras. We've got a type, Taxon Concept Flora Link, for this, 
     so, in principle extra information can be added.
     """
     floraLinks: [TaxonConceptFloraLink]
-        @rename(attribute: "taxonConceptFloraLinks")
+        @rename(attribute: "orderedFloraLinks")
 
     createdBy: Agent
     modifiedBy: Agent

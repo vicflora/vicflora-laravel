@@ -72,10 +72,11 @@ class TaxonConcept extends BaseModel
      * @var array
      */
     protected $fillable = ['created_by_id', 'modified_by_id', 'taxon_name_id',
-            'according_to_id', 'taxon_tree_def_item_id', 'accepted_id', 'parent_id',
-            'taxonomic_status_id', 'occurrence_status_id', 'establishment_means_id',
-            'degree_of_establishment_id', 'created_at', 'updated_at', 'rank_id',
-            'remarks', 'editor_notes', 'version', 'guid'];
+            'according_to_id', 'taxon_tree_def_item_id', 'accepted_id', 
+            'parent_id', 'taxonomic_status_id', 'occurrence_status_id', 
+            'establishment_means_id', 'degree_of_establishment_id', 
+            'created_at', 'updated_at', 'rank_id', 'remarks', 'editor_notes', 
+            'version', 'guid'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -90,7 +91,8 @@ class TaxonConcept extends BaseModel
      */
     public function establishmentMeans(): BelongsTo
     {
-        return $this->belongsTo(EstablishmentMeans::class, 'establishment_means_id');
+        return $this->belongsTo(EstablishmentMeans::class, 
+                'establishment_means_id');
     }
 
     /**
@@ -126,11 +128,38 @@ class TaxonConcept extends BaseModel
     }
 
     /**
+     * Taxon Concept References sorted by author and publication date
+     *
+     * @return EloquentCollection
+     */
+    public function getOrderedReferencesAttribute(): EloquentCollection
+    {
+        return $this->taxonConceptReferences()
+                ->join('references', 'taxon_concept_references.reference_id', 
+                        '=', 'references.id')
+                ->join('agents', 'references.author_id', '=', 'agents.id')
+                ->select('taxon_concept_references.*')
+                ->orderBy('agents.name')
+                ->orderBy('references.publication_year')
+                ->get();
+    }
+
+    /**
      * @return HasMany
      */
     public function taxonConceptFloraLinks(): HasMany
     {
         return $this->hasMany(TaxonConceptFloraLink::class);
+    }
+
+
+    public function getOrderedFloraLinksAttribute(): EloquentCollection
+    {
+        return $this->taxonConceptFloraLinks()
+                ->join('floras', 'taxon_concept_flora_links.flora_id', '=', 
+                        'floras.id')
+                ->orderBy('floras.sort_order')
+                ->get();
     }
 
     /**
@@ -190,7 +219,8 @@ class TaxonConcept extends BaseModel
      */
     public function subjectOfTaxonRelationships(): HasMany
     {
-        return $this->hasMany(TaxonRelationship::class, 'object_taxon_concept_id');
+        return $this->hasMany(TaxonRelationship::class, 
+                'object_taxon_concept_id');
     }
 
     /**
@@ -198,7 +228,8 @@ class TaxonConcept extends BaseModel
      */
     public function objectOfTaxonRelationships(): HasMany
     {
-        return $this->hasMany(TaxonRelationship::class, 'subject_taxon_concept_id');
+        return $this->hasMany(TaxonRelationship::class, 
+                'subject_taxon_concept_id');
     }
 
     /**
@@ -279,8 +310,11 @@ class TaxonConcept extends BaseModel
     {
         if ($this->taxonomicStatus->name === 'accepted') {
             return TaxonConcept::select('taxon_concepts.*', 'taxon_names.full_name')
-                ->join('taxonomic_statuses', 'taxon_concepts.taxonomic_status_id', '=', 'taxonomic_statuses.id')
-                ->join('taxon_names', 'taxon_concepts.taxon_name_id', '=', 'taxon_names.id')
+                ->join('taxonomic_statuses', 
+                        'taxon_concepts.taxonomic_status_id', '=', 
+                        'taxonomic_statuses.id')
+                ->join('taxon_names', 'taxon_concepts.taxon_name_id', '=', 
+                        'taxon_names.id')
                 ->where('taxon_concepts.parent_id', $this->id)
                 ->where('taxonomic_statuses.name', 'accepted')
                 ->orderBy('full_name')
@@ -295,9 +329,13 @@ class TaxonConcept extends BaseModel
     public function getSiblingsAttribute(): Collection
     {
         if ($this->taxonomicStatus->name === 'accepted') {
-            return TaxonConcept::select('taxon_concepts.*', 'taxon_names.full_name')
-                ->join('taxonomic_statuses', 'taxon_concepts.taxonomic_status_id', '=', 'taxonomic_statuses.id')
-                ->join('taxon_names', 'taxon_concepts.taxon_name_id', '=', 'taxon_names.id')
+            return TaxonConcept::select('taxon_concepts.*', 
+                    'taxon_names.full_name')
+                ->join('taxonomic_statuses', 
+                        'taxon_concepts.taxonomic_status_id', '=', 
+                        'taxonomic_statuses.id')
+                ->join('taxon_names', 'taxon_concepts.taxon_name_id', '=', 
+                        'taxon_names.id')
                 ->where('taxon_concepts.parent_id', $this->parent_id)
                 ->where('taxonomic_statuses.name', 'accepted')
                 ->orderBy('full_name')
@@ -316,7 +354,8 @@ class TaxonConcept extends BaseModel
         $query = TaxonConcept::where('id', $this->parent_id)
         ->union(
             TaxonConcept::select('taxon_concepts.*')
-                ->join('ancestors', 'ancestors.parent_id', '=', 'taxon_concepts.id')
+                ->join('ancestors', 'ancestors.parent_id', '=', 
+                        'taxon_concepts.id')
         );
 
         return TaxonConcept::from('ancestors')
@@ -334,7 +373,8 @@ class TaxonConcept extends BaseModel
         $query = TaxonConcept::where('parent_id', $this->id)
         ->union(
             TaxonConcept::select('taxon_concepts.*')
-                ->join('descendants', 'descendants.id', '=', 'taxon_concepts.parent_id')
+                ->join('descendants', 'descendants.id', '=', 
+                        'taxon_concepts.parent_id')
         );
 
         return TaxonConcept::from('descendants')
@@ -358,7 +398,8 @@ class TaxonConcept extends BaseModel
     {
         $usages = TaxonConcept::where('accepted_id', $this->id)
                 ->whereHas('taxonomicStatus', function(Builder $query) {
-                    $query->whereIn('name', ['synonym', 'heterotypicSynonym', 'homotypicSynonym']);
+                    $query->whereIn('name', ['synonym', 'heterotypicSynonym', 
+                            'homotypicSynonym']);
                 })
                 ->get();
 
@@ -376,7 +417,8 @@ class TaxonConcept extends BaseModel
     {
         return TaxonConcept::where('accepted_id', $this->id)
                 ->whereHas('taxonomicStatus', function(Builder $query) {
-                    $query->whereIn('name', ['synonym', 'heterotypicSynonym', 'homotypicSynonym']);
+                    $query->whereIn('name', ['synonym', 'heterotypicSynonym', 
+                            'homotypicSynonym']);
                 })
                 ->get();
     }

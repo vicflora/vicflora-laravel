@@ -33,6 +33,7 @@ class GetContributorString
                 'agents.last_name',
                 'agents.initials',
                 'contributor_roles.name as role')
+        ->orderBy('contributors.sequence')
         ->get();
 
         $agents = [];
