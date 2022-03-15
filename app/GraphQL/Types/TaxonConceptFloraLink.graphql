@@ -1,0 +1,9 @@
+type TaxonConceptFloraLink {
+  id: ID @rename(attribute: "guid")
+  taxonConcept: TaxonConcept
+  flora: String! @rename(attribute: "floraName")
+  url: String!
+  icon: String
+  sortOrder: Int
+  remarks: String
+}

@@ -53,6 +53,8 @@ use Staudenmeir\LaravelCte\Eloquent\QueriesExpressions;
  * @property TaxonBioregion[] $bioregions
  * @property TaxonLocalGovernmentArea[] $localGovernmentAreas
  * @property TaxonParkReserve[] $parkReserves
+ * @property TaxonConceptReference[] $taxonConceptReferences
+ * @property TaxonConceptFloraLink[] $taxonConceptFloraLinks
  */
 class TaxonConcept extends BaseModel
 {
@@ -121,6 +123,14 @@ class TaxonConcept extends BaseModel
     public function taxonConceptReferences(): HasMany
     {
         return $this->hasMany(TaxonConceptReference::class);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function taxonConceptFloraLinks(): HasMany
+    {
+        return $this->hasMany(TaxonConceptFloraLink::class);
     }
 
     /**

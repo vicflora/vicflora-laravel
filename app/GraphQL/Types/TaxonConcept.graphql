@@ -260,7 +260,7 @@ type TaxonConcept {
     misapplications: [TaxonConcept]
 
     """
-    References cited in the profile of a Taxon Concept. **Note:** We have a Taxon 
+    References cited in the profile of a Taxon Concept. We have a Taxon 
     Concept Reference type rather than a simple association to resolve the 
     many-to-many relationship between Taxon Concept and Reference. At the moment 
     it does not have any data properties, but we have the option to add them 
@@ -268,6 +268,13 @@ type TaxonConcept {
     """
     references: [TaxonConceptReference] 
         @rename(attribute: "taxonConceptReferences")
+
+    """
+    Links to other floras. We've got a type, Taxon Concept Flora Link, for this, 
+    so, in principle extra information can be added.
+    """
+    floraLinks: [TaxonConceptFloraLink]
+        @rename(attribute: "taxonConceptFloraLinks")
 
     createdBy: Agent
     modifiedBy: Agent
