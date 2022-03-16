@@ -1,0 +1,10 @@
+type MatrixKey {
+  id: ID @rename(attribute: "guid")
+  title: String! 
+  relativePath: String! @rename(attribute: "relative_path")
+  taxonConcepts: [TaxonConcept]
+}
+
+extend type Query {
+  matrixKey(path: String! @eq(key: "relative_path")): MatrixKey @find
+}

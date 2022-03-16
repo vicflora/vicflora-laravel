@@ -6,6 +6,7 @@ use App\Models\BaseModel;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Collection;
@@ -160,6 +161,15 @@ class TaxonConcept extends BaseModel
                         'floras.id')
                 ->orderBy('floras.sort_order')
                 ->get();
+    }
+
+
+    /**
+     * @return BelongsToMany
+     */
+    public function matrixKeys(): BelongsToMany
+    {
+        return $this->belongsToMany(MatrixKey::class);
     }
 
     /**

@@ -238,6 +238,7 @@ type TaxonConcept {
         @field(resolver: "\\App\\GraphQL\\Queries\\TaxonConceptMapLinks")
     identificationKeys: [IdentificationKey!]!
         @field(resolver: "\\App\\GraphQL\\Queries\\TaxonConceptKeys")
+    matrixKeys: [MatrixKey]
 
     """
     Synonyms of the accepted name (`taxonName`). 
