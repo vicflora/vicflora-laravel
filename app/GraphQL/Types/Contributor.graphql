@@ -1,0 +1,29 @@
+type Contributor {
+    agent: Agent! 
+    reference: Reference!
+    contributorRole: ContributorRoleEnum 
+        @rename(attribute: "contributorRoleName")
+    sequence: Int!
+}
+
+input CreateContributorInput {
+    agent: CreateAgentBelongsTo
+    sequence: Int!
+    contributorRole: ContributorRoleEnum
+}
+
+extend type Mutation {
+    createContributors(
+      reference: ID!, 
+      contributors: [CreateContributorInput!]!
+    ): Reference
+        @guard(with: ["api"])
+        @field(resolver: "\\App\\GraphQL\\Mutations\\CreateContributors")
+
+    deleteContributors(reference: ID!): Reference
+        @guard(with: ["api"])
+        @field(resolver: "\\App\\GraphQL\\Mutations\\DeleteContributors")
+    
+
+}
+

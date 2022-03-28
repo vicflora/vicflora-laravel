@@ -1,0 +1,4 @@
+enum ContributorRoleEnum {
+  AUTHOR @enum(value: "Author")
+  EDITOR @enum(value: "Editor")
+}

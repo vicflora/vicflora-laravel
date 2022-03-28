@@ -62,4 +62,12 @@ class Contributor extends BaseModel
     {
         return $this->belongsTo(Reference::class);
     }
+
+    /**
+     * @return String
+     */
+    public function getContributorRoleNameAttribute(): String
+    {
+        return ContributorRole::find($this->contributor_role_id)->value('name');
+    }
 }
