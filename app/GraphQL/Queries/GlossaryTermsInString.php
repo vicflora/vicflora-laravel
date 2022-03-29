@@ -16,8 +16,9 @@ class GlossaryTermsInString
         $ret = null;
         preg_match_all('/\b[\w-]{3,}\b/', $args['string'], $matches);
         if ($matches[0]) {
+            $uniqueWords = array_unique($matches[0]);
             $values = [];
-            foreach ($matches[0] as $value) {
+            foreach ($uniqueWords as $value) {
                 $values[] = "'$value'";
             }
             $values = implode(',', $values);
