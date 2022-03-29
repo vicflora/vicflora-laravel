@@ -38,10 +38,18 @@ type GlossaryTermImage {
     licenseLogoUrl: String @rename(attribute: "license_logo_url")
 }
 
+type GlossaryTermInString {
+    substring: String!
+    term: GlossaryTerm!
+}
+
 extend type Query {
     glossaryTerm(id: ID! @eq): GlossaryTerm @find
     glossaryTermsByName(name: String! @ilike(template: "{}%")): [GlossaryTerm]
         @all
     glossaryTermFirstLetters: [String!]!
         @field(resolver: "\\App\\GraphQL\\Queries\\GlossaryTermFirstLetters")
+
+    glossaryTermsInString(string: String!): [GlossaryTermInString]
+        @field(resolver: "\\App\\GraphQL\\Queries\\GlossaryTermsInString")
 }
