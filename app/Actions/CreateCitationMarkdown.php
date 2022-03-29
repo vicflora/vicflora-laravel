@@ -74,7 +74,7 @@ class CreateCitationMarkdown
                     $citation .= '**' . $getContributorString($reference)
                             . ' (' . $reference->publication_year . ')**. '
                             . $reference->title . '. ';
-                    $citation .= 'In: ' . $reference->parent->contributorString
+                    $citation .= 'In: ' . $getContributorString($reference->parent)
                             . ', *&zwj;' . $reference->parent->title . '&zwj;*'
                             . ', pp. ' . $reference->page_start
                             . '–' . $reference->page_end

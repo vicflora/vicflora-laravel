@@ -74,7 +74,7 @@ class CreateCitation
                     $citation .= $getContributorString($reference)
                             . ' (' . $reference->publication_year . '). '
                             . $reference->title . '. ';
-                    $citation .= 'In: ' . $reference->parent->contributorString
+                    $citation .= 'In: ' . $getContributorString($reference->parent)
                             . ', ' . $reference->parent->title
                             . ', pp. ' . $reference->page_start
                             . '–' . $reference->page_end

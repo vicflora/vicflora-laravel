@@ -74,7 +74,7 @@ class CreateCitationHtml
                     $citation .= '<strong>' . $getContributorString($reference)
                             . ' (' . $reference->publication_year . ')</strong>. '
                             . $reference->title . '. ';
-                    $citation .= 'In: ' . $reference->parent->contributorString
+                    $citation .= 'In: ' . $getContributorString($reference->parent)
                             . ', <em>' . $reference->parent->title . '</em>'
                             . ', pp. ' . $reference->page_start
                             . '–' . $reference->page_end
