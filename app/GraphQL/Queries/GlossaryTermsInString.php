@@ -27,7 +27,9 @@ class GlossaryTermsInString
 SELECT item, t.id 
 from terms t
 join unnest(array[$values]) as item
-    on t.name=lower(item) or t.name||'s'=lower(item)
+    on t.name=lower(item) 
+    or t.name||'s'=lower(item)
+    or t.name=replace(lower(item), 'ies', 'y')
 where t.glossary_id = 4
 SQL;
 
