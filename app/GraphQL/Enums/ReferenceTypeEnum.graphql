@@ -5,9 +5,9 @@ enum ReferenceTypeEnum {
     ARTICLE @enum(value: "Article")
     AUDIO_VISUAL_DOCUMENT @enum(value: "AudioVisualDocument")
     BOOK @enum(value: "Book")
-    BOOK_SERIES @enum(value: "BOOK_SERIES")
+    BOOK_SERIES @enum(value: "BookSeries")
     CHAPTER @enum(value: "Chapter")
-    JOURNAL @enum(values: "Journal")
+    JOURNAL @enum(value: "Journal")
     """
     Everything associated with a name at its valid publication, i.e. description
     or diagnosis, illustrations, references, synonyms, geographical data,

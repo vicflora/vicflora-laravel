@@ -1,6 +1,7 @@
 type Reference {
     id: ID! @rename(attribute: "guid")
-    created: String
+    author: Agent
+    referenceType: ReferenceTypeEnum @rename(attribute: "referenceTypeName")
     publicationYear: String @rename(attribute: "publication_year")
     title: String!
     shortTitle: String @rename(attribute: "short_title")
@@ -18,6 +19,9 @@ type Reference {
     isbn: String
     issn: String
     doi: String
+
+    parent: Reference
+    contributors: [Contributor]
 
     """
     Citation of a Reference as an unformatted string
@@ -37,9 +41,6 @@ type Reference {
     citationMarkdown: String
         @field(resolver: "\\App\\GraphQL\\Queries\\ReferenceCitationMarkdown")
 
-    author: Agent
-    referenceType: ReferenceTypeEnum @rename(attribute: "referenceTypeName")
-
     """
     Taxon Names for which this Reference is the protologue
     """
@@ -56,6 +57,75 @@ type Reference {
         @rename(attribute: "taxonConceptReferences")
 }
 
+input UpdateReferenceInput {
+    id: ID! @rename(attribute: "guid")
+    author: UpdateAgentBelongsTo
+    publicationYear: String @rename(attribute: "publication_year")
+    title: String!
+    shortTitle: String @rename(attribute: "short_title")
+    edition: String
+    volume: String
+    issue: String
+    pageStart: Int @rename(attribute: "page_start")
+    pageEnd: Int @rename(attribute: "page_end")
+    pages: String
+    numberOfPages: String @rename(attribute: "number_of_pages")
+    publisher: String
+    placeOfPublication: String @rename(attribute: "place_of_publication")
+    shortDescription: String @rename(attribute: "short_description")
+    abstract: String
+    isbn: String
+    issn: String
+    doi: String
+    referenceType: ReferenceTypeEnum
+    parent: UpdateReferenceBelongsTo
+}
+
+input CreateReferenceInput {
+    author: CreateAgentBelongsTo
+    publicationYear: String @rename(attribute: "publication_year")
+    title: String!
+    shortTitle: String @rename(attribute: "short_title")
+    edition: String
+    volume: String
+    issue: String
+    pageStart: Int @rename(attribute: "page_start")
+    pageEnd: Int @rename(attribute: "page_end")
+    pages: String
+    numberOfPages: String @rename(attribute: "number_of_pages")
+    publisher: String
+    placeOfPublication: String @rename(attribute: "place_of_publication")
+    shortDescription: String @rename(attribute: "short_description")
+    abstract: String
+    isbn: String
+    issn: String
+    doi: String
+    referenceType: ReferenceTypeEnum
+    parent: CreateReferenceBelongsTo
+}
+
+input CreateReferenceBelongsTo {
+    connect: ID
+}
+
+input UpdateReferenceBelongsTo {
+    connect: ID
+}
+
 extend type Query {
     reference(id: ID! @eq(key: "guid")): Reference @find
+}
+
+extend type Mutation {
+    updateReference(input: UpdateReferenceInput!): Reference
+        @guard(with: ["api"])
+        @field(resolver: "\\App\\GraphQL\\Mutations\\UpdateReference")
+
+    createReference(input: CreateReferenceInput!): Reference
+        @guard(with: ["api"])
+        @field(resolver: "\\App\\GraphQL\\Mutations\\CreateReference")
+
+    deleteReference(id: ID!): Reference
+        @guard(with: ["api"])
+        @field(resolver: "\\App\\GraphQL\\Mutations\\DeleteReference")
 }

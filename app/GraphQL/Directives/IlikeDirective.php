@@ -59,7 +59,7 @@ GRAPHQL;
         return $builder->where(
             $this->directiveArgValue('key', $this->nodeName()),
             'ILIKE',
-            $value
+            "$value%"
         );
     }
 

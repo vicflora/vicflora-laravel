@@ -29,6 +29,42 @@ type TaxonName {
     version: Int
 }
 
+input UpdateTaxonNameInput {
+    id: ID! @rename(attribute: "guid")
+    namePart: String @rename(attribute: "name_part")
+    fullName: String @rename(attribute: "full_name")
+    nameType: NameTypeEnum @rename(attribute: "nameTypeName")
+    authorship: String
+    nomenclaturalNote: String @rename(attribute: "nomenclatural_note")
+    remarks: String
+    protologue: UpdateReferenceBelongsTo
+}
+
+input CreateTaxonNameInput {
+    namePart: String @rename(attribute: "name_part")
+    fullName: String @rename(attribute: "full_name")
+    nameType: NameTypeEnum @rename(attribute: "nameTypeName")
+    authorship: String
+    nomenclaturalNote: String @rename(attribute: "nomenclatural_note")
+    remarks: String
+    protologue: CreateReferenceBelongsTo
+}
+
+input TaxonNameBelongsTo {
+    connect: ID!
+}
+
 extend type Query {
     taxonName(id: ID! @eq(key: "guid")): TaxonName @find
+    taxonNameAutocomplete(q: String! @ilike(key: "full_name")): [TaxonName] @all
+}
+
+extend type Mutation {
+    updateTaxonName(input: UpdateTaxonNameInput!): TaxonName 
+        @guard(with: ["api"])
+        @field(resolver: "\\App\\GraphQL\\Mutations\\UpdateTaxonName")
+    
+    createTaxonName(input: CreateTaxonNameInput!): TaxonName
+        @guard(with: ["api"])
+        @field(resolver: "\\App\\GraphQL\\Mutations\\CreateTaxonName")
 }

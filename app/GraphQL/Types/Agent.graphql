@@ -13,6 +13,35 @@ type Agent {
     agentType: AgentTypeEnum @rename(attribute: "agentTypeName")
 }
 
+input CreateAgentInput {
+    name: String
+    lastName: String @rename(attribute: "last_name")
+    firstName: String @rename(attribute: "first_name")
+    initials: String
+    email: Email
+    legalName: String @rename(attribute: "legal_name")
+    agentType: AgentTypeEnum @rename(attribute: "agentTypeName")
+}
+
+input UpdateAgentInput {
+    id: ID! @rename(attribute: "guid")
+    name: String
+    lastName: String @rename(attribute: "last_name")
+    firstName: String @rename(attribute: "first_name")
+    initials: String
+    email: Email
+    legalName: String @rename(attribute: "legal_name")
+    agentType: AgentTypeEnum @rename(attribute: "agentTypeName")
+}
+
+input CreateAgentBelongsTo {
+    connect: ID
+}
+
+input UpdateAgentBelongsTo {
+    connect: ID
+}
+
 extend type Query {
     agent(id: ID! @eq(key: "guid")): Agent @find
 }

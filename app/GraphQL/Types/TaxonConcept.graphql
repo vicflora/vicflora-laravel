@@ -284,6 +284,43 @@ type TaxonConcept {
     version: Int
 }
 
+input CreateTaxonConceptInput {
+    taxonName: TaxonNameBelongsTo!
+    accordingTo: CreateReferenceBelongsTo
+    taxonRank: TaxonRankEnum!
+    acceptedConcept: TaxonConceptBelongsTo
+    parent: TaxonConceptBelongsTo
+    taxonomicStatus: TaxonomicStatusEnum
+    occurrenceStatus: OccurrenceStatusEnum
+    establishmentMeans: EstablishmentMeansEnum
+    degreeOfEstablishment: DegreeOfEstablishmentEnum
+    endemic: Boolean @rename(attribute: "is_endemic")
+    hasIntroducedOccurrences: Boolean 
+            @rename(attribute: "has_introduced_occurrences")
+    remarks: String
+}
+
+input UpdateTaxonConceptInput {
+    id: ID! @rename(attribute: "guid")
+    taxonName: TaxonNameBelongsTo!
+    accordingTo: CreateReferenceBelongsTo
+    taxonRank: TaxonRankEnum!
+    acceptedConcept: TaxonConceptBelongsTo
+    parent: TaxonConceptBelongsTo
+    taxonomicStatus: TaxonomicStatusEnum
+    occurrenceStatus: OccurrenceStatusEnum
+    establishmentMeans: EstablishmentMeansEnum
+    degreeOfEstablishment: DegreeOfEstablishmentEnum
+    endemic: Boolean @rename(attribute: "is_endemic")
+    hasIntroducedOccurrences: Boolean 
+            @rename(attribute: "has_introduced_occurrences")
+    remarks: String
+}
+
+input TaxonConceptBelongsTo {
+    connect: ID!
+}
+
 type MapLinks {
     profileMap: String
     distributionMap: String
@@ -332,4 +369,23 @@ extend type Query {
         @field(
             resolver: "\\App\\GraphQL\\Queries\\TaxonConceptHigherClassification"
         )
+
+    taxonConceptAutocomplete(q: String!): [TaxonConcept] 
+        @field(
+            resolver: "\\App\\GraphQL\\Queries\\TaxonConceptAutocomplete"
+        )
+}
+
+extend type Mutation {
+    createTaxonConcept(input: CreateTaxonConceptInput!): TaxonConcept
+        @guard(with: ["api"])
+        @field(resolver: "\\App\\GraphQL\\Mutations\\CreateTaxonConcept")
+
+    updateTaxonConcept(input: UpdateTaxonConceptInput!): TaxonConcept
+        @guard(with: ["api"])
+        @field(resolver: "\\App\\GraphQL\\Mutations\\UpdateTaxonConcept")
+
+    deleteTaxonConcept(id: ID!): TaxonConcept
+        @guard(with: ["api"])
+        @field(resolver: "\\App\\GraphQL\\Mutations\\DeleteTaxonConcept")
 }
