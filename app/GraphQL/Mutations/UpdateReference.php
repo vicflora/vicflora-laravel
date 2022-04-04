@@ -33,7 +33,7 @@ class UpdateReference
                     Reference::where('guid', $input['parent']['connect'])
                     ->value('id');
         }
-        $reference = Reference::where('guid', $input['id'])->first();
+        $reference = Reference::where('guid', $input['guid'])->first();
         $reference->update($input);
         $reference->increment('version');
         return $reference;
