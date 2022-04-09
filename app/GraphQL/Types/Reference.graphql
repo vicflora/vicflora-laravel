@@ -114,6 +114,8 @@ input UpdateReferenceBelongsTo {
 
 extend type Query {
     reference(id: ID! @eq(key: "guid")): Reference @find
+    referenceAutocomplete(q: String!): [Reference]
+        @field(resolver: "\\App\\GraphQL\\Queries\\ReferenceAutocomplete")
 }
 
 extend type Mutation {
