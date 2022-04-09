@@ -21,9 +21,6 @@ class UpdateTaxonConcept
     public function __invoke($_, array $args)
     {
         $input = $args['input'];
-        $input['guid'] = Str::uuid();
-        $input['version'] = 1;
-        $input['created_by_id'] = Auth::id();
 
         $input['taxon_name_id'] = 
                 TaxonName::where('guid', $input['taxonName']['connect'])
