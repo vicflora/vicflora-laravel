@@ -1,5 +1,7 @@
 type TaxonName {
     id: ID! @rename(attribute: "guid")
+    rank: TaxonRankEnum @rename(attribute: "nameRank")
+    parent: TaxonName @rename(attribute: "parentName")
     namePart: String @rename(attribute: "name_part")
     fullName: String! @rename(attribute: "full_name")
     authorship: String
@@ -31,9 +33,11 @@ type TaxonName {
 
 input UpdateTaxonNameInput {
     id: ID! @rename(attribute: "guid")
+    nameType: NameTypeEnum
+    rank: TaxonRankEnum
+    parent: TaxonNameBelongsTo
     namePart: String @rename(attribute: "name_part")
     fullName: String @rename(attribute: "full_name")
-    nameType: NameTypeEnum @rename(attribute: "nameTypeName")
     authorship: String
     nomenclaturalNote: String @rename(attribute: "nomenclatural_note")
     remarks: String
@@ -41,9 +45,11 @@ input UpdateTaxonNameInput {
 }
 
 input CreateTaxonNameInput {
+    nameType: NameTypeEnum
+    rank: TaxonRankEnum
+    parent: TaxonNameBelongsTo
     namePart: String @rename(attribute: "name_part")
     fullName: String @rename(attribute: "full_name")
-    nameType: NameTypeEnum @rename(attribute: "nameTypeName")
     authorship: String
     nomenclaturalNote: String @rename(attribute: "nomenclatural_note")
     remarks: String
@@ -56,7 +62,9 @@ input TaxonNameBelongsTo {
 
 extend type Query {
     taxonName(id: ID! @eq(key: "guid")): TaxonName @find
-    taxonNameAutocomplete(q: String! @ilike(key: "full_name")): [TaxonName] @all
+    taxonNameAutocomplete(q: String! @ilike(key: "full_name")): [TaxonName] 
+        @all 
+        @orderBy(column: "full_name", dicrection: "ASC")
 }
 
 extend type Mutation {

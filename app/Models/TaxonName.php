@@ -120,6 +120,22 @@ class TaxonName extends BaseModel
     }
 
     /**
+     * @return BelongsTo
+     */
+    public function parentName(): BelongsTo
+    {
+        return $this->belongsTo(TaxonName::class);
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function nameRank(): BelongsTo
+    {
+        return $this->belongsTo(TaxonTreeDefItem::class, 'name_rank_id');
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function taxonConcepts(): HasMany
@@ -146,4 +162,14 @@ class TaxonName extends BaseModel
     {
         return $this->hasOne(VbaName::class, 'taxon_name_id', 'guid');
     }
+
+    public function getNameRankAttribute(): ?string
+    {
+        if ($this->name_rank_id) {
+            $tr = TaxonTreeDefItem::find($this->name_rank_id);
+            return $tr->name;
+        }
+        return null;
+    }
+
 }
