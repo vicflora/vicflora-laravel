@@ -36,7 +36,7 @@ class CreateCitationMarkdown
                 case 'AudioVisualDocument':
                     $citation .= '**' . $getContributorString($reference)
                             . ' (' . $reference->publication_year . ')**. '
-                            . $reference->title . '. ';
+                            . str_replace('~', '*', $reference->title) . '. ';
                     if ($reference->publisher) {
                         $citation .= ' ' . $reference->publisher;
                         if ($reference->place_of_publication) {
@@ -49,7 +49,7 @@ class CreateCitationMarkdown
                 case 'Article':
                     $citation .= '**' . $getContributorString($reference)
                             . ' (' . $reference->publication_year . ')**. '
-                            . $reference->title . '. ';
+                            . str_replace('~', '*', $reference->title) . '. ';
                     $citation .= '*' . $reference->parent->title . '*';
                     if ($reference->volume) {
                         $citation .= ' **' . $reference->volume . '**';
@@ -73,7 +73,7 @@ class CreateCitationMarkdown
                 case 'Chapter':
                     $citation .= '**' . $getContributorString($reference)
                             . ' (' . $reference->publication_year . ')**. '
-                            . $reference->title . '. ';
+                            . str_replace('~', '*', $reference->title) . '. ';
                     $citation .= 'In: ' . $getContributorString($reference->parent)
                             . ', *&zwj;' . $reference->parent->title . '&zwj;*'
                             . ', pp. ' . $reference->page_start

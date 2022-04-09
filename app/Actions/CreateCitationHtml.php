@@ -16,98 +16,15 @@
 namespace App\Actions;
 
 use App\Models\Reference;
+use GrahamCampbell\Markdown\Facades\Markdown;
 
 class CreateCitationHtml
 {
     public function __invoke(Reference $reference)
     {
-        $getContributorString = new GetContributorString;
-
-        $type = $reference->referenceType->name;
-        $citation = '';
-        switch ($type) {
-            case 'Journal':
-                case 'Series':
-                    $citation .= $reference->title;
-                    break;
-
-                case 'Book':
-                case 'Report':
-                case 'AudioVisualDocument':
-                    $citation .= '<strong>' . $getContributorString($reference)
-                            . ' (' . $reference->publication_year . ')</strong>. '
-                            . $reference->title . '. ';
-                    if ($reference->publisher) {
-                        $citation .= ' ' . $reference->publisher;
-                        if ($reference->place_of_publication) {
-                            $citation .= ', ' . $reference->place_of_publication;
-                        }
-                        $citation .= '.';
-                    }
-                    break;
-
-                case 'Article':
-                    $citation .= '<strong>' . $getContributorString($reference)
-                            . ' (' . $reference->publication_year . ').</strong> '
-                            . $reference->title . '. ';
-                    $citation .= '<em>' . $reference->parent->title . '</em>';
-                    if ($reference->volume) {
-                        $citation .= ' <strong>' . $reference->volume . '</strong>';
-                        if ($reference->issue) {
-                            $citation .= '(' . $reference->issue . ')';
-                        }
-                        if ($reference->page_start) {
-                            $citation .= ': ' .
-                                    $reference->page_start . '–' . $reference->page_end;
-                        }
-                        elseif ($reference->pages) {
-                            $citation .= ': ' . $reference->pages;
-                        }
-                    }
-                    elseif ($reference->number) {
-                        $citation .= ' ' . $reference->number;
-                    }
-                    $citation .= '.';
-                    break;
-
-                case 'Chapter':
-                    $citation .= '<strong>' . $getContributorString($reference)
-                            . ' (' . $reference->publication_year . ')</strong>. '
-                            . $reference->title . '. ';
-                    $citation .= 'In: ' . $getContributorString($reference->parent)
-                            . ', <em>' . $reference->parent->title . '</em>'
-                            . ', pp. ' . $reference->page_start
-                            . '–' . $reference->page_end
-                            . '.';
-                    if ($reference->parent->publisher) {
-                        $citation .= ' ' . $reference->parent->publisher;
-                        if ($reference->parent->place_of_publication) {
-                            $citation .= ', '
-                                . $reference->parent->place_of_publication;
-                        }
-                        $citation .= '.';
-                    }
-                    break;
-
-                case 'Protologue':
-                    if ($reference->author_id) {
-                        $citation .= 'in ' . $reference->author->name . ', ';
-                    }
-                    $citation .= '<em>' . $reference->title . '</em>';
-                    if ($reference->volume) {
-                        $citation .= ' <strong>' . $reference->volume . '</strong>';
-                    }
-                    if ($reference->issue) {
-                        $citation .= '(' . $reference->issue . ')';
-                    }
-                    $citation .= ': ' . $reference->pages
-                            . ' (' . $reference->publication_year . ')';
-                    break;
-
-                default:
-                    break;
-        }
-        return $citation;
+        $createCitation = new CreateCitationMarkdown;
+        $citationMarkdown = $createCitation($reference);
+        return trim(Markdown::convertToHtml($citationMarkdown));
     }
 }
 
