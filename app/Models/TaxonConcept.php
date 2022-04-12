@@ -648,4 +648,12 @@ class TaxonConcept extends BaseModel
         }
         return null;
     }
+
+    /**
+     * @return HasMany
+     */
+    public function changes(): HasMany
+    {
+        return $this->hasMany(Change::class, 'from_id');
+    }
 }

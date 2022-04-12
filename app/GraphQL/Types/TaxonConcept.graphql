@@ -277,6 +277,8 @@ type TaxonConcept {
     floraLinks: [TaxonConceptFloraLink]
         @rename(attribute: "orderedFloraLinks")
 
+    changes: [Change]
+
     createdBy: Agent
     modifiedBy: Agent
     createdAt: DateTimeTz @rename(attribute: "created_at")

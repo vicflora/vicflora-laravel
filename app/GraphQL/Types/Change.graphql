@@ -1,0 +1,9 @@
+type Change {
+  id: ID! @rename(attribute: "guid")
+  createdBy: Agent
+  createdAt: DateTimeTz @rename(attribute: "created_at")
+  from: TaxonConcept!
+  to: TaxonConcept!
+  changeType: TaxonomicStatusEnum @rename(attribute: "changeTypeName")
+  changeSource: Reference
+}
