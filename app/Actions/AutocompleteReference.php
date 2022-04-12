@@ -24,6 +24,8 @@ class AutocompleteReference {
     {
         return Reference::select('references.*')
                 ->join('agents', 'references.author_id', '=', 'agents.id')
+                ->join('reference_types as rt', 'references.reference_type_id', '=', 'rt.id')
+                ->whereNotIn('rt.name', ['Protologue'])
                 ->whereRaw("agents.name || ' ' || \"references\".publication_year ilike replace('$q', ' ', '%') || '%'")
                 ->orderBy('agents.name')
                 ->orderBy('references.publication_year')
