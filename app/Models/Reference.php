@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
- * @property integer $id
+ * @property-read integer $id
  * @property integer $reference_type_id
  * @property int $parent_id
  * @property integer $author_id
@@ -37,17 +37,17 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $citation_html
  * @property integer $version
  * @property string $guid
- * @property string $created_at
- * @property string $updated_at
- * @property Agent $createdBy
- * @property Agent $modifiedBy
- * @property Agent $author
- * @property ReferenceType $referenceType
- * @property VicfloraReference $vicfloraReference
- * @property Contributor[] $contributors
- * @property TaxonName[] $taxonNames
- * @property TaxonConcept[] $taxonConcepts
- * @property Profile[] $profiles
+ * @property-read \Illuminate\Support\Carbon $created_at
+ * @property-read \Illuminate\Support\Carbon $updated_at
+ * 
+ * @property \App\Models\Agent $createdBy
+ * @property \App\Models\Agent|null $modifiedBy
+ * @property \App\Models\Agent|null $author
+ * @property \App\Models\ReferenceType|null $referenceType
+ * @property \Illuminate\Database\Eloquent\Collection|\App\Models\Contributor[] $contributors
+ * @property \Illuminate\Database\Eloquent\Collection|\App\Models\TaxonName[] $taxonNames
+ * @property \Illuminate\Database\Eloquent\Collection|\App\Models\TaxonConcept[] $taxonConcepts
+ * @property \Illuminate\Database\Eloquent\Collection|\App\Models\Profile[] $profiles
  */
 class Reference extends BaseModel
 {

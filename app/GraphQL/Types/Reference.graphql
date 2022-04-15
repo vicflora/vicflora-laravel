@@ -1,5 +1,7 @@
 type Reference {
     id: ID! @rename(attribute: "guid")
+    quickRef: String 
+        @field(resolver: "\\App\\GraphQL\\Queries\\ReferenceQuickRef")
     author: Agent
     referenceType: ReferenceTypeEnum @rename(attribute: "referenceTypeName")
     publicationYear: String @rename(attribute: "publication_year")
