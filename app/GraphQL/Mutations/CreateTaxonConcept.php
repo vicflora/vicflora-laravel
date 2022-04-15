@@ -9,6 +9,7 @@ use App\Models\Reference;
 use App\Models\TaxonConcept;
 use App\Models\TaxonName;
 use App\Models\TaxonomicStatus;
+use App\Models\TaxonTreeDefItem;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
@@ -29,12 +30,12 @@ class CreateTaxonConcept
         $input['taxon_name_id'] = 
                 TaxonName::where('guid', $input['taxonName']['connect'])
                 ->value('id');
-        if ($input['accordingTo']) {
+        if (isset($input['accordingTo']) && $input['accordingTo']) {
             $input['according_to_id'] =
                     Reference::where('guid', $input['accordingTo']['connect'])
                     ->value('id');
         }
-        if ($input['parent']) {
+        if (isset($input['parent']) && $input['parent']) {
             $input['parent_id'] =
                     TaxonConcept::where('guid', $input['parent']['connect'])
                     ->value('id');
@@ -43,6 +44,12 @@ class CreateTaxonConcept
             $input['accepted_id'] =
                     TaxonConcept::where('guid', $input['acceptedConcept']['connect'])
                     ->value('id');
+        }
+
+        if (isset($input['taxonRank'])) {
+            $rank = TaxonTreeDefItem::where('name', $input['taxonRank'])->first();
+            $input['taxon_tree_def_item_id'] = $rank->id;
+            $input['rank_id'] = $rank->rank_id;
         }
 
         if (isset($input['taxonomicStatus'])) {

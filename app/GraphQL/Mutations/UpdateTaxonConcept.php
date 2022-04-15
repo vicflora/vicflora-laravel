@@ -25,7 +25,7 @@ class UpdateTaxonConcept
         $input['taxon_name_id'] = 
                 TaxonName::where('guid', $input['taxonName']['connect'])
                 ->value('id');
-        if ($input['accordingTo']) {
+        if (isset($input['accordingTo']) && $input['accordingTo']) {
             $input['according_to_id'] =
                     Reference::where('guid', $input['accordingTo']['connect'])
                     ->value('id');
@@ -62,7 +62,7 @@ class UpdateTaxonConcept
                     $input['degreeOfEstablishment'])->value('id');
         }
 
-        $taxonConcept = TaxonConcept::where('guid', $input['id'])->first();
+        $taxonConcept = TaxonConcept::where('guid', $input['guid'])->first();
         $taxonConcept->update($input);
         $taxonConcept->increment('version');
         return $taxonConcept;
