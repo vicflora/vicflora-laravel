@@ -376,6 +376,9 @@ extend type Query {
         @field(
             resolver: "\\App\\GraphQL\\Queries\\TaxonConceptAutocomplete"
         )
+    
+    taxonConceptProfiles(taxonConceptId: ID!): [Profile]
+        @field(resolver: "\\App\\GraphQL\\Queries\\TaxonConceptProfiles")
 }
 
 extend type Mutation {

@@ -2,6 +2,7 @@
 
 namespace App\GraphQL\Mutations;
 
+use App\Models\Change;
 use App\Models\DegreeOfEstablishment;
 use App\Models\EstablishmentMeans;
 use App\Models\OccurrenceStatus;
@@ -22,6 +23,7 @@ class UpdateTaxonConcept
     {
         $input = $args['input'];
 
+        $input['modified_by_id'] = Auth::id();
         $input['taxon_name_id'] = 
                 TaxonName::where('guid', $input['taxonName']['connect'])
                 ->value('id');
@@ -30,7 +32,7 @@ class UpdateTaxonConcept
                     Reference::where('guid', $input['accordingTo']['connect'])
                     ->value('id');
         }
-        if ($input['parent']) {
+        if (isset($input['parent']) && $input['parent']) {
             $input['parent_id'] =
                     TaxonConcept::where('guid', $input['parent']['connect'])
                     ->value('id');
@@ -63,6 +65,23 @@ class UpdateTaxonConcept
         }
 
         $taxonConcept = TaxonConcept::where('guid', $input['guid'])->first();
+        if ($input['taxonomic_status_id'] != $taxonConcept->taxonomic_status_id 
+                || $input['accepted_id'] != $taxonConcept->accepted_id) {
+            $change = new Change();
+            $change->guid = Str::uuid();
+            $change->from_id = $taxonConcept->id;
+            if (isset($input['taxonomicStatus']) && $input['taxonomicStatus'] == 'accepted') {
+                $change->to_id = $taxonConcept->id;
+            }
+            else {
+                $change->to_id = isset($input['accepted_id']) ? $input['accepted_id'] : null;
+            }
+            $change->change_type_id = $input['taxonomic_status_id'];
+            $change->created_by_id = Auth::id();
+            $change->save();
+        }
+
+
         $taxonConcept->update($input);
         $taxonConcept->increment('version');
         return $taxonConcept;

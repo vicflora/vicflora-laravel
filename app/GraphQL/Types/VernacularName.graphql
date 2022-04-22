@@ -1,8 +1,8 @@
 type VernacularName {
     id: ID! @rename(attribute: "guid")
     name: String!
-    isPreferred: Boolean
-    nameUsage: String
+    isPreferred: Boolean @rename(attribute: "is_preferred")
+    nameUsage: String @rename(attribute: "name_usage")
     remarks: String
     taxonConcept: TaxonConcept!
 
@@ -11,4 +11,35 @@ type VernacularName {
     createdAt: DateTimeTz
     updatedAt: DateTimeTz
     version: Int
+}
+
+input UpdateVernacularNameInput {
+    id: ID!
+    name: String!
+    isPreferred: Boolean @rename(attribute: "is_preferred")
+    nameUsage: String @rename(attribute: "name_usage")
+    remarks: String
+    taxonConcept: TaxonConceptBelongsTo!
+}
+
+input CreateVernacularNameInput {
+    name: String!
+    isPreferred: Boolean @rename(attribute: "is_preferred")
+    nameUsage: String @rename(attribute: "name_usage")
+    remarks: String
+    taxonConcept: TaxonConceptBelongsTo!
+}
+
+extend type Mutation {
+    updateVernacularName(input: UpdateVernacularNameInput!): VernacularName
+        @guard(with: ["api"])
+        @field(resolver: "\\App\\GraphQL\\Mutations\\UpdateVernacularName")
+
+    createVernacularName(input: CreateVernacularNameInput!): VernacularName
+        @guard(with: ["api"])
+        @field(resolver: "\\App\\GraphQL\\Mutations\\CreateVernacularName")
+
+    deleteVernacularName(id: ID!): VernacularName
+        @guard(with: ["api"])
+        @field(resolver: "\\App\\GraphQL\\Mutations\\DeleteVernacularName")
 }

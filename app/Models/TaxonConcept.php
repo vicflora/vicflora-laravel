@@ -392,13 +392,18 @@ class TaxonConcept extends BaseModel
                 ->get();
     }
 
+    public function vernacularNames(): HasMany
+    {
+        return $this->hasMany(VernacularName::class)->orderBy('id');
+    }
+
     /**
      * @return \App\Models\VernacularName|null
      */
     public function getPreferredVernacularNameAttribute()
     {
         return VernacularName::where('taxon_concept_id', $this->id)
-                ->where('is_preferred', true)->first();
+                ->orderBy('created_at', 'desc')->first();
     }
 
     /**
