@@ -647,8 +647,9 @@ class TaxonConcept extends BaseModel
      */
     public function getVicAdvisoryAttribute(): ?string
     {
+        $allowedValues = ['x', 'e', 'v', 'r', 'k'];
         $vba = VbaTaxon::where('taxon_name_id', $this->taxonName->guid)->first();
-        if ($vba) {
+        if ($vba && in_array($vba->vic_adv, $allowedValues)) {
             return $vba->vic_adv;
         }
         return null;
