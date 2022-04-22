@@ -25,7 +25,7 @@ class CreateCurrentProfile
     public function __invoke(TaxonConcept $taxonConcept)
     {
         $profile = Profile::where('accepted_id', $taxonConcept->id)
-        ->where('is_current', true)
+        ->orderBy('created_at', 'desc')
         ->first();
 
         if ($profile) {

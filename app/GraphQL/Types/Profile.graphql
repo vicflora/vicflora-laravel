@@ -15,7 +15,36 @@ type Profile {
     updatedBy: Agent
     created: Date
     modified: Date
-    # createdAt: DateTimeTz
-    # updatedAt: DateTimeTz
+    createdAt: DateTimeTz @rename(attribute: "created_at")
+    updatedAt: DateTimeTz @rename(attribute: "updated_at")
+    createdBy: Agent
+    modifiedBy: Agent
     version: Int
+}
+
+input UpdateProfileInput {
+    id: ID!
+    profile: String!
+}
+
+input CreateProfileInput {
+    id: ID
+    profile: String!
+    taxonConcept: TaxonConceptBelongsTo!
+    acceptedConcept: TaxonConceptBelongsTo!
+    source: CreateReferenceBelongsTo
+}
+
+extend type Mutation {
+    updateProfile(input: UpdateProfileInput!): Profile
+        @guard(with: ["api"])
+        @field(resolver: "\\App\\GraphQL\\Mutations\\UpdateProfile")
+
+    createProfile(input: CreateProfileInput!): Profile
+        @guard(with: ["api"])
+        @field(resolver: "\\App\\GraphQL\\Mutations\\CreateProfile")
+
+    deleteProfile(id: ID!): Profile
+        @guard(with: ["api"])
+        @field(resolver: "\\App\\GraphQL\\Mutations\\DeleteProfile")
 }
