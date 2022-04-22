@@ -2,8 +2,6 @@ type Profile {
     id: ID! @rename(attribute: "uniqId")
     guid: UUID
     profile: String!
-    isCurrent: Boolean @rename(attribute: "is_current")
-    isUpdated: Boolean @rename(attribute: "is_updated")
 
     taxonConcept: TaxonConcept
     acceptedConcept: TaxonConcept

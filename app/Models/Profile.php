@@ -20,8 +20,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $guid
  * @property integer $taxonomic_status_id
  * @property string $profile
- * @property boolean $is_current
- * @property boolean $is_updated
  * @property Agent $createdBy
  * @property Agent $modifiedBy
  * @property Reference $source
