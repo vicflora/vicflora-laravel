@@ -46,6 +46,7 @@ extend type Query {
         taxonConceptId: ID!
         latitude: Float!
         longitude: Float!
+        distance: Float=0.02
     ): [OccurrenceFeature]!
         @paginate(
             type: PAGINATOR
