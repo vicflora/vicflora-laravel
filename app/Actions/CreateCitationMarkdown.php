@@ -35,7 +35,7 @@ class CreateCitationMarkdown
                 case 'Report':
                 case 'AudioVisualDocument':
                     $citation .= '**' . $getContributorString($reference)
-                            . ' (' . $reference->publication_year . ')**. '
+                            . ' (' . $reference->publication_year . ').** '
                             . str_replace('~', '*', $reference->title) . '. ';
                     if ($reference->publisher) {
                         $citation .= ' ' . $reference->publisher;
