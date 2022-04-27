@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\BaseModel;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @property integer $id
@@ -46,6 +47,22 @@ class Agent extends BaseModel
     public function agentType(): BelongsTo
     {
         return $this->belongsTo(AgentType::class);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function members(): HasMany
+    {
+        return $this->hasMany(GroupPerson::class, 'group_id')->orderBy('sequence');
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 
     /**

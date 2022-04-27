@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property integer $id
  * @property integer $created_by_id
  * @property integer $modified_by_id
+ * @property string $guid
  * @property integer $group_id
  * @property integer $member_id
  * @property string $created_at

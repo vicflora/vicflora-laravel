@@ -2,6 +2,7 @@
 
 namespace App\GraphQL\Mutations;
 
+use App\Models\Agent;
 use App\Models\Change;
 use App\Models\DegreeOfEstablishment;
 use App\Models\EstablishmentMeans;
@@ -23,7 +24,7 @@ class UpdateTaxonConcept
     {
         $input = $args['input'];
 
-        $input['modified_by_id'] = Auth::id();
+        $input['modified_by_id'] = Agent::where('user_id', Auth::id())->value('id');
         $input['taxon_name_id'] = 
                 TaxonName::where('guid', $input['taxonName']['connect'])
                 ->value('id');
@@ -77,7 +78,7 @@ class UpdateTaxonConcept
                 $change->to_id = isset($input['accepted_id']) ? $input['accepted_id'] : null;
             }
             $change->change_type_id = $input['taxonomic_status_id'];
-            $change->created_by_id = Auth::id();
+            $change->created_by_id = Agent::where('user_id', Auth::id())->value('id');
             $change->save();
         }
 

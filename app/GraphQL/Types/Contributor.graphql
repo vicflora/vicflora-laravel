@@ -7,7 +7,7 @@ type Contributor {
 }
 
 input CreateContributorInput {
-    agent: CreateAgentBelongsTo
+    agent: AgentBelongsTo
     sequence: Int!
     contributorRole: ContributorRoleEnum
 }

@@ -2,6 +2,7 @@
 
 namespace App\GraphQL\Mutations;
 
+use App\Models\Agent;
 use App\Models\TaxonConcept;
 use App\Models\VernacularName;
 use Illuminate\Support\Facades\Auth;
@@ -39,7 +40,7 @@ class CreateVernacularName
         if (isset($input['remarks'])) {
             $vernacularName->name_usage = $input['remarks'];
         }
-        $vernacularName->created_by_id = Auth::id();
+        $vernacularName->created_by_id = Agent::where('user_id', Auth::id())->value('id');
         $vernacularName->version = 1;
         $vernacularName->save();
         return $vernacularName;

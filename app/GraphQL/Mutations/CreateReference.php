@@ -19,7 +19,7 @@ class CreateReference
         $input = $args['input'];
         $input['guid'] = Str::uuid();
         $input['version'] = 1;
-        $input['created_by_id'] = Auth::id();
+        $input['created_by_id'] = Agent::where('user_id', Auth::id())->value('id');
         if (isset($input['referenceType'])) {
             $input['reference_type_id'] = 
                     ReferenceType::where('name', $input['referenceType'])
@@ -33,6 +33,16 @@ class CreateReference
         if (isset($input['parent']['connect'])) {
             $input['parent_id'] = 
                     Reference::where('guid', $input['parent']['connect'])
+                    ->value('id');
+        }
+        if (isset($input['journal']['connect'])) {
+            $input['parent_id'] = 
+                    Reference::where('guid', $input['journal']['connect'])
+                    ->value('id');
+        }
+        if (isset($input['book']['connect'])) {
+            $input['parent_id'] = 
+                    Reference::where('guid', $input['book']['connect'])
                     ->value('id');
         }
 

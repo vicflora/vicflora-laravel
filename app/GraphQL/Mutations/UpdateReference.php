@@ -15,7 +15,7 @@ class UpdateReference
      */
     public function __invoke($_, array $args)
     {
-        $id = Auth::id();
+        $id = Agent::where('user_id', Auth::id())->value('id');
         $input = $args['input'];
         $input['modified_by_id'] = $id;
         if (isset($input['referenceType'])) {
@@ -28,9 +28,14 @@ class UpdateReference
                     Agent::where('guid', $input['author']['connect'])
                     ->value('id');
         }
-        if (isset($input['parent']['connect'])) {
+        if (isset($input['journal']['connect'])) {
             $input['parent_id'] = 
-                    Reference::where('guid', $input['parent']['connect'])
+                    Reference::where('guid', $input['journal']['connect'])
+                    ->value('id');
+        }
+        if (isset($input['book']['connect'])) {
+            $input['parent_id'] = 
+                    Reference::where('guid', $input['book']['connect'])
                     ->value('id');
         }
         $reference = Reference::where('guid', $input['guid'])->first();

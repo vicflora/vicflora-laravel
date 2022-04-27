@@ -2,6 +2,7 @@
 
 namespace App\GraphQL\Mutations;
 
+use App\Models\Agent;
 use App\Models\Profile;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,7 +20,7 @@ class UpdateProfile
             ->where('version', $version)
             ->first();
         $profile->profile = $input['profile'];
-        $profile->modified_by_id = Auth::id();
+        $profile->modified_by_id = Agent::where('user_id', Auth::id())->value('id');
         $profile->save();
         return $profile;
     }

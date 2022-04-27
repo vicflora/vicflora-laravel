@@ -2,6 +2,7 @@
 
 namespace App\GraphQL\Mutations;
 
+use App\Models\Agent;
 use App\Models\NameType;
 use App\Models\Reference;
 use App\Models\TaxonName;
@@ -21,7 +22,7 @@ class CreateTaxonName
         // print_r($input);
         $input['guid'] = Str::uuid();
         $input['version'] = 1;
-        $input['created_by_id'] = Auth::id();
+        $input['created_by_id'] = Agent::where('user_id', Auth::id())->value('id');
 
         if (isset($input['rank'])) {
             $input['name_rank_id'] = TaxonTreeDefItem::where('name', $input['rank'])->value('id');

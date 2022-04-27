@@ -21,91 +21,89 @@ class CreateCitationMarkdown
 {
     public function __invoke(Reference $reference)
     {
-        $getContributorString = new GetContributorString;
-
         $type = $reference->referenceType->name;
         $citation = '';
         switch ($type) {
             case 'Journal':
-                case 'Series':
-                    $citation .= $reference->title;
-                    break;
+            case 'Series':
+                $citation .= $reference->title;
+                break;
 
-                case 'Book':
-                case 'Report':
-                case 'AudioVisualDocument':
-                    $citation .= '**' . $getContributorString($reference)
-                            . ' (' . $reference->publication_year . ').** '
-                            . str_replace('~', '*', $reference->title) . '. ';
-                    if ($reference->publisher) {
-                        $citation .= ' ' . $reference->publisher;
-                        if ($reference->place_of_publication) {
-                            $citation .= ', ' . $reference->place_of_publication;
-                        }
-                        $citation .= '.';
-                    }
-                    break;
-
-                case 'Article':
-                    $citation .= '**' . $getContributorString($reference)
-                            . ' (' . $reference->publication_year . ')**. '
-                            . str_replace('~', '*', $reference->title) . '. ';
-                    $citation .= '*' . $reference->parent->title . '*';
-                    if ($reference->volume) {
-                        $citation .= ' **' . $reference->volume . '**';
-                        if ($reference->issue) {
-                            $citation .= '(' . $reference->issue . ')';
-                        }
-                        if ($reference->page_start) {
-                            $citation .= ': ' .
-                                    $reference->page_start . '–' . $reference->page_end;
-                        }
-                        elseif ($reference->pages) {
-                            $citation .= ': ' . $reference->pages;
-                        }
-                    }
-                    elseif ($reference->number) {
-                        $citation .= ' ' . $reference->number;
+            case 'Book':
+            case 'Report':
+            case 'AudioVisualDocument':
+                $citation .= '**' . $reference->author->name
+                        . ' (' . $reference->publication_year . ').** '
+                        . str_replace('~', '*', $reference->title) . '. ';
+                if ($reference->publisher) {
+                    $citation .= ' ' . $reference->publisher;
+                    if ($reference->place_of_publication) {
+                        $citation .= ', ' . $reference->place_of_publication;
                     }
                     $citation .= '.';
-                    break;
+                }
+                break;
 
-                case 'Chapter':
-                    $citation .= '**' . $getContributorString($reference)
-                            . ' (' . $reference->publication_year . ')**. '
-                            . str_replace('~', '*', $reference->title) . '. ';
-                    $citation .= 'In: ' . $getContributorString($reference->parent)
-                            . ', *&zwj;' . $reference->parent->title . '&zwj;*'
-                            . ', pp. ' . $reference->page_start
-                            . '–' . $reference->page_end
-                            . '.';
-                    if ($reference->parent->publisher) {
-                        $citation .= ' ' . $reference->parent->publisher;
-                        if ($reference->parent->place_of_publication) {
-                            $citation .= ', '
-                                . $reference->parent->place_of_publication;
-                        }
-                        $citation .= '.';
-                    }
-                    break;
-
-                case 'Protologue':
-                    if ($reference->author_id) {
-                        $citation .= 'in ' . $reference->author->name . ', ';
-                    }
-                    $citation .= '*' . $reference->title . '*';
-                    if ($reference->volume) {
-                        $citation .= ' **' . $reference->volume . '**';
-                    }
+            case 'Article':
+                $citation .= '**' . $reference->author->name
+                        . ' (' . $reference->publication_year . ')**. '
+                        . str_replace('~', '*', $reference->title) . '. ';
+                $citation .= '*' . $reference->parent->title . '*';
+                if ($reference->volume) {
+                    $citation .= ' **' . $reference->volume . '**';
                     if ($reference->issue) {
                         $citation .= '(' . $reference->issue . ')';
                     }
-                    $citation .= ': ' . $reference->pages
-                            . ' (' . $reference->publication_year . ')';
-                    break;
+                    if ($reference->page_start) {
+                        $citation .= ': ' .
+                                $reference->page_start . '–' . $reference->page_end;
+                    }
+                    elseif ($reference->pages) {
+                        $citation .= ': ' . $reference->pages;
+                    }
+                }
+                elseif ($reference->number) {
+                    $citation .= ' ' . $reference->number;
+                }
+                $citation .= '.';
+                break;
 
-                default:
-                    break;
+            case 'Chapter':
+                $citation .= '**' . $reference->author->name
+                        . ' (' . $reference->publication_year . ')**. '
+                        . str_replace('~', '*', $reference->title) . '. ';
+                $citation .= 'In: ' . $reference->parent->author->name
+                        . ', *&zwj;' . $reference->parent->title . '&zwj;*'
+                        . ', pp. ' . $reference->page_start
+                        . '–' . $reference->page_end
+                        . '.';
+                if ($reference->parent->publisher) {
+                    $citation .= ' ' . $reference->parent->publisher;
+                    if ($reference->parent->place_of_publication) {
+                        $citation .= ', '
+                            . $reference->parent->place_of_publication;
+                    }
+                    $citation .= '.';
+                }
+                break;
+
+            case 'Protologue':
+                if ($reference->author_id) {
+                    $citation .= 'in ' . $reference->author->name . ', ';
+                }
+                $citation .= '*' . $reference->title . '*';
+                if ($reference->volume) {
+                    $citation .= ' **' . $reference->volume . '**';
+                }
+                if ($reference->issue) {
+                    $citation .= '(' . $reference->issue . ')';
+                }
+                $citation .= ': ' . $reference->pages
+                        . ' (' . $reference->publication_year . ')';
+                break;
+
+            default:
+                break;
         }
         return $citation;
     }

@@ -2,6 +2,7 @@
 
 namespace App\GraphQL\Mutations;
 
+use App\Models\Agent;
 use App\Models\VernacularName;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -33,7 +34,7 @@ class UpdateVernacularName
         if (isset($input['remarks'])) {
             $vernacularName->name_usage = $input['remarks'];
         }
-        $vernacularName->modified_by_id = Auth::id();
+        $vernacularName->modified_by_id = Agent::where('user_id', Auth::id())->value('id');
         $vernacularName->version++;
         $vernacularName->save();
         return $vernacularName;

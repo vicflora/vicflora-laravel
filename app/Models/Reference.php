@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\BaseModel;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -134,6 +135,28 @@ class Reference extends BaseModel
     public function parent(): BelongsTo
     {
         return $this->belongsTo(Reference::class, 'parent_id');
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function journal(): BelongsTo
+    {
+        return $this->belongsTo(Reference::class, 'parent_id')
+                ->whereHas('referenceType', function(Builder $query) {
+            $query->where('name', 'Journal');
+        });
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function book(): BelongsTo
+    {
+        return $this->belongsTo(Reference::class, 'parent_id')
+                ->whereHas('referenceType', function(Builder $query) {
+            $query->where('name', 'Book');
+        });
     }
 
     /**

@@ -30,7 +30,7 @@ input CreateProfileInput {
     profile: String!
     taxonConcept: TaxonConceptBelongsTo!
     acceptedConcept: TaxonConceptBelongsTo!
-    source: CreateReferenceBelongsTo
+    source: ReferenceBelongsTo
 }
 
 extend type Mutation {

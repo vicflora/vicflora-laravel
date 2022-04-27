@@ -2,6 +2,7 @@
 
 namespace App\GraphQL\Mutations;
 
+use App\Models\Agent;
 use App\Models\Profile;
 use App\Models\Reference;
 use App\Models\TaxonConcept;
@@ -37,7 +38,7 @@ class CreateProfile
                 TaxonConcept::where('guid', $input['taxonConcept']['connect'])
                 ->value('id');
         $profile->accepted_id = $acceptedConceptId;
-        $profile->created_by_id = Auth::id();
+        $profile->created_by_id = Agent::where('user_id', Auth::id())->value('id');
         if (isset($input['source']) && $input['source']) {
             $profile->source_id = 
                     Reference::where('guid', $input['source']['connect'])

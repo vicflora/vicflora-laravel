@@ -18,24 +18,15 @@ namespace App\Actions;
 use App\Models\Reference;
 use Illuminate\Database\Eloquent\Collection;
 
-class AutocompleteReference {
+class AutocompleteJournal {
     
-    public function __invoke(String $q, ?String $referenceType=null): Collection
+    public function __invoke(String $q): Collection
     {
-        $query = Reference::select('references.*')
-                ->join('agents', 'references.author_id', '=', 'agents.id')
+        return Reference::select('references.*')
                 ->join('reference_types as rt', 'references.reference_type_id', '=', 'rt.id')
-                ->whereRaw("agents.name || ' ' || \"references\".publication_year ilike replace('$q', ' ', '%') || '%'")
-                ->orderBy('agents.name')
-                ->orderBy('references.publication_year');
-                
-        if ($referenceType) {
-            $query->where('rt.name', $referenceType);
-        }
-        else {
-            $query->whereNotIn('rt.name', ['Protologue']);
-        }
-        
-        return $query->get();
+                ->where('rt.name', 'Journal')
+                ->where('references.title', 'ilike', "%$q%")
+                ->orderBy('references.title')
+                ->get();
     }
 }

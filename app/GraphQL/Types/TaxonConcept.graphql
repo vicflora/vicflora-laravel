@@ -288,7 +288,7 @@ type TaxonConcept {
 
 input CreateTaxonConceptInput {
     taxonName: TaxonNameBelongsTo!
-    accordingTo: CreateReferenceBelongsTo
+    accordingTo: ReferenceBelongsTo
     taxonRank: TaxonRankEnum!
     acceptedConcept: TaxonConceptBelongsTo
     parent: TaxonConceptBelongsTo
@@ -305,7 +305,7 @@ input CreateTaxonConceptInput {
 input UpdateTaxonConceptInput {
     id: ID! @rename(attribute: "guid")
     taxonName: TaxonNameBelongsTo!
-    accordingTo: CreateReferenceBelongsTo
+    accordingTo: ReferenceBelongsTo
     taxonRank: TaxonRankEnum!
     acceptedConcept: TaxonConceptBelongsTo
     parent: TaxonConceptBelongsTo

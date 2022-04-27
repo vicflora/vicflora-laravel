@@ -11,9 +11,20 @@ type Agent {
 
     "Type of agent"
     agentType: AgentTypeEnum @rename(attribute: "agentTypeName")
+
+    members: [GroupPerson]
+    user: User @guard(with: ["api"])
+}
+
+type GroupPerson {
+    id: ID! @rename(attribute: "guid")
+    group: Agent!
+    member: Agent!
+    sequence: Int!
 }
 
 input CreateAgentInput {
+    agentType: AgentTypeEnum!
     name: String
     lastName: String @rename(attribute: "last_name")
     firstName: String @rename(attribute: "first_name")
@@ -21,10 +32,12 @@ input CreateAgentInput {
     email: Email
     legalName: String @rename(attribute: "legal_name")
     agentType: AgentTypeEnum @rename(attribute: "agentTypeName")
+    members: [CreateGroupPersonInput]
 }
 
 input UpdateAgentInput {
-    id: ID! @rename(attribute: "guid")
+    id: ID!
+    agentType: AgentTypeEnum!
     name: String
     lastName: String @rename(attribute: "last_name")
     firstName: String @rename(attribute: "first_name")
@@ -32,16 +45,67 @@ input UpdateAgentInput {
     email: Email
     legalName: String @rename(attribute: "legal_name")
     agentType: AgentTypeEnum @rename(attribute: "agentTypeName")
+    members: [GroupPersonInput]
 }
 
-input CreateAgentBelongsTo {
+input CreateGroupPersonInput {
+    sequence: Int
+    group: AgentBelongsTo!
+    member: AgentBelongsTo!
+}
+
+input UpdateGroupPersonInput {
+    id: ID!
+    sequence: Int!
+}
+
+input GroupPersonInput {
+    id: ID
+    sequence: Int!
+    group: AgentBelongsTo
+    member: AgentBelongsTo!
+}
+
+input AgentBelongsTo {
     connect: ID
 }
 
-input UpdateAgentBelongsTo {
-    connect: ID
+input LinkUserInput {
+    id: ID!
+    name: String!
+    email: Email!
 }
 
 extend type Query {
     agent(id: ID! @eq(key: "guid")): Agent @find
+
+    agentAutocomplete(q: String! @ilike(key: "name")): [Agent] 
+        @all 
+        @orderBy(column: "name", dicrection: "ASC")
+}
+
+extend type Mutation {
+    updateGroupPerson(input: UpdateGroupPersonInput!): GroupPerson!
+        @guard(with: ["api"])
+        @field(resolver: "\\App\\GraphQL\\Mutations\\UpdateGroupPerson")
+
+    createGroupPerson(input: CreateGroupPersonInput!): GroupPerson!
+        @guard(with: ["api"])
+        @field(resolver: "\\App\\GraphQL\\Mutations\\CreateGroupPerson")
+
+    deleteGroupPerson(id: ID!): GroupPerson
+        @guard(with: ["api"])
+        @field(resolver: "\\App\\GraphQL\\Mutations\\DeleteGroupPerson")
+
+    updateAgent(input: UpdateAgentInput!): Agent
+        @guard(with: ["api"])
+        @field(resolver: "\\App\\GraphQL\\Mutations\\UpdateAgent")
+
+    createAgent(input: CreateAgentInput!): Agent
+        @guard(with: ["api"])
+        @field(resolver: "\\App\\GraphQL\\Mutations\\CreateAgent")
+
+    linkUserToAgent(input: LinkUserInput!): Agent
+        @guard(with: ["api"])
+        @field(resolver: "\\App\\GraphQL\\Mutations\\LinkUserToAgent")
 }

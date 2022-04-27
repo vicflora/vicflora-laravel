@@ -23,6 +23,9 @@ type Reference {
     doi: String
 
     parent: Reference
+    isPartOf: Reference @rename(attribute: "parent")
+    journal: Reference
+    book: Reference
     contributors: [Contributor]
 
     """
@@ -61,10 +64,12 @@ type Reference {
 
 input UpdateReferenceInput {
     id: ID! @rename(attribute: "guid")
-    author: UpdateAgentBelongsTo
+    author: AgentBelongsTo
     publicationYear: String @rename(attribute: "publication_year")
     title: String!
     shortTitle: String @rename(attribute: "short_title")
+    journal: ReferenceBelongsTo
+    book: ReferenceBelongsTo
     edition: String
     volume: String
     issue: String
@@ -80,14 +85,16 @@ input UpdateReferenceInput {
     issn: String
     doi: String
     referenceType: ReferenceTypeEnum
-    parent: UpdateReferenceBelongsTo
+    parent: ReferenceBelongsTo
 }
 
 input CreateReferenceInput {
-    author: CreateAgentBelongsTo
+    author: AgentBelongsTo
     publicationYear: String @rename(attribute: "publication_year")
     title: String!
     shortTitle: String @rename(attribute: "short_title")
+    journal: ReferenceBelongsTo
+    book: ReferenceBelongsTo
     edition: String
     volume: String
     issue: String
@@ -103,21 +110,24 @@ input CreateReferenceInput {
     issn: String
     doi: String
     referenceType: ReferenceTypeEnum
-    parent: CreateReferenceBelongsTo
+    parent: ReferenceBelongsTo
 }
 
-input CreateReferenceBelongsTo {
+input ReferenceBelongsTo {
     connect: ID
 }
 
-input UpdateReferenceBelongsTo {
-    connect: ID
+input CreateTaxonConceptReferenceInput {
+    taxonConcept: TaxonConceptBelongsTo!
+    reference: ReferenceBelongsTo!
 }
 
 extend type Query {
     reference(id: ID! @eq(key: "guid")): Reference @find
     referenceAutocomplete(q: String!): [Reference]
         @field(resolver: "\\App\\GraphQL\\Queries\\ReferenceAutocomplete")
+    journalAutocomplete(q: String!): [Reference]
+        @field(resolver: "\\App\\GraphQL\\Queries\\JournalAutocomplete")
 }
 
 extend type Mutation {
@@ -132,4 +142,12 @@ extend type Mutation {
     deleteReference(id: ID!): Reference
         @guard(with: ["api"])
         @field(resolver: "\\App\\GraphQL\\Mutations\\DeleteReference")
+
+    createTaxonConceptReference(input: CreateTaxonConceptReferenceInput!): TaxonConceptReference
+        @guard(with: ["api"])
+        @field(resolver: "\\App\\GraphQL\\Mutations\\CreateTaxonConceptReference")
+
+    deleteTaxonConceptReference(id: ID!): TaxonConceptReference
+        @guard(with: ["api"])
+        @field(resolver: "\\App\\GraphQL\\Mutations\\DeleteTaxonConceptReference")
 }

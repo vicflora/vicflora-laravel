@@ -2,6 +2,7 @@ type User {
     id: ID!
     name: String!
     email: String!
+    agent: Agent!
     created_at: DateTime!
     updated_at: DateTime!
 }

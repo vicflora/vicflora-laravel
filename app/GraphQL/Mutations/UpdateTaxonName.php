@@ -2,6 +2,7 @@
 
 namespace App\GraphQL\Mutations;
 
+use App\Models\Agent;
 use App\Models\NameType;
 use App\Models\TaxonName;
 use App\Models\TaxonTreeDefItem;
@@ -18,7 +19,7 @@ class UpdateTaxonName
      */
     public function __invoke($_, array $args): ?TaxonName
     {   
-        $id = Auth::id();
+        $id = Agent::where('user_id', Auth::id())->value('id');
         $taxonName = TaxonName::where('guid', $args['input']['guid'])->first();
         $input = $args['input'];
         if (isset($input['name_type'])) {

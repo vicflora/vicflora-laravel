@@ -41,7 +41,7 @@ input UpdateTaxonNameInput {
     authorship: String
     nomenclaturalNote: String @rename(attribute: "nomenclatural_note")
     remarks: String
-    protologue: UpdateReferenceBelongsTo
+    protologue: ReferenceBelongsTo
 }
 
 input CreateTaxonNameInput {
@@ -53,7 +53,7 @@ input CreateTaxonNameInput {
     authorship: String
     nomenclaturalNote: String @rename(attribute: "nomenclatural_note")
     remarks: String
-    protologue: CreateReferenceBelongsTo
+    protologue: ReferenceBelongsTo
 }
 
 input TaxonNameBelongsTo {

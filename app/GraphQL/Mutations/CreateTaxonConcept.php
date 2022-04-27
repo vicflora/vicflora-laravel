@@ -2,6 +2,7 @@
 
 namespace App\GraphQL\Mutations;
 
+use App\Models\Agent;
 use App\Models\DegreeOfEstablishment;
 use App\Models\EstablishmentMeans;
 use App\Models\OccurrenceStatus;
@@ -25,7 +26,7 @@ class CreateTaxonConcept
         $input = $args['input'];
         $input['guid'] = Str::uuid();
         $input['version'] = 1;
-        $input['created_by_id'] = Auth::id();
+        $input['created_by_id'] = Agent::where('user_id', Auth::id())->value('id');
 
         $input['taxon_name_id'] = 
                 TaxonName::where('guid', $input['taxonName']['connect'])

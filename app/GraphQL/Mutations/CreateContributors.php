@@ -30,7 +30,7 @@ class CreateContributors
                         ContributorRole::where('name', 
                         $contrib['contributorRole'])->value('id');
             }
-            $contributor->created_by_id = Auth::id();
+            $contributor->created_by_id = Agent::where('user_id', Auth::id())->value('id');
             $contributor->save();
         }
 
