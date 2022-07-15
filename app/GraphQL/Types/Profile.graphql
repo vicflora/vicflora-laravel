@@ -20,6 +20,31 @@ type Profile {
     version: Int
 }
 
+"""
+CurrentProfile is different from Profile in that we dynamically add the 
+Victorian bioregions, based on occurrence data from the Australasian Virtual 
+Herbarium (AVH) and Victorian Biodiversity Atlas (VBA). We also link the taxa 
+mentioned in the notes to their profiles in VicFlora. The creation date 
+(created) and creator are those of the first version, if no source is present, 
+and the modification date (modified) and updated by are the creation date and 
+the creator respectively of the current version.
+"""
+type CurrentProfile @model(class: "\\App\\Models\\Profile") {
+    id: ID! @rename(attribute: "uniqId")
+    guid: UUID
+    profile: String!
+
+    taxonConcept: TaxonConcept
+    acceptedConcept: TaxonConcept
+    source: Reference
+    creator: Agent
+    updatedBy: Agent
+    created: Date
+    modified: Date
+    version: Int
+}
+
+
 input UpdateProfileInput {
     id: ID!
     profile: String!

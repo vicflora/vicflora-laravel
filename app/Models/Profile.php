@@ -125,12 +125,13 @@ class Profile extends BaseModel
      */
     public function getCreatedAttribute(): ?string
     {
-        if (!$this->source_id) {
-            $origProfile = Profile::where('guid', $this->guid)
-                    ->where('version', 1)
-                    ->first();
+        $firstVersion = Profile::where('guid', $this->guid)
+                ->where('version', 1)
+                ->first();
+
+        if (!$firstVersion->source_id) {
             $date = DateTime::createFromFormat('Y-m-d H:i:s',
-                    $origProfile->created_at);
+                    $firstVersion->created_at);
             return $date->setTimezone(new DateTimeZone('Australia/Melbourne'))
                     ->format('Y-m-d');
         }
@@ -144,11 +145,12 @@ class Profile extends BaseModel
      */
     public function getCreatorAttribute(): ?Agent
     {
-        if ($this->is_current && !$this->source_id) {
-            $origProfile = Profile::where('guid', $this->guid)
-                    ->where('version', 1)
-                    ->first();
-            return $origProfile->createdBy;
+        $firstVersion = Profile::where('guid', $this->guid)
+                ->where('version', 1)
+                ->first();
+
+        if (!$firstVersion->source_id) {
+            return $firstVersion->createdBy;
         }
         return null;
     }
@@ -160,7 +162,7 @@ class Profile extends BaseModel
      */
     public function getModifiedAttribute(): ?string
     {
-        if ($this->is_updated) {
+        if ($this->version > 1) {
             $date = DateTime::createFromFormat('Y-m-d H:i:s',
                     $this->updated_at);
             return $date->setTimezone(new DateTimeZone('Australia/Melbourne'))
@@ -176,7 +178,7 @@ class Profile extends BaseModel
      */
     public function getUpdatedByAttribute(): ?Agent
     {
-        if ($this->is_updated) {
+        if ($this->version > 1) {
             return $this->createdBy;
         }
         return null;

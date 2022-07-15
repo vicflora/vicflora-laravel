@@ -151,13 +151,9 @@ type TaxonConcept {
     profiles: [Profile]
 
     """
-    Current profile for a Taxon Concept. The body of the current profile is 
-    changed in the API from what is stored in the database. We add links to 
-    taxon pages in VicFlora for names that are mentioned in the notes, add the 
-    Victorian bioregions the taxon is reported from and add the source and 
-    information on when and by whom a profile was created or last updated.
+    Current profile for a Taxon Concept.
     """
-    currentProfile: Profile
+    currentProfile: CurrentProfile
         @field(resolver: "\\App\\GraphQL\\Queries\\TaxonConceptCurrentProfile")
 
     """
