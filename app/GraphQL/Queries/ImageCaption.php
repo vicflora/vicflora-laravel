@@ -51,26 +51,35 @@ class ImageCaption
             $caption .= ". {$image->caption}";
         }
         $caption .= '<br/>';
-        if ($image->source) {
+        if ($image->source && $image->subject_category !== 'Flora of the Otway Plain and Ranges Plate') {
             $caption .= "<b>Source:</b> {$image->source}<br/>";
         }
         $caption .= $image->subtype === 'Illustration' ? '<b>Illustration:</b> ' : '<b>Photo:</b> ';
-        $caption .= $image->creator . ', &copy; ' . date('Y');
-        $rightsHolder = $image->rightsHolder;
-        if ($rightsHolder === 'Royal Botanic Gardens Victoria') {
-            $rightsHolder = 'Royal Botanic Gardens Board';
-        }
-        if ($rightsHolder) {
-            $caption .= " {$rightsHolder}";
+        $caption .= $image->creator;
+
+        if (strpos($license, 'CC BY') !== false) {
+            $caption .= ", {$license}";
         }
         else {
-            $caption .= " Royal Botanic Gardens Board";
+            $caption .= ', &copy; ' . date('Y');
+            $copyrightOwner = $image->copyright_owner;
+            if ($copyrightOwner === 'Royal Botanic Gardens Victoria') {
+                $copyrightOwner = 'Royal Botanic Gardens Board';
+            }
+            if ($copyrightOwner) {
+                $caption .= " {$copyrightOwner}";
+            }
+            else {
+                $caption .= " Royal Botanic Gardens Board";
+            }
+            if ($image->subject_category == 'Flora of the Otway Plain and Ranges Plate') {
+                $caption .= ". {$image->rights}. Not to be reproduced without 
+                prior permission from CSIRO Publishing.";
+            }
+            else {
+                $caption .= ", {$license}";
+            }
         }
-        $caption .= ", {$license}";
-        if ($image->subjectCategory == 'Flora of the Otway Plain and Ranges Plate') {
-            $caption .= "<br/> {$image->rights}";
-        }
-
 
         return $caption;
     }
