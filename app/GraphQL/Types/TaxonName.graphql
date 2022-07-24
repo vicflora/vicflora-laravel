@@ -14,7 +14,11 @@ type TaxonName {
     # nomenclaturalStatus: NomenclaturalStatus
     basionym: TaxonName
     replacedSynonym: TaxonName
-    protologue: Reference
+    publishedIn: Reference
+    """
+    Note: Deprecated in favour of publishedIn
+    """
+    protologue: Reference @rename(attribute: "publishedIn")
 
     taxonConcepts: [TaxonConcept]
 

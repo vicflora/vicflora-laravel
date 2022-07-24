@@ -98,8 +98,12 @@ class CreateCitationMarkdown
                 if ($reference->issue) {
                     $citation .= '(' . $reference->issue . ')';
                 }
-                $citation .= ': ' . $reference->pages
-                        . ' (' . $reference->publication_year . ')';
+                if ($reference->pages) {
+                    $citation .= ': ' . $reference->pages;
+                }
+                if ($reference->publication_year) {
+                    $citation .= ' (' . $reference->publication_year . ')';
+                }
                 break;
 
             default:
