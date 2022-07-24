@@ -3,7 +3,7 @@
 
 spectaql:
   # Optional path to an image to use as the logo in the top-left of the output
-  logoFile: assets/rbgv-logo-pink-badge.png
+  logoFile: assets/rbgv-logo.png
   # Optional path to an image to use as a favicon for the site when it's not embedded
   faviconFile: assets/favicon-32x32.png
 
@@ -194,7 +194,7 @@ servers:
 
   # same format as for OpenAPI Specification https://swagger.io/specification/#server-object
 
-  - url: https://vicflora-test.rbg.vic.gov.au/graphql
+  - url: https://vicflora.rbg.vic.gov.au/graphql
     description: Development Site
     # Indicates to use this server's URL as the typical GraphQL request base in the documentation
     # If no server entries have this indicator, the first server's URL will be used.
@@ -234,7 +234,7 @@ info:
   description: >
     Documentation for the VicFlora GraphQL API<br/><br/>
 
-    You'll find the GraphQL endpoint for VicFlora at https://vicflora-test.rbg.vic.gov.au/graphql.<br/><br/>
+    You'll find the GraphQL endpoint for VicFlora at https://vicflora.rbg.vic.gov.au/graphql.<br/><br/>
 
     This endpoint can be queried by GraphQL clients like [GraphiQL](https://github.com/graphql/graphiql)
     and [Altair](https://altair.sirmuel.design/), as well as general API
@@ -273,4 +273,4 @@ info:
 
   # If not using introspection.url OR servers[], you need to provide x-swaggerUrl
   # to satisfy the URL Swagger requirement. This allows for that.
-  x-swaggerUrl: https://vicflora-test.rbg.vic.gov.au/graphql
+  x-swaggerUrl: https://vicflora.rbg.vic.gov.au/graphql
