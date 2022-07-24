@@ -34,7 +34,14 @@ class CreateCitationMarkdown
             case 'AudioVisualDocument':
                 $citation .= '**' . $reference->author->name
                         . ' (' . $reference->publication_year . ').** '
-                        . str_replace('~', '*', $reference->title) . '. ';
+                        . str_replace('~', '*', $reference->title);
+
+                if ($reference->edition) {
+                    $citation .= ', edn ' . $reference->edition;
+                }
+
+                $citation .= '. ';
+
                 if ($reference->publisher) {
                     $citation .= ' ' . $reference->publisher;
                     if ($reference->place_of_publication) {
@@ -72,9 +79,17 @@ class CreateCitationMarkdown
                 $citation .= '**' . $reference->author->name
                         . ' (' . $reference->publication_year . ')**. '
                         . str_replace('~', '*', $reference->title) . '. ';
-                $citation .= 'In: ' . $reference->parent->author->name
-                        . ', *&zwj;' . $reference->parent->title . '&zwj;*'
-                        . ', pp. ' . $reference->page_start
+                'In: ' . $reference->parent->author->name
+                        . ', *&zwj;' . $reference->parent->title . '&zwj;*';
+
+
+                if ($reference->parent->edition) {
+                    $citation .= ', edn ' . $reference->parent->edition;
+                }
+
+                $citation .= '. ';
+        
+                $citation .= ', pp. ' . $reference->page_start
                         . '–' . $reference->page_end
                         . '.';
                 if ($reference->parent->publisher) {
@@ -98,8 +113,12 @@ class CreateCitationMarkdown
                 if ($reference->issue) {
                     $citation .= '(' . $reference->issue . ')';
                 }
-                $citation .= ': ' . $reference->pages
-                        . ' (' . $reference->publication_year . ')';
+                if ($reference->pages) {
+                    $citation .= ': ' . $reference->pages;
+                }
+                if ($reference->publication_year) {
+                    $citation .= ' (' . $reference->publication_year . ')';
+                }
                 break;
 
             default:

@@ -114,7 +114,7 @@ class TaxonName extends BaseModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function protologue(): BelongsTo
+    public function publishedIn(): BelongsTo
     {
         return $this->belongsTo(Reference::class, 'protologue_id');
     }
