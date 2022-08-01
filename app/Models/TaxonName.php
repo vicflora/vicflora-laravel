@@ -116,7 +116,7 @@ class TaxonName extends BaseModel
      */
     public function publishedIn(): BelongsTo
     {
-        return $this->belongsTo(Reference::class, 'protologue_id');
+        return $this->belongsTo(Reference::class, 'published_in_id');
     }
 
     /**
