@@ -22,6 +22,7 @@
         "doctrine/dbal": "^3.0",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
+        "gmostafa/php-graphql-client": "^1.13",
         "graham-campbell/markdown": "^13.1",
         "guzzlehttp/guzzle": "^7.0.1",
         "joselfonseca/lighthouse-graphql-passport-auth": "^6.0",

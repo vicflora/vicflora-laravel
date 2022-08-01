@@ -45,6 +45,7 @@ type SearchResultDocument {
     vernacularName: [String]
     preferredVernacularName: String
     description: String
+    media: [String]
 }
 
 type SearchResultFacetField {
