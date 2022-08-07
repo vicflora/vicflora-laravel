@@ -45,8 +45,8 @@ type GlossaryTermInString {
 
 extend type Query {
     glossaryTerm(id: ID! @eq): GlossaryTerm @find
-    glossaryTermsByName(name: String! @ilike(template: "{}%")): [GlossaryTerm]
-        @all
+    glossaryTermsByName(name: String!): [GlossaryTerm]
+        @field(resolver: "\\App\\GraphQL\\Queries\\GlossaryTermsByName")
     glossaryTermFirstLetters: [String!]!
         @field(resolver: "\\App\\GraphQL\\Queries\\GlossaryTermFirstLetters")
 

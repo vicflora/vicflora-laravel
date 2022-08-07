@@ -57,9 +57,9 @@ class IndexFields
             ["name" => "profile", "type" => "string", "indexed" => true, "stored" => true],
             ["name" => "media", "type" => "string", "indexed" => true, "stored" => true, "multiValued" => true],
             ["name" => "vernacular_name", "type" => "string_ci", "indexed" => true, "stored" => true],
-            // ["name" => "apni_match_type", "type" => "string", "indexed" => true, "stored" => true],
-            // ["name" => "apni_match_verification_status", "type" => "string", "indexed" => true, "stored" => true],
-            // ["name" => "project", "type" => "string", "indexed" => true, "stored" => true, "multiValued" => true],
+            ["name" => "bioregion", "type" => "string", "indexed" => true, "stored" => true, "multiValued" => true],
+            ["name" => "local_government_area", "type" => "string", "indexed" => true, "stored" => true, "multiValued" => true],
+            ["name" => "park_or_reserve", "type" => "string", "indexed" => true, "stored" => true, "multiValued" => true],
         ];
     }
 }
