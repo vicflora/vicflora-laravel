@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\BaseModel;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property integer $id
@@ -51,6 +52,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class Image extends BaseModel
 {
+    use SoftDeletes;
+
     /**
      * The "type" of the auto-incrementing ID.
      * 
