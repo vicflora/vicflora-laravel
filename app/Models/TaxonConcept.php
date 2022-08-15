@@ -291,18 +291,6 @@ class TaxonConcept extends BaseModel
     }
 
     /**
-     * @return \App\Models\Profile|null
-     */
-    public function getCurrentProfileAttribute()
-    {
-        if ($this->taxonomicStatus->name == 'accepted') {
-            return Profile::where('accepted_id', $this->id)
-                    ->where('is_current', true)->first();
-        }
-        return null;
-    }
-
-    /**
      * @return void
      */
     public function getParentAttribute()

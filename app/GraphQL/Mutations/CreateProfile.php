@@ -21,8 +21,6 @@ class CreateProfile
         $acceptedConceptId = 
                 TaxonConcept::where('guid', $input['acceptedConcept']['connect'])
                 ->value('id');
-        Profile::where('accepted_id', $acceptedConceptId)
-                ->update(['is_current' => false]);
         if (isset($input['id']) && $input['id']) {
             list($guid, $version) = explode(':', $input['id']);
         }
@@ -44,8 +42,6 @@ class CreateProfile
                     Reference::where('guid', $input['source']['connect'])
                     ->value('id');
         }
-        $profile->is_current = true;
-        $profile->is_updated = $version > 1 ? true : false;
         $profile->save();
         return $profile;
     }
