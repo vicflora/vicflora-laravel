@@ -79,7 +79,8 @@ class CreateCitationMarkdown
                 $citation .= '**' . $reference->author->name
                         . ' (' . $reference->publication_year . ')**. '
                         . str_replace('~', '*', $reference->title) . '. ';
-                'In: ' . $reference->parent->author->name
+
+                $citation .= 'In: ' . $reference->parent->author->name
                         . ', *&zwj;' . $reference->parent->title . '&zwj;*';
 
 
@@ -87,11 +88,10 @@ class CreateCitationMarkdown
                     $citation .= ', edn ' . $reference->parent->edition;
                 }
 
-                $citation .= '. ';
-        
                 $citation .= ', pp. ' . $reference->page_start
                         . '–' . $reference->page_end
                         . '.';
+                        
                 if ($reference->parent->publisher) {
                     $citation .= ' ' . $reference->parent->publisher;
                     if ($reference->parent->place_of_publication) {
