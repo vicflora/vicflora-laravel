@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 /**
  * @property integer $id
  * @property integer $taxon_concept_id
- * @property integer $accepted_id
  * @property string $created_at
  * @property string $updated_at
  * @property int $cumulus_record_id
@@ -37,7 +36,7 @@ class SpecimenImage extends BaseModel
     /**
      * @var array
      */
-    protected $fillable = ['taxon_concept_id', 'accepted_id', 'created_at', 
+    protected $fillable = ['taxon_concept_id', 'created_at', 
             'updated_at', 'cumulus_record_id', 'record_name', 'catalog_number', 
             'ala_image_guid', 'title', 'caption', 'originating_program', 
             'subject_category', 'pixel_x_dimension', 'pixel_y_dimension', 
@@ -49,14 +48,6 @@ class SpecimenImage extends BaseModel
     public function taxonConcept(): BelongsTo
     {
         return $this->belongsTo(TaxonConcept::class);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function acceptedConcept(): BelongsTo
-    {
-        return $this->belongsTo(TaxonConcept::class, 'accepted_id');
     }
 
     /**

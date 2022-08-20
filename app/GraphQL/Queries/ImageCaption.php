@@ -9,15 +9,15 @@ class ImageCaption
     /**
      * Return a caption for the Image.
      *
-     * @param  Image $image Always null, since this field has no parent.
+     * @param  Image $image 
      * @param  array<string, mixed>  $args The field arguments passed by the client.
      * @return string
      */
     public function __invoke(Image $image, array $args)
     {
 
-        $scientificName = "<i>{$image->acceptedConcept->taxonName->full_name}</i>";
-        if ($image->taxon_id != $image->accepted_id) {
+        $scientificName = "<i>{$image->taxonConcept->acceptedConcept->taxonName->full_name}</i>";
+        if ($image->taxon_id != $image->taxonConcept->accepted_id) {
             $scientificName .= " (as <i>{$image->taxonConcept->taxonName->full_name}</i>)";
         }
         $search = [' subsp. ', ' var. ', ' f. '];

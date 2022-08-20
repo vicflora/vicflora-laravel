@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * @property integer $id
  * @property integer $taxon_id
- * @property integer $accepted_id
  * @property string $timestamp_created
  * @property string $timestamp_modified
  * @property int $version
@@ -64,7 +63,7 @@ class Image extends BaseModel
     /**
      * @var array
      */
-    protected $fillable = ['taxon_id', 'accepted_id', 'timestamp_created', 
+    protected $fillable = ['taxon_id', 'timestamp_created', 
             'timestamp_modified', 'version', 'asset_creation_date', 'caption', 
             'catalog_number', 'copyright_owner', 'country', 'country_code', 
             'creation_date', 'creator', 'cumulus_catalog', 'cumulus_record_id', 
@@ -74,14 +73,6 @@ class Image extends BaseModel
             'record_number', 'rights', 'scientific_name', 'source', 
             'state_province', 'subject_category', 'subject_orientation', 
             'subject_part', 'subtype', 'title', 'type', 'uid'];
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function acceptedConcept(): BelongsTo
-    {
-        return $this->belongsTo(TaxonConcept::class, 'accepted_id');
-    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

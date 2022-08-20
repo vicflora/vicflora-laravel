@@ -49,8 +49,6 @@ use Staudenmeir\LaravelCte\Eloquent\QueriesExpressions;
  * @property TaxonRelationship[] $objectOfTaxonRelationships
  * @property Profile[] $profiles
  * @property Profile[] $profilesAccepted
- * @property Image[] $images
- * @property Image[] $imagesAccepted
  * @property TaxonBioregion[] $bioregions
  * @property TaxonLocalGovernmentArea[] $localGovernmentAreas
  * @property TaxonParkReserve[] $parkReserves
@@ -256,38 +254,6 @@ class TaxonConcept extends BaseModel
     public function profiles(): HasMany
     {
         return $this->hasMany(Profile::class);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function imagesAccepted(): HasMany
-    {
-        return $this->hasMany(Image::class, 'accepted_id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function images(): HasMany
-    {
-        return $this->hasMany(Image::class, 'taxon_id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function specimenImagesAccepted(): HasMany
-    {
-        return $this->hasMany(SpecimenImage::class, 'accepted_id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function specimenImages(): HasMany
-    {
-        return $this->hasMany(SpecimenImage::class, 'taxon_concept_id');
     }
 
     /**
@@ -576,27 +542,6 @@ class TaxonConcept extends BaseModel
             $doe = DegreeOfEstablishment::where('name', $value)->first();
             $this->degree_of_establishment_id = $doe->id;
         }
-    }
-
-    /**
-     * Check if model has associated images
-     *
-     * @return boolean
-     */
-    public function getHasImagesAttribute(): bool
-    {
-        return $this->imagesAccepted()->exists();
-    }
-
-
-    /**
-     * Check if model has associated specimen images
-     *
-     * @return boolean
-     */
-    public function getHasSpecimenImagesAttribute(): bool
-    {
-        return $this->specimenImagesAccepted()->exists();
     }
 
 

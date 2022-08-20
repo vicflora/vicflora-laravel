@@ -169,6 +169,9 @@ type TaxonConcept {
     opened.
     """
     hasImages: Boolean
+        @field(
+            resolver: "\\App\\GraphQL\\Queries\\TaxonConceptHasImages"
+        )
 
     """
     Images associated with a Taxon Concept
@@ -185,7 +188,11 @@ type TaxonConcept {
     the taxon page. Image metadata and thumbnails will be fetched once the 
     Specimen Image tab is opened.
     """
-    hasSpecimenImages: Boolean
+    hasSpecimenImages: Boolean 
+        @field(
+            resolver: "\\App\\GraphQL\\Queries\\TaxonConceptHasSpecimenImages"
+        )
+
     specimenImages: [SpecimenImage]
         @paginate(
             builder: "\\App\\GraphQL\\Queries\\TaxonConceptSpecimenImages"

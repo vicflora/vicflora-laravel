@@ -4,14 +4,14 @@ namespace App\GraphQL\Queries;
 
 use App\Actions\GetTaxonConceptSpecimenImages;
 use App\Models\TaxonConcept;
-use Illuminate\Database\Eloquent\Builder;
 
-class TaxonConceptSpecimenImages
+class TaxonConceptHasSpecimenImages
 {
     /**
-     * @param  TaxonConcept  $taxonConcept
+     * @param  TaxonConcept|null  $taxonConcept
+     * @param  array<string, mixed>  $args
      */
-    public function __invoke(?TaxonConcept $taxonConcept, $args): Builder
+    public function __invoke(?TaxonConcept $taxonConcept, array $args): bool
     {
         if (!$taxonConcept && isset($args['taxonConceptId'])) {
             $taxonConcept = TaxonConcept::where('guid', $args['taxonConceptId'])
@@ -20,6 +20,6 @@ class TaxonConceptSpecimenImages
 
         $getSpecimenImages = new GetTaxonConceptSpecimenImages;
         $query = $getSpecimenImages($taxonConcept);
-        return $query->orderBy('specimen_images.cumulus_record_id');
+        return $query->exists();
     }
 }
