@@ -17,114 +17,114 @@ namespace App\Actions;
 
 use App\Models\Reference;
 
-class CreateCitationMarkdown
+class CreateReferenceStringMarkdown
 {
     public function __invoke(Reference $reference)
     {
         $type = $reference->referenceType->name;
-        $citation = '';
+        $referenceString = '';
         switch ($type) {
             case 'Journal':
             case 'Series':
-                $citation .= $reference->title;
+                $referenceString .= $reference->title;
                 break;
 
             case 'Book':
             case 'Report':
             case 'AudioVisualDocument':
-                $citation .= '**' . $reference->author->name
+                $referenceString .= '**' . $reference->author->name
                         . ' (' . $reference->publication_year . ').** '
                         . str_replace('~', '*', $reference->title);
 
                 if ($reference->edition) {
-                    $citation .= ', edn ' . $reference->edition;
+                    $referenceString .= ', edn ' . $reference->edition;
                 }
 
-                $citation .= '. ';
+                $referenceString .= '. ';
 
                 if ($reference->publisher) {
-                    $citation .= ' ' . $reference->publisher;
+                    $referenceString .= ' ' . $reference->publisher;
                     if ($reference->place_of_publication) {
-                        $citation .= ', ' . $reference->place_of_publication;
+                        $referenceString .= ', ' . $reference->place_of_publication;
                     }
-                    $citation .= '.';
+                    $referenceString .= '.';
                 }
                 break;
 
             case 'Article':
-                $citation .= '**' . $reference->author->name
+                $referenceString .= '**' . $reference->author->name
                         . ' (' . $reference->publication_year . ')**. '
                         . str_replace('~', '*', $reference->title) . '. ';
-                $citation .= '*' . $reference->parent->title . '*';
+                $referenceString .= '*' . $reference->parent->title . '*';
                 if ($reference->volume) {
-                    $citation .= ' **' . $reference->volume . '**';
+                    $referenceString .= ' **' . $reference->volume . '**';
                     if ($reference->issue) {
-                        $citation .= '(' . $reference->issue . ')';
+                        $referenceString .= '(' . $reference->issue . ')';
                     }
                     if ($reference->page_start) {
-                        $citation .= ': ' .
+                        $referenceString .= ': ' .
                                 $reference->page_start . '–' . $reference->page_end;
                     }
                     elseif ($reference->pages) {
-                        $citation .= ': ' . $reference->pages;
+                        $referenceString .= ': ' . $reference->pages;
                     }
                 }
                 elseif ($reference->number) {
-                    $citation .= ' ' . $reference->number;
+                    $referenceString .= ' ' . $reference->number;
                 }
-                $citation .= '.';
+                $referenceString .= '.';
                 break;
 
             case 'Chapter':
-                $citation .= '**' . $reference->author->name
+                $referenceString .= '**' . $reference->author->name
                         . ' (' . $reference->publication_year . ')**. '
                         . str_replace('~', '*', $reference->title) . '. ';
 
-                $citation .= 'In: ' . $reference->parent->author->name
+                $referenceString .= 'In: ' . $reference->parent->author->name
                         . ', *&zwj;' . $reference->parent->title . '&zwj;*';
 
 
                 if ($reference->parent->edition) {
-                    $citation .= ', edn ' . $reference->parent->edition;
+                    $referenceString .= ', edn ' . $reference->parent->edition;
                 }
 
-                $citation .= ', pp. ' . $reference->page_start
+                $referenceString .= ', pp. ' . $reference->page_start
                         . '–' . $reference->page_end
                         . '.';
                         
                 if ($reference->parent->publisher) {
-                    $citation .= ' ' . $reference->parent->publisher;
+                    $referenceString .= ' ' . $reference->parent->publisher;
                     if ($reference->parent->place_of_publication) {
-                        $citation .= ', '
+                        $referenceString .= ', '
                             . $reference->parent->place_of_publication;
                     }
-                    $citation .= '.';
+                    $referenceString .= '.';
                 }
                 break;
 
             case 'Protologue':
                 if ($reference->author_id) {
-                    $citation .= 'in ' . $reference->author->name . ', ';
+                    $referenceString .= 'in ' . $reference->author->name . ', ';
                 }
-                $citation .= '*' . $reference->title . '*';
+                $referenceString .= '*' . $reference->title . '*';
                 if ($reference->volume) {
-                    $citation .= ' **' . $reference->volume . '**';
+                    $referenceString .= ' **' . $reference->volume . '**';
                 }
                 if ($reference->issue) {
-                    $citation .= '(' . $reference->issue . ')';
+                    $referenceString .= '(' . $reference->issue . ')';
                 }
                 if ($reference->pages) {
-                    $citation .= ': ' . $reference->pages;
+                    $referenceString .= ': ' . $reference->pages;
                 }
                 if ($reference->publication_year) {
-                    $citation .= ' (' . $reference->publication_year . ')';
+                    $referenceString .= ' (' . $reference->publication_year . ')';
                 }
                 break;
 
             default:
                 break;
         }
-        return $citation;
+        return $referenceString;
     }
 }
 

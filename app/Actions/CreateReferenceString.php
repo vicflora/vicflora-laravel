@@ -17,13 +17,13 @@ namespace App\Actions;
 
 use App\Models\Reference;
 
-class CreateCitation
+class CreateReferenceString
 {
     public function __invoke(Reference $reference)
     {
-        $createCitation = new CreateCitationHtml;
-        $citation = $createCitation($reference);
-        return strip_tags($citation);
+        $createReferenceString = new CreateReferenceStringHtml;
+        $referenceString = $createReferenceString($reference);
+        return strip_tags($referenceString);
     }
 }
 

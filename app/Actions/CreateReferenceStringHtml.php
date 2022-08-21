@@ -18,13 +18,13 @@ namespace App\Actions;
 use App\Models\Reference;
 use GrahamCampbell\Markdown\Facades\Markdown;
 
-class CreateCitationHtml
+class CreateReferenceStringHtml
 {
     public function __invoke(Reference $reference)
     {
-        $createCitation = new CreateCitationMarkdown;
-        $citationMarkdown = $createCitation($reference);
-        return trim(Markdown::convertToHtml($citationMarkdown));
+        $createReferenceString = new CreateReferenceStringMarkdown;
+        $referenceStringMarkdown = $createReferenceString($reference);
+        return trim(Markdown::convertToHtml($referenceStringMarkdown));
     }
 }
 

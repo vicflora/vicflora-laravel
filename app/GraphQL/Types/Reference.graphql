@@ -29,22 +29,43 @@ type Reference {
     contributors: [Contributor]
 
     """
-    Citation of a Reference as an unformatted string
+    Reference as an unformatted string
+    (deprecated; use `referenceString` instead)
     """
     citation: String 
-        @field(resolver: "\\App\\GraphQL\\Queries\\ReferenceCitation")
+        @field(resolver: "\\App\\GraphQL\\Queries\\ReferenceString")
 
     """
-    Citation of a Reference in HTML format
+    Reference as an unformatted string
+    """
+    referenceString: String 
+        @field(resolver: "\\App\\GraphQL\\Queries\\ReferenceString")
+
+    """
+    Reference in HTML format
+    (deprecated; use `referenceStringHtml` instead)
     """
     citationHtml: String
-        @field(resolver: "\\App\\GraphQL\\Queries\\ReferenceCitationHtml")
+        @field(resolver: "\\App\\GraphQL\\Queries\\ReferenceStringHtml")
 
     """
-    Citation of a Reference in Markdown format
+    Reference in HTML format
+    """
+    referenceStringHtml: String
+        @field(resolver: "\\App\\GraphQL\\Queries\\ReferenceStringHtml")
+
+    """
+    Reference in Markdown format
+    (deprecated; use `referenceStringMarkdown` instead)
     """
     citationMarkdown: String
-        @field(resolver: "\\App\\GraphQL\\Queries\\ReferenceCitationMarkdown")
+        @field(resolver: "\\App\\GraphQL\\Queries\\ReferenceStringMarkdown")
+
+    """
+    Reference in Markdown format
+    """
+    referenceStringMarkdown: String
+        @field(resolver: "\\App\\GraphQL\\Queries\\ReferenceStringMarkdown")
 
     """
     Taxon Names for which this Reference is the protologue

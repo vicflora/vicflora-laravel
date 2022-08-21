@@ -2,10 +2,10 @@
 
 namespace App\GraphQL\Queries;
 
-use App\Actions\CreateCitation;
+use App\Actions\CreateReferenceStringMarkdown;
 use App\Models\Reference;
 
-class ReferenceCitation
+class ReferenceStringMarkdown
 {
     /**
      * @param  null  $_
@@ -13,7 +13,7 @@ class ReferenceCitation
      */
     public function __invoke(Reference $reference, array $args)
     {
-        $createCitation = new CreateCitation;
-        return $createCitation($reference);
+        $createReferenceStringMarkdown = new CreateReferenceStringMarkdown;
+        return $createReferenceStringMarkdown($reference);
     }
 }
