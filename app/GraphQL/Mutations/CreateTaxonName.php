@@ -27,7 +27,7 @@ class CreateTaxonName
         if (isset($input['rank'])) {
             $input['name_rank_id'] = TaxonTreeDefItem::where('name', $input['rank'])->value('id');
         }
-        if ($input['parent']) {
+        if (isset($input['parent']['connect'])) {
             $input['parent_name_id'] = TaxonName::where('guid', $input['parent']['connect'])->value('id');
         }
         if (isset($input['protologue']['connect'])) {
