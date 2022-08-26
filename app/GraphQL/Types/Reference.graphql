@@ -149,6 +149,8 @@ extend type Query {
         @field(resolver: "\\App\\GraphQL\\Queries\\ReferenceAutocomplete")
     journalAutocomplete(q: String!): [Reference]
         @field(resolver: "\\App\\GraphQL\\Queries\\JournalAutocomplete")
+    bookAutocomplete(q: String!): [Reference]
+        @field(resolver: "\\App\\GraphQL\\Queries\\BookAutocomplete")
 }
 
 extend type Mutation {
