@@ -2,6 +2,7 @@ type RegisteredAboriginalPartyFeature
     @model(class: "\\App\\Models\\RegisteredAboriginalParty") {
         type: String
         geometry: GeoJSONGeometry
+        properties: RegisteredAboriginalPartyProperties
 }
 
 type RegisteredAboriginalPartyProperties {
