@@ -7,7 +7,7 @@ type TaxonRegisteredAboriginalParty {
     registeredAnoriginalPartyShortName: String
         @rename(attribute: "rap_short_name")
     registeredAnoriginalPartyTraditionalOwners: String
-        @rename(attribute: "traditionalOwners")
+        @rename(attribute: "traditional_owners")
      occurrenceStatus: OccurrenceStatusEnum
         @rename(attribute: "occurrence_status")
     establishmentMeans: EstablishmentMeansEnum
