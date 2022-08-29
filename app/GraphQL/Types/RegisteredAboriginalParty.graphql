@@ -1,0 +1,34 @@
+type RegisteredAboriginalPartyFeature
+    @model(class: "\\App\\Models\\RegisteredAboriginalParty") {
+        type: String
+        geometry: GeoJSONGeometry
+}
+
+type RegisteredAboriginalPartyProperties {
+    id: ID,
+    name: String
+    label: String
+    shortName: String
+    traditinalOwners: String
+}
+
+extend type Query {
+    registeredAboriginalParty(
+        id: ID! @eq(key: "id")
+    ): RegisteredAboriginalPartyFeature @find
+
+    registeredAboriginalPartiesByName(
+        name: String! @ilike(key: "name", template: "{}%")
+    ): [RegisteredAboriginalPartyFeature]
+        @all(model: "App\\Models\\RegisteredAboriginalParty")
+
+    registeredAboriginalPartiesByTraditionalOwners(
+        name: String! @ilike(key: "traditional_owners", template: "{}%")
+    ): [RegisteredAboriginalPartyFeature]
+        @all(model: "App\\Models\\RegisteredAboriginalParty")
+
+    registeredAboriginalPartiesByPoint(
+        latitude: Float!,
+        longitude: Float!
+    ): [RegisteredAboriginalPartyFeature]
+}

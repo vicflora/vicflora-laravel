@@ -1,0 +1,23 @@
+type TaxonRegisteredAboriginalParty {
+    id: ID
+    taxonConcept: TaxonConcept
+    registeredAboriginalParty: RegisteredAboriginalPartyFeature
+    registeredAboriginalPartyName: String
+        @rename(attribute: "rap_name") 
+    registeredAnoriginalPartyShortName: String
+        @rename(attribute: "rap_short_name")
+    registeredAnoriginalPartyTraditionalOwners: String
+        @rename(attribute: "traditionalOwners")
+     occurrenceStatus: OccurrenceStatusEnum
+        @rename(attribute: "occurrence_status")
+    establishmentMeans: EstablishmentMeansEnum
+        @rename(attribute: "establishment_means")
+}
+
+extend type Query {
+    taxonRegisteredAboriginalParties(
+        taxonConceptId: ID! @eq(key: "taxon_concept_id")
+    ): [TaxonRegisteredAboriginalParty]
+        @orderBy(column: "rap_name")
+        @all
+}
