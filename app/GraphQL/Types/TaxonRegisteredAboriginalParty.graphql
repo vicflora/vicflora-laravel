@@ -15,7 +15,7 @@ type TaxonRegisteredAboriginalParty {
 }
 
 extend type Query {
-    taxonRegisteredAboriginalParties(
+    taxonConceptRegisteredAboriginalParties(
         taxonConceptId: ID! @eq(key: "taxon_concept_id")
     ): [TaxonRegisteredAboriginalParty]
         @orderBy(column: "rap_name")
