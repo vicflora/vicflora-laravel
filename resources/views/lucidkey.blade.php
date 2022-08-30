@@ -6,7 +6,7 @@
     <link type="text/css" rel="stylesheet" href="/lucid/player/css/magnific-popup.css">
     <link type="text/css" rel="stylesheet" href="/lucid/player/player.css">
 
-    <title>Key to {{ ucfirst($slug) }} Victoria - Lucid Web Player</title>
+    <title>Key to {{ ucfirst($slug) }} of Victoria - Lucid Web Player</title>
 
     <style type="text/css">
 
@@ -16,7 +16,7 @@
 
   <body id="lucid-key-player">
   
-    <script type="text/javascript" language="javascript" src="/lucid/keys/{{ $slug }}.js" ></script>
+    <script type="text/javascript" language="javascript" src="https://vicflora-cdn.rbg.vic.gov.au/lucid-keys/{{ $slug }}.js" ></script>
 
     <noscript>
       <p>Your web browser must have JavaScript enabled in order for this application to display correctly.</p>
