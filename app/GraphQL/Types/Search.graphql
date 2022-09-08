@@ -155,3 +155,9 @@ extend type Query {
     facetField(input: FieldFacetInput): SearchResultFacetField
     indexFields: [IndexFields]
 }
+
+extend type Mutation {
+    updateSolrIndex(id: ID!): SearchResultDocument
+        @guard(with: ["api"])
+        @field(resolver: "\\App\\GraphQL\\Mutations\\UpdateSolrIndex")
+}
