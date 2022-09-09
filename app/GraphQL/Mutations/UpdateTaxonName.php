@@ -33,7 +33,7 @@ class UpdateTaxonName
             $input['parent_name_id'] = TaxonName::where('guid', $input['parent']['connect'])->value('id');
         }
         if (isset($input['protologue']['connect'])) {
-            $input['protologue_id'] = Reference::where('guid', $input['protologue']['connect'])->value('id');
+            $input['published_in_id'] = Reference::where('guid', $input['protologue']['connect'])->value('id');
         }
         $input['modified_by_id'] = $id;
         $taxonName->update($input);

@@ -31,7 +31,7 @@ class CreateTaxonName
             $input['parent_name_id'] = TaxonName::where('guid', $input['parent']['connect'])->value('id');
         }
         if (isset($input['protologue']['connect'])) {
-            $input['protologue_id'] = Reference::where('guid', $input['protologue']['connect'])->value('id');
+            $input['published_in_id'] = Reference::where('guid', $input['protologue']['connect'])->value('id');
         }
         if (isset($input['nameType'])) {
             $input['name_type_id'] = NameType::where('name', $input['nameType'])->value('id');
