@@ -34,6 +34,7 @@
         "mll-lab/graphql-php-scalars": "^4.0",
         "mstaack/laravel-postgis": "dev-dependency-fix",
         "nuwave/lighthouse": "^5.3",
+        "predis/predis": "^2.0",
         "solarium/solarium": "^6.1",
         "staudenmeir/laravel-cte": "^1.5",
         "zanysoft/laravel-zip": "^1.0"
