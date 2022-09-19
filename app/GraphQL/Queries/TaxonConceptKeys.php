@@ -13,7 +13,7 @@ class TaxonConceptKeys
     {
         $client = new Client(['base_uri' => 'https://data.rbg.vic.gov.au']);
         $res = $client->request('GET', '/keybase-ws/ws/search_items/'
-                . preg_replace('/[\(\)\']/', '', 
+                . preg_replace('/[\(\)\'&]/', '', 
                 $taxonConcept->taxonName->full_name), [
             'query' => [
                 'project' => 10,
