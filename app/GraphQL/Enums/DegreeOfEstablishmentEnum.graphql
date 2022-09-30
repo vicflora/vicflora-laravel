@@ -1,5 +1,5 @@
 """
-Controlled vocabulary for `degreeOfEstablishment` ()
+Controlled vocabulary for `degreeOfEstablishment`
 """
 enum DegreeOfEstablishmentEnum {
     """
@@ -45,4 +45,18 @@ enum DegreeOfEstablishmentEnum {
     and is spreading.
     """
     COLONISING @enum(value: "colonising")
+
+    """
+    **Invasive** – Self-sustaining population outside of captivity or cultivation, with 
+    individuals surviving and reproducing a significant distance from the 
+    original point of introduction.
+    """
+    INVASIVE @enum(value: "invasive")
+
+    """
+    **Widespread invasive** – Fully invasive species, with individuals 
+    dispersing, surviving and reproducing at multiple sites across a spectrum of 
+    habitats and geographic range.
+    """
+    WIDESPREAD_INVASIVE @enum(value: "widespreadInvasive")
 }
