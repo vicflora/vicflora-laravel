@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $updated_at
  * @property string $guid
  * @property string $name
+ * @property string $description
  * @property integer $feature_id
  * @property MultiAccessKeyFeature $feature
  */

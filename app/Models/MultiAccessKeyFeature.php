@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $updated_at
  * @property string $guid
  * @property string $name
+ * @property string $description
  * @property integer $parent_id
  * @property integer $type
  * @property bool $inc_best

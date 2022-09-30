@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $updated_at
  * @property string $guid
  * @property string $title
+ * @property string $description
  * @property string $location
  * @property integer $created_by_id
  * @property integer $updated_by_id
