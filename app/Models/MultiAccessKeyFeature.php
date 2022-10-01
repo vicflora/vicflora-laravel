@@ -34,7 +34,7 @@ class MultiAccessKeyFeature extends Model
      *
      * @var string
      */
-    protected $table = 'matrix_keys.feautures';
+    protected $table = 'matrix_keys.features';
 
     /**
      * Get the key the feature is in

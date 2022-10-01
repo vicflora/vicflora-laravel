@@ -36,6 +36,6 @@ class MultiAccessKeyState extends Model
      */
     public function feature(): BelongsTo
     {
-        return $this->belongsTo(MultiAccessKey::class, 'feature_id', 'id');
+        return $this->belongsTo(MultiAccessKeyFeature::class, 'feature_id', 'id');
     }
 }

@@ -1,0 +1,42 @@
+type MultiAccessKeyState {
+  id: ID! @rename(attribute: "guid")
+  name: String!
+  description: String
+  feature: MultiAccessKeyFeature!
+}
+
+input CreateMultiAccessKeyStateInput {
+  name: String!
+  description: String
+  feature: MultiAccessKeyFeatureBelongsTo!
+}
+
+input UpdateMultiAccessKeyStateInput {
+  id: ID!
+  name: String
+  description: String
+}
+
+extend type Mutation {
+  """
+  Create a multi-access key state record.
+  """
+  createMultiAccessKeyState(input: CreateMultiAccessKeyStateInput!): MultiAccessKeyState!
+    @guard(with: ["api"])
+    @field(resolver: "\\App\\GraphQL\\Mutations\\CreateMultiAccessKeyState")
+
+  """
+  Update a multi-access key state record. Changes made here will be able to be 
+  added to the deployed key.
+  """
+  updateMultiAccessKeyState(input: UpdateMultiAccessKeyStateInput!): MultiAccessKeyState!
+    @guard(with: ["api"])
+    @field(resolver: "\\App\\GraphQL\\Mutations\\UpdateMultiAccessKeyState")
+
+  """
+  Delete a multi-access key feature state.
+  """
+  deleteMultiAccessKeyState(id: ID!): MultiAccessKeyState!
+    @guard(with: ["api"])
+    @field(resolver: "\\App\\GraphQL\\Mutations\\DeleteMultiAccessKeyState")
+}
