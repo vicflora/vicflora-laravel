@@ -21,6 +21,9 @@ final class UpdateMultiAccessKeyFeature
         if (isset($input['name'])) {
             $feature->name = $input['name'];
         }
+        if (isset($input['featureType'])) {
+            $feature->feature_type = $input['featureType'];
+        }
         if (isset($input['description'])) {
             $feature->description = $input['description'];
         }

@@ -3,6 +3,7 @@ type MultiAccessKeyState {
   name: String!
   description: String
   feature: MultiAccessKeyFeature!
+  images: [Image]
 }
 
 input CreateMultiAccessKeyStateInput {

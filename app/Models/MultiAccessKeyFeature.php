@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * MultiAccessKeyFeature model
@@ -63,7 +64,8 @@ class MultiAccessKeyFeature extends Model
      */
     public function children(): HasMany
     {
-        return $this->hasMany(MultiAccessKeyFeature::class, 'parent_id', 'id');
+        return $this->hasMany(MultiAccessKeyFeature::class, 'parent_id', 'id')
+            ->where('feature_type', '!=', 'unit');
     }
 
     /**
@@ -73,6 +75,19 @@ class MultiAccessKeyFeature extends Model
      */
     public function states(): HasMany
     {
-        return $this->hasMany(MultiAccessKeyState::class, 'feature_id', 'id');
+        return $this->hasMany(MultiAccessKeyState::class, 'feature_id', 'id')
+                ->orderBy('id');
     }
+
+    /**
+     * Get the feature's unit
+     *
+     * @return HasOne
+     */
+    public function unit(): HasOne
+    {
+        return $this->hasOne(MultiAccessKeyFeature::class, 'parent_id', 'id')
+            ->where('feature_type', 'unit');
+    }
+
 }

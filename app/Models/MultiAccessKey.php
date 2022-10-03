@@ -32,12 +32,26 @@ class MultiAccessKey extends Model
     protected $table = 'matrix_keys.keys';
 
     /**
-     * Get the features in the key
+     * Get the features in the key. These are features that have no children.
      *
      * @return HasMany
      */
-    public function features():HasMany
+    public function features(): HasMany
     {
-        return $this->hasMany(MultiAccessKeyFeature::class, 'key_id', 'id');
+        return $this->hasMany(MultiAccessKeyFeature::class, 'key_id', 'id')
+            ->whereNotIn('feature_type', ['group', 'unit'])
+            ->orderBy('id');
+    }
+
+    /**
+     * Get feature groups. These are the features that have children.
+     *
+     * @return HasMany
+     */
+    public function featureGroups(): HasMany
+    {
+        return $this->hasMany(MultiAccessKeyFeature::class, 'key_id', 'id')
+            ->where('feature_type', 'group')
+            ->orderBy('id');
     }
 }

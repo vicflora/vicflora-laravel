@@ -2,16 +2,19 @@ type MultiAccessKeyFeature {
   id: ID! @rename(attribute: "guid")
   name: String!
   type: Int!
+  featureType: FeatureTypeEnum @rename(attribute: "feature_type")
   description: String
   parent: MultiAccessKeyFeature
   children: [MultiAccessKeyFeature]
   key: MultiAccessKey!
   states: [MultiAccessKeyState]
+  unit: MultiAccessKeyFeature
 }
 
 input CreateMultiAccessKeyFeatureInput {
   name: String!
   type: Int!
+  featureType: FeatureTypeEnum
   description: String
   parent: MultiAccessKeyFeatureBelongsTo
   key: MultiAccessKeyBelongsTo!
@@ -21,6 +24,7 @@ input UpdateMultiAccessKeyFeatureInput {
   id: ID!
   name: String
   type: Int
+  featureType: FeatureTypeEnum
   description: String
   parent: MultiAccessKeyFeatureBelongsTo
 }

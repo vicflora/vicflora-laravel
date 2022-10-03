@@ -3,6 +3,7 @@ type MultiAccessKey {
   title: String!
   description: String
   location: String!
+  featureGroups: [MultiAccessKeyFeature]
   features: [MultiAccessKeyFeature!]!
 }
 

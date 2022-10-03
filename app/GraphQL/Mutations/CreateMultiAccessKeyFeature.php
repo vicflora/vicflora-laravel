@@ -31,6 +31,9 @@ final class CreateMultiAccessKeyFeature
         }
         $feature->name = $input['name'];
         $feature->type = $input['type'];
+        if (isset($input['featureType'])) {
+            $feature->feature_type = $input['featureType'];
+        }
         if (isset($input['description'])) {
             $feature->description = $input['description'];
         }
