@@ -346,6 +346,8 @@ SQL;
             'raps.registered_aboriginal_parties'
         );
 
+        $query->addSelect('t.publicaton_status');
+
         return $query;
     }
 }
