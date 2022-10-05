@@ -17,7 +17,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $name
  * @property string $description
  * @property integer $feature_id
- * @property MultiAccessKeyFeature $feature
+ * @property MultiAccessKeyCharacter $feature
  */
 class MultiAccessKeyState extends Model
 {
@@ -31,13 +31,13 @@ class MultiAccessKeyState extends Model
     protected $table = 'matrix_keys.states';
 
     /**
-     * Get the feature the state belongs to
+     * Get the character the state belongs to
      *
      * @return BelongsTo
      */
-    public function feature(): BelongsTo
+    public function character(): BelongsTo
     {
-        return $this->belongsTo(MultiAccessKeyFeature::class, 'feature_id', 'id');
+        return $this->belongsTo(MultiAccessKeyCharacter::class, 'feature_id', 'id');
     }
 
 

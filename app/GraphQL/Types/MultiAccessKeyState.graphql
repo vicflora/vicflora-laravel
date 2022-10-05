@@ -2,14 +2,14 @@ type MultiAccessKeyState {
   id: ID! @rename(attribute: "guid")
   name: String!
   description: String
-  feature: MultiAccessKeyFeature!
+  feature: MultiAccessKeyCharacter!
   images: [Image]
 }
 
 input CreateMultiAccessKeyStateInput {
   name: String!
   description: String
-  feature: MultiAccessKeyFeatureBelongsTo!
+  feature: MultiAccessKeyCharacterBelongsTo!
 }
 
 input UpdateMultiAccessKeyStateInput {

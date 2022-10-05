@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
- * MultiAccessKeyFeature model
+ * MultiAccessKeyCharacter model
  * 
  * @property integer $id
  * @property string $created_at
@@ -22,11 +22,11 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property bool $inc_best
  * @property integer $key_id
  * @property MultiAccessKey $key
- * @property MultiAccessKeyFeature $parent
- * @property MultiAccessKeyFeature[] $children
+ * @property MultiAccessKeyCharacter $parent
+ * @property MultiAccessKeyCharacter[] $children
  * @property MultiAccessKeyState[] $states
  */
-class MultiAccessKeyFeature extends Model
+class MultiAccessKeyCharacter extends Model
 {
     use HasFactory;
 
@@ -38,7 +38,7 @@ class MultiAccessKeyFeature extends Model
     protected $table = 'matrix_keys.features';
 
     /**
-     * Get the key the feature is in
+     * Get the key the character is in
      *
      * @return BelongsTo
      */
@@ -48,28 +48,28 @@ class MultiAccessKeyFeature extends Model
     }
 
     /**
-     * Get the feature's parent
+     * Get the character's parent
      *
      * @return BelongsTo
      */
     public function parent(): BelongsTo
     {
-        return $this->belongsTo(MultiAccessKeyFeature::class, 'parent_id', 'id');
+        return $this->belongsTo(MultiAccessKeyCharacter::class, 'parent_id', 'id');
     }
 
     /**
-     * Get the feature's children
+     * Get the character's children
      *
      * @return HasMany
      */
     public function children(): HasMany
     {
-        return $this->hasMany(MultiAccessKeyFeature::class, 'parent_id', 'id')
+        return $this->hasMany(MultiAccessKeyCharacter::class, 'parent_id', 'id')
             ->where('feature_type', '!=', 'unit');
     }
 
     /**
-     * Get the feature's states
+     * Get the character's states
      *
      * @return HasMany
      */
@@ -80,13 +80,13 @@ class MultiAccessKeyFeature extends Model
     }
 
     /**
-     * Get the feature's unit
+     * Get the character's unit
      *
      * @return HasOne
      */
     public function unit(): HasOne
     {
-        return $this->hasOne(MultiAccessKeyFeature::class, 'parent_id', 'id')
+        return $this->hasOne(MultiAccessKeyCharacter::class, 'parent_id', 'id')
             ->where('feature_type', 'unit');
     }
 

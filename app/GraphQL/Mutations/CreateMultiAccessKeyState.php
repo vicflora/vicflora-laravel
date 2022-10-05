@@ -3,7 +3,7 @@
 namespace App\GraphQL\Mutations;
 
 use App\Models\Agent;
-use App\Models\MultiAccessKeyFeature;
+use App\Models\MultiAccessKeyCharacter;
 use App\Models\MultiAccessKeyState;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -22,7 +22,7 @@ final class CreateMultiAccessKeyState
         $state->guid = Str::uuid();
         $state->created_by_id = Agent::where('user_id', Auth::id())->value('id');
         $state->version = 1;
-        $state->feature_id = MultiAccessKeyFeature
+        $state->feature_id = MultiAccessKeyCharacter
                 ::where('guid', $input['feature']['connect'])->value('id');
         $state->name = $input['name'];
         if (isset($input['description'])) {

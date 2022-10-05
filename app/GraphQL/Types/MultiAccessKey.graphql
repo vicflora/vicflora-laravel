@@ -3,8 +3,8 @@ type MultiAccessKey {
   title: String!
   description: String
   location: String!
-  featureGroups: [MultiAccessKeyFeature]
-  features: [MultiAccessKeyFeature!]!
+  characterGroups: [MultiAccessKeyCharacter]
+  characters: [MultiAccessKeyCharacter!]!
 }
 
 input CreateMultiAccessKeyInput {

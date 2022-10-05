@@ -1,4 +1,4 @@
-enum FeatureTypeEnum {
+enum CharacterTypeEnum {
   ORDERED @enum(value: "ordered")
   UNORDERED @enum(value: "unordered")
   NUMERIC @enum(value: "numeric")
