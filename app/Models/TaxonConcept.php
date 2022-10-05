@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Staudenmeir\LaravelCte\Eloquent\QueriesExpressions;
 
@@ -273,7 +274,7 @@ class TaxonConcept extends BaseModel
     public function getChildrenAttribute(): Collection
     {
         if ($this->taxonomicStatus->name === 'accepted') {
-            return TaxonConcept::select('taxon_concepts.*', 'taxon_names.full_name')
+            $query = TaxonConcept::select('taxon_concepts.*', 'taxon_names.full_name')
                 ->join('taxonomic_statuses', 
                         'taxon_concepts.taxonomic_status_id', '=', 
                         'taxonomic_statuses.id')
@@ -281,8 +282,13 @@ class TaxonConcept extends BaseModel
                         'taxon_names.id')
                 ->where('taxon_concepts.parent_id', $this->id)
                 ->where('taxonomic_statuses.name', 'accepted')
-                ->orderBy('full_name')
-                ->get();
+                ->orderBy('full_name');
+
+            if (!Auth::check()) {
+                $query->where('publication_status', 'published');
+            }
+            
+            return $query->get();
         }
         return collect([]);
     }
@@ -293,7 +299,7 @@ class TaxonConcept extends BaseModel
     public function getSiblingsAttribute(): Collection
     {
         if ($this->taxonomicStatus->name === 'accepted') {
-            return TaxonConcept::select('taxon_concepts.*', 
+            $query = TaxonConcept::select('taxon_concepts.*', 
                     'taxon_names.full_name')
                 ->join('taxonomic_statuses', 
                         'taxon_concepts.taxonomic_status_id', '=', 
@@ -302,8 +308,13 @@ class TaxonConcept extends BaseModel
                         'taxon_names.id')
                 ->where('taxon_concepts.parent_id', $this->parent_id)
                 ->where('taxonomic_statuses.name', 'accepted')
-                ->orderBy('full_name')
-                ->get();
+                ->orderBy('full_name');
+
+            if (!Auth::check()) {
+                $query->where('publication_status', 'published');
+            }
+            
+            return $query->get();
         }
         return collect([]);
     }
