@@ -43,8 +43,23 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * Get the agent for which this is the user account
+     *
+     * @return HasOne
+     */
     public function agent(): HasOne
     {
         return $this->hasOne(Agent::class);
+    }
+
+    /**
+     * Get the user preferences
+     *
+     * @return HasOne
+     */
+    public function userPreferences(): HasOne
+    {
+        return $this->hasOne(UserPreferences::class);
     }
 }
