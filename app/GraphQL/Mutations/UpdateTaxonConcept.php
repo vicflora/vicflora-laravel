@@ -67,7 +67,8 @@ class UpdateTaxonConcept
 
         $taxonConcept = TaxonConcept::where('guid', $input['guid'])->first();
         if ($input['taxonomic_status_id'] != $taxonConcept->taxonomic_status_id 
-                || $input['accepted_id'] != $taxonConcept->accepted_id) {
+                || (isset($input['accepted_id']) && $input['accepted_id'] != $taxonConcept->accepted_id)
+                || (!isset($input['accepted_id']) && $taxonConcept->accepted_id)) {
             $change = new Change();
             $change->guid = Str::uuid();
             $change->from_id = $taxonConcept->id;
@@ -81,7 +82,7 @@ class UpdateTaxonConcept
             $change->created_by_id = Agent::where('user_id', Auth::id())->value('id');
             $change->save();
         }
-
+        $taxonConcept->publication_status = $input['publicationStatus'];
 
         $taxonConcept->update($input);
         $taxonConcept->increment('version');
