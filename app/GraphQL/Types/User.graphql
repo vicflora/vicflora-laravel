@@ -3,6 +3,37 @@ type User {
     name: String!
     email: String!
     agent: Agent!
+    preferences: UserPreferences! @rename(attribute: "userPreferences")
     created_at: DateTime!
     updated_at: DateTime!
+}
+
+type UserPreferences {
+    user: User!
+    defaultPublicationStatus: PublicationStatusEnum! 
+            @rename(attribute: "default_publication_status")
+}
+
+input CreateUserPreferencesInput {
+    user: UserBelongsTo!
+    defaultPublicationStatus: PublicationStatusEnum!
+}
+
+input UpdateUserPreferencesInput {
+    user: UserBelongsTo!
+    defaultPublicationStatus: PublicationStatusEnum!
+}
+
+input UserBelongsTo {
+    connect: ID!
+}
+
+extend type Mutation {
+    createUserPreferences(input: CreateUserPreferencesInput!): UserPreferences! 
+        @guard(with: ["api"])
+        @field(resolver: "\\App\\GraphQL\\Mutations\\CreateUserPreferences")
+
+    updateUserPreferences(input: UpdateUserPreferencesInput!): UserPreferences! 
+        @guard(with: ["api"])
+        @field(resolver: "\\App\\GraphQL\\Mutations\\UpdateUserPreferences")
 }
