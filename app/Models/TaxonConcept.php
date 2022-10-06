@@ -76,7 +76,7 @@ class TaxonConcept extends BaseModel
             'parent_id', 'taxonomic_status_id', 'occurrence_status_id', 
             'establishment_means_id', 'degree_of_establishment_id', 
             'created_at', 'updated_at', 'rank_id', 'remarks', 'editor_notes', 
-            'version', 'guid'];
+            'version', 'guid', 'publication_status'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
