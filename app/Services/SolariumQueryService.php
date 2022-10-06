@@ -20,6 +20,7 @@
 namespace App\Services;
 
 use GuzzleHttp\Psr7\Query;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Solarium\Client;
 
@@ -143,6 +144,10 @@ class SolariumQueryService {
             else {
                 $query->createFilterQuery('fq_' . 0)->setQuery($params['fq']);
             }
+        }
+        if (!Auth::check()) {
+            $query->createFilterQuery('fq_pubstatus')
+                    ->setQuery('publication_status:published');
         }
         return $query;
     }

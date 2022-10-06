@@ -282,6 +282,14 @@ type TaxonConcept {
 
     changes: [Change]
 
+    """
+    Publication status creates a rudimentary publication workflow. A Taxon 
+    Concept can be 'draft' or 'published'. 'draft' Taxon Concepts are only 
+    visible to VicFlora editors.
+    """
+    publicationStatus: PublicationStatusEnum! 
+        @rename(attribute: "publication_status")
+
     createdBy: Agent
     modifiedBy: Agent
     createdAt: DateTimeTz @rename(attribute: "created_at")
@@ -303,6 +311,7 @@ input CreateTaxonConceptInput {
     hasIntroducedOccurrences: Boolean 
             @rename(attribute: "has_introduced_occurrences")
     remarks: String
+    publicationStatus: PublicationStatusEnum!
 }
 
 input UpdateTaxonConceptInput {
@@ -320,6 +329,7 @@ input UpdateTaxonConceptInput {
     hasIntroducedOccurrences: Boolean 
             @rename(attribute: "has_introduced_occurrences")
     remarks: String
+    publicationStatus: PublicationStatusEnum
 }
 
 input TaxonConceptBelongsTo {
@@ -340,8 +350,9 @@ type IdentificationKey {
 }
 
 extend type Query {
-    taxonConcept(id: ID! @eq(key: "guid")): TaxonConcept @find
-
+    taxonConcept(id: ID!): TaxonConcept 
+        @field(resolver: "\\App\\GraphQL\\Queries\\TaxonConcept")
+        
     taxonConceptsByWkt(wkt: String!): [TaxonConcept]!
         @paginate(
             type: PAGINATOR

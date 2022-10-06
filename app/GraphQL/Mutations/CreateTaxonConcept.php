@@ -73,6 +73,7 @@ class CreateTaxonConcept
                     DegreeOfEstablishment::where('name', 
                     $input['degreeOfEstablishment'])->value('id');
         }
+        $input['publication_status'] = $input['publicationStatus'];
         $taxonConcept = TaxonConcept::create($input);
         return $taxonConcept;
     }
