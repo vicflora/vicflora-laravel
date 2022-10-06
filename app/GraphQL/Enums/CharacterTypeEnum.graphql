@@ -1,0 +1,10 @@
+enum CharacterTypeEnum {
+  ORDERED @enum(value: "ordered")
+  UNORDERED @enum(value: "unordered")
+  NUMERIC @enum(value: "numeric")
+  INTEGER @enum(value: "integer")
+  REAL_NUMBER @enum(value: "realNumber")
+
+  GROUP @enum(value: "group")
+  UNIT @enum(value: "unit")
+}

@@ -1,0 +1,71 @@
+type MultiAccessKeyCharacter {
+  id: ID! @rename(attribute: "guid")
+  name: String!
+  type: Int!
+  characterType: CharacterTypeEnum @rename(attribute: "feature_type")
+  description: String
+  parent: MultiAccessKeyCharacter
+  children: [MultiAccessKeyCharacter]
+  key: MultiAccessKey!
+  states: [MultiAccessKeyState]
+  unit: MultiAccessKeyCharacter
+}
+
+input CreateMultiAccessKeyCharacterInput {
+  name: String!
+  type: Int!
+  characterType: CharacterTypeEnum
+  description: String
+  parent: MultiAccessKeyCharacterBelongsTo
+  key: MultiAccessKeyBelongsTo!
+}
+
+input UpdateMultiAccessKeyCharacterInput {
+  id: ID!
+  name: String
+  type: Int
+  characterType: CharacterTypeEnum
+  description: String
+  parent: MultiAccessKeyCharacterBelongsTo
+}
+
+input MultiAccessKeyCharacterBelongsTo {
+  connect: ID!
+}
+
+extend type Query {
+  multiAccessKeyCharacter(id: ID! @eq(key: "guid")): MultiAccessKeyCharacter! @find
+}
+
+extend type Mutation {
+  """
+  Create a new multi-access key feature.
+  """
+  createMultiAccessKeyCharacter(input: CreateMultiAccessKeyCharacterInput!): MultiAccessKeyCharacter!
+    @guard(with: ["api"])
+    @field(resolver: "\\App\\GraphQL\\Mutations\\CreateMultiAccessKeyCharacter")
+
+  """
+  Update a multi-access key feature. Changes made here will be able to be added 
+  to a deployed key.
+  """
+  updateMultiAccessKeyCharacter(input: UpdateMultiAccessKeyCharacterInput!): MultiAccessKeyCharacter!
+    @guard(with: ["api"])
+    @field(resolver: "\\App\\GraphQL\\Mutations\\UpdateMultiAccessKeyCharacter")
+
+  """
+  Delete a multi-access key feature. This mutation will fail if the feature has 
+  any states or children. Use `deleteMultiAccessKeyCharacterCascade` to delete a 
+  feature with all its states or children.
+  """
+  deleteMultiAccessKeyCharacter(id: ID!): MultiAccessKeyCharacter!
+    @guard(with: ["api"])
+    @field(resolver: "\\App\\GraphQL\\Mutations\\DeleteMultiAccessKeyCharacter")
+
+  """
+  Delete a multi-access key feature with all its states or children
+  """
+  deleteMultiAccessKeyCharacterCascade(id: ID!): MultiAccessKeyCharacter!
+    @guard(with: ["api"])
+    @field(resolver: "\\App\\GraphQL\\Mutations\\DeleteMultiAccessKeyCharacterCascade")
+}

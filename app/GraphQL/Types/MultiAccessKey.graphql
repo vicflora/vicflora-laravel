@@ -1,0 +1,63 @@
+type MultiAccessKey {
+  id: ID! @rename(attribute: "guid")
+  title: String!
+  description: String
+  location: String!
+  characterGroups: [MultiAccessKeyCharacter]
+  characters: [MultiAccessKeyCharacter!]!
+}
+
+input CreateMultiAccessKeyInput {
+  title: String!
+  description: String
+  location: String
+}
+
+input UpdateMultiAccessKeyInput {
+  id: ID!
+  title: String
+  description: String
+  location: String
+}
+
+input MultiAccessKeyBelongsTo {
+  connect: ID!
+}
+
+extend type Query {
+  multiAccessKeys: [MultiAccessKey!]! @all
+
+  multiAccessKey(id: ID! @eq(key: "guid")): MultiAccessKey! @find
+}
+
+extend type Mutation {
+  """
+  Create a new multi-access key record.
+  """
+  createMultiAccessKey(input: CreateMultiAccessKeyInput!): MultiAccessKey!
+    @guard(with: ["api"])
+    @field(resolver: "\\App\\GraphQL\\Mutations\\CreateMultiAccessKey")
+
+  """
+  Update a multi-access key record.
+  """
+  updateMultiAccessKey(input: UpdateMultiAccessKeyInput): MultiAccessKey!
+    @guard(with: ["api"])
+    @field(resolver: "\\App\\GraphQL\\Mutations\\UpdateMultiAccessKey")
+
+  """
+  Delete a multi-access key. This mutation will fail if the key has any 
+  features. Use `deleteMultiAccessKeyCascade` to delete a key with all its 
+  features and states.
+  """
+  deleteMultiAccessKey(id: ID!): MultiAccessKey!
+    @guard(with: ["api"])
+    @field(resolver: "\\App\\GraphQL\\Mutations\\DeleteMultiAccessKey")
+
+  """
+  Delete a multi-access key with all its features and states.
+  """
+  deleteMultiAccessKeyCascade(id: ID!): MultiAccessKey!
+    @guard(with: ["api"])
+    @field(resolver: "\\App\\GraphQL\\Mutations\\DeleteMultiAccessKeyCascade")
+}
