@@ -34,8 +34,10 @@ class GetTaxonConceptImages {
                 ->withRecursiveExpression('descendants', $query);
 
         return Image::from('images')
-                ->join('taxon_concepts', 'images.taxon_id', '=', 
-                        'taxon_concepts.id')
+                ->join('taxon_concept_image', 'images.id', '=', 
+                        'taxon_concept_image.image_id')
+                ->join('taxon_concepts', 'taxon_concept_image.taxon_concept_id', 
+                        '=', 'taxon_concepts.id')
                 ->joinSub($descendants, 'descendants', function($join) {
                     $join->on('taxon_concepts.accepted_id', '=', 
                             'descendants.id');
