@@ -34,8 +34,7 @@ type Image {
     subtype: String
     title: String
     type: String
-    taxonConcept: TaxonConcept!
-    acceptedConcept: TaxonConcept!
+    taxonConcepts: [TaxonConcept!]
 
     thumbnailUrl: String
     previewUrl: String

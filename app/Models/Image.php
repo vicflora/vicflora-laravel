@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\BaseModel;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -77,9 +78,9 @@ class Image extends BaseModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function taxonConcept(): BelongsTo
+    public function taxonConcepts(): BelongsToMany
     {
-        return $this->belongsTo(TaxonConcept::class, 'taxon_id');
+        return $this->belongsToMany(TaxonConcept::class, 'taxon_concept_image');
     }
 
 
