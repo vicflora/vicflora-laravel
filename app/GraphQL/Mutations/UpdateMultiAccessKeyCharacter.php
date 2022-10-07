@@ -21,8 +21,8 @@ final class UpdateMultiAccessKeyCharacter
         if (isset($input['name'])) {
             $character->name = $input['name'];
         }
-        if (isset($input['featureType'])) {
-            $character->feature_type = $input['featureType'];
+        if (isset($input['characterType'])) {
+            $character->feature_type = $input['characterType'];
         }
         if (isset($input['description'])) {
             $character->description = $input['description'];
