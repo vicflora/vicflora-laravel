@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * MultiAccessKeyState model
@@ -46,12 +47,23 @@ class MultiAccessKeyState extends Model
      *
      * @return Collection
      */
-    public function getImagesAttribute(): Collection
+    // public function getImagesAttribute(): Collection
+    // {
+    //     return Image::select('images.*')
+    //         ->join('matrix_keys.links', 'images.uid', '=', 'links.uid')
+    //         ->join('matrix_keys.state_links', 'links.id', '=', 'state_links.link_id')
+    //         ->where('state_links.state_id', $this->id)
+    //         ->get();
+    // }
+
+    /**
+     * Get images for the state
+     *
+     * @return BelongsToMany
+     */
+    public function images(): BelongsToMany
     {
-        return Image::select('images.*')
-            ->join('matrix_keys.links', 'images.uid', '=', 'links.uid')
-            ->join('matrix_keys.state_links', 'links.id', '=', 'state_links.link_id')
-            ->where('state_links.state_id', $this->id)
-            ->get();
+        return $this->belongsToMany(Image::class, 'matrix_keys.state_image', 
+                'state_id', 'image_id');
     }
 }
