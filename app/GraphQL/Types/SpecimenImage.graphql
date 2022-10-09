@@ -12,6 +12,5 @@ type SpecimenImage {
     pixelYDimension: Int @rename(attribute: "pixel_y_dimension")
     scientificName: String @rename(attribute: "scientific_name")
     thumbnailUrl: String
-    taxonConcept: TaxonConcept
-    acceptedConcept: TaxonConcept
+    taxonConcepts: [TaxonConcept!]
 }
