@@ -102,6 +102,8 @@ class CreateSearchResultDocument {
         }
 
         $doc['description'] = $data->description;
+        $doc['created'] = $data->created_at;
+        $doc['modified'] = $data->updated_at;
         return $doc;
     }
 
