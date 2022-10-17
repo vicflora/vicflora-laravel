@@ -46,6 +46,8 @@ type SearchResultDocument {
     preferredVernacularName: String
     description: String
     media: [String]
+    created: DateTimeTz
+    modified: DateTimeTz
 }
 
 type SearchResultFacetField {
