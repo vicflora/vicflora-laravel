@@ -60,11 +60,15 @@ class BuildSolrIndexQuery {
                 ->groupBy('r.id')
                 ->select('r.id as reference_id', DB::raw("string_agg(a.name, ' | ' order by c.\"sequence\") as contributors"));
 
-        $first = DB::table('images')
-                ->select('accepted_id as taxon_id', 'subtype')
-                ->groupBy('accepted_id', 'subtype');
+        $first = DB::table('images as i')
+                ->join('taxon_concept_image as tci', 'i.id', '=', 'tci.image_id')
+                ->join('taxon_concepts as tc', 'tci.taxon_concept_id', '=', 'tc.id')
+                ->select('tc.accepted_id as taxon_id', 'i.subtype')
+                ->groupBy('tc.accepted_id', 'i.subtype');
 
-        $med = DB::table('specimen_images')
+        $med = DB::table('specimen_images as si')
+                ->join('taxon_concept_specimen_image as tcsi', 'si.id', '=', 'tcsi.specimen_image_id')
+                ->join('taxon_concepts as tc', 'tcsi.taxon_concept_id', '=', 'tc.id')
                 ->select('accepted_id as taxon_id', DB::raw("'Specimen image' as subtype"))
                 ->groupBy('accepted_id')
                 ->union($first);
@@ -201,7 +205,9 @@ class BuildSolrIndexQuery {
                         DB::raw('lower(ffg_desc) as ffg'),
                         DB::raw('lower(vic_adv_desc) as vic_advisory'),
                         'd.description',
-                        'media.media'
+                        'media.media',
+                        't.created_at',
+                        't.updated_at'
                 );
 
         $species = <<<SQL
