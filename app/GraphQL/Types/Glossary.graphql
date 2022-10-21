@@ -34,7 +34,9 @@ type GlossaryTermImage {
     imageUrl: String!
     creator: String
     rights: String
+    title: String
     caption: String
+    source: String
 }
 
 type GlossaryTermInString {
