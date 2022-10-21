@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\DB;
 
@@ -98,9 +99,13 @@ class GlossaryTerm extends Model
         return $this->hasMany(GlossaryRelationship::class, 'related_term_id');
     }
 
-    public function images(): HasMany
+    /**
+     * @return BelongsToMany
+     */
+    public function images(): BelongsToMany
     {
-        return $this->hasMany(GlossaryTermImage::class, 'term_id');
+        return $this->belongsToMany(GlossaryTermImage::class, 'term_image', 
+                'term_id', 'image_id');
     }
 
 }

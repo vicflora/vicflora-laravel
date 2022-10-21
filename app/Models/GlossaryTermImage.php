@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * @property integer $id
@@ -36,14 +37,27 @@ class GlossaryTermImage extends Model
      *
      * @var string
      */
-    protected $table = 'term_images';
+    protected $table = 'images';
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsToMany
      */
-    public function term(): BelongsTo
+    public function terms(): BelongsToMany
     {
-        return $this->belongsTo(GlossaryTerm::class, 'term_id');
+        return $this->belongsToMany(GlossaryTerm::class, 'term_image', 
+                'image_id', 'term_id');
     }
+
+    /**
+     * @return string
+     */
+    public function getImageUrlAttribute(): string
+    {
+        return 'https://data.rbg.vic.gov.au/cip/preview/image/public/' . 
+                $this->cumulus_record_id;
+    }
+
+
+    
 
 }
