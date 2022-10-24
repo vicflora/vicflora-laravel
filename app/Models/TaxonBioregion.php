@@ -27,7 +27,7 @@ class TaxonBioregion extends Model
      *
      * @var string
      */
-    protected $table = 'mapper.taxon_bioregions';
+    protected $table = 'mapper.taxon_concept_bioregions';
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

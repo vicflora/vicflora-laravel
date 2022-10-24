@@ -13,7 +13,7 @@ class TaxonRegisteredAboriginalParty extends Model
      *
      * @var string
      */
-    protected $table = 'mapper.taxon_raps';
+    protected $table = 'mapper.taxon_concept_raps';
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
