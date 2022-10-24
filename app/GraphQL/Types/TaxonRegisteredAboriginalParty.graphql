@@ -1,5 +1,5 @@
 type TaxonRegisteredAboriginalParty {
-    id: ID
+    id: ID @rename(attribute: "rap_id")
     taxonConcept: TaxonConcept
     registeredAboriginalParty: RegisteredAboriginalPartyFeature
     registeredAboriginalPartyName: String

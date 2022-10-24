@@ -1,5 +1,5 @@
 type TaxonBioregion {
-    id: ID
+    id: ID @rename(attribute: "bioregion_id")
     taxonConcept: TaxonConcept
     bioregion: BioregionFeature
     occurrenceStatus: OccurrenceStatusEnum
