@@ -60,6 +60,10 @@ class IndexFields
             ["name" => "bioregion", "type" => "string", "indexed" => true, "stored" => true, "multiValued" => true],
             ["name" => "local_government_area", "type" => "string", "indexed" => true, "stored" => true, "multiValued" => true],
             ["name" => "park_or_reserve", "type" => "string", "indexed" => true, "stored" => true, "multiValued" => true],
+            ["name" => "registered_aboriginal_parties", "type" => "string", "indexed" => true, "stored" => true, "multiValued" => true],
+            ["name" => "buds", "type" => "string", "indexed" => true, "stored" => true, "multiValued" => true],
+            ["name" => "flowers", "type" => "string", "indexed" => true, "stored" => true, "multiValued" => true],
+            ["name" => "fruit", "type" => "string", "indexed" => true, "stored" => true, "multiValued" => true],
             ["name" => "created", "type" => "pdate", "indexed" => true, "stored" => true],
             ["name" => "modified", "type" => "pdate", "indexed" => true, "stored" => true],
         ];
