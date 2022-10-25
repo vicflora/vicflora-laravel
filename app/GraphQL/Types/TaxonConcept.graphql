@@ -234,6 +234,19 @@ type TaxonConcept {
     #     )
 
     """
+    Occurrence and presence of reproductive structures at a particular time of 
+    the year
+    """
+    phenology: [PhenologyItem]
+        @field(resolver: "\\App\\GraphQL\\Queries\\TaxonConceptPhenology")
+
+    """
+    Check whether there are any specimens with reproductive structures
+    """
+    hasReproductiveStructures: Boolean!
+        @field(resolver: "\\App\\GraphQL\\Queries\\TaxonConceptHasReproductiveStructures")
+
+    """
     Links to distribution maps for a taxon from the Geoserver instance, as well 
     as the captions.
     """

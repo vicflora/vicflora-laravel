@@ -1,0 +1,14 @@
+enum MonthEnum {
+  JANUARY @enum(value: 1)
+  FEBRUARY @enum(value: 2)
+  MARCH @enum(value: 3)
+  APRIL @enum(value: 4)
+  MAY @enum(value: 5)
+  JUNE @enum(value: 6)
+  JULY @enum(value: 7)
+  AUGUST @enum(value: 8)
+  SEPTEMBER @enum(value: 9)
+  OCTOBER @enum(value: 10)
+  NOVEMBER @enum(value: 11)
+  DECEMBER @enum(value: 12)
+}

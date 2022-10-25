@@ -1,0 +1,14 @@
+type PhenologyItem {
+    taxonConceptId: String!
+    month: MonthEnum
+    total: Int!
+    buds: Int!
+    flowers: Int!
+    fruit: Int!
+}
+
+extend type Query {
+    taxonConceptPhenology(taxonConceptId: ID!): [PhenologyItem]!
+        @field(resolver: "\\App\\GraphQL\\Queries\\TaxonConceptPhenology")
+
+}
