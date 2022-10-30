@@ -32,7 +32,7 @@ class ParkReserve extends Model
      *
      * @var string
      */
-    protected $table = 'mapper.park_reserves';
+    protected $table = 'mapper_overlays.park_reserves';
 
     /**
      * @return string
