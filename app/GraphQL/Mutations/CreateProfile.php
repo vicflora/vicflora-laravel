@@ -18,9 +18,6 @@ class CreateProfile
     public function __invoke($_, array $args)
     {
         $input = $args['input'];
-        $acceptedConceptId = 
-                TaxonConcept::where('guid', $input['acceptedConcept']['connect'])
-                ->value('id');
         if (isset($input['id']) && $input['id']) {
             list($guid, $version) = explode(':', $input['id']);
         }
@@ -33,6 +30,9 @@ class CreateProfile
         $profile->version = ++$version;
         $profile->profile = $input['profile'];
         $profile->taxon_concept_id = 
+                TaxonConcept::where('guid', $input['taxonConcept']['connect'])
+                ->value('id');
+        $acceptedConceptId = 
                 TaxonConcept::where('guid', $input['taxonConcept']['connect'])
                 ->value('id');
         $profile->accepted_id = $acceptedConceptId;

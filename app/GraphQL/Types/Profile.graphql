@@ -54,7 +54,6 @@ input CreateProfileInput {
     id: ID
     profile: String!
     taxonConcept: TaxonConceptBelongsTo!
-    acceptedConcept: TaxonConceptBelongsTo!
     source: ReferenceBelongsTo
 }
 
