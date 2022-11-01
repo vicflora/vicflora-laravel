@@ -24,13 +24,11 @@ type OccurrenceProperties {
     eventDate: String
     scientificName: String
     speciesName: String
-    acceptedNameUsage: String
     decimalLatitude: Float
     decimalLongitude: Float
     occurrenceStatus: String
-    occurrenceStatusSource: String
     establishmentMeans: String
-    establishmentMeansSource: String
+    degreeOfEstablishment: String
 }
 
 extend type Query {

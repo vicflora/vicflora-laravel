@@ -37,7 +37,7 @@ class TaxonOccurrence extends Model
      *
      * @var string
      */
-    protected $table = 'mapper.taxon_occurrences';
+    protected $table = 'mapper.taxon_occurrences_view';
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -142,18 +142,12 @@ class TaxonOccurrence extends Model
             'recordedBy' => $this->recorded_by,
             'recordNumber' => $this->record_number,
             'eventDate' => $this->event_date,
-            'taxonId' => $this->taxon_id,
-            'speciesId' => $this->species_id,
-            'acceptedNameUsageId' => $this->accepted_name_usage_id,
             'scientificName' => $this->scientific_name,
-            'speciesName' => $this->species_name,
-            'acceptedNameUsage' => $this->accepted_name,
             'decimalLatitude' => $this->latitude,
             'decimalLongitude' => $this->longitude,
             'occurrenceStatus' => $this->occurrence_status,
-            'occurrenceStatusSource' => $this->occurrence_status_source,
             'establishmentMeans' => $this->establishment_means,
-            'establishmentMeansSource' => $this->establishment_means_source
+            'degree_of_establishment' => $this->degree_of_establishment
         ];
     }
 }
