@@ -25,7 +25,7 @@ class Bioregion extends Model
      *
      * @var string
      */
-    protected $table = 'mapper.bioregions';
+    protected $table = 'mapper_overlays.bioregions';
 
     public function getGeometryAttribute()
     {

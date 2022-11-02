@@ -30,7 +30,7 @@ class TaxonLocalGovernmentArea extends Model
      *
      * @var string
      */
-    protected $table = 'mapper.taxon_local_government_areas';
+    protected $table = 'mapper.taxon_local_government_areas_view';
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

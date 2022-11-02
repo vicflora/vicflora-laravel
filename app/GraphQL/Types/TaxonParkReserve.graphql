@@ -1,5 +1,5 @@
 type TaxonParkReserve {
-    id: ID
+    id: ID @rename(attribute: "park_reserve_id")
     taxonConcept: TaxonConcept
     parkReserve: ParkReserveFeature
     parkReserveName: String @rename(attribute: "park_reserve_name")

@@ -24,7 +24,7 @@ class LocalGovernmentArea extends Model
      *
      * @var string
      */
-    protected $table = 'mapper.local_government_areas';
+    protected $table = 'mapper_overlays.local_government_areas';
 
     /**
      * @return string

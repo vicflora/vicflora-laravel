@@ -29,7 +29,7 @@ class TaxonConceptMapLinks
             'format' => 'image/png',
             'transparent' => 'true',
             'cql_filter' => "INCLUDE;" .
-                    "accepted_name_usage_id='{$taxonConcept->guid}' " .
+                    "taxon_concept_id='{$taxonConcept->guid}' " .
                     "AND establishment_means NOT IN ('cultivated') " .
                     "AND occurrence_status NOT IN ('doubtful','absent', 'excluded')"
         ];

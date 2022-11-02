@@ -17,7 +17,7 @@ class RegisteredAboriginalParty extends Model
      *
      * @var string
      */
-    protected $table = 'mapper.raps';
+    protected $table = 'mapper_overlays.raps';
 
     /**
      * @return string

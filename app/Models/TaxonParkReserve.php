@@ -29,7 +29,7 @@ class TaxonParkReserve extends Model
      *
      * @var string
      */
-    protected $table = 'mapper.taxon_park_reserves';
+    protected $table = 'mapper.taxon_park_reserves_view';
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

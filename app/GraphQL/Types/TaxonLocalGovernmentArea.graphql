@@ -1,5 +1,5 @@
 type TaxonLocalGovernmentArea {
-    id: ID
+    id: ID @rename(attribute: "local_government_area_id")
     taxonConcept: TaxonConcept
     localGovernmentArea: LocalGovernmentAreaFeature
     localGovernmentAreaName: String
