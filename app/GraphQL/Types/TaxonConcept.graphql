@@ -2,8 +2,8 @@ type TaxonConcept {
     id: ID! @rename(attribute: "guid")
 
     """
-    editorNotes about a taxon. We only use this for Taxon Concepts that are not 
-    currently recognised. For currently accepted taxa the notes are in the 
+    editorNotes about a taxon. We only use this for Taxon Concepts that are not
+    currently recognised. For currently accepted taxa the notes are in the
     profile.
     """
     remarks: String
@@ -14,13 +14,13 @@ type TaxonConcept {
     taxonName: TaxonName!
 
     """
-    Source of the taxon name and application. This is currently only used with 
+    Source of the taxon name and application. This is currently only used with
     misapplications.
     """
     accordingTo: Reference
 
     """
-    Accepted name, e.g. for a synonym. We currently still deal with synonyms as 
+    Accepted name, e.g. for a synonym. We currently still deal with synonyms as
     Taxon Concepts.
     """
     acceptedConcept: TaxonConcept
@@ -36,7 +36,7 @@ type TaxonConcept {
     children: [TaxonConcept]
 
     """
-    Siblings of the taxon, e.g. species in the same genus. Also includes the 
+    Siblings of the taxon, e.g. species in the same genus. Also includes the
     current Taxon Concept itself.
     """
     siblings: [TaxonConcept]
@@ -47,21 +47,21 @@ type TaxonConcept {
     ancestors: [TaxonConcept]
 
     """
-    All descendants of a taxon, e.g. genera, species and infraspecific taxa in a 
+    All descendants of a taxon, e.g. genera, species and infraspecific taxa in a
     family.
     """
     descendants: [TaxonConcept]
 
     """
-    Higher classification of a taxon. Like ancestors, but ordered from higher to 
-    lower rank, and only including major ranks: kingdom, phylum, class, order, 
+    Higher classification of a taxon. Like ancestors, but ordered from higher to
+    lower rank, and only including major ranks: kingdom, phylum, class, order,
     family, genus, species.
     """
     higherClassification: [TaxonConcept]
         @field(resolver: "\\App\\GraphQL\\Queries\\TaxonConceptHigherClassification")
 
     """
-    The rank of a taxon, or rather its name. This is an enumeration, so output 
+    The rank of a taxon, or rather its name. This is an enumeration, so output
     is a (all uppercase) string.
     """
     taxonRank: TaxonRankEnum
@@ -139,13 +139,13 @@ type TaxonConcept {
     vernacularNames: [VernacularName]
 
     """
-    Preferred vernacular name. Often there are multiple vernacular names for the 
+    Preferred vernacular name. Often there are multiple vernacular names for the
     same taxon. The preferred vascular name is the one we use in VicFlora.
     """
     preferredVernacularName: VernacularName
 
     """
-    Profiles for a Taxon Concept. We save previous profiles and versions of 
+    Profiles for a Taxon Concept. We save previous profiles and versions of
     profiles.
     """
     profiles: [Profile]
@@ -163,9 +163,9 @@ type TaxonConcept {
         @field(resolver: "\\App\\GraphQL\\Queries\\TaxonConceptHeroImage")
 
     """
-    Flag to indicate whether a Taxon Concept has images associated with it. Used 
-    in VicFlora to see if an Image tab needs to be created on the taxon 
-    page. Image metadata and thumbnails will be fetched once the Image tab is 
+    Flag to indicate whether a Taxon Concept has images associated with it. Used
+    in VicFlora to see if an Image tab needs to be created on the taxon
+    page. Image metadata and thumbnails will be fetched once the Image tab is
     opened.
     """
     hasImages: Boolean
@@ -183,12 +183,12 @@ type TaxonConcept {
         )
 
     """
-    Flag to indicate whether a Taxon Concept has specimen images associated with 
-    it. Used in VicFlora to see if a Specimen Image tab needs to be created on 
-    the taxon page. Image metadata and thumbnails will be fetched once the 
+    Flag to indicate whether a Taxon Concept has specimen images associated with
+    it. Used in VicFlora to see if a Specimen Image tab needs to be created on
+    the taxon page. Image metadata and thumbnails will be fetched once the
     Specimen Image tab is opened.
     """
-    hasSpecimenImages: Boolean 
+    hasSpecimenImages: Boolean
         @field(
             resolver: "\\App\\GraphQL\\Queries\\TaxonConceptHasSpecimenImages"
         )
@@ -234,7 +234,7 @@ type TaxonConcept {
     #     )
 
     """
-    Occurrence and presence of reproductive structures at a particular time of 
+    Occurrence and presence of reproductive structures at a particular time of
     the year
     """
     phenology: [PhenologyItem]
@@ -247,7 +247,7 @@ type TaxonConcept {
         @field(resolver: "\\App\\GraphQL\\Queries\\TaxonConceptHasReproductiveStructures")
 
     """
-    Links to distribution maps for a taxon from the Geoserver instance, as well 
+    Links to distribution maps for a taxon from the Geoserver instance, as well
     as the captions.
     """
     mapLinks: MapLinks
@@ -257,7 +257,7 @@ type TaxonConcept {
     matrixKeys: [MatrixKey]
 
     """
-    Synonyms of the accepted name (`taxonName`). 
+    Synonyms of the accepted name (`taxonName`).
     """
     synonyms: [TaxonName]
 
@@ -269,25 +269,25 @@ type TaxonConcept {
     synonymUsages: [TaxonConcept]
 
     """
-    This has been added, because currently the VicFlora system requires 
-    misapplications to be provided as usages (concepts). Once VicFlora is set up 
-    for concept alignments, we might not be able to provide synonyms this way 
+    This has been added, because currently the VicFlora system requires
+    misapplications to be provided as usages (concepts). Once VicFlora is set up
+    for concept alignments, we might not be able to provide synonyms this way
     anymore.
     """
     misapplications: [TaxonConcept]
 
     """
-    References cited in the profile of a Taxon Concept. We have a Taxon 
-    Concept Reference type rather than a simple association to resolve the 
-    many-to-many relationship between Taxon Concept and Reference. At the moment 
-    it does not have any data properties, but we have the option to add them 
+    References cited in the profile of a Taxon Concept. We have a Taxon
+    Concept Reference type rather than a simple association to resolve the
+    many-to-many relationship between Taxon Concept and Reference. At the moment
+    it does not have any data properties, but we have the option to add them
     later.
     """
-    references: [TaxonConceptReference] 
+    references: [TaxonConceptReference]
         @rename(attribute: "orderedReferences")
 
     """
-    Links to other floras. We've got a type, Taxon Concept Flora Link, for this, 
+    Links to other floras. We've got a type, Taxon Concept Flora Link, for this,
     so, in principle extra information can be added.
     """
     floraLinks: [TaxonConceptFloraLink]
@@ -296,12 +296,14 @@ type TaxonConcept {
     changes: [Change]
 
     """
-    Publication status creates a rudimentary publication workflow. A Taxon 
-    Concept can be 'draft' or 'published'. 'draft' Taxon Concepts are only 
+    Publication status creates a rudimentary publication workflow. A Taxon
+    Concept can be 'draft' or 'published'. 'draft' Taxon Concepts are only
     visible to VicFlora editors.
     """
-    publicationStatus: PublicationStatusEnum! 
+    publicationStatus: PublicationStatusEnum!
         @rename(attribute: "publication_status")
+
+    remarks: String
 
     createdBy: Agent
     modifiedBy: Agent
@@ -321,7 +323,7 @@ input CreateTaxonConceptInput {
     establishmentMeans: EstablishmentMeansEnum
     degreeOfEstablishment: DegreeOfEstablishmentEnum
     endemic: Boolean @rename(attribute: "is_endemic")
-    hasIntroducedOccurrences: Boolean 
+    hasIntroducedOccurrences: Boolean
             @rename(attribute: "has_introduced_occurrences")
     remarks: String
     publicationStatus: PublicationStatusEnum!
@@ -339,7 +341,7 @@ input UpdateTaxonConceptInput {
     establishmentMeans: EstablishmentMeansEnum
     degreeOfEstablishment: DegreeOfEstablishmentEnum
     endemic: Boolean @rename(attribute: "is_endemic")
-    hasIntroducedOccurrences: Boolean 
+    hasIntroducedOccurrences: Boolean
             @rename(attribute: "has_introduced_occurrences")
     remarks: String
     publicationStatus: PublicationStatusEnum
@@ -363,9 +365,9 @@ type IdentificationKey {
 }
 
 extend type Query {
-    taxonConcept(id: ID!): TaxonConcept 
+    taxonConcept(id: ID!): TaxonConcept
         @field(resolver: "\\App\\GraphQL\\Queries\\TaxonConcept")
-        
+
     taxonConceptsByWkt(wkt: String!): [TaxonConcept]!
         @paginate(
             type: PAGINATOR
@@ -399,11 +401,11 @@ extend type Query {
             resolver: "\\App\\GraphQL\\Queries\\TaxonConceptHigherClassification"
         )
 
-    taxonConceptAutocomplete(q: String!): [TaxonConcept] 
+    taxonConceptAutocomplete(q: String!): [TaxonConcept]
         @field(
             resolver: "\\App\\GraphQL\\Queries\\TaxonConceptAutocomplete"
         )
-    
+
     taxonConceptProfiles(taxonConceptId: ID!): [Profile]
         @field(resolver: "\\App\\GraphQL\\Queries\\TaxonConceptProfiles")
 }
