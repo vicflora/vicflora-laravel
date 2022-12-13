@@ -20,7 +20,7 @@ class Download
     protected $queryService;
 
     /**
-     * Default download fields; will be used when no field list (fl) is given 
+     * Default download fields; will be used when no field list (fl) is given
      * with the arguments
      *
      * @var array
@@ -46,7 +46,7 @@ class Download
     ];
 
     /**
-     * 
+     *
      */
     public function __construct(Client $client)
     {
@@ -63,7 +63,7 @@ class Download
         $query = $this->queryService->createSelect();
         $query = $this->queryService->setQuery($query, $params);
         $query = $this->queryService->setSort($query, $params);
-        $query->setStart(0)->setRows(11000);
+        $query->setStart(0)->setRows(12000);
         $query = $this->queryService->setFilters($query, $params);
         return $this->queryService->getDownloadResult($query, $params);
     }
