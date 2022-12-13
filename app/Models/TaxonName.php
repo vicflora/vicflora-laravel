@@ -47,11 +47,28 @@ class TaxonName extends BaseModel
     /**
      * @var array
      */
-    protected $fillable = ['protologue_id', 'nomenclatural_status_id',
-            'name_type_id', 'basionym_id', 'replaced_synonym_id', 'created_by_id',
-            'modified_by_id', 'created_at', 'updated_at', 'name_part', 'full_name',
-            'authorship', 'full_name_with_authorship', 'nomenclatural_note',
-            'remarks', 'version', 'guid'];
+    protected $fillable = [
+        'protologue_id',
+        'nomenclatural_status_id',
+        'name_type_id',
+        'basionym_id',
+        'replaced_synonym_id',
+        'created_by_id',
+        'modified_by_id',
+        'created_at',
+        'updated_at',
+        'name_part',
+        'full_name',
+        'authorship',
+        'full_name_with_authorship',
+        'nomenclatural_note',
+        'remarks',
+        'version',
+        'guid',
+        'name_rank_id',
+        'parent_name_id',
+        'published_in_id'
+    ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

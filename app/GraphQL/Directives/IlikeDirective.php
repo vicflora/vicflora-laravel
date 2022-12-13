@@ -19,7 +19,7 @@ class IlikeDirective extends BaseDirective implements ArgBuilderDirective, Field
 """
 Add a `ILIKE` conditional to a database query.
 """
-directive @like(
+directive @ilike(
   """
   Specify the database column to compare.
   Required if the directive is:
