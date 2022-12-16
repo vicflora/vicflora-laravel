@@ -50,7 +50,7 @@ input UpdateAgentInput {
 
 input CreateGroupPersonInput {
     sequence: Int
-    group: AgentBelongsTo!
+    group: AgentBelongsTo
     member: AgentBelongsTo!
 }
 
@@ -79,8 +79,8 @@ input LinkUserInput {
 extend type Query {
     agent(id: ID! @eq(key: "guid")): Agent @find
 
-    agentAutocomplete(q: String! @ilike(key: "name")): [Agent] 
-        @all 
+    agentAutocomplete(q: String! @ilike(key: "name")): [Agent]
+        @all
         @orderBy(column: "name", dicrection: "ASC")
 }
 
