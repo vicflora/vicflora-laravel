@@ -19,10 +19,13 @@ class UpdateTaxonName
      * @return TaxonName|null
      */
     public function __invoke($_, array $args): ?TaxonName
-    {   
+    {
         $id = Agent::where('user_id', Auth::id())->value('id');
         $taxonName = TaxonName::where('guid', $args['input']['guid'])->first();
         $input = $args['input'];
+        if (isset($input['authorship']) && $input['authorship']) {
+            $input['full_name_with_authorship'] .= ' ' . $input['authorship'];
+        }
         if (isset($input['name_type'])) {
             $input['name_type_id'] = NameType::where('name', $input['nameType'])->value('id');
         }
