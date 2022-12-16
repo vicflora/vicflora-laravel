@@ -51,7 +51,7 @@ class TaxonName extends BaseModel
             'name_type_id', 'basionym_id', 'replaced_synonym_id', 'created_by_id',
             'modified_by_id', 'created_at', 'updated_at', 'name_part', 'full_name',
             'authorship', 'full_name_with_authorship', 'nomenclatural_note',
-            'remarks', 'version', 'guid'];
+            'remarks', 'version', 'guid', 'parent_name_id', 'name_rank_id'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
