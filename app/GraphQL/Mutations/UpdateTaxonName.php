@@ -23,6 +23,7 @@ class UpdateTaxonName
         $id = Agent::where('user_id', Auth::id())->value('id');
         $taxonName = TaxonName::where('guid', $args['input']['guid'])->first();
         $input = $args['input'];
+        $input['full_name_with_authorship'] = $input['full_name'];
         if (isset($input['authorship']) && $input['authorship']) {
             $input['full_name_with_authorship'] .= ' ' . $input['authorship'];
         }

@@ -24,6 +24,11 @@ class CreateTaxonName
         $input['version'] = 1;
         $input['created_by_id'] = Agent::where('user_id', Auth::id())->value('id');
 
+        $input['full_name_with_authorship'] = $input['full_name'];
+        if (isset($input['authorship']) && $input['authorship']) {
+            $input['full_name_with_authorship'] .= ' ' . $input['authorship'];
+        }
+
         if (isset($input['rank'])) {
             $input['name_rank_id'] = TaxonTreeDefItem::where('name', $input['rank'])->value('id');
         }
