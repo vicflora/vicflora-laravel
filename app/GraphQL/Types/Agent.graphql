@@ -81,7 +81,10 @@ extend type Query {
 
     agentAutocomplete(q: String! @ilike(key: "name")): [Agent]
         @all
-        @orderBy(column: "name", dicrection: "ASC")
+        @orderBy(column: "name", direction: "ASC")
+
+    personAutocomplete(q: String): [Agent]
+        @field(resolver: "\\App\\GraphQL\\Queries\\PersonAutocomplete")
 }
 
 extend type Mutation {
