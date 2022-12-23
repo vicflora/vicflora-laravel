@@ -23,9 +23,8 @@ class UpdateTaxonConcept
     public function __invoke($_, array $args)
     {
         $input = $args['input'];
-
         $input['modified_by_id'] = Agent::where('user_id', Auth::id())->value('id');
-        $input['taxon_name_id'] = 
+        $input['taxon_name_id'] =
                 TaxonName::where('guid', $input['taxonName']['connect'])
                 ->value('id');
         if (isset($input['accordingTo']) && $input['accordingTo']) {
@@ -45,28 +44,37 @@ class UpdateTaxonConcept
         }
 
         if (isset($input['taxonomicStatus'])) {
-            $input['taxonomic_status_id'] = 
-                    TaxonomicStatus::where('name', 
+            $input['taxonomic_status_id'] =
+                    TaxonomicStatus::where('name',
                     $input['taxonomicStatus'])->value('id');
         }
-        if (isset($input['occurrenceStatus'])) {
-            $input['occurrence_status_id'] = 
-                    OccurrenceStatus::where('name', 
+        if (is_null($input['occurrenceStatus'])) {
+            $input['occurrence_status_id'] = null;
+        }
+        elseif (isset($input['occurrenceStatus'])) {
+            $input['occurrence_status_id'] =
+                    OccurrenceStatus::where('name',
                     $input['occurrenceStatus'])->value('id');
         }
-        if (isset($input['establishmentMeans'])) {
-            $input['establishment_means_id'] = 
-                    EstablishmentMeans::where('name', 
+        if (is_null($input['establishmentMeans'])) {
+            $input['establishment_means_id'] = null;
+        }
+        elseif (isset($input['establishmentMeans'])) {
+            $input['establishment_means_id'] =
+                    EstablishmentMeans::where('name',
                     $input['establishmentMeans'])->value('id');
         }
-        if (isset($input['degreeOfEstablishment'])) {
-            $input['degree_of_establishment_id'] = 
-                    DegreeOfEstablishment::where('name', 
+        if (is_null($input['degreeOfEstablishment'])) {
+            $input['degree_of_establishment_id'] = null;
+        }
+        elseif (isset($input['degreeOfEstablishment'])) {
+            $input['degree_of_establishment_id'] =
+                    DegreeOfEstablishment::where('name',
                     $input['degreeOfEstablishment'])->value('id');
         }
 
         $taxonConcept = TaxonConcept::where('guid', $input['guid'])->first();
-        if ($input['taxonomic_status_id'] != $taxonConcept->taxonomic_status_id 
+        if ($input['taxonomic_status_id'] != $taxonConcept->taxonomic_status_id
                 || (isset($input['accepted_id']) && $input['accepted_id'] != $taxonConcept->accepted_id)
                 || (!isset($input['accepted_id']) && $taxonConcept->accepted_id)) {
             $change = new Change();
