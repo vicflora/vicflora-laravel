@@ -19,9 +19,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/apidocs', function () {
-    return File::get(public_path() . '/apidocs/index.html');
-});
+// Route::get('/apidocs', function () {
+//     return File::get(public_path() . '/apidocs/index.html');
+// });
 
 Route::get('lucid-keys/{slug}', function($slug) {
     return view('lucidkey', ['slug' => $slug]);
