@@ -1,12 +1,12 @@
 <?php
 // Copyright 2022 Royal Botanic Gardens Board
-// 
+//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 //     http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,9 +19,9 @@ use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Facades\DB;
 
 class BuildSolrIndexQuery {
-    
+
     /**
-     * Builds query for updating the SOLR Index. Returns a query builder to 
+     * Builds query for updating the SOLR Index. Returns a query builder to
      * which a where condition and an output serialization (get(), first(),
      * toSql(), etc.) can be added.
      *
@@ -38,19 +38,19 @@ class BuildSolrIndexQuery {
                 ->select('taxon_concept_id', DB::raw("json_agg(name) as vernacular_names"))
                 ->groupBy('taxon_concept_id');
 
-        $bioregions = DB::table('mapper.taxon_bioregions')
+        $bioregions = DB::table('mapper.taxon_bioregions_view')
                 ->select('taxon_concept_id', DB::raw("json_agg(bioregion_name) as bioregions"))
                 ->groupBy('taxon_concept_id');
 
-        $lgas = DB::table('mapper.taxon_local_government_areas')
+        $lgas = DB::table('mapper.taxon_local_government_areas_view')
                 ->select('taxon_concept_id', DB::raw("json_agg(local_government_area_name) as local_government_areas"))
                 ->groupBy('taxon_concept_id');
 
-        $parks = DB::table('mapper.taxon_park_reserves')
+        $parks = DB::table('mapper.taxon_park_reserves_view')
                 ->select('taxon_concept_id', DB::raw("json_agg(park_reserve_name) as park_reserves"))
                 ->groupBy('taxon_concept_id');
 
-        $raps = DB::table('mapper.taxon_raps')
+        $raps = DB::table('mapper.taxon_raps_view')
                 ->select('taxon_concept_id', DB::raw("json_agg(rap_name) as registered_aboriginal_parties"))
                 ->groupBy('taxon_concept_id');
 
@@ -352,7 +352,7 @@ SQL;
             'raps.registered_aboriginal_parties'
         );
 
-        $query->addSelect('t.publicaton_status');
+        $query->addSelect('t.publication_status');
 
         return $query;
     }
