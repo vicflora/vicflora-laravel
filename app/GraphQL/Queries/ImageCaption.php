@@ -10,7 +10,7 @@ class ImageCaption
     /**
      * Return a caption for the Image.
      *
-     * @param  Image $image 
+     * @param  Image $image
      * @param  array<string, mixed>  $args The field arguments passed by the client.
      * @return string
      */
@@ -18,14 +18,17 @@ class ImageCaption
     {
 
         $taxonConcept = TaxonConcept::select('taxon_concepts.*')
-                ->join('taxon_concept_image', 'taxon_concepts.id', '=', 
+                ->join('taxon_concept_image', 'taxon_concepts.id', '=',
                         'taxon_concept_image.taxon_concept_id')
                 ->where('taxon_concept_image.image_id', $image->id)
                 ->first();
 
         if ($taxonConcept) {
             $scientificName = "<i>{$taxonConcept->acceptedConcept->taxonName->full_name}</i>";
-            if ($taxonConcept->id != $taxonConcept->accepted_id) {
+            if ($image->original_scientific_name) {
+                $scientificName .= " (as <i>{$image->original_scientific_name}</i>)";
+            }
+            elseif ($taxonConcept->id != $taxonConcept->accepted_id) {
                 $scientificName .= " (as <i>{$taxonConcept->taxonName->full_name}</i>)";
             }
             $search = [' subsp. ', ' var. ', ' f. '];
@@ -81,7 +84,7 @@ class ImageCaption
                     $caption .= " Royal Botanic Gardens Board";
                 }
                 if ($image->subject_category == 'Flora of the Otway Plain and Ranges Plate') {
-                    $caption .= ". {$image->rights}. Not to be reproduced without 
+                    $caption .= ". {$image->rights}. Not to be reproduced without
                     prior permission from CSIRO Publishing.";
                 }
                 else {

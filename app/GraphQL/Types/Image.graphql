@@ -25,7 +25,8 @@ type Image {
     recordedBy: String @rename(attribute: "recorded_by")
     recordNumber: String @rename(attribute: "record_number")
     rights: String
-    scientificName: String @rename(attribute: "scientific_namew")
+    scientificName: String @rename(attribute: "scientific_name")
+    originalScientificName: String @rename(attribute: "original_scientific_name")
     source: String
     stateProvince: String @rename(attribute: "state_province")
     subjectCategory: String @rename(attribute: "subject_category")
