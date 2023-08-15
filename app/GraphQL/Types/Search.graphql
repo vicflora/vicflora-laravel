@@ -46,6 +46,7 @@ type SearchResultDocument {
     preferredVernacularName: String
     description: String
     media: [String]
+    publicationStatus: String
     created: DateTimeTz
     modified: DateTimeTz
 }
