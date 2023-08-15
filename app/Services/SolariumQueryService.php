@@ -145,10 +145,10 @@ class SolariumQueryService {
                 $query->createFilterQuery('fq_' . 0)->setQuery($params['fq']);
             }
         }
-        if (!Auth::check()) {
-            $query->createFilterQuery('fq_pubstatus')
-                    ->setQuery('publication_status:published');
-        }
+        // if (!Auth::check()) {
+        //     $query->createFilterQuery('fq_pubstatus')
+        //             ->setQuery('publication_status:published');
+        // }
         return $query;
     }
 
