@@ -1,12 +1,12 @@
 <?php
 // Copyright 2022 Royal Botanic Gardens Board
-// 
+//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 //     http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18,10 +18,10 @@ namespace App\Actions;
 use stdClass;
 
 class CreateSearchResultDocument {
-    
+
     /**
-     * Convert single row from SOLR query to Search Result Document associate 
-     * array that can in turn be converted to a SOLR document. The resulting 
+     * Convert single row from SOLR query to Search Result Document associate
+     * array that can in turn be converted to a SOLR document. The resulting
      * array can also be converted to a GraphQL SearchResultDocument type.
      *
      * @param stdClass $data
@@ -44,7 +44,7 @@ class CreateSearchResultDocument {
         $doc['name_according_to_id'] = null;
         if ($data->according_to_id) {
             $doc['name_according_to'] = $this->getShortCitation(
-                    $data->according_to_author, 
+                    $data->according_to_author,
                     $data->according_to_publication_year);
             $doc['name_according_to_id'] = $data->according_to_id;
         }
@@ -56,7 +56,7 @@ class CreateSearchResultDocument {
         $doc['family'] = $data->family;
         $doc['genus'] = $data->genus;
         $doc['species'] = $data->species;
-        
+
         $doc['generic_name'] = $data->generic_name;
         $doc['specific_epithet'] = $data->specific_epithet;
         $doc['infraspecific_epithet'] = $data->infraspecific_epithet;
@@ -66,7 +66,7 @@ class CreateSearchResultDocument {
 
         $doc['accepted_name_usage_id'] = $data->accepted_name_id;
         $doc['accepted_name_usage'] = $data->accepted_name;
-        $doc['accepted_name_usage_authorship'] = 
+        $doc['accepted_name_usage_authorship'] =
                 $data->accepted_name_authorship;
         $doc['accepted_name_usage_taxon_rank'] = $data->accepted_name_rank;
 
@@ -90,10 +90,10 @@ class CreateSearchResultDocument {
         $doc['taxon_rank'] = $data->rank;
 
         $doc['bioregion'] = json_decode($data->bioregions);
-        $doc['local_government_area'] = 
+        $doc['local_government_area'] =
                 json_decode($data->local_government_areas);
         $doc['park_or_reserve'] = json_decode($data->park_reserves);
-        $doc['registered_aboriginal_party'] = 
+        $doc['registered_aboriginal_party'] =
                 json_decode($data->registered_aboriginal_parties);
 
         $doc['media'] = null;
@@ -102,6 +102,7 @@ class CreateSearchResultDocument {
         }
 
         $doc['description'] = $data->description;
+        $doc['publication_status'] = $data->publication_status;
         $doc['created'] = $data->created_at;
         $doc['modified'] = $data->updated_at;
         return $doc;
@@ -118,7 +119,7 @@ class CreateSearchResultDocument {
             case 2:
                 $ret .= ' & ' . $this->getAuthorSurname($authors[1]);
                 break;
-            
+
             default:
                 $ret .= ' et al.';
                 break;
