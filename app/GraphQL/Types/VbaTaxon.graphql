@@ -5,7 +5,6 @@ type VbaTaxon {
     authority: String
     ffg: VBAConservationStatus @rename(attribute: "ffgObject")
     epbc: VBAConservationStatus @rename(attribute: "epbcObject")
-    vicAdvice: VBAConservationStatus @rename(attribute: "vicAdvObject")
     restriction: String
     origin: String
     taxonType: String @rename(attribute: "taxon_type")
