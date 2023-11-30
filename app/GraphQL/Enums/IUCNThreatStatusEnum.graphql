@@ -118,4 +118,10 @@ enum IUCNThreatStatusEnum {
     evaluated against the criteria.
     """
     NE
+
+    """
+    **Threatened** – This is a category made up in FFG: we do not know what it 
+    means.
+    """
+    TH
 }
