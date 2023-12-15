@@ -99,14 +99,6 @@ class Profile extends BaseModel
     }
 
     /**
-     * @return BelongsTo
-     */
-    public function updatedBy(): BelongsTo
-    {
-        return $this->belongsTo(Agent::class, 'updated_by_id');
-    }
-
-    /**
      * Set taxonomic_status_id if taxonomicStatusName attribute is provided
      *
      * @param string|null $value
