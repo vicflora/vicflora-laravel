@@ -27,6 +27,10 @@ Route::get('lucid-keys/{slug}', function($slug) {
     return view('lucidkey', ['slug' => $slug]);
 });
 
+Route::get('specimen-image-viewer/{id}', function($id) {
+    return view('specimen-image-viewer', ['imageId' => $id]);
+});
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
