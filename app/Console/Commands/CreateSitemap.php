@@ -59,6 +59,19 @@ class CreateSitemap extends Command
             $urlSet->appendChild($url);
         }
 
+        $keys = DB::table('pathway_keys')
+                ->select('id', 'updated_at')
+                ->get();
+
+        foreach ($keys as $key) {
+            $url = $doc->createElement('url');
+            $loc = $doc->createElement('loc', "https://vicflora.rbg.vic.gov.au/flora/key/" . $key->id);
+            $lastmod = $doc->createElement('lastmod', $key->updated_at);
+            $url->appendChild($loc);
+            $url->appendChild($lastmod);
+            $urlSet->appendChild($url);
+        }
+
         file_put_contents(public_path('sitemap.xml'), $doc->saveXML());
 
         $this->info('Site map has been saved to ' . public_path('sitemap.xml'));
