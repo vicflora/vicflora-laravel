@@ -24,7 +24,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->command('vicflora:create-sitemap')
+                ->dailyAt('03:00')->timezone('Australia/Melbourne');
     }
 
     /**
