@@ -8,10 +8,8 @@ use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Staudenmeir\LaravelCte\Eloquent\QueriesExpressions;
 
 
@@ -608,5 +606,10 @@ class TaxonConcept extends BaseModel
     public function changes(): HasMany
     {
         return $this->hasMany(Change::class, 'from_id');
+    }
+
+    public function identificationKeys(): HasMany
+    {
+        return $this->hasMany(PathwayKey::class);
     }
 }
