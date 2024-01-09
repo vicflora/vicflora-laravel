@@ -1,0 +1,13 @@
+type IdentificationKey @model(class: "\\App\\Models\\PathwayKey") {
+    id: ID!
+    title: String!
+    taxonomicScope: String @rename(attribute: "taxonomic_scope")
+    geographicScope: String @rename(attribute: "geographic_scope")
+    created: Date @rename(attribute: "created_at")
+    modified: Date @rename(attribute: "updated_at")
+}
+
+extend type Query {
+    identificationKey(id: ID! @eq): IdentificationKey! @find
+}
+

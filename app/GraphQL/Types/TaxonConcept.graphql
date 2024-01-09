@@ -248,7 +248,6 @@ type TaxonConcept {
     mapLinks: MapLinks
         @field(resolver: "\\App\\GraphQL\\Queries\\TaxonConceptMapLinks")
     identificationKeys: [IdentificationKey!]!
-        @field(resolver: "\\App\\GraphQL\\Queries\\TaxonConceptKeys")
     matrixKeys: [MatrixKey]
 
     """
@@ -348,13 +347,6 @@ type MapLinks {
     profileMap: String
     distributionMap: String
     mapSource: String
-}
-
-type IdentificationKey {
-    id: ID! @rename(attribute: "key_id")
-    title: String! @rename(attribute: "key_title")
-    taxonomicScope: String @rename(attribute: "taxonomic_scope")
-    geographicScope: String @rename(attribute: "geographic_scope")
 }
 
 extend type Query {
