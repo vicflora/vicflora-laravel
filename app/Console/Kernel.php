@@ -24,6 +24,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        $schedule->command('vicflora:get-key-metadata')
+                ->dailyAt('02:45')->timezone('Australia/Melbourne');
+
         $schedule->command('vicflora:create-sitemap')
                 ->dailyAt('03:00')->timezone('Australia/Melbourne');
     }
