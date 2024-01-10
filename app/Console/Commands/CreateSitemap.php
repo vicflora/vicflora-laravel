@@ -43,6 +43,9 @@ class CreateSitemap extends Command
                 ->orderBy('taxon_concept_id')
                 ->orderBy('version', 'desc');
 
+
+        $baseUrl = env('APP_URL');
+
         $concepts = DB::table('taxon_concepts as tc')
                 ->leftJoinSub($updatedProfiles, 'p', function ($join) {
                     $join->on('tc.id', '=', 'p.taxon_concept_id');
@@ -52,7 +55,7 @@ class CreateSitemap extends Command
 
         foreach ($concepts as $concept) {
             $url = $doc->createElement('url');
-            $loc = $doc->createElement('loc', "https://vicflora.rbg.vic.gov.au/flora/taxon/" . $concept->guid);
+            $loc = $doc->createElement('loc', "{$baseUrl}/flora/taxon/" . $concept->guid);
             $lastmod = $doc->createElement('lastmod', $concept->updated_at);
             $url->appendChild($loc);
             $url->appendChild($lastmod);
@@ -65,8 +68,34 @@ class CreateSitemap extends Command
 
         foreach ($keys as $key) {
             $url = $doc->createElement('url');
-            $loc = $doc->createElement('loc', "https://vicflora.rbg.vic.gov.au/flora/key/" . $key->id);
+            $loc = $doc->createElement('loc', "{$baseUrl}/flora/key/" . $key->id);
             $lastmod = $doc->createElement('lastmod', $key->updated_at);
+            $url->appendChild($loc);
+            $url->appendChild($lastmod);
+            $urlSet->appendChild($url);
+        }
+
+        $first = DB::table('mapper_overlays.bioregions')
+                ->select(DB::raw("'bioregion' as layer"), 'bioregion as area');
+
+        $second = DB::table('mapper_overlays.local_government_areas')
+                ->select(DB::raw("'local-goverment-area' as layer"), 'lga_name as area')
+                ->union($first);
+
+        $third = DB::table('mapper_overlays.park_reserves')
+                ->select(DB::raw("'park-or-reserve' as layer"), 'name as area')
+                ->union($second);
+
+        $areas = DB::table('mapper_overlays.raps')
+                ->select(DB::raw("'registered-aboriginal-party' as layer"), 'name as area')
+                ->union($third)
+                ->get();
+
+        foreach ($areas as $area) {
+            $url = $doc->createElement('url');
+            $areaName = rawurlencode($area->area);
+            $loc = $doc->createElement('loc', "{$baseUrl}/flora/checklist/{$area->layer}/{$areaName}");
+            $lastmod = $doc->createElement('lastmod', date('Y-m-d'));
             $url->appendChild($loc);
             $url->appendChild($lastmod);
             $urlSet->appendChild($url);
