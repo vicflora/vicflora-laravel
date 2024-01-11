@@ -14,6 +14,7 @@ type BioregionProperties {
     name: String
     code: String
     label: String
+    slug: String
 }
 
 extend type Query {
@@ -22,6 +23,10 @@ extend type Query {
     bioregionsByName(
         name: String! @ilike(key: "name", template: "{}%")
     ): [BioregionFeature] @all(model: "App\\Models\\Bioregion")
+
+    bioregionBySlug(slug: String! @eq): BioregionFeature @find
+
+    bioregionByName(name: String! @eq(key: "bioregion")): BioregionFeature @find
 
     bioregionsByPoint(latitude: Float!, longitude: Float!): [BioregionFeature]
 }

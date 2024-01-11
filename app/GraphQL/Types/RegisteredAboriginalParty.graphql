@@ -11,6 +11,7 @@ type RegisteredAboriginalPartyProperties {
     label: String
     shortName: String
     traditinalOwners: String
+    slug: String
 }
 
 extend type Query {
@@ -32,4 +33,8 @@ extend type Query {
         latitude: Float!,
         longitude: Float!
     ): [RegisteredAboriginalPartyFeature]
+
+    registeredAboriginalPartyBySlug(slug: String! @eq): RegisteredAboriginalPartyFeature @find
+
+    registeredAboriginalPartyByName(name: String! @eq): RegisteredAboriginalPartyFeature @find
 }

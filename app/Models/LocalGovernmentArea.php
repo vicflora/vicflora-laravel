@@ -67,6 +67,7 @@ class LocalGovernmentArea extends Model
             'nameAbbr' => Str::title($this->abb_name),
             'created' => $this->dt_create,
             'gazetted' => $this->dt_gazetd,
+            'slug' => $this->slug,
         ];
     }
 }

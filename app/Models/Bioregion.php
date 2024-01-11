@@ -45,6 +45,7 @@ class Bioregion extends Model
             'name' => $this->bioregion,
             'code' => $this->bioregcode,
             'label' => $this->bioregion . ' (' . $this->bioregcode . ')',
+            'slug' => $this->slug,
         ];
     }
 

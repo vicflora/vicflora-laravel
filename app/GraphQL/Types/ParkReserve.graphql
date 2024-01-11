@@ -16,6 +16,7 @@ type ParkReserveProperties {
     iucn: String
     establishmentDate: Date
     areaSqm: Float
+    slug: String
 }
 
 extend type Query {
@@ -29,4 +30,8 @@ extend type Query {
         latitude: Float!
         longitude: Float!
     ): [ParkReserveFeature]
+
+    parkReserveBySlug(slug: String! @eq): ParkReserveFeature @find
+
+    parkReserveByName(name: String! @eq): ParkReserveFeature @find
 }

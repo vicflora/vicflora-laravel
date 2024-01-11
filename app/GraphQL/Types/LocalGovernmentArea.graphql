@@ -12,6 +12,7 @@ type LocalGovernmentAreaProperties {
     nameAbbr: String
     created: Date
     gazetted: Date
+    slug: String
 }
 
 extend type Query {
@@ -28,4 +29,8 @@ extend type Query {
         latitude: Float!
         longitude: Float!
     ): [LocalGovernmentAreaFeature]
+
+    localGovernmentAreaBySlug(slug: String! @eq): LocalGovernmentAreaFeature @find
+
+    localGovernmentAreaByName(name: String! @eq(key: "lga_name")): LocalGovernmentAreaFeature @find
 }

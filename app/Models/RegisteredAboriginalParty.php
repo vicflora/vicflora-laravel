@@ -45,6 +45,7 @@ class RegisteredAboriginalParty extends Model
             'label' => $this->name,
             'shortName' => $this->shortName,
             'traditionalOweners' => $this->traditional_owners,
+            'slug' => $this->slug,
         ];
     }
 }

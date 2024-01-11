@@ -79,7 +79,8 @@ class ParkReserve extends Model
             'veacStudy' => $this->veac_study,
             'iucn' => $this->iucn,
             'establishmentDate' => $this->estab_date,
-            'areaSqm' => $this->area_sqm
+            'areaSqm' => $this->area_sqm,
+            'slug' => $this->slug,
         ];
     }
 
