@@ -76,25 +76,24 @@ class CreateSitemap extends Command
         }
 
         $first = DB::table('mapper_overlays.bioregions')
-                ->select(DB::raw("'bioregion' as layer"), 'bioregion as area');
+                ->select(DB::raw("'bioregion' as layer"), 'slug');
 
         $second = DB::table('mapper_overlays.local_government_areas')
-                ->select(DB::raw("'local-goverment-area' as layer"), 'lga_name as area')
+                ->select(DB::raw("'local-goverment-area' as layer"), 'slug')
                 ->union($first);
 
         $third = DB::table('mapper_overlays.park_reserves')
-                ->select(DB::raw("'park-or-reserve' as layer"), 'name as area')
+                ->select(DB::raw("'park-or-reserve' as layer"), 'slug')
                 ->union($second);
 
         $areas = DB::table('mapper_overlays.raps')
-                ->select(DB::raw("'registered-aboriginal-party' as layer"), 'name as area')
+                ->select(DB::raw("'registered-aboriginal-party' as layer"), 'slug')
                 ->union($third)
                 ->get();
 
         foreach ($areas as $area) {
             $url = $doc->createElement('url');
-            $areaName = rawurlencode($area->area);
-            $loc = $doc->createElement('loc', "{$baseUrl}/flora/checklist/{$area->layer}/{$areaName}");
+            $loc = $doc->createElement('loc', "{$baseUrl}/flora/checklist/{$area->layer}/{$area->slug}");
             $lastmod = $doc->createElement('lastmod', date('Y-m-d'));
             $url->appendChild($loc);
             $url->appendChild($lastmod);
