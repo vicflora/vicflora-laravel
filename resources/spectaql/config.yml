@@ -13,7 +13,7 @@ spectaql:
   #     You can then season to taste with your own additional CSS
   #
   # Default: full
-  cssBuildMode: basic
+  # cssBuildMode: basic
 
 
 introspection:
@@ -195,11 +195,11 @@ servers:
   # same format as for OpenAPI Specification https://swagger.io/specification/#server-object
 
   - url: https://vicflora.rbg.vic.gov.au/graphql
-    description: Development Site
+    description: VicFlora GraphQL API
     # Indicates to use this server's URL as the typical GraphQL request base in the documentation
     # If no server entries have this indicator, the first server's URL will be used.
     # If no server entries are defined at all, the Introspection URL will be used.
-    production: false
+    production: true
 
 info:
   # Tries to adhere to OpenAPI Specification https://swagger.io/specification/#info-object
@@ -229,16 +229,19 @@ info:
   #
   ##############################################
 
-  title: VicFlora API
-  version: 0.0.1-beta
+  title: VicFlora GraphQL API
+  version: 1.0.0
   description: >
     Documentation for the VicFlora GraphQL API<br/><br/>
 
     You'll find the GraphQL endpoint for VicFlora at https://vicflora.rbg.vic.gov.au/graphql.<br/><br/>
 
-    This endpoint can be queried by GraphQL clients like [GraphiQL](https://github.com/graphql/graphiql)
-    and [Altair](https://altair.sirmuel.design/), as well as general API
-    platforms like [Postman](https://www.postman.com/) and [Insomnia](https://insomnia.rest/).
+    This endpoint can be queried by GraphQL clients like
+    [GraphiQL](https://github.com/graphql/graphiql) and
+    [Altair](https://altair.sirmuel.design/), as well as general API platforms
+    like [Postman](https://www.postman.com/) and
+    [Insomnia](https://insomnia.rest/). The developer personally recommends the 
+    [Altair GraphQL client extension for Chrome](https://chromewebstore.google.com/detail/altair-graphql-client/flnheeellpciglgpaodhkhmapeljopja).
 
   # This is non-standard and optional. If omitted, will use "title". Also only relevant
   # when building non-embedded.

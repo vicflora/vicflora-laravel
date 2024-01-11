@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\BaseModel;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * @property integer $id
@@ -33,7 +34,7 @@ use App\Models\BaseModel;
  * @property string $version_date
  * @property TaxonName $taxonName
  */
-class VbaTaxon extends BaseModel
+class VbaTaxaListItem extends BaseModel
 {
     /**
      * The table associated with the model.
@@ -67,11 +68,33 @@ class VbaTaxon extends BaseModel
     public $timestamps = true;
 
     /**
+     * Scope a query to only include items that match to a name in VicFlora
+     *
+     * @param Builder $query
+     * @return Builder
+     */
+    public function scopeMatched(Builder $query): Builder
+    {
+        return $query->whereNotNull('taxon_name_id');
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @param Builder $query
+     * @return Builder
+     */
+    public function scopeUnmatched(Builder $query): Builder
+    {
+        return $query->whereNull('taxon_name_id');
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function taxonName()
     {
-        return $this->belongsTo('App\Models\TaxonName');
+        return $this->belongsTo('App\Models\TaxonName', 'taxon_name_id', 'guid');
     }
 
     /**

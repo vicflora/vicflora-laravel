@@ -1,4 +1,4 @@
-type VbaTaxon {
+type VbaTaxaListItem {
     id: ID! @rename(attribute: "vba_id")
     scientificName: String! @rename(attribute: "scientific_name")
     commonName: String @rename(attribute: "common_name")
@@ -27,6 +27,20 @@ type VBAConservationStatus {
 }
 
 extend type Query {
-    vbaTaxa: [VbaTaxon!] @paginate(defaultCount: 20)
-    vbaTaxon(id: ID! @eq(key: "vba_id")): VbaTaxon @find
+    vbaTaxaListItems: [VbaTaxaListItem!] @paginate(defaultCount: 20)
+    vbaTaxaListItemsMatched: [VbaTaxaListItem!] 
+        @paginate(
+            type: PAGINATOR
+            defaultCount: 20
+            builder: "\\App\\GraphQL\\Queries\\VbaTaxaListItemsMatched"
+        )
+
+    vbaTaxaListItemsUnmatched: [VbaTaxaListItem!]
+        @paginate(
+            type: PAGINATOR
+            defaultCount: 20
+            builder: "\\App\\GraphQL\\Queries\\VbaTaxaListItemsUnmatched"
+        )
+
+    vbaTaxaListItem(id: ID! @eq(key: "vba_id")): VbaTaxaListItem @find
 }

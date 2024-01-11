@@ -564,7 +564,7 @@ class TaxonConcept extends BaseModel
      */
     public function getEpbcAttribute(): ?string
     {
-        $vba = VbaTaxon::where('taxon_name_id', $this->taxonName->guid)->first();
+        $vba = VbaTaxaListItem::where('taxon_name_id', $this->taxonName->guid)->first();
         if ($vba) {
             return $vba->epbc;
         }
@@ -578,7 +578,7 @@ class TaxonConcept extends BaseModel
      */
     public function getFfgAttribute(): ?string
     {
-        $vba = VbaTaxon::where('taxon_name_id', $this->taxonName->guid)->first();
+        $vba = VbaTaxaListItem::where('taxon_name_id', $this->taxonName->guid)->first();
         if ($vba) {
             return $vba->ffg;
         }
@@ -593,7 +593,7 @@ class TaxonConcept extends BaseModel
     public function getVicAdvisoryAttribute(): ?string
     {
         $allowedValues = ['x', 'e', 'v', 'r', 'k'];
-        $vba = VbaTaxon::where('taxon_name_id', $this->taxonName->guid)->first();
+        $vba = VbaTaxaListItem::where('taxon_name_id', $this->taxonName->guid)->first();
         if ($vba && in_array($vba->vic_adv, $allowedValues)) {
             return $vba->vic_adv;
         }

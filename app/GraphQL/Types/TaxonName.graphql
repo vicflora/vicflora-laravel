@@ -26,7 +26,7 @@ type TaxonName {
     apniName: ApniName
 
     "Link to taxon record in VBA"
-    vbaTaxon: VbaTaxon
+    vbaTaxaListItem: VbaTaxaListItem
 
     createdBy: Agent
     modifiedBy: Agent

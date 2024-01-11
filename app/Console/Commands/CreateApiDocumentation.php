@@ -11,14 +11,14 @@ class CreateApiDocumentation extends Command
      *
      * @var string
      */
-    protected $signature = 'vicflora:create-api-documentation';
+    protected $signature = 'vicflora:create-api-documentation {--path=../../public/apidocs/ : Path to copy the documentation to}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create API documentation';
+    protected $description = 'Create API documentation from GraphQL schema';
 
     /**
      * Create a new command instance.
@@ -45,10 +45,13 @@ class CreateApiDocumentation extends Command
         $this->info(getcwd());
 
         $this->info("Create new documentation");
-        exec('npx spectaql -JC config.yml');
+        exec('npx spectaql config.yml');
 
-        $this->info("Copy documentation to 'public/apidocs' directory");
-        copy('public/index.html', '../../public/apidocs/index.html');
+        $src = 'public/*';
+        $dest = $this->option('path');
+        $this->info("Copy documentation to '$dest' directory");
+        // copy('public/index.html', '../../public/apidocs/index.html');
+        `cp -r $src $dest`;
 
         $this->info('API documentation has been successfully updated');
 
