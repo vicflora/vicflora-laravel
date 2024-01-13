@@ -105,6 +105,19 @@ class CreateSearchResultDocument {
         $doc['publication_status'] = $data->publication_status;
         $doc['created'] = $data->created_at;
         $doc['modified'] = $data->updated_at;
+        $doc['created'] = $data->created_at;
+        $doc['modified'] = $data->updated_at;
+        $doc['last_edit'] = $data->last_edit;
+        $doc['created_year'] = $data->created_year;
+        $doc['created_year_month'] = $data->created_year_month;
+        $doc['changed_year'] = $data->changed_year;
+        $doc['changed_year_month'] = $data->changed_year_month;
+        $doc['profile_created'] = $data->profile_created;
+        $doc['profile_created_year'] = $data->profile_created_year;
+        $doc['profile_created_year_month'] = $data->profile_created_year_month;
+        $doc['profile_updated'] = $data->profile_updated;
+        $doc['profile_updated_year'] = $data->profile_updated_year;
+        $doc['profile_updated_year_month'] = $data->profile_updated_year_month;
         return $doc;
     }
 

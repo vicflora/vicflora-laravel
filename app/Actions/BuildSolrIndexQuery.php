@@ -78,6 +78,20 @@ class BuildSolrIndexQuery {
                 ->select('tc.id as taxon_id', DB::raw("string_agg(med.subtype, ' | ' order by med.subtype) as media"))
                 ->groupBy('tc.id');
 
+        $changes = DB::table('changes')
+            ->groupBy('from_id')
+            ->select('from_id', DB::raw('max(created_at) as changed'));
+
+        $profiles = DB::table('profiles')
+            ->where('created_at', '>', '2014-05-01')
+            ->groupBy('taxon_concept_id')
+            ->select(
+                'taxon_concept_id',
+                DB::raw('min(created_at) as date_created'),
+                DB::raw("case when max(date(created_at)) > min(date(created_at)) then max(created_at) else null end as date_updated")
+            );
+
+
         $query = DB::table('taxon_concepts as t')
                 ->join('taxon_names as n', 't.taxon_name_id', '=', 'n.id')
                 ->leftJoin('taxon_tree_def_items as r', 't.taxon_tree_def_item_id', '=', 'r.id')
@@ -170,6 +184,10 @@ class BuildSolrIndexQuery {
 
                 ->leftJoinSub($media, 'media', 't.id', '=', 'media.taxon_id')
 
+                ->leftJoinSub($changes, 'ch', 't.id', 'ch.from_id')
+
+                ->leftJoinSub($profiles, 'prof', 't.id', 'prof.taxon_concept_id')
+    
                 ->select(
                         't.guid as id',
                         'n.guid as name_id',
@@ -206,9 +224,20 @@ class BuildSolrIndexQuery {
                         DB::raw('lower(vic_adv_desc) as vic_advisory'),
                         'd.description',
                         'media.media',
-                        't.created_at',
-                        't.updated_at'
-                );
+                        DB::raw("case when t.created_at > '2014-01-26' then t.created_at else null end as created_at"),
+                        'ch.changed as updated_at',
+                        DB::raw("coalesce(ch.changed, case when t.created_at > '2014-01-26' then t.created_at else null end) as last_edit"),
+                        DB::raw("case when t.created_at > '2014-01-26' then extract(year from t.created_at)::text else null end as created_year"),
+                        DB::raw("case when t.created_at > '2014-01-26' then extract(year from t.created_at)::text||'-'||lpad(extract(month from t.created_at)::text, 2, '0') else null end as created_year_month"),
+                        DB::raw('extract(year from ch.changed)::text as changed_year'),
+                        DB::raw("extract(year from ch.changed)::text||'-'||lpad(extract(month from ch.changed)::text, 2, '0') as changed_year_month"),
+                        'prof.date_created as profile_created',
+                        'prof.date_updated as profile_updated',
+                        DB::raw("date_part('year', prof.date_created)::text as profile_created_year"),
+                        DB::raw("date_part('year', prof.date_created)::text||'-'||lpad(date_part('month', prof.date_created)::text, 2, '0') as profile_created_year_month"),
+                        DB::raw("date_part('year', prof.date_updated)::text as profile_updated_year"),
+                        DB::raw("date_part('year', prof.date_updated)::text||'-'||lpad(date_part('month', prof.date_updated)::text, 2, '0') as profile_updated_year_month")
+                    );
 
         $species = <<<SQL
 case
