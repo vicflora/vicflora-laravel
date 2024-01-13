@@ -44,7 +44,7 @@ type SearchResultDocument {
     taxonRemarks: String
     vernacularName: [String]
     preferredVernacularName: String
-    description: String
+    description: [String]
     media: [String]
     publicationStatus: String
     created: DateTimeTz
