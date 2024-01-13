@@ -49,6 +49,9 @@ type SearchResultDocument {
     publicationStatus: String
     created: DateTimeTz
     modified: DateTimeTz
+    lastEdit: DateTimeTz
+    profileCreated: DateTimeTz
+    profileUpdated: DateTimeTz
 }
 
 type SearchResultFacetField {
