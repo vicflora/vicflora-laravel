@@ -23,6 +23,7 @@
         "mll-lab/graphql-php-scalars": "^5.4",
         "mstaack/laravel-postgis": "^5.4",
         "nuwave/lighthouse": "^5.60",
+        "phpoffice/phpspreadsheet": "^2.0",
         "predis/predis": "^2.0",
         "solarium/solarium": "^6.2",
         "staudenmeir/laravel-cte": "^1.6",
