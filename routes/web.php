@@ -31,9 +31,9 @@ Route::get('specimen-image-viewer/{id}', function($id) {
     return view('specimen-image-viewer', ['imageId' => $id]);
 });
 
-Auth::routes();
+// Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/ping', '\\App\\Http\\Controllers\\SolariumController@ping');
-Route::get('/search', '\\App\\Http\\Controllers\\SolariumController@search');
+// Route::get('/ping', '\\App\\Http\\Controllers\\SolariumController@ping');
+// Route::get('/search', '\\App\\Http\\Controllers\\SolariumController@search');

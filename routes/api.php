@@ -14,10 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
-Route::get('name_search', [
-    \App\Http\Controllers\Api\SearchController::class, 'nameSearch'
-]);
+// Route::get('name_search', [
+//     \App\Http\Controllers\Api\SearchController::class, 'nameSearch'
+// ]);
