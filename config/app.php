@@ -179,7 +179,6 @@ return [
         * Solarium Service Provider
         */
         App\Providers\SolariumServiceProvider::class,
-
     ],
 
     /*
