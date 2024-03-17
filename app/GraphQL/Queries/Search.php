@@ -59,8 +59,6 @@ class Search
         'degree_of_establishment',
         'threat_status',
         'class',
-        'subclass',
-        'superorder',
         'order',
         'family',
         'media'

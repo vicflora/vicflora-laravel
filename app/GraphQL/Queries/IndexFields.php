@@ -25,8 +25,6 @@ class IndexFields
             ["name" => "kingdom", "type" => "string", "indexed" => true, "stored" => true],
             ["name" => "phylum", "type" => "string", "indexed" => true, "stored" => true],
             ["name" => "class", "type" => "string", "indexed" => true, "stored" => true],
-            ["name" => "subclass", "type" => "string", "indexed" => true, "stored" => true],
-            ["name" => "superorder", "type" => "string", "indexed" => true, "stored" => true],
             ["name" => "order", "type" => "string", "indexed" => true, "stored" => true],
             ["name" => "family", "type" => "string", "indexed" => true, "stored" => true],
             ["name" => "genus", "type" => "string", "indexed" => true, "stored" => true],
