@@ -30,17 +30,18 @@ class GetKeyMetadata extends Command
      */
     public function handle()
     {
-        $this->info('Getting key metadata');
+
+        $now = now();
+        $this->info($now->toDateTimeString() . ': getting key metadata...');
 
         $client = new Client(['base_uri' => 'https://data.rbg.vic.gov.au']);
         $res = $client->request('GET', '/keybase-ws/ws/project_keys_get/10');
 
         $keys = collect(json_decode($res->getBody()) ?: []);
         foreach ($keys as $index => $key) {
-            echo $index . ': ' . $key->title . "\n";
             $res2 = $client->request('GET', '/keybase-ws/ws/key_meta_get/' . $key->id);
             $meta = json_decode($res2->getBody()) ?: null;
-            
+
             $upsert = [
                 'id' => $meta->key_id,
                 'created_at' => $meta->timestamp_created,
@@ -59,12 +60,12 @@ class GetKeyMetadata extends Command
                 [$upsert],
                 ['id'],
                 [
-                    'created_at', 
-                    'updated_at', 
-                    'title', 
-                    'taxonomic_scope', 
-                    'geographic_scope', 
-                    'created_by', 
+                    'created_at',
+                    'updated_at',
+                    'title',
+                    'taxonomic_scope',
+                    'geographic_scope',
+                    'created_by',
                     'updated_by',
                     'taxon_concept_id',
                     'created_by_id',
@@ -93,6 +94,9 @@ class GetKeyMetadata extends Command
             $id = array_shift($update);
             DB::table('pathway_keys')->where('id', $id)->update($update);
         }
+
+        $this->info(count($keys) . ' updated.');
+        $this->info('');
 
         return Command::SUCCESS;
     }
