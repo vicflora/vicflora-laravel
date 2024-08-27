@@ -65,15 +65,14 @@ class Image extends BaseModel
      * @var array
      */
     protected $fillable = ['taxon_id', 'timestamp_created', 
-            'timestamp_modified', 'version', 'asset_creation_date', 'caption', 
+            'timestamp_modified', 'version', 'caption', 
             'catalog_number', 'copyright_owner', 'country', 'country_code', 
-            'creation_date', 'creator', 'cumulus_catalog', 'cumulus_record_id', 
-            'cumulus_record_name', 'decimal_latitude', 'decimal_longitude', 
+            'creation_date', 'creator', 'canto_content_id', 
+            'canto_file_name', 'decimal_latitude', 'decimal_longitude', 
             'hero_image', 'license', 'locality', 'modified', 'originating_program', 
             'pixel_x_dimension', 'pixel_y_dimension', 'rating', 'recorded_by', 
             'record_number', 'rights', 'scientific_name', 'source', 
-            'state_province', 'subject_category', 'subject_orientation', 
-            'subject_part', 'subtype', 'title', 'type', 'uid'];
+            'state_province', 'subject_category', 'subtype', 'title', 'type'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -86,13 +85,19 @@ class Image extends BaseModel
 
     public function getThumbnailUrlAttribute()
     {
-        return env('IMAGE_SERVER_BASE_URL') . 'preview/thumbnail/public/' 
-                . $this->cumulus_record_id;
+        return env('IMAGE_SERVER_BASE_URL') . 'thumb/' 
+                . $this->canto_content_id . '.jpg';
     }
 
     public function getPreviewUrlAttribute()
     {
-        return env('IMAGE_SERVER_BASE_URL') . 'preview/image/public/' 
-                . $this->cumulus_record_id . '?maxsize=1024';
+        return env('IMAGE_SERVER_BASE_URL') . 'preview/' 
+                . $this->canto_content_id . '.jpg';
+    }
+
+    public function getHighestResUrlAttribute()
+    {
+        return env('IMAGE_SERVER_BASE_URL') . 'highestres/' 
+                . $this->canto_content_id . '.jpg';
     }
 }

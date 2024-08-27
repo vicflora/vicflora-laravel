@@ -1,24 +1,19 @@
 type Image {
     id: ID!
-    uid: String!
-    assetCreationDate: DateTime @rename(attribute: "asset_creation_date")
     caption: String @field(resolver: "\\App\\GraphQL\\Queries\\ImageCaption")
     catalogNumber: String @rename(attribute: "catalog_number")
     copyrightOwner: String @rename(attribute: "copyright_owner")
     country: String
-    countryCode: String @rename(attribute: "country_code")
-    creationDate: DateTime @rename(attribute: "creation_date")
+    creationDate: String @rename(attribute: "creation_date")
     creator: String
-    cumulusCatalog: String! @rename(attribute: "cumulus_catalog")
-    cumulusRecordId: Int! @rename(attribute: "cumulus_record_id")
-    cumulusRecordName: String @rename(attribute: "cumulus_record_name")
+    cantoContentID: Int! @rename(attribute: "canto_content_id")
+    cantoFileName: String @rename(attribute: "canto_file_name")
     decimalLatitude: Float @rename(attribute: "decimal_latitude")
     decimalLongitude: Float @rename(attribute: "decimal_longitude")
     heroImage: Boolean @rename(attribute: "hero_image")
     license: String
     locality: String
     modified: String
-    originatingProgram: String @rename(attribute: "originating_program")
     pixelXDimension: Int @rename(attribute: "pixel_x_dimension")
     pixelYDimension: Int @rename(attribute: "pixel_y_dimension")
     rating: Int
@@ -30,8 +25,6 @@ type Image {
     source: String
     stateProvince: String @rename(attribute: "state_province")
     subjectCategory: String @rename(attribute: "subject_category")
-    subjectOrientation: String @rename(attribute: "subject_orientation")
-    subjectPart: String @rename(attribute: "subject_part")
     subtype: String
     title: String
     type: String
@@ -39,6 +32,7 @@ type Image {
 
     thumbnailUrl: String
     previewUrl: String
+    highestResUrl: String
 
     createdAt: DateTimeTz @rename(attribute: "timestamp_created")
     updatedAt: DateTimeTz @rename(attribute: "timestamp_modified")

@@ -20,6 +20,6 @@ class TaxonConceptImages
 
         $getImages = new GetTaxonConceptImages;
         $query = $getImages($taxonConcept);
-        return $query->orderBy('images.cumulus_record_id');
+        return $query;
     }
 }
