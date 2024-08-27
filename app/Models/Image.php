@@ -81,23 +81,4 @@ class Image extends BaseModel
     {
         return $this->belongsToMany(TaxonConcept::class, 'taxon_concept_image');
     }
-
-
-    public function getThumbnailUrlAttribute()
-    {
-        return env('IMAGE_SERVER_BASE_URL') . 'thumb/' 
-                . $this->canto_content_id . '.jpg';
-    }
-
-    public function getPreviewUrlAttribute()
-    {
-        return env('IMAGE_SERVER_BASE_URL') . 'preview/' 
-                . $this->canto_content_id . '.jpg';
-    }
-
-    public function getHighestResUrlAttribute()
-    {
-        return env('IMAGE_SERVER_BASE_URL') . 'highestres/' 
-                . $this->canto_content_id . '.jpg';
-    }
 }

@@ -30,9 +30,9 @@ type Image {
     type: String
     taxonConcepts: [TaxonConcept!]
 
-    thumbnailUrl: String
-    previewUrl: String
-    highestResUrl: String
+    thumbnailUrl: String @rename(attribute: "thumbnail_url")
+    previewUrl: String @rename(attribute: "preview_url")
+    highestResUrl: String @rename(attribute: "highres_url")
 
     createdAt: DateTimeTz @rename(attribute: "timestamp_created")
     updatedAt: DateTimeTz @rename(attribute: "timestamp_modified")
