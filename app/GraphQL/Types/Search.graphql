@@ -28,9 +28,13 @@ type SearchResultDocument {
     specificEpithet: String
     infraspecificEpithet: String
     parentNameUsageId: String
+    parentId: String
     parentNameUsage: String
+    parent: String
     acceptedNameUsageId: String
+    acceptedId: String
     acceptedNameUsage: String
+    acceptedName: String
     acceptedNameUsageAuthorship: String
     taxonomicStatus: String
     occurrenceStatus: String
