@@ -1,40 +1,43 @@
 type Image {
     id: ID!
-    caption: String @field(resolver: "\\App\\GraphQL\\Queries\\ImageCaption")
-    catalogNumber: String @rename(attribute: "catalog_number")
-    copyrightOwner: String @rename(attribute: "copyright_owner")
+    caption: String
+    catalogNumber: String
+    copyrightOwner: String
     country: String
-    creationDate: String @rename(attribute: "creation_date")
+    creationDate: String
     creator: String
-    cantoContentID: Int! @rename(attribute: "canto_content_id")
-    cantoFileName: String @rename(attribute: "canto_file_name")
-    decimalLatitude: Float @rename(attribute: "decimal_latitude")
-    decimalLongitude: Float @rename(attribute: "decimal_longitude")
-    heroImage: Boolean @rename(attribute: "hero_image")
+    cantoFileName: String
+    decimalLatitude: Float
+    decimalLongitude: Float
+    heroImage: Boolean
     license: String
     locality: String
     modified: String
-    pixelXDimension: Int @rename(attribute: "pixel_x_dimension")
-    pixelYDimension: Int @rename(attribute: "pixel_y_dimension")
+    pixelXDimension: Int
+    pixelYDimension: Int
     rating: Int
-    recordedBy: String @rename(attribute: "recorded_by")
-    recordNumber: String @rename(attribute: "record_number")
+    recordedBy: String
+    recordNumber: String
     rights: String
-    scientificName: String @rename(attribute: "scientific_name")
-    originalScientificName: String @rename(attribute: "original_scientific_name")
+    scientificName: String
+    originalScientificName: String
     source: String
-    stateProvince: String @rename(attribute: "state_province")
-    subjectCategory: String @rename(attribute: "subject_category")
+    stateProvince: String
+    subjectCategory: String
     subtype: String
     title: String
     type: String
-    taxonConcepts: [TaxonConcept!]
+    # taxonConcepts: [TaxonConcept!]
 
-    thumbnailUrl: String @rename(attribute: "thumbnail_url")
-    previewUrl: String @rename(attribute: "preview_url")
-    highestResUrl: String @rename(attribute: "highres_url")
+    thumbnailUrl: String
+    previewUrl: String
+    highestResUrl: String
 
-    createdAt: DateTimeTz @rename(attribute: "timestamp_created")
-    updatedAt: DateTimeTz @rename(attribute: "timestamp_modified")
-    version: Int
+    createdAt: DateTimeTz
+    updatedAt: DateTimeTz
+}
+
+type ImageApiResponse {
+    data: [Image]
+    paginatorInfo: PaginatorInfo
 }
