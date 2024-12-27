@@ -2,24 +2,25 @@
 
 namespace App\GraphQL\Queries;
 
-use App\Actions\GetTaxonConceptImages;
-use App\Models\TaxonConcept;
-use Illuminate\Database\Eloquent\Builder;
+use App\Services\CantoImageService;
+use GraphQL\Type\Definition\ResolveInfo;
+use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 
 class TaxonConceptImages
 {
     /**
-     * @param  TaxonConcept  $taxonConcept
+     * @param null $_
+     * @param array $args
+     * @param \GraphQL\Type\Definition\ResolveInfo $resolveInfo
+     * @return array
      */
-    public function __invoke(?TaxonConcept $taxonConcept, $args): Builder
+    public function __invoke($_, array $args, GraphQLContext $context, ResolveInfo $resolveInfo): array
     {
-        if (!$taxonConcept && isset($args['taxonConceptId'])) {
-            $taxonConcept = TaxonConcept::where('guid', 
-                    $args['taxonConceptId'])->first();
-        }
+        $imageService = new CantoImageService();
 
-        $getImages = new GetTaxonConceptImages;
-        $query = $getImages($taxonConcept);
-        return $query;
+        return $imageService->findByTaxon(
+                $args['taxonConceptId'],
+                $args['first'],
+                $args['page']);
     }
 }

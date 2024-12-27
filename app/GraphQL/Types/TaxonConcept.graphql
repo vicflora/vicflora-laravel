@@ -158,17 +158,6 @@ type TaxonConcept {
         @field(resolver: "\\App\\GraphQL\\Queries\\TaxonConceptHeroImage")
 
     """
-    Flag to indicate whether a Taxon Concept has images associated with it. Used
-    in VicFlora to see if an Image tab needs to be created on the taxon
-    page. Image metadata and thumbnails will be fetched once the Image tab is
-    opened.
-    """
-    hasImages: Boolean
-        @field(
-            resolver: "\\App\\GraphQL\\Queries\\TaxonConceptHasImages"
-        )
-
-    """
     Images associated with a Taxon Concept
     """
     images: [Image]
@@ -360,11 +349,7 @@ extend type Query {
             builder: "\\App\\GraphQL\\Queries\\TaxonConceptsByWkt"
         )
 
-    taxonConceptImages(taxonConceptId: ID!): [Image]
-        @paginate(
-            builder: "\\App\\GraphQL\\Queries\\TaxonConceptImages"
-            defaultCount: 20
-        )
+    taxonConceptImages(taxonConceptId: ID!, first: Int=12, page: Int=1): ImageApiResponse
 
     taxonConceptSpecimenImages(taxonConceptId: ID!): [SpecimenImage]
         @paginate(
