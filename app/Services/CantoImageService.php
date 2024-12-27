@@ -114,20 +114,15 @@ class CantoImageService
      */
     public function heroImage($taxonConceptId): ?array
     {
-        $response = $this->client->get('images/findByTaxon', [
+        $response = $this->client->get('images/heroImageForTaxon', [
                 'query' => [
-                    'taxonConceptId' => $taxonConceptId,
-                    'perPage' => 1,
-                    'page' => 1
+                    'taxonConceptId' => $taxonConceptId
                 ]
             ]);
 
         if ($response->getStatusCode() == '200') {
             $json = json_decode($response->getBody(), true);
-            if ($json['data']) {
-                return $this->createImageRecord($json['data'][0]);
-            }
-            return null;
+            return $this->createImageRecord($json);
         }
         return null;
     }
