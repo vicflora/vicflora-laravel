@@ -24,6 +24,7 @@ type TaxonName {
 
     "Link to name record in APNI"
     apniName: ApniName
+        @field(resolver: "\\App\\GraphQL\\Queries\\TaxonNameApniName")
 
     "Link to taxon record in VBA"
     vbaTaxaListItem: VbaTaxaListItem
@@ -66,16 +67,16 @@ input TaxonNameBelongsTo {
 
 extend type Query {
     taxonName(id: ID! @eq(key: "guid")): TaxonName @find
-    taxonNameAutocomplete(q: String! @ilike(key: "full_name")): [TaxonName] 
-        @all 
+    taxonNameAutocomplete(q: String! @ilike(key: "full_name")): [TaxonName]
+        @all
         @orderBy(column: "full_name", dicrection: "ASC")
 }
 
 extend type Mutation {
-    updateTaxonName(input: UpdateTaxonNameInput!): TaxonName 
+    updateTaxonName(input: UpdateTaxonNameInput!): TaxonName
         @guard(with: ["api"])
         @field(resolver: "\\App\\GraphQL\\Mutations\\UpdateTaxonName")
-    
+
     createTaxonName(input: CreateTaxonNameInput!): TaxonName
         @guard(with: ["api"])
         @field(resolver: "\\App\\GraphQL\\Mutations\\CreateTaxonName")
