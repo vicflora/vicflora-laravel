@@ -169,9 +169,9 @@ class CantoImageService
             'subtype' => $data['subType'],
             'title' => $data['title'],
             'type' => $data['type'],
-            'thumbnailUrl' => $data['thumbnailUrl'],
-            'previewUrl' => $data['previewUrl'],
-            'highestResUrl' => $data['highestResUrl'],
+            'thumbnailUrl' => str_replace(['.jpeg', '.JPG', '.JPEG'], '.jpg', $data['thumbnailUrl']),
+            'previewUrl' => str_replace(['.jpeg', '.JPG', '.JPEG'], '.jpg', $data['previewUrl']),
+            'highestResUrl' => str_replace(['.jpeg', '.JPG', '.JPEG'], '.jpg', $data['highestResUrl']),
             'createdAt' => $data['created_at'],
             'updatedAt' => $data['updated_at'],
         ];
