@@ -155,8 +155,8 @@ class CantoImageService
             'license' => $data['license'],
             'locality' => $data['locality'],
             'modified' => $data['modified'],
-            'pixelXDimension' => (int) $data['w'],
-            'pixelYDimension' => (int) $data['h'],
+            'pixelXDimension' => (int) $data['pixelXDimension'],
+            'pixelYDimension' => (int) $data['pixelYDimension'],
             'rating' => $data['rating'],
             'recordedBy' => $data['recordedBy'],
             'recordNumber' => $data['recordNumber'],
@@ -171,7 +171,7 @@ class CantoImageService
             'type' => $data['type'],
             'thumbnailUrl' => $data['thumbnailUrl'],
             'previewUrl' => $data['previewUrl'],
-            'highestResUrl' => $data['previewUrl'],
+            'highestResUrl' => $data['highestResUrl'],
             'createdAt' => $data['created_at'],
             'updatedAt' => $data['updated_at'],
         ];
@@ -209,9 +209,9 @@ class CantoImageService
         if ($image['originalScientificName']) {
             $scientificName .= " (as <i>{$image['originalScientificName']}</i>)";
         }
-        // elseif ($image['acceptedName'] != $image['scientificName']) {
-        //     $scientificName .= " (as <i>{$image['scientificName']}</i>)";
-        // }
+        elseif ($image['taxon']['taxonomicStatus'] == 'synonym' && $image['taxon']['acceptedName'] != $image['scientificName']) {
+            $scientificName = "<i>{$image['taxon']['acceptedName']}</i> (as <i>{$image['scientificName']}</i>)";
+        }
         $search = [' subsp. ', ' var. ', ' f. '];
         $replace = [
             '</i> subsp. <i>',
@@ -239,9 +239,9 @@ class CantoImageService
         }
 
         $caption = $scientificName;
-        // if ($image['caption']) {
-        //     $caption .= ". {$image['caption']}";
-        // }
+        if ($image['caption']) {
+            $caption .= ". {$image['caption']}";
+        }
         $caption .= '<br/>';
         if ($image['source'] && $image['subjectCategory'] !== 'Flora of the Otway Plain and Ranges Plate') {
             $caption .= "<b>Source:</b> {$image['source']}<br/>";
