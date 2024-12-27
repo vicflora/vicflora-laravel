@@ -1,8 +1,6 @@
 type ApniName {
-    id: ID! @rename(attribute: "apni_id")
-    apniNumber: Int @rename(attribute: "apni_number")
-    fullNameWithAuthorship: String 
-        @rename(attribute: "full_name_with_authorship")
-    matchType: String @rename(attribute: "match_type")
-    verified: Boolean @rename(attribute: "is_verified")
+    id: ID!
+    apniNumber: Int
+    fullNameWithAuthorship: String
+    matchType: String
 }
