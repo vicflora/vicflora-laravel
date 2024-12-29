@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\TransferException;
 
 class CantoImageService
 {
@@ -25,27 +26,32 @@ class CantoImageService
      */
     public function getImages(int $perPage=50, int $page=1): array
     {
-        $response = $this->client->get('images', [
+        try {
+            $response = $this->client->get('images', [
                 'query' => [
                     'perPage' => $perPage,
                     'page' => 1
                 ]
             ]);
 
-        if ($response->getStatusCode() == '200') {
-            $json = json_decode($response->getBody(), true);
-            if ($json['data']) {
-                foreach ($json['data'] as $item) {
-                    $images[] = $this->createImageRecord($item);
+            if ($response->getStatusCode() == '200') {
+                $json = json_decode($response->getBody(), true);
+                if ($json['data']) {
+                    foreach ($json['data'] as $item) {
+                        $images[] = $this->createImageRecord($item);
+                    }
+                    return [
+                        'data' => $images,
+                        'paginatorInfo' => $this->createPaginatorInfo($json)
+                    ];
                 }
-                return [
-                    'data' => $images,
-                    'paginatorInfo' => $this->createPaginatorInfo($json)
-                ];
+                return [];
             }
             return [];
         }
-        return [];
+        catch(TransferException $e) {
+            return [];
+        }
     }
 
     /**
@@ -56,16 +62,21 @@ class CantoImageService
      */
     public function getImage(string $id): ?array
     {
-        $response = $this->client->get('images/' . $id);
+        try {
+            $response = $this->client->get('images/' . $id);
 
-        if ($response->getStatusCode() == '200') {
-            $json = json_decode($response->getBody(), true);
-            if ($json['data']) {
-                return $this->createImageRecord($json['data'][0]);
+            if ($response->getStatusCode() == '200') {
+                $json = json_decode($response->getBody(), true);
+                if ($json['data']) {
+                    return $this->createImageRecord($json['data'][0]);
+                }
+                return null;
             }
             return null;
         }
-        return null;
+        catch (TransferException $e) {
+            return null;
+        }
     }
 
     /**
@@ -81,7 +92,8 @@ class CantoImageService
             ?int $first=12,
             ?int $page=1): array
     {
-        $response = $this->client->get('images/findByTaxon', [
+        try {
+            $response = $this->client->get('images/findByTaxon', [
                 'query' => [
                     'taxonConceptId' => $taxonConceptId,
                     'perPage' => $first,
@@ -89,21 +101,25 @@ class CantoImageService
                 ]
             ]);
 
-        if ($response->getStatusCode() == '200') {
-            $json = json_decode($response->getBody(), true);
-            $images = [];
-            if ($json['data']) {
-                foreach ($json['data'] as $item) {
-                    $images[] = $this->createImageRecord($item);
+            if ($response->getStatusCode() == '200') {
+                $json = json_decode($response->getBody(), true);
+                $images = [];
+                if ($json['data']) {
+                    foreach ($json['data'] as $item) {
+                        $images[] = $this->createImageRecord($item);
+                    }
+                    return [
+                        'data' => $images,
+                        'paginatorInfo' => $this->createPaginatorInfo($json)
+                    ];
                 }
-                return [
-                    'data' => $images,
-                    'paginatorInfo' => $this->createPaginatorInfo($json)
-                ];
+                return [];
             }
             return [];
         }
-        return [];
+        catch (TransferException $e) {
+            return [];
+        }
     }
 
     /**
@@ -114,17 +130,22 @@ class CantoImageService
      */
     public function heroImage($taxonConceptId): ?array
     {
-        $response = $this->client->get('images/heroImageForTaxon', [
+        try {
+            $response = $this->client->get('images/heroImageForTaxon', [
                 'query' => [
                     'taxonConceptId' => $taxonConceptId
                 ]
             ]);
 
-        if ($response->getStatusCode() == '200') {
-            $json = json_decode($response->getBody(), true);
-            return $this->createImageRecord($json);
+            if ($response->getStatusCode() == '200') {
+                $json = json_decode($response->getBody(), true);
+                return $this->createImageRecord($json);
+            }
+            return null;
         }
-        return null;
+        catch(TransferException $e) {
+            return null;
+        }
     }
 
     /**
