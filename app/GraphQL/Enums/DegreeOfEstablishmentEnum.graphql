@@ -30,7 +30,7 @@ enum DegreeOfEstablishmentEnum {
     population.
 
     """
-    ADVENTIVE @enum(value: "reproducing")
+    ADVENTIVE @enum(value: "adventive")
 
     """
     **Naturalised** – (**Established** in Darwin Core vocabulary) Individuals
