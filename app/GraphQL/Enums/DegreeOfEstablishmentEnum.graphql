@@ -38,7 +38,7 @@ enum DegreeOfEstablishmentEnum {
     occurring, and population self-sustaining. The population is maintained by
     reproduction, but is not spreading.
     """
-    NATURALISED @enum(value: "established")
+    NATURALISED @enum(value: "naturalised")
 
     """
     **Colonising** – Self-sustaining population outside of captivity or
