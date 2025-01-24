@@ -23,27 +23,22 @@ enum DegreeOfEstablishmentEnum {
     CASUAL @enum(value: "casual")
 
     """
-    **Reproducing** – Individuals surviving outside of captivity or cultivation
-    in a location. Reproduction is occurring, but population not
-    self-sustaining. Offspring are produced, but these either do not survive or
-    are not fertile enough to maintain the population.
+    **Adventive** – (**Reproducing** in Darwin Core vocabulary) Individuals
+    surviving outside of captivity or cultivation in a location. Reproduction is
+    occurring, but population not self-sustaining. Offspring are produced, but
+    these either do not survive or are not fertile enough to maintain the
+    population.
 
     """
-    REPRODUCING @enum(value: "reproducing")
-
-
-    """
-    **Adventive** – Union of **Casual** and **Reproducing**.
-    """
-
-    ADVENTIVE @enum(value: "adventive")
+    ADVENTIVE @enum(value: "reproducing")
 
     """
-    **Established** – Individuals surviving outside of captivity or cultivation
-    in a location. Reproduction occurring, and population self-sustaining. The
-    population is maintained by reproduction, but is not spreading.
+    **Naturalised** – (**Established** in Darwin Core vocabulary) Individuals
+    surviving outside of captivity or cultivation in a location. Reproduction
+    occurring, and population self-sustaining. The population is maintained by
+    reproduction, but is not spreading.
     """
-    ESTABLISHED @enum(value: "established")
+    NATURALISED @enum(value: "established")
 
     """
     **Colonising** – Self-sustaining population outside of captivity or
