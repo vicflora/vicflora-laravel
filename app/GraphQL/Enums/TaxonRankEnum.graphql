@@ -1,5 +1,6 @@
 enum TaxonRankEnum {
     LIFE @enum(value: "life")
+    DOMAIN @enum(value: "domain")
     KINGDOM @enum(value: "kingdom")
     SUBKINGDOM @enum(value: "subkingdom")
     PHYLUM @enum(value: "phylum")

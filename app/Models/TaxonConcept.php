@@ -295,12 +295,12 @@ class TaxonConcept extends BaseModel
                     '=',
                     'taxonomic_statuses.id'
                 )
-                ->join(
-                    'occurrence_statuses as os',
-                    'taxon_concepts.occurrence_status_id',
-                    '=',
-                    'os.id'
-                )
+                // ->join(
+                //     'occurrence_statuses as os',
+                //     'taxon_concepts.occurrence_status_id',
+                //     '=',
+                //     'os.id'
+                // )
                 ->join(
                     'taxon_names',
                     'taxon_concepts.taxon_name_id',
@@ -309,7 +309,8 @@ class TaxonConcept extends BaseModel
                 )
                 ->where('taxon_concepts.parent_id', $this->id)
                 ->where('taxonomic_statuses.name', 'accepted')
-                ->where('os.name', '!=', 'excluded')
+                // ->where('os.name', '!=', 'excluded')
+                ->orderBy('rank_id')
                 ->orderBy('full_name');
 
             if (!Auth::check()) {
