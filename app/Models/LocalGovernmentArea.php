@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Clickbar\Magellan\Database\Eloquent\HasPostgisColumns;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
@@ -17,14 +18,22 @@ use Illuminate\Support\Str;
  * @property array<mixed> $geometry
  * @property array<mixed> $properties
  */
-class LocalGovernmentArea extends Model
-{
+class LocalGovernmentArea extends Model {
+    use HasPostgisColumns;
+
     /**
      * The table associated with the model.
      *
      * @var string
      */
     protected $table = 'mapper_overlays.local_government_areas';
+
+    protected array $postgisColumns = [
+        'geom' => [
+            'type' => 'geometry',
+            'srid' => 4326,
+        ],
+    ];
 
     /**
      * @return string
