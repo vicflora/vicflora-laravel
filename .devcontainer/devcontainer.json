@@ -1,0 +1,13 @@
+{
+  "name": "Laradock",
+  "dockerComposeFile": "../../laradock/docker-compose.yml",
+  "remoteUser": "laradock",
+  "runServices": [
+    "nginx",
+    "postgres-postgis"
+  ],
+  "service": "workspace",
+  "workspaceFolder": "/var/www/vicflora-laravel",
+  "shutdownAction": "stopCompose",
+  "postCreateCommand": "uname -a"
+}

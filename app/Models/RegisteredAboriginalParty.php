@@ -2,22 +2,32 @@
 
 namespace App\Models;
 
+use Clickbar\Magellan\Database\Eloquent\HasPostgisColumns;
 use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property integere $id
  * @property string $name
  * @property string $short_name
- *  
+ *
  */
 class RegisteredAboriginalParty extends Model
 {
+    use HasPostgisColumns;
+
     /**
      * The table associated with the model.
      *
      * @var string
      */
     protected $table = 'mapper_overlays.raps';
+
+    protected array $postgisColumns = [
+        'geom' => [
+            'type' => 'geometry',
+            'srid' => 4326,
+        ],
+    ];
 
     /**
      * @return string
