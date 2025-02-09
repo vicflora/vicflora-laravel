@@ -7,7 +7,7 @@
     "postgres-postgis"
   ],
   "service": "workspace",
-  "workspaceFolder": "/var/www/vicflora-laravel",
+  "workspaceFolder": "/var/www/vicfunga-laravel",
   "shutdownAction": "stopCompose",
   "postCreateCommand": "uname -a"
 }
