@@ -21,7 +21,10 @@ final class TaxonConceptInaturalistPhotos
 
         $getInaturalistPhotos = new GetTaxonConceptInaturalistPhotos;
         $query = $getInaturalistPhotos($taxonConcept);
-        return $query->with(['license', 'observations.user', 'taxonConcepts.taxonName'])
-                ->orderBy('p.id', 'desc');
+        return $query->with(['license', 
+                'observations.user', 
+                'taxonConcepts.taxonName', 
+                'taxonConcepts.acceptedConcept.taxonName'])
+            ->orderBy('p.id', 'desc');
     }
 }
