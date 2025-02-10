@@ -1,0 +1,9 @@
+enum LicenseCodeEnum {
+    CC0 @enum(value: "cc0")
+    CC_BY @enum(value: "cc-by")
+    CC_BY_NC @enum(value: "cc-by-nc")
+    CC_BY_NC_ND @enum(value: "cc-by-nc-nd")
+    CC_BY_NC_SA @enum(value: "cc-by-nc-sa")
+    CC_BY_ND @enum(value: "cc-by-nd")
+    CC_BY_SA @enum(value: "cc-by-sa")
+}

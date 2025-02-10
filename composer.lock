@@ -4,7 +4,7 @@
     "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
     "This file is @generated automatically"
   ],
-  "content-hash": "6ef97314e195fb245f9b6c0a5ba3d387",
+  "content-hash": "1fa22c6779ec6a29e60fc367b0b6f4df",
   "packages": [
     {
       "name": "asm89/stack-cors",
@@ -61,66 +61,6 @@
         "source": "https://github.com/asm89/stack-cors/tree/v2.2.0"
       },
       "time": "2023-11-14T13:51:46+00:00"
-    },
-    {
-      "name": "bosnadev/database",
-      "version": "dev-master",
-      "source": {
-        "type": "git",
-        "url": "https://github.com/bosnadev/database.git",
-        "reference": "98cab1bef6ad06b0dcf9da9e2f32e5e8d8d9749a"
-      },
-      "dist": {
-        "type": "zip",
-        "url": "https://api.github.com/repos/bosnadev/database/zipball/98cab1bef6ad06b0dcf9da9e2f32e5e8d8d9749a",
-        "reference": "98cab1bef6ad06b0dcf9da9e2f32e5e8d8d9749a",
-        "shasum": ""
-      },
-      "require": {
-        "doctrine/dbal": "^2.5|^3.0",
-        "illuminate/database": "^5.0|^6.0|^7.0|^8.0|^9.0|^10.0",
-        "php": ">=5.5",
-        "ramsey/uuid": "^3.0|^4.0"
-      },
-      "require-dev": {
-        "codeclimate/php-test-reporter": "^0.3.2",
-        "mockery/mockery": "0.9.*",
-        "phpunit/phpunit": "~4.5"
-      },
-      "default-branch": true,
-      "type": "library",
-      "autoload": {
-        "psr-4": {
-          "Bosnadev\\Database\\": "src/Bosnadev/Database/"
-        }
-      },
-      "notification-url": "https://packagist.org/downloads/",
-      "license": [
-        "MIT"
-      ],
-      "authors": [
-        {
-          "name": "Mirza Pasic",
-          "email": "mirza@bosnadev.com"
-        },
-        {
-          "name": "Peter Haza",
-          "email": "peter.haza@gmail.com"
-        }
-      ],
-      "description": "Eloquent Extended, added some PostgreSQL features",
-      "homepage": "https://bosnadev.com",
-      "keywords": [
-        "database",
-        "eloquent",
-        "laravel",
-        "postgresql"
-      ],
-      "support": {
-        "issues": "https://github.com/bosnadev/database/issues",
-        "source": "https://github.com/bosnadev/database/tree/master"
-      },
-      "time": "2023-04-04T16:05:19+00:00"
     },
     {
       "name": "brick/math",
@@ -245,6 +185,90 @@
         }
       ],
       "time": "2023-12-11T17:09:12+00:00"
+    },
+    {
+      "name": "clickbar/laravel-magellan",
+      "version": "1.7.1",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/clickbar/laravel-magellan.git",
+        "reference": "524a98dc52279cb498ea979d872b04dea4decaaa"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/clickbar/laravel-magellan/zipball/524a98dc52279cb498ea979d872b04dea4decaaa",
+        "reference": "524a98dc52279cb498ea979d872b04dea4decaaa",
+        "shasum": ""
+      },
+      "require": {
+        "illuminate/console": "^9.0|^10.0|^11.0",
+        "illuminate/contracts": "^9.28|^10.0|^11.0",
+        "illuminate/database": "^9.0|^10.0|^11.0",
+        "illuminate/support": "^9.0|^10.0|^11.0",
+        "php": "^8.1",
+        "spatie/invade": "^2.0",
+        "spatie/laravel-package-tools": "^1.14.0"
+      },
+      "require-dev": {
+        "doctrine/dbal": "^3.5",
+        "larastan/larastan": "^2.6",
+        "laravel/pint": "^1.2.1",
+        "nunomaduro/collision": "^6.0|^v8.1",
+        "orchestra/testbench": "^7.15|^8.0|^9.0",
+        "pestphp/pest": "^1.22|^2.34",
+        "pestphp/pest-plugin-laravel": "^1.1|^2.3",
+        "phpstan/extension-installer": "^1.2",
+        "phpstan/phpstan-deprecation-rules": "^1.0",
+        "phpstan/phpstan-phpunit": "^1.2",
+        "phpunit/phpunit": "^9.5|^10.5",
+        "spatie/laravel-ray": "^1.26"
+      },
+      "type": "library",
+      "extra": {
+        "laravel": {
+          "aliases": {
+            "Magellan": "Clickbar\\Magellan\\Facades\\Magellan"
+          },
+          "providers": [
+            "Clickbar\\Magellan\\MagellanServiceProvider"
+          ]
+        }
+      },
+      "autoload": {
+        "psr-4": {
+          "Clickbar\\Magellan\\": "src",
+          "Clickbar\\Magellan\\Database\\Factories\\": "database/factories"
+        }
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "Adrian Hawlitschek",
+          "email": "ah@clickbar.dev",
+          "role": "Developer"
+        },
+        {
+          "name": "Tobias Kröll",
+          "email": "tk@clickbar.dev",
+          "role": "Developer"
+        }
+      ],
+      "description": "This package provides functionality for working with the postgis extension in Laravel.",
+      "homepage": "https://github.com/clickbar/laravel-magellan",
+      "keywords": [
+        "clickbar",
+        "laravel",
+        "magellan",
+        "postgis"
+      ],
+      "support": {
+        "issues": "https://github.com/clickbar/laravel-magellan/issues",
+        "source": "https://github.com/clickbar/laravel-magellan/tree/1.7.1"
+      },
+      "time": "2025-01-03T11:54:19+00:00"
     },
     {
       "name": "composer/pcre",
@@ -1381,102 +1405,6 @@
       "time": "2023-10-12T05:21:21+00:00"
     },
     {
-      "name": "geo-io/interface",
-      "version": "v1.0.1",
-      "source": {
-        "type": "git",
-        "url": "https://github.com/geo-io/interface.git",
-        "reference": "cf46fe7b013de20ab8b601238c7d91b480810644"
-      },
-      "dist": {
-        "type": "zip",
-        "url": "https://api.github.com/repos/geo-io/interface/zipball/cf46fe7b013de20ab8b601238c7d91b480810644",
-        "reference": "cf46fe7b013de20ab8b601238c7d91b480810644",
-        "shasum": ""
-      },
-      "require": {
-        "php": ">=5.3.3"
-      },
-      "type": "library",
-      "autoload": {
-        "psr-4": {
-          "GeoIO\\": "src/"
-        }
-      },
-      "notification-url": "https://packagist.org/downloads/",
-      "license": [
-        "MIT"
-      ],
-      "authors": [
-        {
-          "name": "Jan Sorgalla",
-          "email": "jsorgalla@gmail.com"
-        }
-      ],
-      "description": "Geo I/O base interfaces.",
-      "keywords": [
-        "geo",
-        "geometry",
-        "io"
-      ],
-      "support": {
-        "issues": "https://github.com/geo-io/interface/issues",
-        "source": "https://github.com/geo-io/interface/tree/v1.0.1"
-      },
-      "time": "2016-07-28T07:17:02+00:00"
-    },
-    {
-      "name": "geo-io/wkb-parser",
-      "version": "v1.0.2",
-      "source": {
-        "type": "git",
-        "url": "https://github.com/geo-io/wkb-parser.git",
-        "reference": "d6c3101e6fa255c2a5064fedb33551c4d50e58f6"
-      },
-      "dist": {
-        "type": "zip",
-        "url": "https://api.github.com/repos/geo-io/wkb-parser/zipball/d6c3101e6fa255c2a5064fedb33551c4d50e58f6",
-        "reference": "d6c3101e6fa255c2a5064fedb33551c4d50e58f6",
-        "shasum": ""
-      },
-      "require": {
-        "geo-io/interface": "~1.0",
-        "php": ">=5.3.3"
-      },
-      "require-dev": {
-        "mockery/mockery": "~0.9.0"
-      },
-      "type": "library",
-      "autoload": {
-        "psr-4": {
-          "GeoIO\\WKB\\Parser\\": "src/"
-        }
-      },
-      "notification-url": "https://packagist.org/downloads/",
-      "license": [
-        "MIT"
-      ],
-      "authors": [
-        {
-          "name": "Jan Sorgalla",
-          "email": "jsorgalla@gmail.com"
-        }
-      ],
-      "description": "Well-known binary (WKB) Parser.",
-      "keywords": [
-        "geo",
-        "geometry",
-        "io",
-        "parser",
-        "wkb"
-      ],
-      "support": {
-        "issues": "https://github.com/geo-io/wkb-parser/issues",
-        "source": "https://github.com/geo-io/wkb-parser/tree/v1.0.2"
-      },
-      "time": "2022-01-15T16:29:24+00:00"
-    },
-    {
       "name": "gmostafa/php-graphql-client",
       "version": "v1.13",
       "source": {
@@ -2010,16 +1938,16 @@
     },
     {
       "name": "guzzlehttp/uri-template",
-      "version": "v1.0.3",
+      "version": "v1.0.4",
       "source": {
         "type": "git",
         "url": "https://github.com/guzzle/uri-template.git",
-        "reference": "ecea8feef63bd4fef1f037ecb288386999ecc11c"
+        "reference": "30e286560c137526eccd4ce21b2de477ab0676d2"
       },
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/guzzle/uri-template/zipball/ecea8feef63bd4fef1f037ecb288386999ecc11c",
-        "reference": "ecea8feef63bd4fef1f037ecb288386999ecc11c",
+        "url": "https://api.github.com/repos/guzzle/uri-template/zipball/30e286560c137526eccd4ce21b2de477ab0676d2",
+        "reference": "30e286560c137526eccd4ce21b2de477ab0676d2",
         "shasum": ""
       },
       "require": {
@@ -2076,7 +2004,7 @@
       ],
       "support": {
         "issues": "https://github.com/guzzle/uri-template/issues",
-        "source": "https://github.com/guzzle/uri-template/tree/v1.0.3"
+        "source": "https://github.com/guzzle/uri-template/tree/v1.0.4"
       },
       "funding": [
         {
@@ -2092,7 +2020,7 @@
           "type": "tidelift"
         }
       ],
-      "time": "2023-12-03T19:50:20+00:00"
+      "time": "2025-02-03T10:55:03+00:00"
     },
     {
       "name": "halaxa/json-machine",
@@ -2197,65 +2125,6 @@
       ],
       "description": "A library that can provide of a list of classes in a given namespace",
       "time": "2022-09-26T22:42:59+00:00"
-    },
-    {
-      "name": "jmikola/geojson",
-      "version": "1.2.0",
-      "source": {
-        "type": "git",
-        "url": "https://github.com/jmikola/geojson.git",
-        "reference": "e28f3855bb61a91aab32b74c176d76dd0b5658d7"
-      },
-      "dist": {
-        "type": "zip",
-        "url": "https://api.github.com/repos/jmikola/geojson/zipball/e28f3855bb61a91aab32b74c176d76dd0b5658d7",
-        "reference": "e28f3855bb61a91aab32b74c176d76dd0b5658d7",
-        "shasum": ""
-      },
-      "require": {
-        "ext-json": "*",
-        "php": "^7.4 || ^8.0",
-        "symfony/polyfill-php80": "^1.25"
-      },
-      "require-dev": {
-        "phpunit/phpunit": "^9.5",
-        "scrutinizer/ocular": "^1.8.1",
-        "slevomat/coding-standard": "^8.0",
-        "squizlabs/php_codesniffer": "^3.6"
-      },
-      "type": "library",
-      "extra": {
-        "branch-alias": {
-          "dev-master": "1.1-dev"
-        }
-      },
-      "autoload": {
-        "psr-4": {
-          "GeoJson\\": "src"
-        }
-      },
-      "notification-url": "https://packagist.org/downloads/",
-      "license": [
-        "MIT"
-      ],
-      "authors": [
-        {
-          "name": "Jeremy Mikola",
-          "email": "jmikola@gmail.com"
-        }
-      ],
-      "description": "GeoJSON implementation for PHP",
-      "homepage": "https://github.com/jmikola/geojson",
-      "keywords": [
-        "geo",
-        "geojson",
-        "geospatial"
-      ],
-      "support": {
-        "issues": "https://github.com/jmikola/geojson/issues",
-        "source": "https://github.com/jmikola/geojson/tree/1.2.0"
-      },
-      "time": "2023-12-04T17:19:43+00:00"
     },
     {
       "name": "joselfonseca/lighthouse-graphql-passport-auth",
@@ -4169,71 +4038,6 @@
       "time": "2024-11-12T12:43:37+00:00"
     },
     {
-      "name": "mstaack/laravel-postgis",
-      "version": "5.4.2",
-      "source": {
-        "type": "git",
-        "url": "https://github.com/mstaack/laravel-postgis.git",
-        "reference": "d450e36c10d9b96037d65e6f89ff6fa815eafc70"
-      },
-      "dist": {
-        "type": "zip",
-        "url": "https://api.github.com/repos/mstaack/laravel-postgis/zipball/d450e36c10d9b96037d65e6f89ff6fa815eafc70",
-        "reference": "d450e36c10d9b96037d65e6f89ff6fa815eafc70",
-        "shasum": ""
-      },
-      "require": {
-        "bosnadev/database": "^0.21|master",
-        "geo-io/wkb-parser": "^1.0",
-        "illuminate/database": "^6.0|^7.0|^8.0|^9.0",
-        "jmikola/geojson": "^1.0",
-        "php": ">=7.1"
-      },
-      "require-dev": {
-        "illuminate/pagination": "^6.0|^7.0|^8.0|^9.0",
-        "mockery/mockery": "^1.3",
-        "phpunit/phpunit": "^8.5"
-      },
-      "type": "library",
-      "extra": {
-        "laravel": {
-          "providers": [
-            "MStaack\\LaravelPostgis\\DatabaseServiceProvider"
-          ]
-        }
-      },
-      "autoload": {
-        "psr-4": {
-          "MStaack\\LaravelPostgis\\": "src/"
-        }
-      },
-      "notification-url": "https://packagist.org/downloads/",
-      "license": [
-        "MIT"
-      ],
-      "authors": [
-        {
-          "name": "Peter Haza",
-          "email": "peter.haza@gmail.com"
-        },
-        {
-          "name": "Nicholas Barrett",
-          "email": "njbarrett7@gmail.com"
-        },
-        {
-          "name": "Max Matteo Staack",
-          "email": "maxmatteostaack@gmail.com"
-        }
-      ],
-      "description": "Postgis extensions for laravel. Aims to make it easy to work with geometries from laravel models",
-      "support": {
-        "issues": "https://github.com/mstaack/laravel-postgis/issues",
-        "source": "https://github.com/mstaack/laravel-postgis/tree/5.4.2"
-      },
-      "abandoned": true,
-      "time": "2022-08-11T09:48:56+00:00"
-    },
-    {
       "name": "nesbot/carbon",
       "version": "2.72.6",
       "source": {
@@ -4956,20 +4760,20 @@
     },
     {
       "name": "phpoffice/phpspreadsheet",
-      "version": "2.3.7",
+      "version": "2.3.8",
       "source": {
         "type": "git",
         "url": "https://github.com/PHPOffice/PhpSpreadsheet.git",
-        "reference": "cf357183b1d17a3862e8e4b9b056a556654dcae6"
+        "reference": "7a700683743bf1c4a21837c84b266916f1aa7d25"
       },
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/PHPOffice/PhpSpreadsheet/zipball/cf357183b1d17a3862e8e4b9b056a556654dcae6",
-        "reference": "cf357183b1d17a3862e8e4b9b056a556654dcae6",
+        "url": "https://api.github.com/repos/PHPOffice/PhpSpreadsheet/zipball/7a700683743bf1c4a21837c84b266916f1aa7d25",
+        "reference": "7a700683743bf1c4a21837c84b266916f1aa7d25",
         "shasum": ""
       },
       "require": {
-        "composer/pcre": "^3.2",
+        "composer/pcre": "^1 || ^2 || ^3",
         "ext-ctype": "*",
         "ext-dom": "*",
         "ext-fileinfo": "*",
@@ -5055,9 +4859,9 @@
       ],
       "support": {
         "issues": "https://github.com/PHPOffice/PhpSpreadsheet/issues",
-        "source": "https://github.com/PHPOffice/PhpSpreadsheet/tree/2.3.7"
+        "source": "https://github.com/PHPOffice/PhpSpreadsheet/tree/2.3.8"
       },
-      "time": "2025-01-26T04:53:06+00:00"
+      "time": "2025-02-08T03:01:45+00:00"
     },
     {
       "name": "phpoption/phpoption",
@@ -6137,6 +5941,125 @@
         "source": "https://github.com/solariumphp/solarium/tree/6.3.6"
       },
       "time": "2024-11-27T14:53:41+00:00"
+    },
+    {
+      "name": "spatie/invade",
+      "version": "2.1.0",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/spatie/invade.git",
+        "reference": "b920f6411d21df4e8610a138e2e87ae4957d7f63"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/spatie/invade/zipball/b920f6411d21df4e8610a138e2e87ae4957d7f63",
+        "reference": "b920f6411d21df4e8610a138e2e87ae4957d7f63",
+        "shasum": ""
+      },
+      "require": {
+        "php": "^8.0"
+      },
+      "require-dev": {
+        "pestphp/pest": "^1.20",
+        "phpstan/phpstan": "^1.4",
+        "spatie/ray": "^1.28"
+      },
+      "type": "library",
+      "autoload": {
+        "files": [
+          "src/functions.php"
+        ],
+        "psr-4": {
+          "Spatie\\Invade\\": "src"
+        }
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "Freek Van der Herten",
+          "email": "freek@spatie.be",
+          "role": "Developer"
+        }
+      ],
+      "description": "A PHP function to work with private properties and methods",
+      "homepage": "https://github.com/spatie/invade",
+      "keywords": [
+        "invade",
+        "spatie"
+      ],
+      "support": {
+        "source": "https://github.com/spatie/invade/tree/2.1.0"
+      },
+      "funding": [
+        {
+          "url": "https://github.com/spatie",
+          "type": "github"
+        }
+      ],
+      "time": "2024-05-17T09:06:10+00:00"
+    },
+    {
+      "name": "spatie/laravel-package-tools",
+      "version": "1.19.0",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/spatie/laravel-package-tools.git",
+        "reference": "1c9c30ac6a6576b8d15c6c37b6cf23d748df2faa"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/spatie/laravel-package-tools/zipball/1c9c30ac6a6576b8d15c6c37b6cf23d748df2faa",
+        "reference": "1c9c30ac6a6576b8d15c6c37b6cf23d748df2faa",
+        "shasum": ""
+      },
+      "require": {
+        "illuminate/contracts": "^9.28|^10.0|^11.0|^12.0",
+        "php": "^8.0"
+      },
+      "require-dev": {
+        "mockery/mockery": "^1.5",
+        "orchestra/testbench": "^7.7|^8.0|^9.0|^10.0",
+        "pestphp/pest": "^1.23|^2.1|^3.1",
+        "phpunit/phpunit": "^9.5.24|^10.5|^11.5",
+        "spatie/pest-plugin-test-time": "^1.1|^2.2"
+      },
+      "type": "library",
+      "autoload": {
+        "psr-4": {
+          "Spatie\\LaravelPackageTools\\": "src"
+        }
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "Freek Van der Herten",
+          "email": "freek@spatie.be",
+          "role": "Developer"
+        }
+      ],
+      "description": "Tools for creating Laravel packages",
+      "homepage": "https://github.com/spatie/laravel-package-tools",
+      "keywords": [
+        "laravel-package-tools",
+        "spatie"
+      ],
+      "support": {
+        "issues": "https://github.com/spatie/laravel-package-tools/issues",
+        "source": "https://github.com/spatie/laravel-package-tools/tree/1.19.0"
+      },
+      "funding": [
+        {
+          "url": "https://github.com/spatie",
+          "type": "github"
+        }
+      ],
+      "time": "2025-02-06T14:58:20+00:00"
     },
     {
       "name": "spatie/regex",
