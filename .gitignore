@@ -17,3 +17,6 @@ yarn-error.log
 /resources/spectaql/public
 /.vscode
 .styleci.yml
+_lighthouse_ide_helper.php
+programmatic-types.graphql
+schema-directives.graphql
