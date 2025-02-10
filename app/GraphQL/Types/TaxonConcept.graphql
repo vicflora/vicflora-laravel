@@ -183,6 +183,17 @@ type TaxonConcept {
             defaultCount: 20
         )
 
+    hasInaturalistPhotos: Boolean
+        @field(
+            resolver: "\\App\\GraphQL\\Queries\\TaxonConceptHasInaturalistPhotos"
+        )
+
+    inaturalistPhotos: [InaturalistPhoto]
+        @paginate(
+            builder: "\\App\\GraphQL\\Queries\\TaxonConceptInaturalistPhotos"
+            defaultCount: 20
+        )
+
     """
     Victorian bioregions where the taxon occurs.
     """
@@ -357,7 +368,13 @@ extend type Query {
             defaultCount: 20
         )
 
-    "Get siblings of a TaxonConcept"
+    taxonConceptInaturalistPhotos(taxonConceptId: ID!): [InaturalistPhoto]
+        @paginate(
+            builder: "\\App\\GraphQL\\Queries\\TaxonConceptInaturalistPhotos"
+            defaultCount: 20
+        )
+
+   "Get siblings of a TaxonConcept"
     taxonConceptSiblings(taxonConceptId: ID!): [TaxonConcept]
         @field(resolver: "\\App\\GraphQL\\Queries\\TaxonConceptSiblings")
 

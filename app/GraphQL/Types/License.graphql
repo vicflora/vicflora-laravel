@@ -1,0 +1,6 @@
+type License {
+    name: String
+    label: String
+    licenseUrl: String @rename(attribute: "license_url")
+    licenseLogoUrl: String @rename(attribute: "license_logo_url")
+}

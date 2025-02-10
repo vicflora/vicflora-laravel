@@ -272,6 +272,18 @@ class TaxonConcept extends BaseModel
     }
 
     /**
+     * iNaturalist photos that can be linked to this taxon concept
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function inaturalistPhotos(): BelongsToMany
+    {
+        return $this->belongsToMany(InaturalistPhoto::class,
+                'taxon_concept_inaturalist_photo',
+                'taxon_concept_id', 'inaturalist_photo_id');
+    }
+
+    /**
      * @return void
      */
     public function getParentAttribute()

@@ -1,0 +1,6 @@
+type InaturalistUser {
+    id: ID
+    login: String
+    name: String
+    orcid: ORCID
+}

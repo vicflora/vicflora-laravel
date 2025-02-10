@@ -1,0 +1,19 @@
+type InaturalistPhoto {
+    id: ID!
+    licenseCode: LicenseCodeEnum @rename(attribute: "license_code")
+    originalDimensions: ImageDimensions @rename(attribute: "originalImageDimensions")
+    pixelXDimension: Int
+    pixelYDimension: Int
+    attribution: String
+    license: License
+    observations: [InaturalistObservation]
+    taxonConcepts: [TaxonConcept]
+    thumbnailUrl: String
+    previewUrl: String
+    originalImageUrl: String
+}
+
+type ImageDimensions {
+    width: Int
+    height: Int
+}

@@ -1,0 +1,29 @@
+type InaturalistObservation {
+    id: ID!
+    uuid: UUID
+    createdAt: DateTimeTz @rename(attribute: "created_at")
+    updatedAt: DateTimeTz @rename(attribute: "updated_at")
+    identification: InaturalistTaxon @rename(attribute: "taxon")
+    qualityGrade: String
+    licenseCode: LicenseCodeEnum @rename(attribute: "license_code")
+    description: String
+    observedOn: Date @rename(attribute: "observed_on")
+    observedOnString: String @rename(attribute: "observed_on_string")
+    observedOnDetails: DateTimeDetails @rename(attribute: "observedOnDateTimeDetails")
+    placeIds: [Int] @rename(attribute: "placeIds")
+    latitude: Float
+    longitude: Float
+    geoJSON: GeoJSONGeometry @rename(attribute: "geometry")
+    placeGuess: String @rename(attribute: "place_guess")
+    user: InaturalistUser
+    observationUrl: String
+}
+
+type DateTimeDetails {
+    date: String
+    day: Int
+    month: Int
+    year: Int
+    hour: Int
+    week: Int
+}

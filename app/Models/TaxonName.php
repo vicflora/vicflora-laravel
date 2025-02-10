@@ -143,26 +143,6 @@ class TaxonName extends BaseModel
         return $this->hasMany(TaxonConcept::class);
     }
 
-    /**
-     * Link to APNI name record
-     *
-     * @return HasOne
-     */
-    public function apniName(): HasOne
-    {
-        return $this->hasOne(ApniName::class, 'taxon_name_id', 'guid');
-    }
-
-    /**
-     * Link to VBA taxon record
-     *
-     * @return HasOne
-     */
-    public function vbaName(): HasOne
-    {
-        return $this->hasOne(VbaName::class, 'taxon_name_id', 'guid');
-    }
-
     public function getNameRankAttribute(): ?string
     {
         if ($this->name_rank_id) {

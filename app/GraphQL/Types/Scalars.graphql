@@ -12,6 +12,9 @@ scalar DateTimeTz
 "A UUID string, e.g. `0c8e21a6-fe09-4835-84e1-d9531ad24728`."
 scalar UUID @scalar(class: "UUID")
 
+"An ORCID, e.g. '0000-0003-2224-6821'."
+scalar ORCID @scalar(class: "ORCID")
+
 "A [RFC 5321](https://tools.ietf.org/html/rfc5321) compliant email."
 scalar Email @scalar(class: "MLL\\GraphQLScalars\\Email")
 

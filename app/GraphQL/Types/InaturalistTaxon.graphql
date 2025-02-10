@@ -1,0 +1,6 @@
+type InaturalistTaxon {
+    id: ID
+    name: String
+    rank: String
+}
+
