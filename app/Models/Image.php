@@ -56,7 +56,7 @@ class Image extends BaseModel
 
     /**
      * The "type" of the auto-incrementing ID.
-     * 
+     *
      * @var string
      */
     protected $keyType = 'integer';
@@ -64,14 +64,14 @@ class Image extends BaseModel
     /**
      * @var array
      */
-    protected $fillable = ['taxon_id', 'timestamp_created', 
-            'timestamp_modified', 'version', 'caption', 
-            'catalog_number', 'copyright_owner', 'country', 'country_code', 
-            'creation_date', 'creator', 'canto_content_id', 
-            'canto_file_name', 'decimal_latitude', 'decimal_longitude', 
-            'hero_image', 'license', 'locality', 'modified', 'originating_program', 
-            'pixel_x_dimension', 'pixel_y_dimension', 'rating', 'recorded_by', 
-            'record_number', 'rights', 'scientific_name', 'source', 
+    protected $fillable = ['taxon_id', 'timestamp_created',
+            'timestamp_modified', 'version', 'caption',
+            'catalog_number', 'copyright_owner', 'country', 'country_code',
+            'creation_date', 'creator', 'canto_content_id',
+            'canto_file_name', 'decimal_latitude', 'decimal_longitude',
+            'hero_image', 'license', 'locality', 'modified', 'originating_program',
+            'pixel_x_dimension', 'pixel_y_dimension', 'rating', 'recorded_by',
+            'record_number', 'rights', 'scientific_name', 'source',
             'state_province', 'subject_category', 'subtype', 'title', 'type'];
 
     /**

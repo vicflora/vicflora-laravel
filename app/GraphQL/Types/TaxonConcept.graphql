@@ -349,8 +349,12 @@ extend type Query {
             builder: "\\App\\GraphQL\\Queries\\TaxonConceptsByWkt"
         )
 
-    taxonConceptImages(taxonConceptId: ID!, first: Int=12, page: Int=1): ImageApiResponse
-
+    taxonConceptImages(taxonConceptId: ID!): [Image]
+        @paginate(
+            builder: "\\App\\GraphQL\\Queries\\TaxonConceptImages"
+            defaultCount: 20
+        )
+        
     taxonConceptSpecimenImages(taxonConceptId: ID!): [SpecimenImage]
         @paginate(
             builder: "\\App\\GraphQL\\Queries\\TaxonConceptSpecimenImages"
