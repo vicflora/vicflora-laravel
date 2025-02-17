@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Clickbar\Magellan\Database\Eloquent\HasPostgisColumns;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -26,6 +27,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class ParkReserve extends Model
 {
+    use HasPostgisColumns;
 
     /**
      * The table associated with the model.
@@ -33,6 +35,13 @@ class ParkReserve extends Model
      * @var string
      */
     protected $table = 'mapper_overlays.park_reserves';
+
+    protected array $postgisColumns = [
+        'geom' => [
+            'type' => 'geometry',
+            'srid' => 4326,
+        ],
+    ];
 
     /**
      * @return string

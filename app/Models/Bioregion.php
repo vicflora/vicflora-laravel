@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Clickbar\Magellan\Database\Eloquent\HasPostgisColumns;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -20,12 +21,21 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Bioregion extends Model
 {
+    use HasPostgisColumns;
+
     /**
      * The table associated with the model.
      *
      * @var string
      */
     protected $table = 'mapper_overlays.bioregions';
+
+    protected array $postgisColumns = [
+        'geom' => [
+            'type' => 'geometry',
+            'srid' => 4326,
+        ],
+    ];
 
     public function getGeometryAttribute()
     {

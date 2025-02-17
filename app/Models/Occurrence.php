@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
+use Clickbar\Magellan\Database\Eloquent\HasPostgisColumns;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use MStaack\LaravelPostgis\Eloquent\PostgisTrait;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
@@ -33,14 +33,14 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class Occurrence extends Model
 {
-    use PostgisTrait;
+    use HasPostgisColumns;
 
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'mapper.occurrences';
+    protected $table = 'occurrences';
 
     /**
      * The primary key associated with the table.
@@ -81,21 +81,11 @@ class Occurrence extends Model
         'data_source_id',
     ];
 
-    /**
-     * @var array
-     */
-    protected $postgisFields = [
-        'geom'
-    ];
-
-    /**
-     * @var array
-     */
-    protected $postgisTypes = [
+    protected array $postgisColumns = [
         'geom' => [
-            'geomtype' => 'GEOMETRY',
-            'srid' => 4326
-        ]
+            'type' => 'geometry',
+            'srid' => 4326,
+        ],
     ];
 
     public function getTypeAttribute()

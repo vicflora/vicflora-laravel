@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "clickbar/laravel-magellan": "^1.7",
         "doctrine/dbal": "^3.0",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
@@ -21,7 +22,6 @@
         "laravel/tinker": "^2.7",
         "laravel/ui": "^3.2",
         "mll-lab/graphql-php-scalars": "^5.4",
-        "mstaack/laravel-postgis": "^5.4",
         "nuwave/lighthouse": "^5.60",
         "phpoffice/phpspreadsheet": "^2.0",
         "predis/predis": "^2.0",
@@ -30,12 +30,13 @@
         "zanysoft/laravel-zip": "^1.0"
     },
     "require-dev": {
-        "spatie/laravel-ignition": "^1.0",
+        "barryvdh/laravel-ide-helper": "^2.15",
         "fakerphp/faker": "^1.9.1",
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^6.1",
-        "phpunit/phpunit": "^9.3.3"
+        "phpunit/phpunit": "^9.3.3",
+        "spatie/laravel-ignition": "^1.0"
     },
     "config": {
         "optimize-autoloader": true,
