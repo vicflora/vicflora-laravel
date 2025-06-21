@@ -37,16 +37,16 @@
         <script type="text/javascript" src="https://images.ala.org.au/assets/head.js" ></script>
         <script type="text/javascript" src="/js/ala-images-client.min.js" ></script>
         <script>
-            $(document).ready(function() {
+            document.addEventListener("DOMContentLoaded", function() {
                 var options = {
                     auxDataUrl : "",
                     imageServiceBaseUrl : "https://images.ala.org.au",
                     imageClientBaseUrl : "https://images.ala.org.au"
                 };
-                imgvwr.viewImage($("#imageViewer"), "{{$imageId}}", "", "", options);
+                imgvwr.viewImage(document.querySelector("#imageViewer"), "{{$imageId}}", "", "", options);
                 
-                $('body').on('load', '.leaflet-control-container', function() {
-                    $('a[href^="https://images.ala.org.au"]').attr('target', '_blank');
+                document.querySelector("body").on('load', '.leaflet-control-container', function() {
+                    document.querySelector('a[href^="https://images.ala.org.au"]').setAttribute("target", "_blank");
                 });
             });
         </script>
