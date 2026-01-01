@@ -31,12 +31,13 @@ type GlossaryRelationshipType {
 type GlossaryTermImage {
     id: ID
     terms: GlossaryTerm
-    imageUrl: String!
     creator: String
     rights: String
     title: String
     caption: String
     source: String
+    thumbnailUrl: String! @rename(attribute: "thumbnail_url")
+    previewUrl: String! @rename(attribute: "preview_url")
 }
 
 type GlossaryTermInString {

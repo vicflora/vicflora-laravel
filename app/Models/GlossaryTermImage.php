@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
@@ -47,17 +46,4 @@ class GlossaryTermImage extends Model
         return $this->belongsToMany(GlossaryTerm::class, 'term_image', 
                 'image_id', 'term_id');
     }
-
-    /**
-     * @return string
-     */
-    public function getImageUrlAttribute(): string
-    {
-        return 'https://data.rbg.vic.gov.au/cip/preview/image/public/' . 
-                $this->cumulus_record_id;
-    }
-
-
-    
-
 }
