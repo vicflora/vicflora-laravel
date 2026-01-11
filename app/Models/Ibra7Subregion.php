@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Clickbar\Magellan\Database\Eloquent\HasPostgisColumns;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
 
 /**
  * @property integer $id
@@ -20,7 +19,7 @@ use Illuminate\Support\Str;
  * @property array<mixed> $geometry
  * @property array<mixed> $properties
  */
-class Bioregion extends Model
+class Ibra7Subregion extends Model
 {
     use HasPostgisColumns;
 
@@ -29,7 +28,7 @@ class Bioregion extends Model
      *
      * @var string
      */
-    protected $table = 'mapper.bioregions';
+    protected $table = 'mapper.ibra7_subregions_victoria';
 
     protected array $postgisColumns = [
         'geom' => [
@@ -52,11 +51,10 @@ class Bioregion extends Model
     {
         return [
             'id' => $this->id,
-            'number' => $this->bioregno,
-            'name' => $this->bioregion,
-            'code' => $this->bioregcode,
-            'label' => $this->bioregion . ' (' . $this->bioregcode . ')',
-            'slug' => $this->slug,
+            'name' => $this->name,
+            'code' => $this->code,
+            'label' => $this->name . ' (' . $this->code . ')',
+            'slug' => $this->slug
         ];
     }
 

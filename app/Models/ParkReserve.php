@@ -34,7 +34,7 @@ class ParkReserve extends Model
      *
      * @var string
      */
-    protected $table = 'mapper_overlays.park_reserves';
+    protected $table = 'mapper.park_reserves';
 
     protected array $postgisColumns = [
         'geom' => [

@@ -1,19 +1,19 @@
-type TaxonBioregion {
-    id: ID @rename(attribute: "bioregion_id")
+type TaxonProtectedArea {
+    id: ID @rename(attribute: "area_id")
     taxonConcept: TaxonConcept
-    bioregion: BioregionFeature
+    protectedArea: ProtectedAreaFeature
+    areaName: String @rename(attribute: "area_name")
+    areaType: String @rename(attribute: "type")
     occurrenceStatus: OccurrenceStatusEnum
         @rename(attribute: "occurrence_status")
     establishmentMeans: EstablishmentMeansEnum
         @rename(attribute: "establishment_means")
     degreeOfEstablishment: DegreeOfEstablishmentEnum
         @rename(attribute: "degree_of_establishment")
-    bioregionName: String @rename(attribute: "bioregion_name")
-    bioregionCode: String @rename(attribute: "bioregion_code")
 }
 
 extend type Query {
-    taxonConceptBioregions(
+    taxonConceptProtectedAreas(
         taxonConceptId: ID! @eq(key: "taxon_concept_id")
-    ): [TaxonBioregion] @orderBy(column: "bioregion_name") @all
+    ): [TaxonProtectedArea] @orderBy(column: "area_name") @all
 }

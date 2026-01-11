@@ -4,21 +4,18 @@ namespace App\Models;
 
 use Clickbar\Magellan\Database\Eloquent\HasPostgisColumns;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 /**
  * @property integer $id
- * @property string $lga_pid
- * @property string $lga_name
- * @property string $abb_name
- * @property integer $state_pid
- * @property string $geojson
- *
+ * @property string $name
  * @property string $type
- * @property array<mixed> $geometry
- * @property array<mixed> $properties
+ * @property string $typeAbbr
+ * @property-read array<mixed> $geometry
+ * @property-read array<mixed> $properties
  */
-class LocalGovernmentArea extends Model {
+class ProtectedArea extends Model
+{
     use HasPostgisColumns;
 
     /**
@@ -26,7 +23,7 @@ class LocalGovernmentArea extends Model {
      *
      * @var string
      */
-    protected $table = 'mapper.local_government_areas';
+    protected $table = 'mapper.protected_areas_victoria_mv';
 
     protected array $postgisColumns = [
         'geom' => [
@@ -59,7 +56,7 @@ class LocalGovernmentArea extends Model {
      */
     public function getGeometryAttribute()
     {
-        return json_decode($this->geojson);
+        return DB::select("select ST_AsGeoJSON($this->geom) as geojson")[0]->geojson;
     }
 
     /**
@@ -70,11 +67,14 @@ class LocalGovernmentArea extends Model {
     public function getPropertiesAttribute()
     {
         return [
-            'id' => $this->lga_pid,
-            'name' => Str::title($this->name),
-            'label' => Str::title($this->name),
+            'id' => $this->id,
+            'name' => $this->label,
+            'label' => $this->label,
+            'type' => $this->type,
+            'typeAbbr' => $this->type_abbr,
             'state' => $this->state,
             'slug' => $this->slug,
         ];
     }
+
 }

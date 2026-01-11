@@ -7,36 +7,28 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property integer $id
- * @property string $created_at
- * @property string $updated_at
- * @property string $taxon_concept_id
- * @property string $scientific_name
- * @property integer $park_id
- * @property string $park_name
- * @property string $park_short_name
  * @property string $occurrence_status
  * @property string $establishment_means
- * @property string $degreeOfEstablishment
  * @property string $geom
- * 
  * @property TaxonConcept $taxonConcept
- * @property ParkReserve $parkReserve
+ * @property Bioregion $bioregion
  */
-class TaxonParkReserve extends Model
+class TaxonIbra7Subregion extends Model
 {
+
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'mapper.taxon_concept_park_reserves_view';
+    protected $table = 'mapper.taxon_concept_ibra7_subregions_view';
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function parkReserve(): BelongsTo
+    public function ibra7Subregion(): BelongsTo
     {
-        return $this->belongsTo(ParkReserve::class, 'park_reserve_id', 'id');
+        return $this->belongsTo(Ibra7Subregion::class, 'ibra7_subregion_id', 'id');
     }
 
     /**
@@ -47,5 +39,4 @@ class TaxonParkReserve extends Model
         return $this->belongsTo(TaxonConcept::class, 'taxon_concept_id', 
                 'guid');
     }
-
 }

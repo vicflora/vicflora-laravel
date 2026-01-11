@@ -1,0 +1,31 @@
+"""
+IBRA 7 subregion. Will return GeoJSON-compliant Feature if at least type and
+geometry with both its properties are used.
+"""
+type Ibra7SubregionFeature @model(class: "\\App\\Models\\Ibra7Subregion") {
+    type: String
+    geometry: GeoJSONGeometry
+    properties: Ibra7SubregionProperties
+}
+
+type Ibra7SubregionProperties {
+    id: Int
+    name: String
+    code: String
+    label: String
+    slug: String
+}
+
+extend type Query {
+    ibra7Subregion(id: ID! @eq): Ibra7SubregionFeature @find
+
+    ibra7SubregionsByName(
+        name: String! @ilike(key: "name", template: "{}%")
+    ): [Ibra7SubregionFeature] @all(model: "App\\Models\\Ibra7Subregion")
+
+    ibra7SubregionBySlug(slug: String! @eq): Ibra7SubregionFeature @find
+
+    ibra7SubregionByName(name: String! @eq(key: "ibra7_region")): Ibra7SubregionFeature @find
+
+    ibra7SubregionsByPoint(latitude: Float!, longitude: Float!): [Ibra7SubregionFeature]
+}

@@ -9,9 +9,7 @@ type LocalGovernmentAreaProperties {
     id: ID
     name: String
     label: String
-    nameAbbr: String
-    created: Date
-    gazetted: Date
+    state: String
     slug: String
 }
 

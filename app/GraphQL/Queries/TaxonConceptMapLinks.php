@@ -21,13 +21,14 @@ class TaxonConceptMapLinks
             'service' => 'WMS',
             'version' => '1.1.0',
             'request' => 'GetMap',
-            'layers' => 'vicflora-mapper:victoria_outline,vicflora-mapper:taxon_occurrences',
+            'layers' => 'vicflora-mapper:victoria_outline,vicflora-mapper:taxon_concept_occurrences',
             'bbox' => '140.8,-39.3,150.2,-33.8',
             'width' => '600',
             'height' => '363',
             'srs' => 'EPSG:4326',
             'format' => 'image/png',
             'transparent' => 'true',
+            'styles' => 'polygon-no-fill-grey-outline,',
             'cql_filter' => "INCLUDE;" .
                     "taxon_concept_id='{$taxonConcept->guid}' " .
                     "AND establishment_means NOT IN ('cultivated') " .

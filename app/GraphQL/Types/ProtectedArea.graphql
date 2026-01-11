@@ -1,0 +1,32 @@
+type ProtectedAreaFeature @model(class: "\\App\\Models\\ProtectedArea") {
+    type: String
+    geometry: GeoJSONGeometry
+    properties: ProtectedAreaProperties
+}
+
+type ProtectedAreaProperties {
+    id: ID
+    name: String
+    label: String
+    type: String
+    typeAbbr: String
+    state: String
+    slug: String
+}
+
+extend type Query {
+    protectedArea(id: ID! @eq): ProtectedAreaFeature @find
+
+    protectedAreasByName(
+        name: String! @ilike(key: "name", template: "{}%")
+    ): [ProtectedAreaFeature] @all(model: "App\\Models\\ProtectedArea")
+
+    protectedAreasByPoint(
+        latitude: Float!
+        longitude: Float!
+    ): [ProtectedAreaFeature]
+
+    protectedAreaBySlug(slug: String! @eq): ProtectedAreaFeature @find
+
+    protectedAreaByName(name: String! @eq): ProtectedAreaFeature @find
+}

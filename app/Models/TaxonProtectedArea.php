@@ -11,26 +11,33 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $updated_at
  * @property string $taxon_concept_id
  * @property string $scientific_name
- * @property string $lga_pid
- * @property string $lga_name
- * @property string $abbreviated_name
+ * @property integer $park_id
+ * @property string $park_name
+ * @property string $park_short_name
  * @property string $occurrence_status
  * @property string $establishment_means
- * @property string $degree_of_establishment
+ * @property string $degreeOfEstablishment
  * @property string $geom
  * 
  * @property TaxonConcept $taxonConcept
- * @property LocalGovernmentArea $localGovernmentArea
+ * @property ParkReserve $parkReserve
  */
-class TaxonLocalGovernmentArea extends Model
+class TaxonProtectedArea extends Model
 {
-
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'mapper.taxon_concept_lgas_view';
+    protected $table = 'mapper.taxon_concept_capad_view';
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function protectedArea(): BelongsTo
+    {
+        return $this->belongsTo(ParkReserve::class, 'protected_area_id', 'id');
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -41,11 +48,4 @@ class TaxonLocalGovernmentArea extends Model
                 'guid');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function localGovernmentArea(): BelongsTo
-    {
-        return $this->belongsTo(LocalGovernmentArea::class, 'lga_id', 'id');
-    }
 }

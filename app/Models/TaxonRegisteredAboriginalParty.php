@@ -13,7 +13,7 @@ class TaxonRegisteredAboriginalParty extends Model
      *
      * @var string
      */
-    protected $table = 'mapper.taxon_raps_view';
+    protected $table = 'mapper.taxon_concept_raps_view';
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -27,6 +27,6 @@ class TaxonRegisteredAboriginalParty extends Model
     public function registeredAboriginalParty(): BelongsTo
     {
         return $this->belongsTo(RegisteredAboriginalParty::class,
-                'rap_id', 'id');
+                'area_id', 'id');
     }
 }

@@ -2,17 +2,19 @@ type TaxonParkReserve {
     id: ID @rename(attribute: "park_reserve_id")
     taxonConcept: TaxonConcept
     parkReserve: ParkReserveFeature
-    parkReserveName: String @rename(attribute: "park_reserve_name")
-    parkReserveShortName: String @rename(attribute: "park_reserve_short_name")
-    parkReserveAreaType: String @rename(attribute: "park_reserve_area_type")
+    parkReserveName: String @rename(attribute: "area_name")
+    parkReserveShortName: String @rename(attribute: "name_short")
+    parkReserveAreaType: String @rename(attribute: "area_type")
     occurrenceStatus: OccurrenceStatusEnum
         @rename(attribute: "occurrence_status")
     establishmentMeans: EstablishmentMeansEnum
         @rename(attribute: "establishment_means")
+    degreeOfEstablishment: DegreeOfEstablishmentEnum
+        @rename(attribute: "degree_of_establishment")
 }
 
 extend type Query {
     taxonConceptParkReserves(
         taxonConceptId: ID! @eq(key: "taxon_concept_id")
-    ): [TaxonParkReserve] @orderBy(column: "park_reserve_name") @all
+    ): [TaxonParkReserve] @orderBy(column: "area_name") @all
 }
