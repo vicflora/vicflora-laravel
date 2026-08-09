@@ -48,6 +48,8 @@ class Catchment extends Model
         return [
             'id' => $this->id,
             'name' => $this->area_name,
+            'label' => $this->area_name,
+            'nameShort' => $this->area_name,
             'code' => $this->area_code,
             'state' => 'Victoria',
             'slug' => Str::slug($this->area_name),

@@ -7,24 +7,26 @@ type CatchmentFeature @model(class: "\\App\\Models\\Catchment") {
 type CatchmentProperties {
     id: ID
     name: String
+    label: String
+    nameShort: String
     code: String
     state: String
     slug: String
 }
 
 extend type Query {
-    catchment(id: ID! @eq): Catchment @find
+    catchment(id: ID! @eq): CatchmentFeature @find
 
     catchmentsByName(
         name: String! @ilike(key: "name", template: "{}%")
-    ): [Catchment] @all(model: "App\\Models\\Catchment")
+    ): [CatchmentFeature] @all(model: "App\\Models\\Catchment")
 
     catchmentsByPoint(
         latitude: Float!
         longitude: Float!
-    ): [Catchment]
+    ): [CatchmentFeature]
 
-    catchmentBySlug(slug: String! @eq): Catchment @find
+    catchmentBySlug(slug: String! @eq): CatchmentFeature @find
 
-    catchmentByName(name: String! @eq): Catchment @find
+    catchmentByName(name: String! @eq): CatchmentFeature @find
 }

@@ -1,0 +1,18 @@
+type TaxonCatchment {
+    id: ID @rename(attribute: "area_id")
+    taxonConcept: TaxonConcept
+    catchment: CatchmentFeature
+    catchmentName: String @rename(attribute: "area_name")
+    catchmentShortName: String @rename(attribute: "area_name")
+    occurrenceStatus: OccurrenceStatusEnum @rename(attribute: "occurrence_status")
+    establishmentMeans: EstablishmentMeansEnum @rename(attribute: "establishment_means")
+    degreeOfEstablishment: DegreeOfEstablishmentEnum @rename(attribute: "degree_of_establishment")
+}
+
+extend type Query {
+    taxonConceptCatchments(
+        taxonConceptId: ID! @eq(key: "taxon_concept_id")
+    ): [TaxonCatchment]
+        @orderBy(column: "area_name")
+        @all
+} 
