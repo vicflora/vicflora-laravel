@@ -1,0 +1,30 @@
+type CatchmentFeature @model(class: "\\App\\Models\\Catchment") {
+    type: String
+    geometry: GeoJSONGeometry
+    properties: CatchmentProperties
+}
+
+type CatchmentProperties {
+    id: ID
+    name: String
+    code: String
+    state: String
+    slug: String
+}
+
+extend type Query {
+    catchment(id: ID! @eq): Catchment @find
+
+    catchmentsByName(
+        name: String! @ilike(key: "name", template: "{}%")
+    ): [Catchment] @all(model: "App\\Models\\Catchment")
+
+    catchmentsByPoint(
+        latitude: Float!
+        longitude: Float!
+    ): [Catchment]
+
+    catchmentBySlug(slug: String! @eq): Catchment @find
+
+    catchmentByName(name: String! @eq): Catchment @find
+}
