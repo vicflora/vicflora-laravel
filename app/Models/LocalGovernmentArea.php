@@ -26,7 +26,7 @@ class LocalGovernmentArea extends Model {
      *
      * @var string
      */
-    protected $table = 'mapper.local_government_areas';
+    protected $table = 'mapper_overlays.local_government_areas';
 
     protected array $postgisColumns = [
         'geom' => [
@@ -71,8 +71,8 @@ class LocalGovernmentArea extends Model {
     {
         return [
             'id' => $this->lga_pid,
-            'name' => Str::title($this->name),
-            'label' => Str::title($this->name),
+            'name' => Str::title($this->lga_name),
+            'label' => Str::title($this->lga_name),
             'state' => $this->state,
             'slug' => $this->slug,
         ];
