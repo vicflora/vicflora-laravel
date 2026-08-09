@@ -71,7 +71,7 @@ class LocalGovernmentArea extends Model {
     {
         return [
             'id' => $this->lga_pid,
-            'name' => Str::title($this->lga_name),
+            'name' => Str::title($this->abb_name),
             'label' => Str::title($this->lga_name),
             'state' => $this->state,
             'slug' => $this->slug,
