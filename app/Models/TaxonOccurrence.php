@@ -37,7 +37,7 @@ class TaxonOccurrence extends Model
      *
      * @var string
      */
-    protected $table = 'mapper.taxon_concept_occurrence_mv';
+    protected $table = 'mapper.taxon_occurrences_materialized_view';
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
