@@ -510,6 +510,14 @@ class TaxonConcept extends BaseModel
     }
 
     /**
+     * @return HasMany
+     */
+    public function threatStatusAssessments(): HasMany
+    {
+        return $this->hasMany(ThreatStatusAssessment::class);
+    }
+
+    /**
      * @return string|null
      */
     public function getTaxonomicStatusNameAttribute(): ?string

@@ -118,6 +118,8 @@ type TaxonConcept {
     hasIntroducedOccurrences: Boolean
         @rename(attribute: "has_introduced_occurrences")
 
+    threatStatusAssessments: [ThreatStatusAssessment]
+
     """
     Environment Protection and Biodiversity Conservation (EPBC) Act 1999
     """

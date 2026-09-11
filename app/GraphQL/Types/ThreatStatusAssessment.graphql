@@ -1,0 +1,21 @@
+type ThreatStatusAssessment {
+    id: ID! @rename(attribute: "guid")
+    authority: ConservationList @belongsTo
+    iucnCategory: IucnCategory @belongsTo
+    as: String
+    remarks: String
+}
+
+type ConservationList {
+    code: String!
+    name: String!
+    description: String
+    remarks: String
+}
+
+type IucnCategory {
+    code: String!
+    name: String!
+    description: String
+    remarks: String
+}
